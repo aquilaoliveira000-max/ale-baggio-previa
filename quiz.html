@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monte o seu retrato · Alê Baggio</title>
+<meta name="description" content="Conte em um minuto como você imagina o seu retrato pintado à mão. A Alê recebe tudo pronto e já responde com o orçamento.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     Mesmas regras do site: tamanho so de token --t-*, espaco so de
+     --s1..--s7, cor so de token, nenhuma animacao escondendo conteudo.
+     ============================================================ */
+  :root{
+    --branco:#FFFFFF;
+    --tinta:#0F0F0F;
+    --cinza:#6B6B6B;
+    --filete:#E4E2DE;
+    --nevoa:#F4F2EF;
+    --apagado:#CFCDC9;
+    --ultramar:#1B2FE0;
+    --ultramar-fundo:#1526B4;
+    --ultramar-claro:#6E86FF;
+    --fonte:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;
+    --assinatura:'Mrs Saint Delafield',cursive;
+    --gutter:clamp(20px,4.5vw,64px);
+    --max:1320px;
+    --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px; --s6:72px; --s7:104px;
+    --t-display:clamp(30px, 4.4vw, 56px);
+    --t-titulo:clamp(26px, 3.4vw, 44px);
+    --t-sub:clamp(20px, 2.2vw, 26px);
+    --t-olho:clamp(17px, 1.5vw, 20px);
+    --t-corpo:17px;
+    --t-apoio:15px;
+    --t-etiqueta:12.5px;
+    --t-botao:clamp(13px, 1vw, 14px);
+    --t-assina:clamp(32px, 3vw, 40px);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--branco); color:var(--tinta); font-family:var(--fonte);
+    font-size:var(--t-corpo); line-height:1.6; -webkit-font-smoothing:antialiased;}
+  img{display:block; max-width:100%;}
+  a{color:inherit;}
+  h1,h2,h3{margin:0; font-weight:600; letter-spacing:-.03em; line-height:1.05; text-wrap:balance;}
+  p{margin:0; text-wrap:pretty;}
+  button{font:inherit; color:inherit;}
+  ::selection{background:var(--ultramar); color:var(--branco);}
+  :focus-visible{outline:2px solid var(--ultramar); outline-offset:3px;}
+
+  /* topo */
+  .topo{position:sticky; top:0; z-index:10; background:var(--branco); border-bottom:1px solid var(--filete);}
+  .topo .dentro{max-width:var(--max); margin:0 auto; padding:0 var(--gutter);
+    display:flex; align-items:center; justify-content:space-between; gap:var(--s3); height:72px;}
+  .assina{font-family:var(--assinatura); font-size:var(--t-assina); line-height:1; text-decoration:none; padding-top:var(--s1);}
+  .sair{font-size:var(--t-botao); letter-spacing:.06em; text-transform:uppercase; color:var(--cinza); text-decoration:none;}
+  .sair:hover{color:var(--ultramar);}
+  .linha{height:3px; background:var(--filete);}
+  .linha i{display:block; height:100%; width:0; background:linear-gradient(90deg, var(--ultramar-claro), var(--ultramar));
+    transition:width 500ms cubic-bezier(.22,1,.36,1);}
+
+  /* palco */
+  .palco{max-width:var(--max); margin:0 auto; padding:var(--s6) var(--gutter) var(--s7);
+    display:grid; grid-template-columns:1.25fr .75fr; gap:var(--s6); align-items:start;}
+
+  .passo-titulo{font-size:var(--t-titulo); max-width:18ch;}
+  .passo-ajuda{margin-top:var(--s2); font-size:var(--t-olho); color:var(--cinza); max-width:46ch;}
+
+  .opcoes{display:grid; grid-template-columns:repeat(auto-fit, minmax(190px,1fr)); gap:var(--s3); margin-top:var(--s5);}
+  .op{position:relative; display:flex; flex-direction:column; text-align:left; gap:var(--s2);
+    background:none; border:0; padding:0; cursor:pointer;}
+  .op .moldura{position:relative; overflow:hidden; background:var(--nevoa); border:1px solid var(--filete);}
+  .op img{width:100%; aspect-ratio:4/5; object-fit:cover; transition:transform 500ms cubic-bezier(.22,1,.36,1);}
+  .op:hover img{transform:scale(1.05);}
+  .op b{font-weight:600; font-size:var(--t-sub); letter-spacing:-.02em; line-height:1.15;}
+  .op span{display:block; font-size:var(--t-apoio); color:var(--cinza); margin-top:var(--s1);}
+  .op:hover b{color:var(--ultramar);}
+  .op.escolhida .moldura{border-color:var(--ultramar); box-shadow:0 0 0 2px var(--ultramar);}
+  .op .marca{position:absolute; top:var(--s2); right:var(--s2); width:28px; height:28px; border-radius:50%;
+    background:var(--ultramar); color:var(--branco); display:none; place-items:center; font-size:var(--t-etiqueta);}
+  .op.escolhida .marca{display:grid;}
+
+  /* opcoes sem imagem, para respostas curtas */
+  .opcoes.simples{grid-template-columns:repeat(auto-fit, minmax(220px,1fr));}
+  .opcoes.simples .op{border:1px solid var(--filete); padding:var(--s3); gap:var(--s1);}
+  .opcoes.simples .op:hover{border-color:var(--ultramar);}
+  .opcoes.simples .op.escolhida{border-color:var(--ultramar); box-shadow:0 0 0 1px var(--ultramar);}
+
+  /* tamanhos: proporcao desenhada */
+  .tamanhos{display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:var(--s3); margin-top:var(--s5);}
+  .tam{display:flex; flex-direction:column; align-items:flex-start; gap:var(--s2); background:none; border:1px solid var(--filete);
+    padding:var(--s4) var(--s3); cursor:pointer; text-align:left;}
+  .tam:hover{border-color:var(--ultramar);}
+  .tam.escolhida{border-color:var(--ultramar); box-shadow:0 0 0 1px var(--ultramar);}
+  .tam .prova{width:100%; display:flex; align-items:flex-end; gap:var(--s2); height:110px;}
+  .tam .tela{background:var(--nevoa); border:1px solid var(--apagado);}
+  .tam .gente{width:14px; height:44px; background:var(--ultramar); opacity:.25;}
+  .tam b{font-size:var(--t-sub); font-weight:600; letter-spacing:-.02em;}
+  .tam .medida{font-size:var(--t-apoio); color:var(--cinza);}
+  .tam .valor{font-size:var(--t-apoio); color:var(--ultramar); border-bottom:1px dotted var(--ultramar);}
+
+  /* campos */
+  .campos{display:grid; gap:var(--s3); margin-top:var(--s5); max-width:520px;}
+  .campo label{display:block; font-size:var(--t-etiqueta); letter-spacing:.12em; text-transform:uppercase; color:var(--cinza); margin-bottom:var(--s1);}
+  .campo input{width:100%; font-family:var(--fonte); font-size:var(--t-corpo); padding:var(--s2);
+    border:1px solid var(--filete); border-radius:0; background:var(--branco); color:var(--tinta);}
+  .campo input:focus{outline:none; border-color:var(--ultramar); box-shadow:0 0 0 2px rgba(27,47,224,.16);}
+
+  /* navegacao */
+  .rodape-passo{display:flex; align-items:center; gap:var(--s3); margin-top:var(--s5); flex-wrap:wrap;}
+  .btn{display:inline-flex; align-items:center; justify-content:center; font-size:var(--t-botao); font-weight:600;
+    letter-spacing:.06em; text-transform:uppercase; text-decoration:none; padding:var(--s2) var(--s4);
+    border:1px solid transparent; border-radius:100px; cursor:pointer;
+    transition:background 200ms, color 200ms, border-color 200ms, transform 200ms;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-1{background:var(--ultramar); color:var(--branco);}
+  .btn-1:hover{background:var(--ultramar-fundo);}
+  .btn-2{border-color:var(--tinta); background:none;}
+  .btn-2:hover{background:var(--tinta); color:var(--branco);}
+  .voltar{background:none; border:0; cursor:pointer; font-size:var(--t-apoio); color:var(--cinza); padding:0;}
+  .voltar:hover{color:var(--ultramar);}
+
+  /* painel */
+  .painel{position:sticky; top:96px; border:1px solid var(--filete); padding:var(--s4);}
+  .painel h2{font-size:var(--t-sub);}
+  .painel .vazio{margin-top:var(--s2); font-size:var(--t-apoio); color:var(--cinza);}
+  .painel .capa{margin-top:var(--s3); background:var(--nevoa); border:1px solid var(--filete); overflow:hidden;}
+  .painel .capa img{width:100%; aspect-ratio:4/3; object-fit:cover;}
+  .escolhas{list-style:none; margin:var(--s3) 0 0; padding:0;}
+  .escolhas li{display:flex; justify-content:space-between; gap:var(--s2); padding:var(--s2) 0; border-top:1px solid var(--filete); font-size:var(--t-apoio);}
+  .escolhas li span{color:var(--cinza);}
+  .escolhas li b{font-weight:600; text-align:right;}
+
+  /* fim */
+  .resumo{border:1px solid var(--filete); padding:var(--s4); margin-top:var(--s4); background:var(--nevoa);}
+  .resumo p{font-size:var(--t-olho); line-height:1.5;}
+  .aviso-pend{margin-top:var(--s3); font-size:var(--t-apoio); color:var(--ultramar);}
+
+  .aviso{position:fixed; left:0; right:0; bottom:0; z-index:50; background:var(--tinta); color:var(--branco);
+    display:flex; gap:var(--s2); align-items:center; justify-content:center; flex-wrap:wrap; padding:var(--s1) var(--s3); font-size:var(--t-etiqueta);}
+  .aviso button{background:var(--branco); color:var(--tinta); border:0; padding:6px 12px; border-radius:100px; cursor:pointer; font-weight:600;}
+
+  @media (max-width:1000px){
+    .palco{grid-template-columns:1fr; gap:var(--s5); padding-top:var(--s5);}
+    /* no celular o painel so aparece quando ja existe escolha */
+    .painel{position:static; order:-1; padding:var(--s3); display:none;}
+    body.tem-resposta .painel{display:block;}
+    .painel h2{font-size:var(--t-corpo); letter-spacing:.06em; text-transform:uppercase; color:var(--cinza);}
+    .painel .capa img{aspect-ratio:16/9;}
+    .opcoes{grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--s2);}
+    .tamanhos{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="dentro">
+    <a class="assina" href="index.html">Alê Baggio</a>
+    <a class="sair" href="index.html">Voltar ao site</a>
+  </div>
+  <div class="linha"><i id="linhaProgresso"></i></div>
+</header>
+
+<main class="palco">
+  <section id="palco" aria-live="polite">
+    <!-- as perguntas entram aqui -->
+  </section>
+
+  <aside class="painel" aria-label="O seu retrato até agora">
+    <h2>O seu retrato</h2>
+    <p class="vazio" id="painelVazio">Cada escolha aparece aqui. No fim, isso vira a mensagem que a Alê recebe.</p>
+    <div class="capa" id="painelCapa" hidden><img id="painelImg" src="" alt=""></div>
+    <ul class="escolhas" id="painelLista"></ul>
+  </aside>
+</main>
+
+<div class="aviso" id="aviso">
+  <span>Rascunho do quiz. As imagens são de exemplo e os preços ainda não estão definidos.</span>
+  <button type="button" id="fecharAviso">Ocultar</button>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var WHATSAPP = ''; /* falta 1 digito no numero do briefing */
+
+  /* ---------- as perguntas ---------- */
+  var P = {
+    inicio: {
+      titulo: 'Para quem é esta obra?',
+      ajuda: 'Comece por aqui. São seis perguntas rápidas, e no fim a Alê recebe tudo pronto.',
+      rotulo: 'Para quem',
+      opcoes: [
+        { texto: 'Para presentear alguém', nota: 'Uma pessoa que merece', img: 'img/exemplo-2.jpg', proximo: 'ocasiao' },
+        { texto: 'Para mim', nota: 'Uma obra minha, na minha parede', img: 'img/exemplo-5.jpg', proximo: 'paraMim' },
+        { texto: 'Para a minha empresa', nota: 'Homenagem ou decoração', img: 'img/exemplo-4.jpg', proximo: 'empresa' }
+      ]
+    },
+    ocasiao: {
+      titulo: 'Qual é a ocasião?',
+      ajuda: 'A Alê leva de 30 a 60 dias pintando. Saber a data ajuda a reservar a agenda.',
+      rotulo: 'Ocasião',
+      simples: true,
+      opcoes: [
+        { texto: 'Aniversário', proximo: 'quem' },
+        { texto: 'Casamento ou bodas', proximo: 'quem' },
+        { texto: 'Dia das Mães ou dos Pais', proximo: 'quem' },
+        { texto: 'Homenagem a quem já partiu', nota: 'A Alê pinta com todo cuidado', proximo: 'quem' },
+        { texto: 'Sem data marcada', proximo: 'quem' }
+      ]
+    },
+    paraMim: {
+      titulo: 'O que você quer ver na tela?',
+      rotulo: 'Quero ver',
+      opcoes: [
+        { texto: 'O meu retrato', img: 'img/exemplo-1.jpg', proximo: 'quem' },
+        { texto: 'Alguém que eu amo', img: 'img/exemplo-7.jpg', proximo: 'quem' },
+        { texto: 'A minha família', img: 'img/exemplo-6.jpg', proximo: 'quem' },
+        { texto: 'Uma obra abstrata', nota: 'Sem retrato, só cor e movimento', img: 'img/exemplo-3.jpg', proximo: 'tamanho' }
+      ]
+    },
+    empresa: {
+      titulo: 'O que a empresa quer eternizar?',
+      rotulo: 'Para a empresa',
+      opcoes: [
+        { texto: 'O fundador', img: 'img/exemplo-4.jpg', proximo: 'quem' },
+        { texto: 'A equipe', img: 'img/exemplo-6.jpg', proximo: 'quem' },
+        { texto: 'Uma obra para o espaço', nota: 'Sob medida para o ambiente', img: 'img/exemplo-3.jpg', proximo: 'tamanho' }
+      ]
+    },
+    quem: {
+      titulo: 'Quem vai aparecer na tela?',
+      ajuda: 'É o que mais muda o tamanho e o valor da obra.',
+      rotulo: 'Na tela',
+      opcoes: [
+        { texto: 'Uma pessoa', img: 'img/exemplo-1.jpg', proximo: 'foto' },
+        { texto: 'Um casal', img: 'img/exemplo-7.jpg', proximo: 'foto' },
+        { texto: 'A família', nota: 'Três ou mais pessoas', img: 'img/exemplo-6.jpg', proximo: 'foto' },
+        { texto: 'Um grupo grande', nota: 'Time, turma, equipe', img: 'img/exemplo-5.jpg', proximo: 'foto' }
+      ]
+    },
+    foto: {
+      titulo: 'Você já tem a foto?',
+      ajuda: 'A foto é o ponto de partida. Se não tiver a ideal, a Alê ajuda a escolher.',
+      rotulo: 'A foto',
+      simples: true,
+      opcoes: [
+        { texto: 'Tenho a foto certa', proximo: 'tamanho' },
+        { texto: 'Tenho algumas, quero ajuda para escolher', proximo: 'tamanho' },
+        { texto: 'Ainda vou tirar a foto', proximo: 'tamanho' },
+        { texto: 'Quero juntar pessoas de fotos diferentes', nota: 'A confirmar com a Alê', proximo: 'tamanho' }
+      ]
+    },
+    tamanho: {
+      titulo: 'Que tamanho você imagina?',
+      ajuda: 'O valor muda conforme o tamanho e a quantidade de pessoas. A Alê fecha o orçamento na conversa.',
+      rotulo: 'Tamanho',
+      tamanhos: true,
+      opcoes: [
+        { texto: 'Íntima', medida: 'Até 60 × 80 cm', valor: 'a partir de R$ a definir', larg: 46, alt: 62, proximo: 'prazo' },
+        { texto: 'Galeria', medida: '80 × 100 a 120 × 100 cm', valor: 'a partir de R$ a definir', larg: 72, alt: 88, nota: 'O tamanho que ela mais pinta', proximo: 'prazo' },
+        { texto: 'Assinatura', medida: 'A partir de 140 × 120 cm', valor: 'a partir de R$ a definir', larg: 104, alt: 104, proximo: 'prazo' }
+      ]
+    },
+    prazo: {
+      titulo: 'Tem uma data para a obra estar pronta?',
+      ajuda: 'São de 30 a 60 dias de pintura, mais o envio.',
+      rotulo: 'Prazo',
+      simples: true,
+      opcoes: [
+        { texto: 'Tenho uma data', data: true, proximo: 'contato' },
+        { texto: 'Não tenho pressa', proximo: 'contato' }
+      ]
+    },
+    contato: {
+      titulo: 'Como a Alê te chama?',
+      ajuda: 'Ela mesma responde, não é uma equipe.',
+      rotulo: 'Contato',
+      contato: true
+    }
+  };
+
+  var estado = { caminho: ['inicio'], respostas: [], dados: {} };
+  var palco = document.getElementById('palco');
+  var lista = document.getElementById('painelLista');
+  var capa = document.getElementById('painelCapa');
+  var capaImg = document.getElementById('painelImg');
+  var vazio = document.getElementById('painelVazio');
+  var linha = document.getElementById('linhaProgresso');
+
+  function atual() { return P[estado.caminho[estado.caminho.length - 1]]; }
+
+  function pintaPainel() {
+    lista.innerHTML = '';
+    estado.respostas.forEach(function (r) {
+      var li = document.createElement('li');
+      li.innerHTML = '<span>' + r.rotulo + '</span><b>' + r.texto + '</b>';
+      lista.appendChild(li);
+    });
+    var ultimaImg = null;
+    for (var i = estado.respostas.length - 1; i >= 0; i--) {
+      if (estado.respostas[i].img) { ultimaImg = estado.respostas[i]; break; }
+    }
+    if (ultimaImg) {
+      capa.hidden = false;
+      capaImg.src = ultimaImg.img;
+      capaImg.alt = 'Exemplo de obra: ' + ultimaImg.texto;
+    } else {
+      capa.hidden = true;
+    }
+    vazio.hidden = estado.respostas.length > 0;
+    document.body.classList.toggle('tem-resposta', estado.respostas.length > 0);
+    var total = 6; /* seis toques e o normal do percurso */
+    linha.style.width = Math.min(100, (estado.respostas.length / total) * 100) + '%';
+  }
+
+  var travado = false;
+
+  function responde(pergunta, opcao, botao) {
+    if (travado) return;
+    if (botao) {
+      botao.classList.add('escolhida');
+      var esperaOk = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (esperaOk) {
+        travado = true;
+        setTimeout(function () { travado = false; segue(pergunta, opcao); }, 240);
+        return;
+      }
+    }
+    segue(pergunta, opcao);
+  }
+
+  function segue(pergunta, opcao) {
+    estado.respostas.push({
+      rotulo: pergunta.rotulo,
+      texto: opcao.texto + (opcao.medida ? ', ' + opcao.medida : ''),
+      img: opcao.img || null
+    });
+    if (opcao.data) {
+      estado.dados.pedeData = true;
+    }
+    pintaPainel();
+    salva();
+    if (opcao.proximo) {
+      estado.caminho.push(opcao.proximo);
+      desenha();
+    } else {
+      desenha();
+    }
+  }
+
+  function volta() {
+    if (estado.caminho.length < 2) return;
+    estado.caminho.pop();
+    estado.respostas.pop();
+    pintaPainel();
+    salva();
+    desenha();
+  }
+
+  function cartaoImagem(op, pergunta) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'op';
+    b.innerHTML =
+      '<div class="moldura"><img src="' + op.img + '" alt="Exemplo: ' + op.texto + '" loading="lazy">' +
+      '<span class="marca">✓</span></div>' +
+      '<b>' + op.texto + '</b>' + (op.nota ? '<span>' + op.nota + '</span>' : '');
+    b.addEventListener('click', function () { responde(pergunta, op, b); });
+    return b;
+  }
+
+  function cartaoSimples(op, pergunta) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'op';
+    b.innerHTML = '<b>' + op.texto + '</b>' + (op.nota ? '<span>' + op.nota + '</span>' : '');
+    b.addEventListener('click', function () { responde(pergunta, op, b); });
+    return b;
+  }
+
+  function cartaoTamanho(op, pergunta) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'tam';
+    b.innerHTML =
+      '<div class="prova"><div class="tela" style="width:' + op.larg + 'px;height:' + op.alt + 'px"></div><div class="gente"></div></div>' +
+      '<b>' + op.texto + '</b>' +
+      '<span class="medida">' + op.medida + '</span>' +
+      '<span class="valor">' + op.valor + '</span>' +
+      (op.nota ? '<span class="medida">' + op.nota + '</span>' : '');
+    b.addEventListener('click', function () { responde(pergunta, op, b); });
+    return b;
+  }
+
+  function telaContato(pergunta) {
+    var frag = document.createElement('div');
+    frag.innerHTML =
+      '<div class="campos">' +
+      (estado.dados.pedeData ? '<div class="campo"><label for="data">Data em que precisa da obra</label><input id="data" type="date"></div>' : '') +
+      '<div class="campo"><label for="nome">Seu nome</label><input id="nome" type="text" autocomplete="name" placeholder="Como a Alê deve te chamar"></div>' +
+      '<div class="campo"><label for="zap">WhatsApp</label><input id="zap" type="tel" autocomplete="tel" placeholder="(00) 00000-0000"></div>' +
+      '</div>' +
+      '<div class="resumo" id="resumo"></div>' +
+      '<div class="rodape-passo">' +
+      '<button type="button" class="btn btn-1" id="enviar">Enviar para a Alê</button>' +
+      '<button type="button" class="voltar" id="voltar">Voltar</button>' +
+      '</div>' +
+      '<p class="aviso-pend" id="pendZap" hidden>O número do WhatsApp da Alê ainda não foi confirmado, então o botão abre a conversa sem destino.</p>';
+    return frag;
+  }
+
+  function mensagem() {
+    var partes = ['Olá, Alê! Vim pelo site.'];
+    estado.respostas.forEach(function (r) {
+      partes.push(r.rotulo + ': ' + r.texto + '.');
+    });
+    var data = document.getElementById('data');
+    if (data && data.value) {
+      var d = data.value.split('-');
+      partes.push('Preciso da obra até ' + d[2] + '/' + d[1] + '/' + d[0] + '.');
+    }
+    var nome = document.getElementById('nome');
+    if (nome && nome.value.trim()) partes.push('Meu nome é ' + nome.value.trim() + '.');
+    return partes.join(' ');
+  }
+
+  function desenha() {
+    var pergunta = atual();
+    palco.innerHTML = '';
+
+    var h1 = document.createElement('h1');
+    h1.className = 'passo-titulo';
+    h1.textContent = pergunta.titulo;
+    palco.appendChild(h1);
+
+    if (pergunta.ajuda) {
+      var aj = document.createElement('p');
+      aj.className = 'passo-ajuda';
+      aj.textContent = pergunta.ajuda;
+      palco.appendChild(aj);
+    }
+
+    if (pergunta.contato) {
+      palco.appendChild(telaContato(pergunta));
+      var resumo = document.getElementById('resumo');
+      function atualizaResumo() { resumo.innerHTML = '<p>' + mensagem() + '</p>'; }
+      atualizaResumo();
+      ['nome', 'zap', 'data'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) el.addEventListener('input', atualizaResumo);
+      });
+      document.getElementById('voltar').addEventListener('click', volta);
+      document.getElementById('enviar').addEventListener('click', function () {
+        var texto = encodeURIComponent(mensagem());
+        if (!WHATSAPP) document.getElementById('pendZap').hidden = false;
+        window.open('https://wa.me/' + WHATSAPP + '?text=' + texto, '_blank', 'noopener');
+        if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: 'quiz' });
+      });
+      linha.style.width = '100%';
+      return;
+    }
+
+    var caixa = document.createElement('div');
+    caixa.className = pergunta.tamanhos ? 'tamanhos' : (pergunta.simples ? 'opcoes simples' : 'opcoes');
+    pergunta.opcoes.forEach(function (op) {
+      caixa.appendChild(pergunta.tamanhos ? cartaoTamanho(op, pergunta)
+        : (pergunta.simples ? cartaoSimples(op, pergunta) : cartaoImagem(op, pergunta)));
+    });
+    palco.appendChild(caixa);
+
+    if (estado.caminho.length > 1) {
+      var rod = document.createElement('div');
+      rod.className = 'rodape-passo';
+      var v = document.createElement('button');
+      v.type = 'button';
+      v.className = 'voltar';
+      v.textContent = 'Voltar';
+      v.addEventListener('click', volta);
+      rod.appendChild(v);
+      palco.appendChild(rod);
+    }
+
+    var primeiro = palco.querySelector('.op, .tam');
+    if (primeiro && estado.caminho.length > 1) primeiro.focus();
+  }
+
+  function salva() {
+    try { sessionStorage.setItem('quizAle', JSON.stringify(estado)); } catch (e) {}
+  }
+  function recupera() {
+    try {
+      var bruto = sessionStorage.getItem('quizAle');
+      if (!bruto) return;
+      var salvo = JSON.parse(bruto);
+      if (salvo && salvo.caminho && salvo.caminho.length) { estado = salvo; }
+    } catch (e) {}
+  }
+
+  document.getElementById('fecharAviso').addEventListener('click', function () {
+    document.getElementById('aviso').remove();
+  });
+
+  recupera();
+  desenha();
+  pintaPainel();
+})();
+</script>
+</body>
+</html>
