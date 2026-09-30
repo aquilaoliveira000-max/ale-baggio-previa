@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#111111">
-<title>Alê Baggio · Retratos pintados à mão por encomenda</title>
-<meta name="description" content="Retratos em acrílica sobre tela, pintados à mão por Alê Baggio, artista de Curitiba com mais de 700 obras desde 2010 e mais de 100 celebridades atendidas. Veja as coleções e encomende o seu.">
-<meta property="og:title" content="Alê Baggio · Retratos pintados à mão">
+<title>Ale Baggio · Retratos pintados à mão por encomenda</title>
+<meta name="description" content="Retratos por encomenda, pintados à mão sobre tela por Ale Baggio, em Curitiba. São 16 anos de trajetória, mais de 700 obras e mais de 100 personalidades retratadas. Veja as coleções e encomende o seu.">
+<meta property="og:title" content="Ale Baggio · Retratos pintados à mão">
 <meta property="og:description" content="A artista que pintou Xuxa, Anitta e Silvio Santos pode pintar o seu retrato.">
 <meta property="og:type" content="website">
 <!-- PIXEL DA META entra aqui. O clique no WhatsApp dispara fbq('track','Contact'). -->
@@ -225,6 +225,7 @@
   /* prova */
   .prova{display:grid; grid-template-columns:1.15fr .85fr; gap:var(--s6); align-items:center;
     }
+  .prova .corpo + .corpo{margin-top:var(--s2);}
   .retrato-dela{margin:0;}
   .retrato-dela img{width:100%; aspect-ratio:4/5; object-fit:cover; background:var(--superficie);}
   .retrato-dela figcaption{margin-top:var(--s1); padding-top:var(--s1); border-top:1px solid var(--borda); font-size:var(--t-apoio); color:var(--texto-secundario);}
@@ -391,6 +392,8 @@
   .faq summary::before{content:""; position:absolute; right:21px; top:27px; width:2px; height:16px; background:var(--acento); transition:transform 200ms;}
   .faq details[open] summary::before{transform:scaleY(0);}
   .faq .resposta{padding:0 var(--s5) var(--s3) 0; color:var(--texto-secundario); max-width:64ch;}
+
+  .faq .resposta p + p{margin-top:var(--s2);}
 
   /* fechamento */
   /* Os olhos dela continuam no fundo; o veu de carvao protege o texto.
@@ -618,7 +621,7 @@
 
 <header class="topo" id="topo">
   <div class="wrap">
-    <a class="assina" href="#capa">Alê Baggio</a>
+    <a class="assina" href="#capa">Ale Baggio</a>
     <nav>
       <a href="#famosos">Famosos</a>
       <a href="#obras">Obras</a>
@@ -634,7 +637,7 @@
 
 <dialog class="menu-cel" id="menuCel" aria-label="Menu">
   <div class="menu-cel-topo">
-    <span class="assina">Alê Baggio</span>
+    <span class="assina">Ale Baggio</span>
     <button type="button" class="fechar" id="fechaMenu" aria-label="Fechar o menu">&times;</button>
   </div>
   <nav>
@@ -642,10 +645,10 @@
     <a href="#obras">Obras</a>
     <a href="#antes-depois">Antes e depois</a>
     <a href="#colecoes">Coleções e valores</a>
-    <a href="#sobre">Sobre a Alê</a>
+    <a href="#sobre">Sobre a Ale</a>
     <a href="#duvidas">Dúvidas</a>
   </nav>
-  <a class="btn btn-1 wa" data-colecao="" href="#">Falar com a Alê no WhatsApp</a>
+  <a class="btn btn-1 wa" data-colecao="" href="#">Falar com a Ale no WhatsApp</a>
 </dialog>
 
 <main>
@@ -655,13 +658,13 @@
     <div class="capa-img">
       <picture>
         <source media="(max-width:600px)" srcset="img/capa-ale.webp">
-        <img src="img/capa-ale-larga.webp" alt="Alê Baggio no ateliê, sentada entre retratos que ela pintou" fetchpriority="high">
+        <img src="img/capa-ale-larga.webp" alt="Ale Baggio no ateliê, sentada entre retratos que ela pintou" fetchpriority="high">
       </picture>
     </div>
     <div class="capa-txt">
       <div class="wrap">
         <h1>A artista que pintou<br> Xuxa, Anitta e<br> Silvio Santos pode<br> pintar o seu retrato.</h1>
-        <p class="lead">Acrílica sobre tela, pintada à mão no ateliê em Curitiba. Da sua foto e da sua história nasce uma obra que fica na família.</p>
+        <p class="lead">Cada retrato é pintado à mão sobre tela por Ale Baggio, em seu ateliê em Curitiba. Da sua fotografia e da sua história nasce uma obra única, feita para atravessar gerações e permanecer na sua família.</p>
         <div class="btns">
           <a class="btn btn-1" href="#colecoes">Ver valores</a>
           <a class="btn btn-2" href="#obras">Ver obras</a>
@@ -671,7 +674,7 @@
   </section>
 
   <!-- MARQUEE -->
-  <div class="marquee" aria-label="Famosos retratados por Alê Baggio">
+  <div class="marquee" aria-label="Famosos retratados por Ale Baggio">
     <div class="marquee-pista" id="pistaNomes">
       <span>Xuxa</span><span>Anitta</span><span>Silvio Santos</span><span>Juliana Paes</span><span>Cacau Protásio</span><span>Miguel Falabella</span><span>Nicole Bahls</span><span>Simony</span><span>Zezé Di Camargo</span><span>Juliette</span><span>Gretchen</span><span>Luan Santana</span><span>Jojo Todynho</span><span>Belo</span><span>Thammy Miranda</span><span>Gracyanne Barbosa</span>
     </div>
@@ -681,32 +684,32 @@
   <section class="celebs" id="famosos">
     <div class="mosaico" id="mosaico">
       <div class="coluna" data-sentido="cima">
-        <figure class="tile"><img src="img/celeb-xuxa.webp" alt="Xuxa e Alê Baggio com o retrato pintado para ela" loading="lazy"><figcaption>Xuxa</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-anitta.webp" alt="Retrato de Anitta pintado por Alê Baggio" loading="lazy"><figcaption>Anitta</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-cacau.webp" alt="Retrato de Cacau Protásio pintado por Alê Baggio" loading="lazy"><figcaption>Cacau Protásio</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-juliette.webp" alt="Retrato de Juliette pintado por Alê Baggio" loading="lazy"><figcaption>Juliette</figcaption></figure>
+        <figure class="tile"><img src="img/celeb-xuxa.webp" alt="Xuxa e Ale Baggio com o retrato pintado para ela" loading="lazy"><figcaption>Xuxa</figcaption></figure>
+        <figure class="tile"><img src="img/celeb-anitta.webp" alt="Retrato de Anitta pintado por Ale Baggio" loading="lazy"><figcaption>Anitta</figcaption></figure>
+        <figure class="tile"><img src="img/celeb-cacau.webp" alt="Retrato de Cacau Protásio pintado por Ale Baggio" loading="lazy"><figcaption>Cacau Protásio</figcaption></figure>
+        <figure class="tile"><img src="img/celeb-juliette.webp" alt="Retrato de Juliette pintado por Ale Baggio" loading="lazy"><figcaption>Juliette</figcaption></figure>
       </div>
       <div class="coluna" data-sentido="baixo">
-        <figure class="tile"><img src="img/celeb-silviosantos.webp" alt="Silvio Santos ao lado do retrato pintado por Alê Baggio" loading="lazy"><figcaption>Silvio Santos</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-nicolebahls.webp" alt="Retrato de Nicole Bahls pintado por Alê Baggio" loading="lazy"><figcaption>Nicole Bahls</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-falabella.webp" alt="Miguel Falabella ao lado do retrato pintado por Alê Baggio" loading="lazy"><figcaption>Miguel Falabella</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-simony.webp" alt="Retrato de Simony pintado por Alê Baggio" loading="lazy"><figcaption>Simony</figcaption></figure>
+        <figure class="tile"><img src="img/celeb-silviosantos.webp" alt="Silvio Santos ao lado do retrato pintado por Ale Baggio" loading="lazy"><figcaption>Silvio Santos</figcaption></figure>
+        <figure class="tile"><img src="img/celeb-nicolebahls.webp" alt="Retrato de Nicole Bahls pintado por Ale Baggio" loading="lazy"><figcaption>Nicole Bahls</figcaption></figure>
+        <figure class="tile"><img src="img/celeb-falabella.webp" alt="Miguel Falabella ao lado do retrato pintado por Ale Baggio" loading="lazy"><figcaption>Miguel Falabella</figcaption></figure>
+        <figure class="tile"><img src="img/celeb-simony.webp" alt="Retrato de Simony pintado por Ale Baggio" loading="lazy"><figcaption>Simony</figcaption></figure>
       </div>
       <div class="coluna" data-sentido="cima">
-        <figure class="tile"><img src="img/celeb-julianapaes.webp" alt="Retrato de Juliana Paes pintado por Alê Baggio" loading="lazy"><figcaption>Juliana Paes</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-zeze.webp" alt="Retrato de Zezé Di Camargo e Graciele Lacerda pintado por Alê Baggio" loading="lazy"><figcaption>Zezé Di Camargo</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-gretchen.webp" alt="Retrato de Gretchen pintado por Alê Baggio" loading="lazy"><figcaption>Gretchen</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-luansantana.webp" alt="Luan Santana com o retrato pintado por Alê Baggio" loading="lazy"><figcaption>Luan Santana</figcaption></figure>
+        <figure class="tile"><img src="img/celeb-julianapaes.webp" alt="Retrato de Juliana Paes pintado por Ale Baggio" loading="lazy"><figcaption>Juliana Paes</figcaption></figure>
+        <figure class="tile"><img src="img/celeb-zeze.webp" alt="Retrato de Zezé Di Camargo e Graciele Lacerda pintado por Ale Baggio" loading="lazy"><figcaption>Zezé Di Camargo</figcaption></figure>
+        <figure class="tile"><img src="img/celeb-gretchen.webp" alt="Retrato de Gretchen pintado por Ale Baggio" loading="lazy"><figcaption>Gretchen</figcaption></figure>
+        <figure class="tile"><img src="img/celeb-luansantana.webp" alt="Luan Santana com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Luan Santana</figcaption></figure>
       </div>
       <div class="coluna" data-sentido="baixo">
-        <figure class="tile"><img src="img/celeb-jojo.webp" alt="Retrato de Jojo Todynho pintado por Alê Baggio" loading="lazy"><figcaption>Jojo Todynho</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-belo.webp" alt="Retrato de Belo pintado por Alê Baggio" loading="lazy"><figcaption>Belo</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-thammy.webp" alt="Retrato de Thammy Miranda e família pintado por Alê Baggio" loading="lazy"><figcaption>Thammy Miranda</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-gracyanne.webp" alt="Retrato de Gracyanne Barbosa pintado por Alê Baggio" loading="lazy"><figcaption>Gracyanne Barbosa</figcaption></figure>
+        <figure class="tile"><img src="img/celeb-jojo.webp" alt="Retrato de Jojo Todynho pintado por Ale Baggio" loading="lazy"><figcaption>Jojo Todynho</figcaption></figure>
+        <figure class="tile"><img src="img/celeb-belo.webp" alt="Retrato de Belo pintado por Ale Baggio" loading="lazy"><figcaption>Belo</figcaption></figure>
+        <figure class="tile"><img src="img/celeb-thammy.webp" alt="Retrato de Thammy Miranda e família pintado por Ale Baggio" loading="lazy"><figcaption>Thammy Miranda</figcaption></figure>
+        <figure class="tile"><img src="img/celeb-gracyanne.webp" alt="Retrato de Gracyanne Barbosa pintado por Ale Baggio" loading="lazy"><figcaption>Gracyanne Barbosa</figcaption></figure>
       </div>
     </div>
     <div class="wrap celebs-fim">
-      <p class="celebs-nota"><b>São mais de 100 celebridades atendidas</b>, e várias chegaram por indicação de quem já tinha um retrato em casa.</p>
+      <p class="celebs-nota"><b>Mais de 100 personalidades já confiaram seus retratos a Ale Baggio.</b> Muitas chegaram por indicação de quem já tem uma obra da artista em casa.</p>
       <div class="btns">
         <button type="button" class="btn btn-1" id="abreEstrelas">Ver todas as estrelas</button>
         <a class="btn btn-2" href="#colecoes">Ver valores</a>
@@ -718,43 +721,43 @@
   <section id="destaque">
     <div class="wrap destaque">
       <h2>Retratos de pessoas, casais, famílias e pets.</h2>
-      <p class="lead">Também de crianças, de quem já partiu, obras para consultório e peças abstratas. Todas pintadas à mão pela Alê.</p>
+      <p class="lead">Retratos de crianças, homenagens a quem já partiu, obras para consultórios e composições especiais. Tudo pintado à mão por Ale Baggio.</p>
       <div class="trio">
         <figure class="astro">
-          <div class="astro-img"><img src="img/cat-individual.webp" alt="Retrato individual pintado por Alê Baggio, com folha de ouro" loading="lazy"></div>
-          <figcaption><b>Individual</b><span>uma pessoa na tela</span></figcaption>
+          <div class="astro-img"><img src="img/cat-individual.webp" alt="Retrato individual pintado por Ale Baggio, com folha de ouro" loading="lazy"></div>
+          <figcaption><b>Pinturas individuais</b><span>uma pessoa na tela</span></figcaption>
         </figure>
         <figure class="astro">
-          <div class="astro-img"><img src="img/cat-casal.webp" alt="Retrato de casal pintado por Alê Baggio" loading="lazy"></div>
+          <div class="astro-img"><img src="img/cat-casal.webp" alt="Retrato de casal pintado por Ale Baggio" loading="lazy"></div>
           <figcaption><b>Casal</b><span>duas histórias numa só</span></figcaption>
         </figure>
         <figure class="astro">
-          <div class="astro-img"><img src="img/cat-familia.webp" alt="Retrato de família com o cachorro, pintado por Alê Baggio" loading="lazy"></div>
+          <div class="astro-img"><img src="img/cat-familia.webp" alt="Retrato de família com o cachorro, pintado por Ale Baggio" loading="lazy"></div>
           <figcaption><b>Família</b><span>todo mundo na mesma tela</span></figcaption>
         </figure>
         <figure class="astro">
-          <div class="astro-img"><img src="img/cat-crianca.webp" alt="Retrato de duas crianças pintado por Alê Baggio" loading="lazy"></div>
-          <figcaption><b>Criança</b><span>a idade que não volta</span></figcaption>
+          <div class="astro-img"><img src="img/cat-crianca.webp" alt="Retrato de duas crianças pintado por Ale Baggio" loading="lazy"></div>
+          <figcaption><b>Crianças</b><span>Retratos que eternizam a alegria e a personalidade de cada fase.</span></figcaption>
         </figure>
         <figure class="astro">
-          <div class="astro-img"><img src="img/cat-pet.webp" alt="Dois cães diante do retrato deles, pintado por Alê Baggio" loading="lazy"></div>
+          <div class="astro-img"><img src="img/cat-pet.webp" alt="Dois cães diante do retrato deles, pintado por Ale Baggio" loading="lazy"></div>
           <figcaption><b>Pet</b><span>quem também é da família</span></figcaption>
         </figure>
         <figure class="astro">
-          <div class="astro-img"><img src="img/cat-mae-filho.webp" alt="Retrato de mãe e filho pintado por Alê Baggio" loading="lazy"></div>
-          <figcaption><b>Mãe e filho</b><span>o vínculo que começou tudo</span></figcaption>
+          <div class="astro-img"><img src="img/cat-mae-filho.webp" alt="Retrato de mãe e filho pintado por Ale Baggio" loading="lazy"></div>
+          <figcaption><b>Mãe e filho</b><span>Um retrato do vínculo que fica.</span></figcaption>
         </figure>
         <figure class="astro">
-          <div class="astro-img"><img src="img/cat-memoriam.webp" alt="Retrato in memoriam pintado por Alê Baggio, cliente diante da tela emoldurada" loading="lazy"></div>
-          <figcaption><b>In memoriam</b><span>para não deixar sumir</span></figcaption>
+          <div class="astro-img"><img src="img/cat-memoriam.webp" alt="Retrato in memoriam pintado por Ale Baggio, cliente diante da tela emoldurada" loading="lazy"></div>
+          <figcaption><b>In memoriam</b><span>Para manter viva uma presença que o tempo não apaga.</span></figcaption>
         </figure>
         <figure class="astro">
-          <div class="astro-img"><img src="img/cat-consultorio.webp" alt="Obra de Alê Baggio na parede de uma clínica" loading="lazy"></div>
+          <div class="astro-img"><img src="img/cat-consultorio.webp" alt="Obra de Ale Baggio na parede de uma clínica" loading="lazy"></div>
           <figcaption><b>Consultório</b><span>a parede que recebe o cliente</span></figcaption>
         </figure>
         <figure class="astro">
-          <div class="astro-img"><img src="img/cat-abstrato.webp" alt="Obra abstrata de Alê Baggio, retrato dividido entre mulher e onça" loading="lazy"></div>
-          <figcaption><b>Abstrato</b><span>quando não é um rosto</span></figcaption>
+          <div class="astro-img"><img src="img/cat-abstrato.webp" alt="Composição especial de Ale Baggio, retrato dividido entre mulher e onça" loading="lazy"></div>
+          <figcaption><b>Composição especial</b><span>Quando sua história pede mais do que um retrato.</span></figcaption>
         </figure>
       </div>
     </div>
@@ -764,21 +767,22 @@
   <section id="trajetoria">
     <div class="wrap prova">
       <div>
-        <h2>Dezesseis anos retratando pessoas.</h2>
-        <p class="corpo">Formada em Design de Produto e em Artes Plásticas, a Alê expôs em Curitiba e em São Paulo e tem obra na Saphira &amp; Ventura Gallery, em Nova York. Os retratos dela estão em casas nos Estados Unidos, na Alemanha, em Portugal, no Paraguai, na Argentina e na Itália.</p>
+        <h2>Dezesseis anos de trajetória na arte.</h2>
+        <p class="corpo">Formada em Design de Produto e em Artes Plásticas, Ale Baggio já expôs em galerias pelo Brasil, incluindo Curitiba e São Paulo. Sua obra também integra o acervo da Saphira &amp; Ventura Gallery, em Nova York.</p>
+        <p class="corpo">Seus retratos estão presentes em lares nos Estados Unidos, na Alemanha, em Portugal, no Paraguai, na Argentina e na Itália.</p>
         <div class="numeros">
-          <div><b data-conta="2010" data-de="1998">2010</b><span>primeiro retrato por encomenda</span></div>
+          <div><b data-conta="16">16</b><span>anos de trajetória na arte</span></div>
           <div><b data-conta="700" data-prefixo="+">+700</b><span>obras pintadas</span></div>
-          <div><b data-conta="100" data-prefixo="+">+100</b><span>celebridades atendidas</span></div>
+          <div><b data-conta="100" data-prefixo="+">+100</b><span>personalidades retratadas</span></div>
           <div>
             <b data-conta="6">6</b>
-            <span>países com obras dela</span>
+            <span>países com obras de Ale Baggio</span>
           </div>
         </div>
       </div>
       <figure class="retrato-dela">
-        <img src="img/ale-trajetoria.webp" alt="Alê Baggio sorrindo, sentada numa poltrona" loading="lazy">
-        <figcaption>Alê Baggio no ateliê.</figcaption>
+        <img src="img/ale-trajetoria.webp" alt="Ale Baggio sorrindo, sentada numa poltrona" loading="lazy">
+        <figcaption>Ale Baggio no ateliê.</figcaption>
       </figure>
     </div>
 
@@ -800,11 +804,11 @@
       <div class="banca">
         <div class="par-capas">
           <figure class="rev rev-a">
-            <img src="img/capa-hooks.jpg" alt="Capa da Hooks Magazine com Alê Baggio e a chamada: a artista plástica que vem conquistando as celebridades" loading="lazy">
+            <img src="img/capa-hooks.jpg" alt="Capa da Hooks Magazine com Ale Baggio e a chamada: a artista plástica que vem conquistando as celebridades" loading="lazy">
             <figcaption><b>Hooks Magazine</b><span>fevereiro de 2022</span></figcaption>
           </figure>
           <figure class="rev rev-b">
-            <img src="img/capa-semnumero.jpg" alt="Capa da revista Atitude, edição 85, com Alê Baggio e a chamada: a arte chamada Alê Baggio" loading="lazy">
+            <img src="img/capa-semnumero.jpg" alt="Capa da revista Atitude, edição 85, com Ale Baggio e a chamada: a arte chamada Ale Baggio" loading="lazy">
             <figcaption><b>Atitude</b><span>edição 85 · dezembro de 2021</span></figcaption>
           </figure>
         </div>
@@ -816,16 +820,16 @@
   <section class="galeria" id="obras">
     <div class="wrap galeria-topo">
       <h2>Obras entregues a clientes.</h2>
-      <p class="lead" style="max-width:36ch">Retratos por encomenda e obras autorais, em acrílica sobre tela.</p>
+      <p class="lead" style="max-width:36ch">Retratos por encomenda e pinturas exclusivas, criados para transformar memórias, pessoas e espaços em arte.</p>
     </div>
     <div class="pista-area" id="pistaArea">
       <div class="pista" id="pista">
-        <figure class="obra"><img src="img/obra-1.webp" alt="Retrato pintado por Alê Baggio, acrílica com folha de ouro" loading="lazy"></figure>
-        <figure class="obra"><img src="img/obra-2-alta.webp" alt="Retrato pintado por Alê Baggio, com fundo branco" loading="lazy"></figure>
-        <figure class="obra"><img src="img/obra-3-larga.webp" alt="Santa Ceia pintada por Alê Baggio, painel com folha de ouro" loading="lazy"></figure>
-        <figure class="obra"><img src="img/obra-4.webp" alt="Retrato de lutador de UFC com os cinturões, pintado por Alê Baggio" loading="lazy"></figure>
-        <figure class="obra"><img src="img/obra-5-alta.webp" alt="Onça com joias pintada por Alê Baggio" loading="lazy"></figure>
-        <figure class="obra"><img src="img/obra-6.webp" alt="Retrato pintado por Alê Baggio, com luz neon" loading="lazy"></figure>
+        <figure class="obra"><img src="img/obra-1.webp" alt="Retrato pintado por Ale Baggio, acrílica com folha de ouro" loading="lazy"></figure>
+        <figure class="obra"><img src="img/obra-2-alta.webp" alt="Retrato pintado por Ale Baggio, com fundo branco" loading="lazy"></figure>
+        <figure class="obra"><img src="img/obra-3-larga.webp" alt="Santa Ceia pintada por Ale Baggio, painel com folha de ouro" loading="lazy"></figure>
+        <figure class="obra"><img src="img/obra-4.webp" alt="Retrato de lutador de UFC com os cinturões, pintado por Ale Baggio" loading="lazy"></figure>
+        <figure class="obra"><img src="img/obra-5-alta.webp" alt="Onça com joias pintada por Ale Baggio" loading="lazy"></figure>
+        <figure class="obra"><img src="img/obra-6.webp" alt="Retrato pintado por Ale Baggio, com luz neon" loading="lazy"></figure>
       </div>
     </div>
     <div class="barra"><i id="barraProgresso"></i></div>
@@ -854,7 +858,7 @@
   <section id="presente-perfeito" class="presente-sec">
     <div class="wrap">
       <h2>O presente perfeito. <svg class="coracao" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21.2s-7-4.5-9.6-8.3C.6 10.3 1.4 6.6 4.3 5.1c2.3-1.2 4.8-.5 6.2 1.4L12 8.4l1.5-1.9c1.4-1.9 3.9-2.6 6.2-1.4 2.9 1.5 3.7 5.2 1.9 7.8-2.6 3.8-9.6 8.3-9.6 8.3z" fill="currentColor"/></svg></h2>
-      <p class="lead">A mãe dela partiu em 2023. Dois anos depois, no dia em que inaugurou o próprio espaço, a Alê entregou o retrato das duas juntas, pintado a partir de fotos antigas da família.</p>
+      <p class="lead">A mãe dela partiu em 2023. Dois anos depois, no dia em que inaugurou o próprio espaço, a Ale entregou o retrato das duas juntas, pintado a partir de fotos antigas da família.</p>
       <div class="presente">
         <div class="presente-antes">
           <div class="presente-fotos">
@@ -865,10 +869,10 @@
         </div>
         <div class="presente-depois">
           <div class="presente-fotos">
-            <figure><img src="img/presente-entrega.webp" alt="A cliente segura o retrato dela com a mãe, pintado por Alê Baggio, no dia da inauguração" loading="lazy"></figure>
+            <figure><img src="img/presente-entrega.webp" alt="A cliente segura o retrato dela com a mãe, pintado por Ale Baggio, no dia da inauguração" loading="lazy"></figure>
             <figure><img src="img/presente-parede.webp" alt="O retrato de mãe e filha pendurado na parede do espaço" loading="lazy"></figure>
           </div>
-          <p class="presente-leg"><b>O retrato</b>As duas juntas numa tela pintada pela Alê, descoberta no dia da inauguração do espaço dela.</p>
+          <p class="presente-leg"><b>O retrato</b>As duas juntas numa tela pintada pela Ale, descoberta no dia da inauguração do espaço dela.</p>
         </div>
       </div>
     </div>
@@ -878,7 +882,7 @@
   <section id="colecoes">
     <div class="wrap">
       <h2>Três escalas. A mesma mão.</h2>
-      <p class="lead">O que muda é o tamanho da tela, quantas pessoas aparecem e o acabamento. Todas são pintadas à mão pela Alê, uma de cada vez.</p>
+      <p class="lead">O que muda é o tamanho da tela, quantas pessoas aparecem e o acabamento. Todas são pintadas à mão pela Ale, uma de cada vez.</p>
       <div class="colecoes">
         <article class="colecao col-1">
           <h3>Íntima</h3>
@@ -893,7 +897,7 @@
         </article>
         <article class="colecao col-2">
           <h3>Galeria</h3>
-          <p class="pitch">O tamanho que a Alê mais pinta, e o que ocupa a parede principal da sala.</p>
+          <p class="pitch">O tamanho que a Ale mais pinta, e o que ocupa a parede principal da sala.</p>
           <ul class="ficha">
             <li><b>Formato</b><span>1,20 × 0,90 m</span></li>
             <li><b>Pessoas</b><span>Até duas</span></li>
@@ -915,8 +919,8 @@
         </article>
       </div>
       <div class="nota-col">
-        <p>O valor final depende do tamanho, de quantas pessoas entram na tela e do acabamento. Quem faz o orçamento é a própria Alê. As obras são entregues sem moldura, para você escolher a que combina com a sua casa.</p>
-        <p>Procura mural, obra abstrata ou peça para empresa? <a class="wa" data-colecao="mural, obra abstrata ou peça para empresa" href="#">Fale com a Alê</a>.</p>
+        <p>O valor final depende do tamanho, de quantas pessoas entram na tela e do acabamento. Quem faz o orçamento é a própria Ale. As obras são entregues em tela tipo painel, prontas para pendurar. A moldura é opcional e pode ser acrescentada depois, de acordo com o seu gosto e com o ambiente.</p>
+        <p>Procura mural, obra abstrata ou peça para empresa? <a class="wa" data-colecao="mural, obra abstrata ou peça para empresa" href="#">Fale com a Ale</a>.</p>
       </div>
     </div>
   </section>
@@ -931,13 +935,13 @@
           <b>01</b>
           <div>
             <p>Você conta a história.</p>
-            <span>Chama a Alê no WhatsApp, diz quem quer ver na tela e manda as fotos de referência. Ela ajuda a escolher a melhor e envia o orçamento com tamanho, valor e prazo.</span>
+            <span>Chama a Ale no WhatsApp, diz quem quer ver na tela e manda as fotos de referência. Ela ajuda a escolher a melhor e envia o orçamento com tamanho, valor e prazo.</span>
           </div>
         </div>
         <div class="passo">
           <b>02</b>
           <div>
-            <p>A Alê pinta a sua obra.</p>
+            <p>A Ale pinta a sua obra.</p>
             <span>Com o sinal pago, a tela entra na agenda do ateliê. São de 30 a 60 dias de pintura à mão, uma obra de cada vez.</span>
           </div>
         </div>
@@ -955,16 +959,16 @@
   <!-- SOBRE -->
   <section id="sobre">
     <div class="wrap sobre">
-      <div class="sobre-img"><img src="img/ale-sobre.webp" alt="Alê Baggio no ateliê, com o pincel na mão, entre telas" loading="lazy"></div>
+      <div class="sobre-img"><img src="img/ale-sobre.webp" alt="Ale Baggio no ateliê, com o pincel na mão, entre telas" loading="lazy"></div>
       <div class="texto">
-        <h2>Muito prazer, eu sou a Alê.</h2>
+        <h2>Muito prazer, eu sou a Ale.</h2>
         <div class="corpo bloco">
           <p>Desenho desde criança. Era uma menina muito tímida, e era na relação com o lápis e o papel que eu me encontrava. Venho de uma família de artistas, de pintura e de música.</p>
           <p>Me formei em Design de Produto e em Artes Plásticas. Casei cedo, fui mãe aos 23 e passei um tempo longe dos pincéis. Na pandemia, entendi que a minha arte podia levar amor, autoestima e alegria para a vida das pessoas.</p>
           <p>Pinto por encomenda, em realismo contemporâneo, sempre sobre tela. Não copio a foto. Pinto quem está nela.</p>
         </div>
         <blockquote class="citacao">A arte salva. Mais arte para todos, por favor.</blockquote>
-        <div class="assina-grande" aria-hidden="true">Alê Baggio</div>
+        <div class="assina-grande" aria-hidden="true">Ale Baggio</div>
       </div>
     </div>
   </section>
@@ -982,7 +986,7 @@
           <blockquote class="fala"><span class="avatar" aria-hidden="true">&#9829;</span><div><b>Cliente <span>· no Instagram</span></b><p>Obrigada por transformar minha imagem em arte e eternizar esse momento tão especial.</p></div></blockquote>
         </div>
       </div>
-      <figure class="parede-foto"><img src="img/ale-aceno.webp" srcset="img/ale-aceno-1000.webp 1000w, img/ale-aceno.webp 1672w" sizes="(max-width:1000px) 100vw, 1080px" alt="Alê Baggio acenando, com respingos de tinta ao fundo" loading="lazy"></figure>
+      <figure class="parede-foto"><img src="img/ale-aceno.webp" srcset="img/ale-aceno-1000.webp 1000w, img/ale-aceno.webp 1672w" sizes="(max-width:1000px) 100vw, 1080px" alt="Ale Baggio acenando, com respingos de tinta ao fundo" loading="lazy"></figure>
       <div class="trilha-caixa">
         <div class="trilha trilha-b">
           <blockquote class="fala"><span class="avatar" aria-hidden="true">H</span><div><b>Harmonie Clinique <span>· no Instagram</span></b><p>Muito mais do que uma obra de arte. Esse quadro representa uma parte da minha essência, dos meus sonhos e de tudo aquilo que acredito.</p></div></blockquote>
@@ -1001,8 +1005,8 @@
       <h2>Antes de encomendar.</h2>
       <div class="faq">
         <details open>
-          <summary>Por que investir numa obra da Alê?</summary>
-          <div class="resposta"><p>Porque é uma obra única, pintada à mão, que entra na casa e passa de uma geração para a outra. O valor acompanha o tamanho da tela e quantas pessoas aparecem nela, e quem faz o orçamento é a própria Alê.</p></div>
+          <summary>Por que investir numa obra da Ale?</summary>
+          <div class="resposta"><p>Porque é uma obra única, pintada à mão, que entra na casa e passa de uma geração para a outra. O valor acompanha o tamanho da tela e quantas pessoas aparecem nela, e quem faz o orçamento é a própria Ale.</p></div>
         </details>
         <details>
           <summary>Quais as formas de pagamento?</summary>
@@ -1014,15 +1018,15 @@
         </details>
         <details>
           <summary>A obra vai emoldurada?</summary>
-          <div class="resposta"><p>Não. Ela chega sem moldura, pronta para você emoldurar do jeito que combina com o seu ambiente.</p></div>
+          <div class="resposta"><p>Não. A obra é entregue em tela tipo painel, pronta para pendurar na parede, sem necessidade de moldura.</p><p>Se desejar, você pode acrescentar uma moldura depois, de acordo com o seu gosto e com o estilo do ambiente.</p></div>
         </details>
         <details>
           <summary>Como é o envio?</summary>
           <div class="resposta"><p>Para todo o Brasil e também para fora: já há obras dela nos Estados Unidos, na Alemanha, em Portugal, no Paraguai, na Argentina e na Itália. O frete é cobrado à parte do valor da obra. <span class="pend">Transportadora e seguro a confirmar.</span></p></div>
         </details>
         <details>
-          <summary>Isso é só para famoso?</summary>
-          <div class="resposta"><p>Não. A maior parte das obras vai para pessoas que querem eternizar alguém que amam. Os famosos mostram o nível do trabalho que você vai receber.</p></div>
+          <summary>Isso é só para famosos?</summary>
+          <div class="resposta"><p>Não. Cada obra é criada para quem deseja eternizar uma pessoa, uma história ou uma fase especial da vida.</p></div>
         </details>
       </div>
     </div>
@@ -1032,58 +1036,58 @@
   <section id="acervo" class="acervo-sec">
     <div class="wrap">
       <div class="acervo-topo">
-        <h2>Um pouco do que já saiu do ateliê.</h2>
-        <p class="lead">Retratos de família, casais, clínicas e consultórios. Todos pintados à mão, um de cada vez.</p>
+        <h2>Algumas obras já entregues.</h2>
+        <p class="lead">Retratos de famílias e casais, além de obras para clínicas e consultórios. Tudo pintado à mão sobre tela.</p>
       </div>
       <div class="acervo">
         <figure class="video-acervo alto">
           <video class="video-auto" muted loop playsinline preload="none"
-            poster="img/video-acervo-loira.webp" aria-label="Retrato de mulher loira pintado por Alê Baggio, cabelo em cores">
+            poster="img/video-acervo-loira.webp" aria-label="Retrato de mulher loira pintado por Ale Baggio, cabelo em cores">
             <source data-src="video/acervo-loira.mp4" type="video/mp4">
           </video>
           <span class="play-selo" aria-hidden="true"></span>
         </figure>
-        <figure class="alto"><img src="img/acervo-1-alto.webp" alt="Retrato pintado por Alê Baggio, cliente ao lado da tela" loading="lazy"></figure>
+        <figure class="alto"><img src="img/acervo-1-alto.webp" alt="Retrato pintado por Ale Baggio, cliente ao lado da tela" loading="lazy"></figure>
         <figure class="video-acervo alto">
           <video class="video-auto" muted loop playsinline preload="none"
-            poster="img/video-acervo-riso.webp" aria-label="Retrato de mulher sorrindo, pintado por Alê Baggio">
+            poster="img/video-acervo-riso.webp" aria-label="Retrato de mulher sorrindo, pintado por Ale Baggio">
             <source data-src="video/acervo-riso.mp4" type="video/mp4">
           </video>
           <span class="play-selo" aria-hidden="true"></span>
         </figure>
-        <figure><img src="img/acervo-3.webp" alt="Retrato pintado por Alê Baggio" loading="lazy"></figure>
+        <figure><img src="img/acervo-3.webp" alt="Retrato pintado por Ale Baggio" loading="lazy"></figure>
         <figure class="video-acervo alto">
           <video class="video-auto" muted loop playsinline preload="none"
-            poster="img/video-acervo-casal.webp" aria-label="Retrato de casal pintado por Alê Baggio, no jardim do ateliê">
+            poster="img/video-acervo-casal.webp" aria-label="Retrato de casal pintado por Ale Baggio, no jardim do ateliê">
             <source data-src="video/acervo-casal.mp4" type="video/mp4">
           </video>
           <span class="play-selo" aria-hidden="true"></span>
         </figure>
-        <figure class="alto"><img src="img/acervo-4-alto.webp" alt="Retrato de Jesus Cristo pintado por Alê Baggio" loading="lazy"></figure>
+        <figure class="alto"><img src="img/acervo-4-alto.webp" alt="Retrato de Jesus Cristo pintado por Ale Baggio" loading="lazy"></figure>
         <figure class="video-acervo alto">
           <video class="video-auto" muted loop playsinline preload="none"
-            poster="img/video-acervo-familia.webp" aria-label="Retrato de família com cinco pessoas, pintado por Alê Baggio">
+            poster="img/video-acervo-familia.webp" aria-label="Retrato de família com cinco pessoas, pintado por Ale Baggio">
             <source data-src="video/acervo-familia.mp4" type="video/mp4">
           </video>
           <span class="play-selo" aria-hidden="true"></span>
         </figure>
         <figure class="video-acervo alto">
           <video class="video-auto" muted loop playsinline preload="none"
-            poster="img/video-obra-onca.webp" aria-label="Onça com joias pintada por Alê Baggio">
+            poster="img/video-obra-onca.webp" aria-label="Onça com joias pintada por Ale Baggio">
             <source data-src="video/obra-onca.mp4" type="video/mp4">
           </video>
           <span class="play-selo" aria-hidden="true"></span>
         </figure>
-        <figure class="alto"><img src="img/acervo-7-alto.webp" alt="Retrato pintado por Alê Baggio, com a cliente ao lado" loading="lazy"></figure>
+        <figure class="alto"><img src="img/acervo-7-alto.webp" alt="Retrato pintado por Ale Baggio, com a cliente ao lado" loading="lazy"></figure>
         <figure class="video-acervo alto">
           <video class="video-auto" muted loop playsinline preload="none"
-            poster="img/video-acervo-vermelho.webp" aria-label="Retrato de mulher de roupa vermelha, corpo inteiro, pintado por Alê Baggio">
+            poster="img/video-acervo-vermelho.webp" aria-label="Retrato de mulher de roupa vermelha, corpo inteiro, pintado por Ale Baggio">
             <source data-src="video/acervo-vermelho.mp4" type="video/mp4">
           </video>
           <span class="play-selo" aria-hidden="true"></span>
         </figure>
-        <figure><img src="img/acervo-6.webp" alt="Retrato pintado por Alê Baggio, fundo bronze" loading="lazy"></figure>
-        <figure class="so-3col"><img src="img/acervo-9.webp" alt="Retrato pintado por Alê Baggio, tons quentes" loading="lazy"></figure>
+        <figure><img src="img/acervo-6.webp" alt="Retrato pintado por Ale Baggio, fundo bronze" loading="lazy"></figure>
+        <figure class="so-3col"><img src="img/acervo-9.webp" alt="Retrato pintado por Ale Baggio, tons quentes" loading="lazy"></figure>
       </div>
     </div>
   </section>
@@ -1154,12 +1158,12 @@
         <circle cx="291" cy="280" r="6.0" fill="var(--texto)" opacity="0.41"/>
       </g>
     </svg>
-    <figure class="fech-olhos"><img src="img/ale-olhos.webp" alt="Os olhos de Alê Baggio, de perto" loading="lazy"></figure>
+    <figure class="fech-olhos"><img src="img/ale-olhos.webp" alt="Os olhos de Ale Baggio, de perto" loading="lazy"></figure>
     <div class="wrap">
       <h2>Quem você quer eternizar?</h2>
-      <p class="lead">Conte para a Alê quem é a pessoa e por que ela merece uma tela. Quem responde a sua mensagem é a própria Alê.</p>
+      <p class="lead">Conte para a Ale quem é a pessoa e por que ela merece uma tela. Quem responde a sua mensagem é a própria Ale.</p>
       <div class="btns">
-        <a class="btn btn-claro wa" data-colecao="" href="#">Falar com a Alê no WhatsApp</a>
+        <a class="btn btn-claro wa" data-colecao="" href="#">Falar com a Ale no WhatsApp</a>
       </div>
     </div>
   </section>
@@ -1169,18 +1173,18 @@
 <footer>
   <div class="wrap">
     <div>
-      <a class="assina" href="#capa">Alê Baggio</a>
+      <a class="assina" href="#capa">Ale Baggio</a>
       <p class="rodape-linha">Artista plástica · Ateliê em Curitiba, PR · Atendimento online</p>
     </div>
     <p><a href="https://instagram.com/alebaggioart" target="_blank" rel="noopener">@alebaggioart</a> · © 2026</p>
   </div>
 </footer>
 
-<dialog class="estrelas" id="estrelas" aria-label="Todos os famosos retratados por Alê Baggio">
+<dialog class="estrelas" id="estrelas" aria-label="Todos os famosos retratados por Ale Baggio">
   <div class="estrelas-topo">
     <div>
       <h3>Todas as estrelas</h3>
-      <p>Mais de 100 celebridades já foram atendidas. Estas são as 104 que aparecem nas redes dela.</p>
+      <p>Mais de 100 personalidades já foram retratadas por Ale Baggio. Estas são as 104 que aparecem nas redes dela.</p>
     </div>
     <button type="button" class="fechar" id="fechaEstrelas" aria-label="Fechar">&times;</button>
   </div>
@@ -1208,9 +1212,9 @@
     var col = a.getAttribute('data-colecao');
     var msg = col
       ? (col.indexOf('Coleção') === 0
-        ? 'Olá, Alê! Vim pelo site e tenho interesse na ' + col + '.'
-        : 'Olá, Alê! Vim pelo site e quero saber sobre ' + col + '.')
-      : 'Olá, Alê! Vim pelo site e quero encomendar um retrato.';
+        ? 'Olá, Ale! Vim pelo site e tenho interesse na ' + col + '.'
+        : 'Olá, Ale! Vim pelo site e quero saber sobre ' + col + '.')
+      : 'Olá, Ale! Vim pelo site e quero encomendar um retrato.';
     a.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(msg);
     a.target = '_blank';
     a.rel = 'noopener';
@@ -1579,7 +1583,7 @@
       var fig = document.createElement('figure');
       fig.className = 'estrela';
       fig.style.margin = '0';
-      fig.innerHTML = '<img src="' + e[1] + '" alt="' + e[0] + ' com o retrato pintado por Alê Baggio" loading="lazy">' +
+      fig.innerHTML = '<img src="' + e[1] + '" alt="' + e[0] + ' com o retrato pintado por Ale Baggio" loading="lazy">' +
         '<b>' + e[0] + '</b>';
       grade.appendChild(fig);
     });
