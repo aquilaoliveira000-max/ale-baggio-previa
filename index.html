@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#111111">
 <title>Alê Baggio · Retratos pintados à mão por encomenda</title>
 <meta name="description" content="Retratos em acrílica sobre tela, pintados à mão por Alê Baggio, artista de Curitiba com mais de 700 obras desde 2010 e mais de 100 celebridades atendidas. Veja as coleções e encomende o seu.">
 <meta property="og:title" content="Alê Baggio · Retratos pintados à mão">
@@ -40,18 +42,25 @@
         unica excecao do WhatsApp e do Instagram no rodape.
      ============================================================ */
   :root{
-    --branco:#FFFFFF;
-    --tinta:#0F0F0F;
-    --cinza:#6B6B6B;
-    --filete:#E4E2DE;
-    --apagado:#8F8D89;
-    --nevoa:#F4F2EF;
-    --ultramar:#1B2FE0;
-    --ultramar-fundo:#1526B4;
-    --ultramar-claro:#6E86FF;
-    --azul-claro:#EDF0FF;
-    --azul-fundo:#D9E0FF;
-    --cinza-azul:#5A6180;
+    /* Carvao e grafite deixam as obras em primeiro plano.
+       Marfim suaviza a leitura; dourado fosco retoma a folha de ouro das telas. */
+    color-scheme:dark;
+    --fundo:#111111;
+    --superficie:#1C1C1A;
+    --superficie-elevada:#222220;
+    --superficie-profunda:#181817;
+    --superficie-quente:#26231D;
+    --texto:#F2EEE7;
+    --texto-secundario:#B9B2A7;
+    --texto-suave:#918B82;
+    --borda:#3B3832;
+    --acento:#C8AF7B;
+    --acento-claro:#E0C89A;
+    --tinta-decorativa:#9A835C;
+    --fundo-rgb:17,17,17;
+    --texto-rgb:242,238,231;
+    --acento-rgb:200,175,123;
+    --preto-rgb:0,0,0;
     --fonte:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;
     --gutter:clamp(20px,4.5vw,72px);
     --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px; --s6:72px; --s7:104px;
@@ -80,7 +89,7 @@
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
-    margin:0; background:var(--branco); color:var(--tinta);
+    margin:0; background:var(--fundo); color:var(--texto);
     font-family:var(--fonte); font-size:var(--t-corpo); line-height:1.6;
     -webkit-font-smoothing:antialiased; overflow-x:hidden;
   }
@@ -88,8 +97,8 @@
   a{color:inherit;}
   h1,h2,h3{margin:0; font-weight:600; letter-spacing:-.03em; line-height:1.0; text-wrap:balance;}
   p{margin:0; text-wrap:pretty;}
-  ::selection{background:var(--ultramar); color:var(--branco);}
-  :focus-visible{outline:2px solid var(--ultramar); outline-offset:3px;}
+  ::selection{background:var(--acento); color:var(--fundo);}
+  :focus-visible{outline:2px solid var(--acento); outline-offset:3px;}
 
   .wrap{max-width:var(--max); margin:0 auto; padding-inline:var(--gutter);}
   section{padding-block:calc(var(--entre) / 2);}
@@ -102,10 +111,10 @@
   h1{font-size:var(--t-display);}
   h2{font-size:var(--t-titulo); max-width:16ch;}
   h3{font-size:var(--t-sub); letter-spacing:-.02em;}
-  .lead{font-size:var(--t-olho); line-height:1.45; color:var(--cinza); max-width:48ch;}
+  .lead{font-size:var(--t-olho); line-height:1.45; color:var(--texto-secundario); max-width:48ch;}
   .rodape-linha{margin-top:var(--s1);}
   .corpo{font-size:var(--t-corpo); line-height:1.7; max-width:66ch;}
-  .label{font-size:var(--t-etiqueta); font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--cinza);}
+  .label{font-size:var(--t-etiqueta); font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--texto-secundario);}
 
   .btn{
     display:inline-flex; align-items:center; gap:var(--s1);
@@ -114,24 +123,25 @@
     transition:background 180ms cubic-bezier(.22,1,.36,1), color 180ms, border-color 180ms, transform 180ms;
   }
   .btn:hover{transform:translateY(-2px);}
-  .btn-1{background:var(--ultramar); color:var(--branco);}
-  .btn-1:hover{background:var(--ultramar-fundo);}
-  .btn-2{border-color:var(--tinta); color:var(--tinta);}
-  .btn-2:hover{background:var(--tinta); color:var(--branco);}
-  .btn-claro{background:var(--branco); color:var(--tinta);}
-  .btn-vazado{border-color:rgba(255,255,255,.5); color:var(--branco);}
-  .btn-vazado:hover{background:var(--branco); color:var(--ultramar);}
+  .btn-1{background:var(--acento); color:var(--fundo);}
+  .btn-1:hover{background:var(--acento-claro);}
+  .btn-2{border-color:rgba(var(--texto-rgb),.45); color:var(--texto);}
+  .btn-2:hover{background:var(--texto); color:var(--fundo);}
+  .btn-claro{background:var(--acento); color:var(--fundo);}
+  .btn-claro:hover{background:var(--acento-claro);}
+  .btn-vazado{border-color:rgba(var(--texto-rgb),.5); color:var(--texto);}
+  .btn-vazado:hover{background:var(--texto); color:var(--fundo);}
   .btns{display:flex; flex-wrap:wrap; gap:var(--s2);}
   .so-mob{display:none;}
 
   /* topo */
   .topo{position:fixed; top:0; left:0; right:0; z-index:var(--z-topo);
-    background:rgba(255,255,255,.62); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    background:rgba(var(--fundo-rgb),.78); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
     transition:background 300ms, border-color 300ms;
     border-bottom:1px solid transparent;}
   .topo .wrap{display:flex; align-items:center; justify-content:space-between; gap:var(--s3); height:var(--topo-altura);}
-  .topo.claro{color:var(--branco);}
-  .topo.solido{background:rgba(255,255,255,.93); border-bottom-color:var(--filete);}
+  .topo.claro{color:var(--texto);}
+  .topo.solido{background:rgba(var(--fundo-rgb),.96); border-bottom-color:var(--borda);}
   /* a assinatura verdadeira dela (identidade/assinatura-ale.png) usada como mascara:
      pinta com a cor do texto, entao serve preta no topo e azul na secao Sobre.
      O nome continua no HTML, escondido, para leitor de tela e Google. */
@@ -143,41 +153,38 @@
   .topo nav a{font-size:var(--t-olho); text-decoration:none; opacity:.78; letter-spacing:-.01em;}
   .topo nav a:hover{opacity:1;}
   .topo .btn{padding:var(--s2) var(--s3);}
-  .topo.claro .btn-2{border-color:rgba(255,255,255,.6); color:var(--branco);}
-  .topo.claro .btn-2:hover{background:var(--branco); color:var(--tinta);}
+  .topo.claro .btn-2{border-color:rgba(var(--texto-rgb),.6); color:var(--texto);}
+  .topo.claro .btn-2:hover{background:var(--texto); color:var(--fundo);}
 
   /* capa */
-  /* CAPA: A FOTO OCUPA TUDO. A foto nitida fica ancorada a direita, com ela ao
-     lado do titulo e nao embaixo dele. A borda esquerda da foto se dissolve
-     (mask) numa copia desfocada da propria foto, que cobre o resto da capa ate
-     a borda. Atras do titulo, um veu BRANCO suave garante a leitura; o veu azul
-     foi reprovado em 28/09. */
-  .capa{position:relative; min-height:100svh; padding-top:var(--topo-altura); background:var(--branco);
+  /* CAPA: a foto continua ancorada a direita e se dissolve no fundo.
+     O veu de carvao protege a leitura do titulo em marfim. */
+  .capa{position:relative; min-height:100svh; padding-top:var(--topo-altura); background:var(--fundo);
     display:grid; grid-template-columns:minmax(0,1fr); align-items:center; overflow:hidden;}
   .capa-img{position:absolute; top:var(--topo-altura); right:0; bottom:0; left:0; overflow:hidden; z-index:0;}
   .capa-img::before{content:""; position:absolute; inset:-60px; background:url(img/capa-ale-larga.webp) left center / cover no-repeat;
     filter:blur(34px) saturate(1.1); opacity:.5;}
   .capa-img picture{display:contents;}
   .capa-img img{position:absolute; top:0; right:0; height:100%; width:auto; max-width:none;
-    -webkit-mask-image:linear-gradient(90deg, transparent 0, var(--tinta) 28%); mask-image:linear-gradient(90deg, transparent 0, var(--tinta) 28%);
+    -webkit-mask-image:linear-gradient(90deg, transparent 0, var(--texto) 28%); mask-image:linear-gradient(90deg, transparent 0, var(--texto) 28%);
     transform-origin:55% 0%; animation:deriva-capa 26s ease-in-out infinite alternate;}
   .capa::after{content:""; position:absolute; top:var(--topo-altura); right:0; bottom:0; left:0; z-index:1; pointer-events:none;
-    background:linear-gradient(90deg, rgba(255,255,255,.86) 0%, rgba(255,255,255,.62) 40%, rgba(255,255,255,0) 64%);}
-  .capa-txt{grid-column:1; grid-row:1; position:relative; z-index:2; color:var(--tinta);
+    background:linear-gradient(90deg, rgba(var(--fundo-rgb),.98) 0%, rgba(var(--fundo-rgb),.9) 36%, rgba(var(--fundo-rgb),.5) 58%, rgba(var(--fundo-rgb),.1) 82%, rgba(var(--fundo-rgb),.24) 100%);}
+  .capa-txt{grid-column:1; grid-row:1; position:relative; z-index:2; color:var(--texto);
     padding:var(--s6) var(--s5) var(--s6) max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
     will-change:transform;}
   .capa-txt .wrap{padding:0; max-width:none;}
-  .capa-txt .lead{color:var(--tinta); opacity:.78; margin-top:var(--s3); max-width:40ch;}
+  .capa-txt .lead{color:var(--texto-secundario); opacity:1; margin-top:var(--s3); max-width:40ch;}
   .capa-txt .btns{margin-top:var(--s4);}
 
   @keyframes escreve{from{clip-path:inset(0 100% 0 0);} to{clip-path:inset(0 0 0 0);}}
   .anima-assina{animation:escreve 1.2s cubic-bezier(.33,1,.68,1) both;}
 
   /* marquee */
-  .marquee{border-block:1px solid var(--filete); padding-block:var(--s3); overflow:hidden;}
+  .marquee{border-block:1px solid var(--borda); padding-block:var(--s3); overflow:hidden;}
   .marquee-pista{display:flex; gap:var(--s5); width:max-content; will-change:transform;}
   .marquee span{font-size:var(--t-marca); font-weight:500; letter-spacing:-.02em; white-space:nowrap; display:flex; align-items:center; gap:var(--s5);}
-  .marquee span::after{content:""; width:9px; height:9px; border-radius:50%; background:var(--ultramar); display:block;}
+  .marquee span::after{content:""; width:9px; height:9px; border-radius:50%; background:var(--acento); display:block;}
 
   /* celebridades em mosaico */
   .celebs{padding-block:0 calc(var(--entre) / 2);}
@@ -188,52 +195,52 @@
   .coluna{display:flex; flex-direction:column; gap:var(--s2); will-change:transform;}
   .tile{position:relative; margin:0; overflow:hidden; flex:none;}
   .tile img{width:100%; aspect-ratio:4/5; object-fit:cover; transition:transform 600ms cubic-bezier(.22,1,.36,1), filter 350ms;}
-  .tile figcaption{position:absolute; inset:auto 0 0 0; padding:var(--s2) var(--s2) var(--s2); color:var(--branco);
+  .tile figcaption{position:absolute; inset:auto 0 0 0; padding:var(--s2) var(--s2) var(--s2); color:var(--texto);
     font-size:var(--t-apoio); font-weight:600; letter-spacing:-.01em;
-    background:linear-gradient(0deg, rgba(15,15,15,.82), rgba(15,15,15,0));
+    background:linear-gradient(0deg, rgba(var(--preto-rgb),.82), rgba(var(--preto-rgb),0));
     opacity:0; transform:translateY(8px); transition:opacity 260ms, transform 260ms;}
   .tile:hover img, .tile:focus-within img{transform:scale(1.06);}
   .tile:hover figcaption, .tile:focus-within figcaption, .tile.toque figcaption{opacity:1; transform:translateY(0);}
   .mosaico:hover .tile img{filter:saturate(.7) brightness(.82);}
   .mosaico:hover .tile:hover img{filter:none;}
-  .celebs-nota{margin:0; font-size:var(--t-olho); line-height:1.4; color:var(--cinza); max-width:44ch;}
-  .celebs-nota b{color:var(--tinta); font-weight:600;}
+  .celebs-nota{margin:0; font-size:var(--t-olho); line-height:1.4; color:var(--texto-secundario); max-width:44ch;}
+  .celebs-nota b{color:var(--texto); font-weight:600;}
 
   /* janela das estrelas */
-  .estrelas{border:0; padding:0; width:min(1180px, 94vw); max-height:88vh; background:var(--branco); color:var(--tinta);}
-  .estrelas::backdrop{background:rgba(15,15,15,.72); backdrop-filter:blur(3px);}
-  .estrelas-topo{position:sticky; top:0; z-index:2; background:var(--branco); display:flex; justify-content:space-between; align-items:flex-start; gap:var(--s2);
-    padding:var(--s4) var(--s4) var(--s2); border-bottom:1px solid var(--filete);}
+  .estrelas{border:0; padding:0; width:min(1180px, 94vw); max-height:88vh; background:var(--superficie); color:var(--texto);}
+  .estrelas::backdrop{background:rgba(var(--preto-rgb),.72); backdrop-filter:blur(3px);}
+  .estrelas-topo{position:sticky; top:0; z-index:2; background:var(--superficie); display:flex; justify-content:space-between; align-items:flex-start; gap:var(--s2);
+    padding:var(--s4) var(--s4) var(--s2); border-bottom:1px solid var(--borda);}
   .estrelas-topo h3{font-size:var(--t-sub);}
-  .estrelas-topo p{margin-top:var(--s1); font-size:var(--t-apoio); color:var(--cinza);}
-  .fechar{flex:none; width:44px; height:44px; border-radius:50%; border:1px solid var(--filete); background:var(--branco);
-    font-size:var(--t-sub); line-height:1; color:var(--tinta); cursor:pointer;}
-  .fechar:hover{background:var(--tinta); color:var(--branco); border-color:var(--tinta);}
+  .estrelas-topo p{margin-top:var(--s1); font-size:var(--t-apoio); color:var(--texto-secundario);}
+  .fechar{flex:none; width:44px; height:44px; border-radius:50%; border:1px solid var(--borda); background:var(--fundo);
+    font-size:var(--t-sub); line-height:1; color:var(--texto); cursor:pointer;}
+  .fechar:hover{background:var(--texto); color:var(--fundo); border-color:var(--texto);}
   .estrelas-grade{display:grid; grid-template-columns:repeat(auto-fill, minmax(180px,1fr)); gap:var(--s2);
     padding:var(--s4); overflow-y:auto;}
   .estrela img{width:100%; aspect-ratio:4/5; object-fit:cover;}
   .estrela b{display:block; margin-top:var(--s1); font-size:var(--t-apoio); font-weight:600;}
-  .estrela span{display:block; font-size:var(--t-etiqueta); color:var(--cinza);}
+  .estrela span{display:block; font-size:var(--t-etiqueta); color:var(--texto-secundario);}
 
   /* prova */
   .prova{display:grid; grid-template-columns:1.15fr .85fr; gap:var(--s6); align-items:center;
     }
   .retrato-dela{margin:0;}
-  .retrato-dela img{width:100%; aspect-ratio:4/5; object-fit:cover; background:var(--nevoa);}
-  .retrato-dela figcaption{margin-top:var(--s1); padding-top:var(--s1); border-top:1px solid var(--filete); font-size:var(--t-apoio); color:var(--cinza);}
+  .retrato-dela img{width:100%; aspect-ratio:4/5; object-fit:cover; background:var(--superficie);}
+  .retrato-dela figcaption{margin-top:var(--s1); padding-top:var(--s1); border-top:1px solid var(--borda); font-size:var(--t-apoio); color:var(--texto-secundario);}
 
   /* imprensa, clima de banca de revista */
-  .imprensa-sec{background:var(--azul-claro);}
+  .imprensa-sec{background:var(--superficie);}
   .imprensa-editorial{display:grid; grid-template-columns:1fr 1fr; gap:var(--s6); align-items:start;}
   .imprensa-esq{display:flex; flex-direction:column; gap:var(--s4);}
   .banca{align-self:center;}
-  .chapeu{font-size:var(--t-etiqueta); font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--ultramar); margin-bottom:var(--s3);}
+  .chapeu{font-size:var(--t-etiqueta); font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--acento); margin-bottom:var(--s3);}
   .imprensa-txt h2{max-width:12ch;}
-  .aspas{margin:var(--s4) 0 0; padding-left:var(--s3); border-left:2px solid var(--ultramar);
-    font-size:var(--t-sub); line-height:1.32; font-weight:500; letter-spacing:-.02em; color:var(--ultramar);}
-  .credito{margin-top:var(--s2); font-size:var(--t-apoio); color:var(--cinza);}
+  .aspas{margin:var(--s4) 0 0; padding-left:var(--s3); border-left:2px solid var(--acento);
+    font-size:var(--t-sub); line-height:1.32; font-weight:500; letter-spacing:-.02em; color:var(--acento);}
+  .credito{margin-top:var(--s2); font-size:var(--t-apoio); color:var(--texto-secundario);}
   .aspas .falta{color:transparent;}
-  .aspas .cursor{display:inline-block; width:3px; height:.92em; margin-left:2px; background:var(--ultramar);
+  .aspas .cursor{display:inline-block; width:3px; height:.92em; margin-left:2px; background:var(--acento);
     vertical-align:-.08em; animation:pisca 1s steps(1) infinite;}
   @keyframes pisca{50%{opacity:0;}}
   .imprensa-txt .lead{margin-top:var(--s4);}
@@ -241,28 +248,28 @@
   .par-capas{display:flex; flex-wrap:nowrap; align-items:flex-start; justify-content:center; width:100%;}
   .rev, .rev-foto{margin:0;}
   .rev{width:60%; flex:none; transition:transform 400ms cubic-bezier(.22,1,.36,1);}
-  .rev img{width:100%; height:auto; box-shadow:0 30px 60px -26px rgba(15,15,15,.55);}
+  .rev img{width:100%; height:auto; box-shadow:0 30px 60px -26px rgba(var(--preto-rgb),.55);}
   .rev-a{transform:rotate(-5deg); z-index:2;}
   .rev-b{margin-left:-20%; margin-top:var(--s6); transform:rotate(4.5deg); z-index:1;}
   .rev-a:hover{transform:rotate(-2deg) translateY(-8px); z-index:3;}
   .rev-b:hover{transform:rotate(2deg) translateY(-8px); z-index:3;}
-  .rev figcaption{margin-top:var(--s2); font-size:var(--t-apoio); line-height:1.3; color:var(--cinza);}
-  .rev figcaption b{display:block; font-weight:600; font-size:var(--t-corpo); color:var(--tinta); letter-spacing:-.01em;}
+  .rev figcaption{margin-top:var(--s2); font-size:var(--t-apoio); line-height:1.3; color:var(--texto-secundario);}
+  .rev figcaption b{display:block; font-weight:600; font-size:var(--t-corpo); color:var(--texto); letter-spacing:-.01em;}
   .rev-a figcaption{text-align:left; padding-left:var(--s2);}
   .rev-b figcaption{text-align:right; padding-right:var(--s2);}
   .rev-foto{margin-top:0; max-width:82%;}
-  .rev-foto figcaption{margin-top:var(--s1); font-size:var(--t-apoio); color:var(--cinza);}
+  .rev-foto figcaption{margin-top:var(--s1); font-size:var(--t-apoio); color:var(--texto-secundario);}
   .numeros{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 var(--s4); margin-top:var(--s1);}
-  .numeros div{padding:var(--s3) 0; border-top:1px solid var(--filete);}
+  .numeros div{padding:var(--s3) 0; border-top:1px solid var(--borda);}
   .numeros b{display:block; font-size:var(--t-numero); font-weight:600; letter-spacing:-.04em; line-height:1; font-variant-numeric:lining-nums tabular-nums;}
-  .numeros span{display:block; margin-top:var(--s1); font-size:var(--t-olho); line-height:1.35; color:var(--cinza); max-width:20ch;}
+  .numeros span{display:block; margin-top:var(--s1); font-size:var(--t-olho); line-height:1.35; color:var(--texto-secundario); max-width:20ch;}
   .imprensa{margin-top:var(--s4);}
-  .imprensa a{display:grid; grid-template-columns:1fr auto; gap:var(--s1) var(--s2); align-items:baseline; padding:var(--s2) 0; border-top:1px solid var(--filete); text-decoration:none;}
-  .imprensa a:last-child{border-bottom:1px solid var(--filete);}
+  .imprensa a{display:grid; grid-template-columns:1fr auto; gap:var(--s1) var(--s2); align-items:baseline; padding:var(--s2) 0; border-top:1px solid var(--borda); text-decoration:none;}
+  .imprensa a:last-child{border-bottom:1px solid var(--borda);}
   .imprensa .titulo{font-size:var(--t-corpo); font-weight:500; transition:color 150ms;}
-  .imprensa a:hover .titulo{color:var(--ultramar);}
-  .imprensa .quando{font-size:var(--t-etiqueta); color:var(--cinza); white-space:nowrap;}
-  .imprensa .frase{grid-column:1/-1; font-size:var(--t-apoio); color:var(--cinza);}
+  .imprensa a:hover .titulo{color:var(--acento);}
+  .imprensa .quando{font-size:var(--t-etiqueta); color:var(--texto-secundario); white-space:nowrap;}
+  .imprensa .frase{grid-column:1/-1; font-size:var(--t-apoio); color:var(--texto-secundario);}
 
   /* galeria horizontal */
   .galeria{padding-block:calc(var(--entre) / 2) 0; overflow:hidden;}
@@ -270,16 +277,15 @@
   .pista-area{position:relative;}
   .pista{display:flex; gap:var(--s5); padding-inline:var(--gutter); padding-bottom:var(--s6); width:max-content;}
   /* a margem zerada e obrigatoria: o figure vem do navegador com recuo lateral */
-  .obra{width:clamp(260px,32vw,440px); flex:none; margin:0;}
-  .obra img{width:100%; aspect-ratio:4/5; object-fit:cover;}
-  .obra.alta img{aspect-ratio:3/4;}
-  .obra.larga{width:clamp(320px,44vw,620px);} .obra.larga img{aspect-ratio:4/3;}
-  .obra figcaption{margin-top:var(--s2); display:flex; justify-content:space-between; gap:var(--s2); font-size:var(--t-corpo); color:var(--cinza); border-top:1px solid var(--filete); padding-top:var(--s1);}
-  .obra figcaption b{color:var(--tinta); font-weight:500;}
-  .barra{height:2px; background:var(--filete); margin-inline:var(--gutter); margin-bottom:calc(var(--entre) / 2);}
-  .barra i{display:block; height:100%; width:18%; background:var(--ultramar); transform-origin:left;}
+  /* Cada quadro tem o mesmo formato 4:5, sem legenda.
+     contain preserva a obra inteira, inclusive os paineis horizontais. */
+  .obra{width:clamp(260px,32vw,440px); aspect-ratio:4/5; flex:none; margin:0;
+    overflow:hidden; background:var(--superficie); border:1px solid var(--borda);}
+  .obra img{width:100%; height:100%; object-fit:contain;}
+  .barra{height:2px; background:var(--borda); margin-inline:var(--gutter); margin-bottom:calc(var(--entre) / 2);}
+  .barra i{display:block; height:100%; width:18%; background:var(--acento); transform-origin:left;}
   .cursor{position:fixed; z-index:var(--z-cursor); top:0; left:0; width:96px; height:96px; border-radius:50%;
-    background:var(--ultramar); color:var(--branco); display:grid; place-items:center;
+    background:var(--acento); color:var(--fundo); display:grid; place-items:center;
     font-size:var(--t-etiqueta); font-weight:600; letter-spacing:.12em; text-transform:uppercase;
     pointer-events:none; opacity:0; transform:translate(-50%,-50%) scale(.6); transition:opacity 200ms, transform 200ms;}
   .cursor.on{opacity:1; transform:translate(-50%,-50%) scale(1);}
@@ -294,26 +300,26 @@
      imagens tem sempre o mesmo tamanho e a mesma posicao, em qualquer tela */
   .comparador .depois{position:absolute; inset:0; clip-path:inset(0 50% 0 0);}
   .comparador .depois img{height:100%; aspect-ratio:auto;}
-  .puxador{position:absolute; top:0; bottom:0; left:50%; width:2px; background:var(--branco); cursor:ew-resize;}
+  .puxador{position:absolute; top:0; bottom:0; left:50%; width:2px; background:var(--acento); cursor:ew-resize;}
   .puxador::after{content:"⇄"; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-    width:56px; height:56px; border-radius:50%; background:var(--branco); color:var(--tinta);
-    display:grid; place-items:center; font-size:var(--t-sub); box-shadow:0 10px 30px rgba(0,0,0,.22);}
+    width:56px; height:56px; border-radius:50%; background:var(--acento); color:var(--fundo);
+    display:grid; place-items:center; font-size:var(--t-sub); box-shadow:0 10px 30px rgba(var(--preto-rgb),.22);}
   .comp-tags{display:flex; justify-content:space-between; margin-top:var(--s2);}
 
   /* presente perfeito: uma historia em duas partes, lidas da esquerda para a
      direita. As quatro fotos tem a mesma altura, entao a linha fecha reta. */
   .presente{display:grid; grid-template-columns:1fr 1fr; gap:var(--s5); margin-top:var(--s5);}
   .presente-fotos{display:grid; grid-template-columns:1fr 1fr; gap:var(--s2);}
-  .presente-fotos figure{margin:0; overflow:hidden; background:var(--nevoa);}
+  .presente-fotos figure{margin:0; overflow:hidden; background:var(--superficie);}
   .presente-fotos img{width:100%; aspect-ratio:3/4; object-fit:cover; display:block;}
-  .coracao{width:.72em; height:.72em; color:var(--ultramar); display:inline-block; vertical-align:-.04em;
+  .coracao{width:.72em; height:.72em; color:var(--acento); display:inline-block; vertical-align:-.04em;
     animation:bate 2.4s ease-in-out infinite; transform-origin:50% 60%;}
   @keyframes bate{0%,60%,100%{transform:scale(1);} 10%{transform:scale(1.14);} 22%{transform:scale(1);} 32%{transform:scale(1.08);}}
-  .presente-leg{margin-top:var(--s2); padding-top:var(--s2); border-top:1px solid var(--filete);
-    font-size:var(--t-corpo); color:var(--cinza);}
-  .presente-leg b{display:block; color:var(--tinta); font-weight:600;}
-  .presente-depois .presente-leg{border-top-color:var(--ultramar);}
-  .presente-depois .presente-leg b{color:var(--ultramar);}
+  .presente-leg{margin-top:var(--s2); padding-top:var(--s2); border-top:1px solid var(--borda);
+    font-size:var(--t-corpo); color:var(--texto-secundario);}
+  .presente-leg b{display:block; color:var(--texto); font-weight:600;}
+  .presente-depois .presente-leg{border-top-color:var(--acento);}
+  .presente-depois .presente-leg b{color:var(--acento);}
 
   /* coleções */
   .colecoes{display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
@@ -322,48 +328,48 @@
      valor, botao). Sem isso, a ficha mais curta sobe o valor e o botao daquele
      cartao e as tres colunas deixam de casar na horizontal. */
   .colecao{grid-row:span 5; display:grid; grid-template-rows:subgrid; row-gap:0; align-content:start;
-    padding:var(--s5) var(--s4); position:relative; border:1px solid var(--filete);
+    padding:var(--s5) var(--s4); position:relative; border:1px solid var(--borda);
     transition:transform 300ms cubic-bezier(.22,1,.36,1), box-shadow 300ms;}
-  .colecao:hover{transform:translateY(-6px); box-shadow:0 26px 50px -30px rgba(15,15,15,.45);}
-  /* tres degraus de azul: a escala de preco vira escala de cor */
-  .col-1{background:var(--branco);}
-  .col-2{background:var(--azul-claro); border-color:transparent;}
-  .col-3{background:var(--azul-fundo); border-color:transparent;}
-  .col-3 .ficha li{border-top-color:rgba(15,15,15,.12);}
-  /* o cinza comum da 4,07:1 sobre este azul; o cinza-azulado da 4,65:1 */
-  .colecao.col-3 .pitch, .colecao.col-3 .ficha b, .colecao.col-3 .label{color:var(--cinza-azul);}
-  .colecao .pitch{color:var(--cinza); font-size:var(--t-corpo); margin-top:var(--s1);}
+  .colecao:hover{transform:translateY(-6px); box-shadow:0 26px 50px -30px rgba(var(--preto-rgb),.45);}
+  /* Grafites em tres tons; a Assinatura recebe um detalhe em dourado. */
+  .col-1{background:var(--superficie);}
+  .col-2{background:var(--superficie-elevada); border-color:var(--borda);}
+  .col-3{background:var(--superficie-quente); border-color:rgba(var(--acento-rgb),.4);}
+  .col-3 .ficha li{border-top-color:rgba(var(--acento-rgb),.22);}
+  .col-3 h3{color:var(--acento);}
+  .colecao.col-3 .pitch, .colecao.col-3 .ficha b, .colecao.col-3 .label{color:var(--texto-secundario);}
+  .colecao .pitch{color:var(--texto-secundario); font-size:var(--t-corpo); margin-top:var(--s1);}
   .ficha{list-style:none; margin:var(--s3) 0 0; padding:0; font-size:var(--t-apoio);}
-  .ficha li{display:grid; grid-template-columns:86px 1fr; gap:var(--s2); padding:var(--s1) 0; border-top:1px solid var(--filete);}
-  .ficha b{font-weight:500; color:var(--cinza);}
+  .ficha li{display:grid; grid-template-columns:86px 1fr; gap:var(--s2); padding:var(--s1) 0; border-top:1px solid var(--borda);}
+  .ficha b{font-weight:500; color:var(--texto-secundario);}
   .valor{margin-top:var(--s3); align-self:end;}
   .valor strong{display:block; margin-top:var(--s1); font-size:var(--t-sub); font-weight:600; letter-spacing:-.02em;}
-  .pend{color:var(--ultramar); border-bottom:1px dotted var(--ultramar);}
+  .pend{color:var(--acento); border-bottom:1px dotted var(--acento);}
   .colecao .btn{margin-top:var(--s3); align-self:start;}
-  .nota-col{margin-top:var(--s5); padding-top:var(--s3); border-top:1px solid var(--filete); display:flex; flex-wrap:wrap; gap:var(--s2) var(--s5); justify-content:space-between;}
-  .nota-col p{color:var(--cinza); font-size:var(--t-olho); line-height:1.45; max-width:54ch;}
-  .nota-col a{color:var(--ultramar);}
+  .nota-col{margin-top:var(--s5); padding-top:var(--s3); border-top:1px solid var(--borda); display:flex; flex-wrap:wrap; gap:var(--s2) var(--s5); justify-content:space-between;}
+  .nota-col p{color:var(--texto-secundario); font-size:var(--t-olho); line-height:1.45; max-width:54ch;}
+  .nota-col a{color:var(--acento);}
 
   /* passos */
   .passos{position:relative; margin-top:var(--s5); padding-left:var(--s7);}
-  /* nao existe linha ate a pessoa rolar. o azul e que desenha o caminho */
+  /* O caminho em dourado acompanha a rolagem. */
   .trilho{position:absolute; left:clamp(18px,2.6vw,40px); top:0; bottom:0; width:4px; background:transparent;}
   .trilho i{display:block; width:100%; height:100%; transform:scaleY(0); transform-origin:top center;
-    background:linear-gradient(180deg, var(--ultramar-claro), var(--ultramar));}
-  .passo{display:grid; grid-template-columns:auto minmax(0,1fr); gap:var(--s4); align-items:baseline; padding:var(--s4) 0; border-top:1px solid var(--filete);}
-  .passo:last-child{border-bottom:1px solid var(--filete);}
+    background:linear-gradient(180deg, var(--acento-claro), var(--acento));}
+  .passo{display:grid; grid-template-columns:auto minmax(0,1fr); gap:var(--s4); align-items:baseline; padding:var(--s4) 0; border-top:1px solid var(--borda);}
+  .passo:last-child{border-bottom:1px solid var(--borda);}
   .passo{transition:transform 350ms cubic-bezier(.22,1,.36,1);}
   .passo b{font-size:var(--t-numero); font-weight:600; letter-spacing:-.04em; line-height:1;
-    color:var(--apagado); font-variant-numeric:tabular-nums;
+    color:var(--texto-suave); font-variant-numeric:tabular-nums;
     transition:color 500ms cubic-bezier(.22,1,.36,1), transform 500ms cubic-bezier(.22,1,.36,1);
     display:inline-block;}
-  .passo.ativo b{color:var(--ultramar); transform:translateY(-2px);}
+  .passo.ativo b{color:var(--acento); transform:translateY(-2px);}
   .passo p{transition:color 350ms;}
   .passo:hover{transform:translateX(6px);}
-  .passo:hover b{color:var(--ultramar);}
-  .passo:hover p{color:var(--ultramar);}
+  .passo:hover b{color:var(--acento);}
+  .passo:hover p{color:var(--acento);}
   .passo p{font-size:var(--t-sub); font-weight:600; letter-spacing:-.02em; line-height:1.15;}
-  .passo span{display:block; margin-top:var(--s2); font-size:var(--t-olho); line-height:1.5; color:var(--cinza); max-width:56ch;}
+  .passo span{display:block; margin-top:var(--s2); font-size:var(--t-olho); line-height:1.5; color:var(--texto-secundario); max-width:56ch;}
 
   /* sobre */
   .sobre{display:grid; grid-template-columns:.85fr 1.15fr; gap:var(--s7); align-items:center;}
@@ -371,27 +377,27 @@
   .sobre-img img{width:100%; aspect-ratio:4/5; object-fit:cover;}
   .sobre .texto p + p{margin-top:var(--s2);}
   .citacao{margin:var(--s3) 0 0; padding-top:0; font-size:var(--t-sub); font-weight:500; letter-spacing:-.02em; line-height:1.25;}
-  .assina-grande{font-size:var(--t-assina-grande); width:3.4em; margin-top:var(--s2); color:var(--ultramar);}
+  .assina-grande{font-size:var(--t-assina-grande); width:3.4em; margin-top:var(--s2); color:var(--acento);}
 
-  .aviso-linha{margin-top:var(--s2); font-size:var(--t-olho); color:var(--cinza); max-width:68ch;}
+  .aviso-linha{margin-top:var(--s2); font-size:var(--t-olho); color:var(--texto-secundario); max-width:68ch;}
 
   /* dúvidas */
   .faq{max-width:940px; margin-top:var(--s5);}
-  .faq details{border-top:1px solid var(--filete);}
-  .faq details:last-of-type{border-bottom:1px solid var(--filete);}
+  .faq details{border-top:1px solid var(--borda);}
+  .faq details:last-of-type{border-bottom:1px solid var(--borda);}
   .faq summary{list-style:none; cursor:pointer; position:relative; padding:var(--s3) var(--s5) var(--s3) 0; font-size:var(--t-sub); font-weight:500; letter-spacing:-.02em;}
   .faq summary::-webkit-details-marker{display:none;}
-  .faq summary::after{content:""; position:absolute; right:14px; top:34px; width:16px; height:2px; background:var(--ultramar);}
-  .faq summary::before{content:""; position:absolute; right:21px; top:27px; width:2px; height:16px; background:var(--ultramar); transition:transform 200ms;}
+  .faq summary::after{content:""; position:absolute; right:14px; top:34px; width:16px; height:2px; background:var(--acento);}
+  .faq summary::before{content:""; position:absolute; right:21px; top:27px; width:2px; height:16px; background:var(--acento); transition:transform 200ms;}
   .faq details[open] summary::before{transform:scaleY(0);}
-  .faq .resposta{padding:0 var(--s5) var(--s3) 0; color:var(--cinza); max-width:64ch;}
+  .faq .resposta{padding:0 var(--s5) var(--s3) 0; color:var(--texto-secundario); max-width:64ch;}
 
   /* fechamento */
-  /* os olhos dela sao o fundo da secao inteira; por cima, o azul em transparencia
-     e as pinceladas; por cima de tudo, o texto. Camadas: foto 0, azul 1, rabiscos 2, texto 3 */
-  .fechamento{position:relative; background:var(--ultramar); color:var(--branco); overflow:hidden;
+  /* Os olhos dela continuam no fundo; o veu de carvao protege o texto.
+     Camadas: foto 0, carvao 1, pinceladas discretas 2, texto 3. */
+  .fechamento{position:relative; background:var(--superficie-profunda); color:var(--texto); overflow:hidden;
     display:grid; align-items:center; min-height:clamp(440px, 44vw, 640px);}
-  .fechamento::before{content:""; position:absolute; inset:0; z-index:1; background:var(--ultramar); opacity:.56;}
+  .fechamento::before{content:""; position:absolute; inset:0; z-index:1; background:linear-gradient(90deg, rgba(var(--fundo-rgb),.94), rgba(var(--fundo-rgb),.65)); opacity:1;}
   .fechamento .wrap{position:relative; z-index:3; width:100%;}
   .fech-olhos{position:absolute; inset:0; z-index:0; margin:0;}
   .fech-olhos img{width:100%; height:100%; object-fit:cover; object-position:50% 42%;
@@ -406,19 +412,19 @@
   .rabiscos .fundo-tinta{filter:blur(3px);}
   .rabiscos .pinceladas{filter:blur(.3px);}
   .fechamento h2{max-width:13ch;}
-  .fechamento .lead{color:rgba(255,255,255,.82); margin-top:var(--s2);}
+  .fechamento .lead{color:rgba(var(--texto-rgb),.82); margin-top:var(--s2);}
   .fechamento .btns{margin-top:var(--s4);}
 
   footer{padding-block:var(--s5) var(--s6);}
   footer .wrap{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:var(--s2);}
-  footer p{font-size:var(--t-apoio); color:var(--cinza);}
+  footer p{font-size:var(--t-apoio); color:var(--texto-secundario);}
   footer a{text-decoration:none;}
 
-  .aviso{position:fixed; left:0; right:0; bottom:0; z-index:var(--z-aviso); background:var(--tinta); color:var(--branco);
+  .aviso{position:fixed; left:0; right:0; bottom:0; z-index:var(--z-aviso); background:var(--superficie-elevada); color:var(--texto-secundario); border-top:1px solid var(--borda);
     display:flex; gap:var(--s1); align-items:center; justify-content:center; flex-wrap:wrap; padding:var(--s1) var(--s2); font-size:var(--t-etiqueta);
     transition:transform 300ms cubic-bezier(.22,1,.36,1);}
   .aviso.fora{transform:translateY(110%);}
-  .aviso button{font:inherit; font-weight:600; background:var(--branco); color:var(--tinta); border:0; padding:var(--s1) var(--s1); border-radius:100px; cursor:pointer;}
+  .aviso button{font:inherit; font-weight:600; background:var(--acento); color:var(--fundo); border:0; padding:var(--s1) var(--s1); border-radius:100px; cursor:pointer;}
 
   /* ===== DESTAQUE: os tipos de retrato que ela faz =====
      Sao cinco e nao cabem lado a lado: a fita corre na horizontal em qualquer
@@ -439,25 +445,25 @@
      nunca sai do lugar. No celular o encaixe fica, que la o gesto e arrastar. */
   .trio.anda{cursor:grab; scroll-snap-type:none;}
   .trio.anda:active{cursor:grabbing;}
-  .astro-img{overflow:hidden; background:var(--nevoa);}
+  .astro-img{overflow:hidden; background:var(--superficie);}
   .astro-img img{width:100%; aspect-ratio:4/5; object-fit:cover; transition:transform 700ms cubic-bezier(.22,1,.36,1);}
   .astro:hover .astro-img img{transform:scale(1.05);}
-  .astro figcaption{margin-top:var(--s2); padding-top:var(--s1); border-top:1px solid var(--filete);
+  .astro figcaption{margin-top:var(--s2); padding-top:var(--s1); border-top:1px solid var(--borda);
     display:flex; flex-direction:column;}
   .astro figcaption b{font-size:var(--t-sub); font-weight:600; letter-spacing:-.02em;}
-  .astro figcaption span{font-size:var(--t-apoio); color:var(--cinza);}
+  .astro figcaption span{font-size:var(--t-apoio); color:var(--texto-secundario);}
   /* a dica de arrastar so aparece se houver mesmo o que arrastar */
-  .destaque .dica-lado{margin-top:var(--s2); font-size:var(--t-apoio); color:var(--cinza);}
+  .destaque .dica-lado{margin-top:var(--s2); font-size:var(--t-apoio); color:var(--texto-secundario);}
 
   /* avatar redondo das falas: inicial de quem escreveu, ou coracao quando o
      autor nao esta identificado na coleta */
   .avatar{flex:none; width:40px; height:40px; border-radius:50%; display:grid; place-items:center;
-    background:var(--branco); color:var(--ultramar-fundo); font-size:var(--t-apoio); font-weight:700;}
+    background:var(--superficie-quente); color:var(--acento); font-size:var(--t-apoio); font-weight:700;}
 
   /* ===== PAREDE DE COMENTARIOS: ela no centro, as falas reais passando ===== */
-  .parede{background:var(--ultramar-fundo); color:var(--branco);}
-  .parede .chapeu{color:var(--azul-fundo); margin-bottom:var(--s2);}
-  .parede h2{color:var(--branco);}
+  .parede{background:var(--superficie-profunda); color:var(--texto);}
+  .parede .chapeu{color:var(--acento-claro); margin-bottom:var(--s2);}
+  .parede h2{color:var(--texto);}
   .parede-palco{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,360px) minmax(0,1fr); gap:var(--s4);
     height:clamp(520px, 78vh, 720px); margin:var(--s5) auto 0; max-width:var(--max); padding-inline:var(--gutter);}
   .trilha-caixa{height:100%; overflow:hidden;}
@@ -467,34 +473,34 @@
   @keyframes parede-sobe{from{transform:translateY(0);} to{transform:translateY(-50%);}}
   @keyframes parede-lado{from{transform:translateX(0);} to{transform:translateX(-50%);}}
   .fala{margin:0 0 var(--s3); padding:var(--s3); display:flex; gap:var(--s2); align-items:flex-start;
-    background:var(--ultramar-fundo); border:1px solid rgba(255,255,255,.22);}
+    background:var(--superficie); border:1px solid var(--borda);}
   .fala b{display:block; font-size:var(--t-apoio); font-weight:600;}
-  .fala b span{font-weight:400; color:rgba(255,255,255,.62);}
-  .fala p{margin-top:var(--s1); font-size:var(--t-corpo); line-height:1.5; color:rgba(255,255,255,.9);}
+  .fala b span{font-weight:400; color:rgba(var(--texto-rgb),.62);}
+  .fala p{margin-top:var(--s1); font-size:var(--t-corpo); line-height:1.5; color:rgba(var(--texto-rgb),.9);}
   /* ela acena no centro; os respingos do recorte (PNG sem fundo) se espalham
      por tras das duas colunas de falas, que ficam por cima e opacas */
   .parede-foto{margin:0; position:relative; height:100%; z-index:0;}
   .parede-foto img{position:absolute; left:50%; bottom:0; transform:translateX(-50%);
     width:min(1080px, 300%); max-width:none; height:auto;}
   .parede-palco .trilha-caixa{position:relative; z-index:1;}
-  .parede .aviso-linha{color:rgba(255,255,255,.7);}
-  .parede .pend{color:var(--branco); border-bottom-color:var(--branco);}
+  .parede .aviso-linha{color:rgba(var(--texto-rgb),.7);}
+  .parede .pend{color:var(--texto); border-bottom-color:var(--texto);}
 
   /* ===== ACERVO: o mosaico final, para relembrar a qualidade ===== */
   .acervo-topo{display:flex; justify-content:space-between; align-items:flex-end; gap:var(--s3); flex-wrap:wrap;}
   .acervo-topo .lead{margin-top:0; max-width:36ch;}
   .acervo{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); grid-auto-rows:clamp(180px,18vw,280px);
     grid-auto-flow:dense; gap:var(--s2); margin-top:var(--s5);}
-  .acervo figure{margin:0; position:relative; overflow:hidden; background:var(--nevoa);}
+  .acervo figure{margin:0; position:relative; overflow:hidden; background:var(--superficie);}
   .acervo img{width:100%; height:100%; object-fit:cover; transition:transform 700ms cubic-bezier(.22,1,.36,1);}
   .acervo figure:hover img{transform:scale(1.05);}
   .acervo .alto{grid-row:span 2;}
   .play-selo{position:absolute; left:var(--s2); bottom:var(--s2); width:44px; height:44px; border-radius:50%;
-    background:var(--branco); display:grid; place-items:center;}
-  .play-selo::after{content:""; border-left:12px solid var(--tinta); border-block:8px solid transparent; margin-left:var(--s1);}
+    background:var(--acento); display:grid; place-items:center;}
+  .play-selo::after{content:""; border-left:12px solid var(--fundo); border-block:8px solid transparent; margin-left:var(--s1);}
   /* video que toca sozinho dentro do acervo: preenche a celula igual a img */
   .video-acervo{position:relative;}
-  .video-auto{width:100%; height:100%; object-fit:cover; display:block; background:var(--nevoa);}
+  .video-auto{width:100%; height:100%; object-fit:cover; display:block; background:var(--superficie);}
   /* enquanto o video ainda nao tocou (preload="none"), o selo de play fica visivel;
      assim que ele comeca a rodar, o selo some, porque o proprio movimento avisa */
   .video-acervo .play-selo{transition:opacity 300ms; pointer-events:none;}
@@ -505,16 +511,16 @@
      90% do trafego e celular. Sem isso, depois da capa o proximo caminho para
      o preco ficava a umas 9 telas, e o WhatsApp so no fim da pagina. */
   .abre-menu{display:none; font:inherit; font-size:var(--t-botao); font-weight:600; letter-spacing:.06em;
-    text-transform:uppercase; color:var(--tinta); background:none; border:1px solid var(--tinta);
+    text-transform:uppercase; color:var(--texto); background:none; border:1px solid var(--texto);
     border-radius:100px; padding:var(--s1) var(--s3); min-height:44px; cursor:pointer;}
   .menu-cel{border:0; padding:0; margin:0; width:100%; max-width:none; height:100%; max-height:none;
-    background:var(--branco); color:var(--tinta);}
-  .menu-cel::backdrop{background:rgba(15,15,15,.4);}
+    background:var(--fundo); color:var(--texto);}
+  .menu-cel::backdrop{background:rgba(var(--preto-rgb),.4);}
   .menu-cel-topo{display:flex; justify-content:space-between; align-items:center; height:var(--topo-altura);
-    padding-inline:var(--gutter); border-bottom:1px solid var(--filete);}
+    padding-inline:var(--gutter); border-bottom:1px solid var(--borda);}
   .menu-cel nav{display:flex; flex-direction:column; padding:var(--s4) var(--gutter);}
   .menu-cel nav a{font-size:var(--t-sub); font-weight:600; letter-spacing:-.02em; text-decoration:none;
-    padding:var(--s2) 0; border-bottom:1px solid var(--filete);}
+    padding:var(--s2) 0; border-bottom:1px solid var(--borda);}
   .menu-cel .btn{margin:var(--s4) var(--gutter) 0; justify-content:center;}
 
   @media (max-width:1000px){
@@ -562,7 +568,7 @@
     .pista-area{overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;}
     .pista-area::-webkit-scrollbar{display:none;}
     .pista{gap:var(--s2);}
-    .obra{width:68vw;} .obra.larga{width:86vw;}
+    .obra{width:68vw;}
     /* no celular o numero fica colado na linha, para o texto usar a largura toda */
     .passos{padding-left:var(--s3);}
     .trilho{left:0;}
@@ -572,24 +578,22 @@
     .sobre{gap:var(--s4);}
   }
   @media (max-width:600px){
-    .topo{backdrop-filter:none; -webkit-backdrop-filter:none; background:rgba(255,255,255,.9);}
+    .topo{backdrop-filter:none; -webkit-backdrop-filter:none; background:rgba(var(--fundo-rgb),.96);}
     .topo .btn{display:none;}
     .btns .btn{width:100%; justify-content:center;}
     .celebs-fim .btns{width:100%;}
     .banca{grid-template-columns:1fr 1fr; gap:var(--s2);}
     .rev-a{transform:rotate(-4deg);}
     .rev-b{transform:rotate(3.5deg);}
-    /* no celular: a foto em cima, o texto embaixo, os dois sobre branco */
-    /* no celular o mesmo efeito do computador, na vertical: a foto nitida em
-       cima se dissolve para baixo na copia desfocada dela mesma, e o titulo
-       fica sobre esse borrao, com um veu branco suave para a leitura */
+    /* No celular, a foto dissolve para o carvao na vertical.
+       O texto em marfim e o mesmo acento dourado mantem a unidade visual. */
     .capa{grid-template-columns:1fr; min-height:0; align-items:end;}
     .capa-img::before{background-image:url(img/capa-ale.webp); background-position:center top;}
     .capa-img img{left:0; right:0; width:100%; height:62svh; min-height:380px; object-fit:cover; object-position:50% 0%;
-      -webkit-mask-image:linear-gradient(180deg, var(--tinta) 58%, transparent 100%);
-      mask-image:linear-gradient(180deg, var(--tinta) 58%, transparent 100%);}
-    .capa::after{background:linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 38%,
-      rgba(255,255,255,.62) 56%, rgba(255,255,255,.8) 100%);}
+      -webkit-mask-image:linear-gradient(180deg, var(--texto) 58%, transparent 100%);
+      mask-image:linear-gradient(180deg, var(--texto) 58%, transparent 100%);}
+    .capa::after{background:linear-gradient(180deg, rgba(var(--fundo-rgb),.14) 0%, rgba(var(--fundo-rgb),.22) 38%,
+      rgba(var(--fundo-rgb),.86) 56%, rgba(var(--fundo-rgb),1) 100%);}
     .capa-txt{grid-column:1; grid-row:1; padding:max(44svh, 300px) var(--gutter) var(--s5);}
     .capa-txt h1 br{display:none;}
     .so-desk{display:none;}
@@ -816,12 +820,12 @@
     </div>
     <div class="pista-area" id="pistaArea">
       <div class="pista" id="pista">
-        <figure class="obra"><img src="img/obra-1.webp" alt="Retrato pintado por Alê Baggio, acrílica com folha de ouro" loading="lazy"><figcaption><span>acrílica com folha de ouro</span></figcaption></figure>
-        <figure class="obra alta"><img src="img/obra-2-alta.webp" alt="Retrato pintado por Alê Baggio, com fundo branco" loading="lazy"><figcaption><span>acrílica sobre tela</span></figcaption></figure>
-        <figure class="obra larga"><img src="img/obra-3-larga.webp" alt="Santa Ceia pintada por Alê Baggio, painel com folha de ouro" loading="lazy"><figcaption><span>painel com folha de ouro</span></figcaption></figure>
-        <figure class="obra"><img src="img/obra-4.webp" alt="Retrato de lutador de UFC com os cinturões, pintado por Alê Baggio" loading="lazy"><figcaption><span>acrílica sobre tela</span></figcaption></figure>
-        <figure class="obra alta"><img src="img/obra-5-alta.webp" alt="Onça com joias pintada por Alê Baggio" loading="lazy"><figcaption><span>coleção abstrata</span></figcaption></figure>
-        <figure class="obra"><img src="img/obra-6.webp" alt="Retrato pintado por Alê Baggio, com luz neon" loading="lazy"><figcaption><span>acrílica sobre tela</span></figcaption></figure>
+        <figure class="obra"><img src="img/obra-1.webp" alt="Retrato pintado por Alê Baggio, acrílica com folha de ouro" loading="lazy"></figure>
+        <figure class="obra"><img src="img/obra-2-alta.webp" alt="Retrato pintado por Alê Baggio, com fundo branco" loading="lazy"></figure>
+        <figure class="obra"><img src="img/obra-3-larga.webp" alt="Santa Ceia pintada por Alê Baggio, painel com folha de ouro" loading="lazy"></figure>
+        <figure class="obra"><img src="img/obra-4.webp" alt="Retrato de lutador de UFC com os cinturões, pintado por Alê Baggio" loading="lazy"></figure>
+        <figure class="obra"><img src="img/obra-5-alta.webp" alt="Onça com joias pintada por Alê Baggio" loading="lazy"></figure>
+        <figure class="obra"><img src="img/obra-6.webp" alt="Retrato pintado por Alê Baggio, com luz neon" loading="lazy"></figure>
       </div>
     </div>
     <div class="barra"><i id="barraProgresso"></i></div>
@@ -1088,66 +1092,66 @@
   <section class="fechamento" id="contato">
     <svg class="rabiscos" viewBox="0 0 1200 440" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
       <g class="fundo-tinta" fill="none" stroke-linecap="round">
-        <path d="M-80,340 C180,240 340,410 560,320 S900,190 1280,280" stroke="#0C1AA0" stroke-width="58" opacity=".36"/>
-        <path d="M-60,150 C160,80 320,190 540,130 S920,40 1280,120" stroke="#0C1AA0" stroke-width="40" opacity=".24"/>
+        <path d="M-80,340 C180,240 340,410 560,320 S900,190 1280,280" stroke="var(--tinta-decorativa)" stroke-width="58" opacity=".36"/>
+        <path d="M-60,150 C160,80 320,190 540,130 S920,40 1280,120" stroke="var(--tinta-decorativa)" stroke-width="40" opacity=".24"/>
       </g>
       <g class="pinceladas" fill="none" stroke-linecap="round" transform="translate(0,96)" opacity=".6">
-        <path d="M-40,300 C200,205 380,370 620,280 S980,170 1280,250" stroke="#5B72FF" stroke-width="10" opacity=".55"/>
-        <path d="M-30,320 C210,225 390,390 630,300 S990,190 1290,270" stroke="#9FB0FF" stroke-width="3" opacity=".45"/>
+        <path d="M-40,300 C200,205 380,370 620,280 S980,170 1280,250" stroke="var(--acento)" stroke-width="10" opacity=".55"/>
+        <path d="M-30,320 C210,225 390,390 630,300 S990,190 1290,270" stroke="var(--acento-claro)" stroke-width="3" opacity=".45"/>
       </g>
       <g class="respingos">
-        <circle cx="541" cy="247" r="6.0" fill="#0C1AA0" opacity="0.29"/>
-        <circle cx="1040" cy="80" r="6.0" fill="#0C1AA0" opacity="0.30"/>
-        <circle cx="741" cy="79" r="2.8" fill="#FFFFFF" opacity="0.23"/>
-        <circle cx="648" cy="396" r="4.6" fill="#9FB0FF" opacity="0.14"/>
-        <circle cx="1176" cy="289" r="3.4" fill="#0C1AA0" opacity="0.35"/>
-        <circle cx="-1" cy="233" r="1.2" fill="#FFFFFF" opacity="0.13"/>
-        <circle cx="724" cy="345" r="2.2" fill="#FFFFFF" opacity="0.28"/>
-        <circle cx="624" cy="283" r="2.8" fill="#FFFFFF" opacity="0.12"/>
-        <circle cx="547" cy="120" r="3.4" fill="#FFFFFF" opacity="0.48"/>
-        <circle cx="858" cy="137" r="1.6" fill="#FFFFFF" opacity="0.30"/>
-        <circle cx="67" cy="340" r="2.8" fill="#9FB0FF" opacity="0.16"/>
-        <circle cx="459" cy="426" r="6.0" fill="#FFFFFF" opacity="0.37"/>
-        <circle cx="240" cy="405" r="2.8" fill="#0C1AA0" opacity="0.26"/>
-        <circle cx="473" cy="28" r="4.6" fill="#0C1AA0" opacity="0.19"/>
-        <circle cx="315" cy="34" r="2.2" fill="#9FB0FF" opacity="0.13"/>
-        <circle cx="920" cy="48" r="1.6" fill="#FFFFFF" opacity="0.37"/>
-        <circle cx="54" cy="354" r="1.6" fill="#FFFFFF" opacity="0.37"/>
-        <circle cx="535" cy="81" r="4.6" fill="#9FB0FF" opacity="0.40"/>
-        <circle cx="778" cy="47" r="2.8" fill="#FFFFFF" opacity="0.48"/>
-        <circle cx="315" cy="432" r="6.0" fill="#FFFFFF" opacity="0.33"/>
-        <circle cx="241" cy="172" r="6.0" fill="#0C1AA0" opacity="0.34"/>
-        <circle cx="104" cy="440" r="1.6" fill="#FFFFFF" opacity="0.28"/>
-        <circle cx="938" cy="143" r="2.2" fill="#FFFFFF" opacity="0.26"/>
-        <circle cx="92" cy="257" r="1.6" fill="#9FB0FF" opacity="0.13"/>
-        <circle cx="441" cy="199" r="3.4" fill="#0C1AA0" opacity="0.29"/>
-        <circle cx="148" cy="169" r="4.6" fill="#FFFFFF" opacity="0.18"/>
-        <circle cx="994" cy="107" r="1.6" fill="#0C1AA0" opacity="0.18"/>
-        <circle cx="1146" cy="83" r="2.8" fill="#0C1AA0" opacity="0.44"/>
-        <circle cx="77" cy="16" r="1.2" fill="#9FB0FF" opacity="0.13"/>
-        <circle cx="276" cy="312" r="2.2" fill="#0C1AA0" opacity="0.27"/>
-        <circle cx="589" cy="229" r="4.6" fill="#FFFFFF" opacity="0.47"/>
-        <circle cx="263" cy="247" r="6.0" fill="#FFFFFF" opacity="0.34"/>
-        <circle cx="327" cy="408" r="1.6" fill="#FFFFFF" opacity="0.39"/>
-        <circle cx="314" cy="196" r="1.2" fill="#9FB0FF" opacity="0.14"/>
-        <circle cx="437" cy="252" r="1.6" fill="#FFFFFF" opacity="0.15"/>
-        <circle cx="1085" cy="436" r="4.6" fill="#0C1AA0" opacity="0.38"/>
-        <circle cx="705" cy="58" r="1.2" fill="#9FB0FF" opacity="0.45"/>
-        <circle cx="1109" cy="310" r="1.2" fill="#0C1AA0" opacity="0.13"/>
-        <circle cx="73" cy="25" r="2.2" fill="#FFFFFF" opacity="0.23"/>
-        <circle cx="73" cy="241" r="4.6" fill="#0C1AA0" opacity="0.14"/>
-        <circle cx="894" cy="53" r="2.2" fill="#0C1AA0" opacity="0.25"/>
-        <circle cx="567" cy="30" r="6.0" fill="#FFFFFF" opacity="0.27"/>
-        <circle cx="1051" cy="253" r="3.4" fill="#9FB0FF" opacity="0.36"/>
-        <circle cx="703" cy="269" r="1.2" fill="#FFFFFF" opacity="0.15"/>
-        <circle cx="1212" cy="391" r="4.6" fill="#0C1AA0" opacity="0.24"/>
-        <circle cx="841" cy="201" r="2.8" fill="#FFFFFF" opacity="0.42"/>
-        <circle cx="623" cy="227" r="2.2" fill="#9FB0FF" opacity="0.34"/>
-        <circle cx="8" cy="426" r="1.2" fill="#0C1AA0" opacity="0.30"/>
-        <circle cx="799" cy="214" r="1.2" fill="#FFFFFF" opacity="0.25"/>
-        <circle cx="821" cy="86" r="1.6" fill="#9FB0FF" opacity="0.39"/>
-        <circle cx="798" cy="194" r="1.6" fill="#0C1AA0" opacity="0.24"/>
-        <circle cx="291" cy="280" r="6.0" fill="#FFFFFF" opacity="0.41"/>
+        <circle cx="541" cy="247" r="6.0" fill="var(--tinta-decorativa)" opacity="0.29"/>
+        <circle cx="1040" cy="80" r="6.0" fill="var(--tinta-decorativa)" opacity="0.30"/>
+        <circle cx="741" cy="79" r="2.8" fill="var(--texto)" opacity="0.23"/>
+        <circle cx="648" cy="396" r="4.6" fill="var(--acento-claro)" opacity="0.14"/>
+        <circle cx="1176" cy="289" r="3.4" fill="var(--tinta-decorativa)" opacity="0.35"/>
+        <circle cx="-1" cy="233" r="1.2" fill="var(--texto)" opacity="0.13"/>
+        <circle cx="724" cy="345" r="2.2" fill="var(--texto)" opacity="0.28"/>
+        <circle cx="624" cy="283" r="2.8" fill="var(--texto)" opacity="0.12"/>
+        <circle cx="547" cy="120" r="3.4" fill="var(--texto)" opacity="0.48"/>
+        <circle cx="858" cy="137" r="1.6" fill="var(--texto)" opacity="0.30"/>
+        <circle cx="67" cy="340" r="2.8" fill="var(--acento-claro)" opacity="0.16"/>
+        <circle cx="459" cy="426" r="6.0" fill="var(--texto)" opacity="0.37"/>
+        <circle cx="240" cy="405" r="2.8" fill="var(--tinta-decorativa)" opacity="0.26"/>
+        <circle cx="473" cy="28" r="4.6" fill="var(--tinta-decorativa)" opacity="0.19"/>
+        <circle cx="315" cy="34" r="2.2" fill="var(--acento-claro)" opacity="0.13"/>
+        <circle cx="920" cy="48" r="1.6" fill="var(--texto)" opacity="0.37"/>
+        <circle cx="54" cy="354" r="1.6" fill="var(--texto)" opacity="0.37"/>
+        <circle cx="535" cy="81" r="4.6" fill="var(--acento-claro)" opacity="0.40"/>
+        <circle cx="778" cy="47" r="2.8" fill="var(--texto)" opacity="0.48"/>
+        <circle cx="315" cy="432" r="6.0" fill="var(--texto)" opacity="0.33"/>
+        <circle cx="241" cy="172" r="6.0" fill="var(--tinta-decorativa)" opacity="0.34"/>
+        <circle cx="104" cy="440" r="1.6" fill="var(--texto)" opacity="0.28"/>
+        <circle cx="938" cy="143" r="2.2" fill="var(--texto)" opacity="0.26"/>
+        <circle cx="92" cy="257" r="1.6" fill="var(--acento-claro)" opacity="0.13"/>
+        <circle cx="441" cy="199" r="3.4" fill="var(--tinta-decorativa)" opacity="0.29"/>
+        <circle cx="148" cy="169" r="4.6" fill="var(--texto)" opacity="0.18"/>
+        <circle cx="994" cy="107" r="1.6" fill="var(--tinta-decorativa)" opacity="0.18"/>
+        <circle cx="1146" cy="83" r="2.8" fill="var(--tinta-decorativa)" opacity="0.44"/>
+        <circle cx="77" cy="16" r="1.2" fill="var(--acento-claro)" opacity="0.13"/>
+        <circle cx="276" cy="312" r="2.2" fill="var(--tinta-decorativa)" opacity="0.27"/>
+        <circle cx="589" cy="229" r="4.6" fill="var(--texto)" opacity="0.47"/>
+        <circle cx="263" cy="247" r="6.0" fill="var(--texto)" opacity="0.34"/>
+        <circle cx="327" cy="408" r="1.6" fill="var(--texto)" opacity="0.39"/>
+        <circle cx="314" cy="196" r="1.2" fill="var(--acento-claro)" opacity="0.14"/>
+        <circle cx="437" cy="252" r="1.6" fill="var(--texto)" opacity="0.15"/>
+        <circle cx="1085" cy="436" r="4.6" fill="var(--tinta-decorativa)" opacity="0.38"/>
+        <circle cx="705" cy="58" r="1.2" fill="var(--acento-claro)" opacity="0.45"/>
+        <circle cx="1109" cy="310" r="1.2" fill="var(--tinta-decorativa)" opacity="0.13"/>
+        <circle cx="73" cy="25" r="2.2" fill="var(--texto)" opacity="0.23"/>
+        <circle cx="73" cy="241" r="4.6" fill="var(--tinta-decorativa)" opacity="0.14"/>
+        <circle cx="894" cy="53" r="2.2" fill="var(--tinta-decorativa)" opacity="0.25"/>
+        <circle cx="567" cy="30" r="6.0" fill="var(--texto)" opacity="0.27"/>
+        <circle cx="1051" cy="253" r="3.4" fill="var(--acento-claro)" opacity="0.36"/>
+        <circle cx="703" cy="269" r="1.2" fill="var(--texto)" opacity="0.15"/>
+        <circle cx="1212" cy="391" r="4.6" fill="var(--tinta-decorativa)" opacity="0.24"/>
+        <circle cx="841" cy="201" r="2.8" fill="var(--texto)" opacity="0.42"/>
+        <circle cx="623" cy="227" r="2.2" fill="var(--acento-claro)" opacity="0.34"/>
+        <circle cx="8" cy="426" r="1.2" fill="var(--tinta-decorativa)" opacity="0.30"/>
+        <circle cx="799" cy="214" r="1.2" fill="var(--texto)" opacity="0.25"/>
+        <circle cx="821" cy="86" r="1.6" fill="var(--acento-claro)" opacity="0.39"/>
+        <circle cx="798" cy="194" r="1.6" fill="var(--tinta-decorativa)" opacity="0.24"/>
+        <circle cx="291" cy="280" r="6.0" fill="var(--texto)" opacity="0.41"/>
       </g>
     </svg>
     <figure class="fech-olhos"><img src="img/ale-olhos.webp" alt="Os olhos de Alê Baggio, de perto" loading="lazy"></figure>
@@ -1219,8 +1223,7 @@
   var topo = document.getElementById('topo');
   var capa = document.getElementById('capa');
   function pintaTopo() {
-    /* o topo e vidro claro o tempo todo: a capa tem area branca e area escura,
-       e so o vidro claro com texto escuro se le nas duas. So fecha mais ao rolar. */
+    /* O topo em carvao fica mais opaco ao sair da capa. */
     var passou = window.scrollY > capa.offsetHeight - 90;
     topo.classList.toggle('solido', passou);
   }
