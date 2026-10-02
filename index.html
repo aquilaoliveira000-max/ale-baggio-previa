@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#111111">
-<title>Ale Baggio · Retratos pintados à mão por encomenda</title>
-<meta name="description" content="Retratos por encomenda, pintados à mão sobre tela por Ale Baggio, em Curitiba. São 16 anos de trajetória, mais de 700 obras e mais de 100 personalidades retratadas. Conheça os formatos e converse sobre a sua obra.">
-<meta property="og:title" content="Ale Baggio · Retratos pintados à mão">
-<meta property="og:description" content="A artista que pintou Xuxa, Anitta e Silvio Santos pode pintar o seu retrato.">
+<title>Ale Baggio · Pinturas sobre tela por encomenda</title>
+<meta name="description" content="Pinturas sobre tela por encomenda de Ale Baggio, em Curitiba. São 16 anos de trajetória, mais de 700 obras e mais de 100 personalidades retratadas. Obras a partir de R$ 4.900, com orçamento personalizado.">
+<meta property="og:title" content="Ale Baggio · Pinturas sobre tela">
+<meta property="og:description" content="A artista que pintou Xuxa, Anitta, Silvio Santos, Ana Maria Braga, entre tantos outros, pode pintar você.">
 <meta property="og:type" content="website">
 <!-- PIXEL DA META entra aqui. O clique no WhatsApp dispara fbq('track','Contact'). -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -126,6 +126,7 @@
     transition:background 180ms cubic-bezier(.22,1,.36,1), color 180ms, border-color 180ms, transform 180ms;
   }
   .btn:hover{transform:translateY(-2px);}
+  .wa[aria-disabled="true"]{cursor:not-allowed;}
   .btn-1{background:var(--acento); color:var(--fundo);}
   .btn-1:hover{background:var(--acento-claro);}
   .btn-2{border-color:rgba(var(--texto-rgb),.45); color:var(--texto);}
@@ -177,6 +178,7 @@
     padding:var(--s6) var(--s5) var(--s6) max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
     will-change:transform;}
   .capa-txt .wrap{padding:0; max-width:none;}
+  .capa-txt h1{max-width:18ch;}
   .capa-txt .lead{color:var(--texto-secundario); opacity:1; margin-top:var(--s3); max-width:40ch;}
   .capa-txt .btns{margin-top:var(--s4);}
 
@@ -486,20 +488,33 @@
   .avatar{flex:none; width:40px; height:40px; border-radius:50%; display:grid; place-items:center;
     background:var(--superficie-quente); color:var(--acento); font-size:var(--t-apoio); font-weight:700;}
 
-  /* Comentarios fixos, em sequencia de leitura, sem animacao ou copias. */
+  /* Depoimentos: carrossel manual, sem rotacao automatica ou corte de texto. */
   .parede{background:var(--superficie-profunda); color:var(--texto);}
   .parede .chapeu{color:var(--acento-claro); margin-bottom:var(--s2);}
   .parede h2{color:var(--texto);}
-  .parede-palco{display:grid; grid-template-columns:minmax(0,1fr); gap:var(--s3);
-    margin:var(--s5) auto 0; max-width:940px; padding-inline:var(--gutter);}
-  .trilha-caixa{min-width:0;}
-  .trilha{display:flex; flex-direction:column; gap:var(--s3);}
-  .fala{margin:0; padding:var(--s3); display:flex; gap:var(--s2); align-items:flex-start;
+  .parede-palco{margin:var(--s5) auto 0; max-width:940px; padding-inline:var(--gutter);}
+  .depoimentos-pista{display:flex; gap:var(--s3); align-items:stretch;
+    overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory;
+    scrollbar-width:none; touch-action:pan-x pan-y; scroll-behavior:auto;}
+  .depoimentos-pista::-webkit-scrollbar{display:none;}
+  .fala{margin:0; padding:var(--s3); display:flex; flex-direction:column; gap:var(--s3);
+    flex:0 0 calc((100% - var(--s3)) / 2); min-width:0; scroll-snap-align:start; scroll-snap-stop:always;
     background:var(--superficie); border:1px solid var(--borda);}
+  .fala-texto{margin:0;}
+  .fala p{font-size:var(--t-corpo); line-height:1.5; color:rgba(var(--texto-rgb),.9); overflow-wrap:anywhere;}
+  .fala-autor{display:flex; align-items:center; gap:var(--s2); margin-top:auto;
+    padding-top:var(--s2); border-top:1px solid var(--borda);}
   .fala b{display:block; font-size:var(--t-apoio); font-weight:600;}
-  .fala b span{font-weight:400; color:rgba(var(--texto-rgb),.62);}
-  .fala p{margin-top:var(--s1); font-size:var(--t-corpo); line-height:1.5; color:rgba(var(--texto-rgb),.9);}
-  .parede-palco .trilha-caixa{position:relative; z-index:1;}
+  .fala-origem{display:block; font-size:var(--t-etiqueta); color:var(--texto-secundario);}
+  .depoimentos-navegacao{display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:var(--s2); margin-top:var(--s3);}
+  .depoimentos-ajuda, .depoimentos-contador{font-size:var(--t-apoio); color:var(--texto-secundario);}
+  .depoimentos-controles{display:flex; align-items:center; gap:var(--s2);}
+  .depoimentos-controles[hidden]{display:none;}
+  .depoimentos-contador{min-width:5ch; text-align:center; font-variant-numeric:tabular-nums; white-space:nowrap;}
+  .depoimentos-seta{width:var(--s5); height:var(--s5); padding:0; justify-content:center; cursor:pointer;}
+  .depoimentos-seta svg{width:var(--s3); height:var(--s3);}
+  .depoimentos-seta:disabled{opacity:.4; cursor:default; transform:none;}
   .parede .aviso-linha{color:rgba(var(--texto-rgb),.7);}
   .parede .pend{color:var(--texto); border-bottom-color:var(--texto);}
 
@@ -541,6 +556,7 @@
   .menu-cel .btn{margin:var(--s4) var(--gutter) 0; justify-content:center;}
 
   @media (max-width:1000px){
+    .fala{flex-basis:100%;}
     .topo nav{display:none;}
     .abre-menu{display:inline-flex; align-items:center;}
     .trio{grid-auto-columns:80%; gap:var(--s2);
@@ -591,7 +607,7 @@
     .sobre{gap:var(--s4);}
   }
   @media (max-width:600px){
-    .fala{padding:var(--s2); gap:var(--s1);}
+    .fala{padding:var(--s2);}
     .topo{backdrop-filter:none; -webkit-backdrop-filter:none; background:rgba(var(--fundo-rgb),.96);}
     .topo .btn{display:none;}
     .btns .btn{width:100%; justify-content:center;}
@@ -615,7 +631,7 @@
     .capa-txt h1{max-width:16ch;}
     .capa-txt .lead{max-width:32ch;}
     .capa-txt .btns{margin-top:var(--s3); gap:var(--s2); flex-wrap:nowrap;}
-    .capa-txt .btns .btn{width:auto; flex:1 1 0; min-width:0; justify-content:center; padding:var(--s2) var(--s1); letter-spacing:.03em; white-space:nowrap;}
+    .capa-txt .btns .btn{width:auto; flex:1 1 0; min-width:0; justify-content:center; padding:var(--s2) var(--s1); letter-spacing:.03em; white-space:normal; text-align:center;}
     .comparador img{aspect-ratio:1/1;}
     .estrelas-grade{grid-template-columns:1fr 1fr;}
     .fechamento{min-height:480px;}
@@ -660,7 +676,7 @@
     <a href="#sobre">Sobre a Ale</a>
     <a href="#duvidas">Dúvidas</a>
   </nav>
-  <a class="btn btn-1 wa" data-colecao="" href="#">Falar com a Ale no WhatsApp</a>
+  <a class="btn btn-1 wa" data-colecao="" href="#contato">Converse com a artista</a>
 </dialog>
 
 <main>
@@ -675,10 +691,10 @@
     </div>
     <div class="capa-txt">
       <div class="wrap">
-        <h1>A artista que pintou<br> Xuxa, Anitta e<br> Silvio Santos pode<br> pintar o seu retrato.</h1>
-        <p class="lead">Cada retrato é pintado à mão sobre tela por Ale Baggio, em seu ateliê em Curitiba. Da sua fotografia e da sua história nasce uma obra única, feita para atravessar gerações e permanecer na sua família.</p>
+        <h1>A artista que pintou Xuxa, Anitta, Silvio Santos, Ana Maria Braga, entre tantos outros, pode pintar você.</h1>
+        <p class="lead">Cada retrato é uma pintura sobre tela criada por Ale Baggio, em seu ateliê em Curitiba. Da sua fotografia e da sua história nasce uma obra única, feita para atravessar gerações e permanecer na sua família.</p>
         <div class="btns">
-          <a class="btn btn-1" href="#colecoes">Ver formatos</a>
+          <a class="btn btn-1 wa" data-colecao="" href="#contato">Converse com a artista</a>
           <a class="btn btn-2" href="#obras">Ver obras</a>
         </div>
       </div>
@@ -733,7 +749,8 @@
   <section id="destaque">
     <div class="wrap destaque">
       <h2>Retratos de pessoas, casais, famílias e pets.</h2>
-      <p class="lead">Retratos de crianças, homenagens a quem já partiu, obras para consultórios e composições especiais. Tudo pintado à mão por Ale Baggio.</p>
+      <p class="lead">Retratos de crianças, homenagens a quem já partiu, obras para consultórios e composições especiais. Pinturas sobre tela criadas por Ale Baggio.</p>
+      <p class="lead">Obras abstratas com formas, texturas e composições que dialogam com o seu ambiente e com o seu gosto.</p>
       <div class="trio" role="region" aria-label="Tipos de retrato" tabindex="0">
         <figure class="astro">
           <div class="astro-img"><img src="img/cat-individual.webp" alt="Retrato individual pintado por Ale Baggio, com detalhes dourados" loading="lazy"></div>
@@ -745,7 +762,7 @@
         </figure>
         <figure class="astro">
           <div class="astro-img"><img src="img/cat-familia.webp" alt="Retrato de família com o cachorro, pintado por Ale Baggio" loading="lazy"></div>
-          <figcaption><b>Família</b><span>todo mundo na mesma tela</span></figcaption>
+          <figcaption><b>Família</b><span>Retratos que celebram os vínculos da família.</span></figcaption>
         </figure>
         <figure class="astro">
           <div class="astro-img"><img src="img/cat-crianca.webp" alt="Retrato de duas crianças pintado por Ale Baggio" loading="lazy"></div>
@@ -761,11 +778,11 @@
         </figure>
         <figure class="astro">
           <div class="astro-img"><img src="img/cat-memoriam.webp" alt="Retrato in memoriam pintado por Ale Baggio, cliente diante da tela emoldurada" loading="lazy"></div>
-          <figcaption><b>In memoriam</b><span>Para manter viva uma presença que o tempo não apaga.</span></figcaption>
+          <figcaption><b>Homenagens</b><span>Uma homenagem em forma de arte</span></figcaption>
         </figure>
         <figure class="astro">
           <div class="astro-img"><img src="img/cat-consultorio.webp" alt="Obra de Ale Baggio na parede de uma clínica" loading="lazy"></div>
-          <figcaption><b>Consultório</b><span>a parede que recebe o cliente</span></figcaption>
+          <figcaption><b>Consultório</b><span>Arte que valoriza o seu espaço profissional.</span></figcaption>
         </figure>
         <figure class="astro">
           <div class="astro-img"><img src="img/cat-abstrato.webp" alt="Composição especial de Ale Baggio, retrato dividido entre mulher e onça" loading="lazy"></div>
@@ -850,7 +867,10 @@
         <figure class="obra"><img src="img/obra-6.webp" alt="Retrato pintado por Ale Baggio, com luz neon" loading="lazy"></figure>
       </div>
     </div>
-    <div class="wrap"><p class="galeria-ajuda" id="galeria-ajuda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 12h18m-4-4 4 4-4 4M7 8l-4 4 4 4"/></svg>Arraste para explorar. Você também pode usar as setas do teclado.</p></div>
+    <div class="wrap">
+      <p class="galeria-ajuda" id="galeria-ajuda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 12h18m-4-4 4 4-4 4M7 8l-4 4 4 4"/></svg>Arraste para explorar. Você também pode usar as setas do teclado.</p>
+      <div class="btns"><a class="btn btn-1 wa" data-colecao="" href="#contato">Converse com a artista</a></div>
+    </div>
   </section>
 
   <!-- ANTES E DEPOIS -->
@@ -876,7 +896,7 @@
   <section id="presente-perfeito" class="presente-sec">
     <div class="wrap">
       <h2>Um presente que emociona. <svg class="coracao" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21.2s-7-4.5-9.6-8.3C.6 10.3 1.4 6.6 4.3 5.1c2.3-1.2 4.8-.5 6.2 1.4L12 8.4l1.5-1.9c1.4-1.9 3.9-2.6 6.2-1.4 2.9 1.5 3.7 5.2 1.9 7.8-2.6 3.8-9.6 8.3-9.6 8.3z" fill="currentColor"/></svg></h2>
-      <p class="lead">Uma pessoa especial, um vínculo, uma lembrança que vocês compartilham. Um retrato pintado à mão pode transformar essa história em um presente criado para quem vai recebê-lo.</p>
+      <p class="lead">Uma pessoa especial, um vínculo, uma lembrança que vocês compartilham. Uma pintura sobre tela pode transformar essa história em um presente criado para quem vai recebê-lo.</p>
       <div class="presente">
         <div class="presente-antes">
           <div class="presente-fotos">
@@ -899,9 +919,8 @@
   <!-- FORMATOS E ORCAMENTO PERSONALIZADO -->
   <section id="colecoes" aria-labelledby="formatos-titulo">
     <div class="wrap">
-      <h2 id="formatos-titulo">Um pedaço da sua vida, pintado à mão.</h2>
-      <p class="lead">Um olhar que você conhece tão bem. Um abraço em que você se sente em casa. A companhia que torna seus dias mais felizes.</p>
-      <p class="lead">A sua família, um amor, um pet. Cada retrato da Ale começa com alguém que faz parte da sua história e ganha forma em uma pintura original, criada a partir das suas referências.</p>
+      <h2 id="formatos-titulo">Uma obra criada para você</h2>
+      <p class="lead">Cada encomenda recebe um orçamento personalizado, de acordo com as dimensões da tela, a quantidade de pessoas e a composição.</p>
       <p class="quadros3d-nota" id="quadros3d-nota">Algumas possibilidades de formato. Os modelos são ilustrativos; a composição é criada para a sua encomenda.</p>
       <div class="colecoes">
         <article class="colecao col-1" aria-labelledby="formato-quadrado">
@@ -950,19 +969,16 @@
       <p class="formatos-nota">Essas medidas são um ponto de partida. Um retrato de família também pode ser pensado em uma tela menor, de acordo com a composição.</p>
       <div class="investimento" aria-labelledby="investimento-titulo">
         <div>
-          <p class="label">Sua história, sua obra</p>
-          <h3 id="investimento-titulo">Quem você gostaria de ver nessa tela?</h3>
-          <!-- Faixa de investimento: confirmar minimo e maximo com a Ale antes de publicar valores. -->
-          <p class="investimento-valor">Investimento sob consulta</p>
+          <p class="label">Orçamento personalizado</p>
+          <h3 class="investimento-valor" id="investimento-titulo">Pinturas sobre tela a partir de R$ 4.900.</h3>
         </div>
         <div>
-          <p>Conte sua ideia para a Ale. Juntos, vocês escolhem a composição, o tamanho e os detalhes da obra.</p>
-          <p class="lead">O orçamento considera o tamanho, a quantidade de pessoas e o acabamento escolhido. A Ale orienta você sobre as possibilidades e prepara o orçamento para a sua ideia.</p>
-          <a class="btn btn-1 wa" data-colecao="uma obra sob encomenda" href="#">Quero minha história em arte</a>
+          <p class="lead">Converse diretamente com a artista para escolher o formato ideal para sua obra.</p>
+          <a class="btn btn-1 wa" data-colecao="uma obra sob encomenda" href="#contato">Solicitar orçamento</a>
         </div>
       </div>
       <div class="nota-col">
-        <p>As obras são entregues em tela tipo painel, prontas para pendurar. A moldura é opcional e pode ser acrescentada depois, de acordo com o seu gosto e com o ambiente.</p>
+        <p>A obra é entregue em tela tipo painel, pronta para pendurar, sem necessidade de moldura. Seu acabamento permite que seja exposta diretamente na parede. Se desejar, você pode acrescentar uma moldura depois, conforme seu gosto e o estilo do ambiente.</p>
       </div>
     </div>
   </section>
@@ -976,22 +992,22 @@
         <div class="passo">
           <b>01</b>
           <div>
-            <p>Você conta a história.</p>
-            <span>Chama a Ale no WhatsApp, diz quem quer ver na tela e manda as fotos de referência. Ela ajuda a escolher a melhor e envia o orçamento com tamanho, valor e prazo.</span>
+            <p>Conversar diretamente com a artista e enviar as referências.</p>
+            <span>A artista orienta a escolha das referências para a obra.</span>
           </div>
         </div>
         <div class="passo">
           <b>02</b>
           <div>
-            <p>A Ale pinta a sua obra.</p>
-            <span>Com o sinal pago, a tela entra na agenda do ateliê. São de 30 a 60 dias de pintura à mão, uma obra de cada vez.</span>
+            <p>Definir a composição, o tamanho, o orçamento e o prazo.</p>
+            <span>Com os detalhes combinados e o sinal pago, a encomenda entra na agenda do ateliê.</span>
           </div>
         </div>
         <div class="passo">
           <b>03</b>
           <div>
-            <p>Você aprova e recebe.</p>
-            <span>A foto da obra pronta chega antes do envio, e se quiser um ajuste ela faz. Depois é embalar e enviar, no Brasil ou para fora.</span>
+            <p>Receber imagens da pintura pronta para aprovação antes do envio.</p>
+            <span>Eventuais ajustes são conversados diretamente com a artista.</span>
           </div>
         </div>
       </div>
@@ -1003,11 +1019,11 @@
     <div class="wrap sobre">
       <div class="sobre-img"><img src="img/ale-sobre.webp" alt="Ale Baggio no ateliê, com o pincel na mão, entre telas" loading="lazy"></div>
       <div class="texto">
-        <h2>Muito prazer, eu sou a Ale.</h2>
+        <h2>Conheça Ale Baggio.</h2>
         <div class="corpo bloco">
-          <p>Desenho desde criança. Era uma menina muito tímida, e era na relação com o lápis e o papel que eu me encontrava. Venho de uma família de artistas, de pintura e de música.</p>
-          <p>Me formei em Design de Produto e em Artes Plásticas. Casei cedo, fui mãe aos 23 e passei um tempo longe dos pincéis. Na pandemia, entendi que a minha arte podia levar amor, autoestima e alegria para a vida das pessoas.</p>
-          <p>Pinto por encomenda, em realismo contemporâneo, sempre sobre tela. Não copio a foto. Pinto quem está nela.</p>
+          <p>Ale Baggio desenha desde criança. Quando era uma menina tímida, encontrava no lápis e no papel uma forma de se expressar. Vem de uma família ligada à pintura e à música.</p>
+          <p>Formada em Design de Produto e em Artes Plásticas, casou-se cedo, foi mãe aos 23 anos e passou um período longe dos pincéis. Na pandemia, percebeu que sua arte podia levar amor, autoestima e alegria para a vida das pessoas.</p>
+          <p>A artista cria pinturas sobre tela por encomenda, em realismo contemporâneo. Suas referências orientam a composição, com atenção à expressão e à identidade de quem é retratado.</p>
         </div>
         <blockquote class="citacao">A arte salva. Mais arte para todos, por favor.</blockquote>
         <div class="assina-grande" aria-hidden="true">Ale Baggio</div>
@@ -1021,22 +1037,43 @@
       <h2>O que dizem quando a obra chega.</h2>
     </div>
     <div class="parede-palco">
-      <div class="trilha-caixa">
-        <div class="trilha trilha-a">
-          <blockquote class="fala"><span class="avatar" aria-hidden="true">C</span><div><b>Camilo Clinic <span>· no Instagram</span></b><p>Essa obra, feita com tanto amor pela @alebaggioart, significa muito mais do que uma pintura para mim. Ela é o retrato do meu maior propósito.</p></div></blockquote>
-          <blockquote class="fala"><span class="avatar" aria-hidden="true">&#9829;</span><div><b>Cliente <span>· no Instagram</span></b><p>Hoje recebi meu rosto traduzido em arte, um retrato impecável, pintado com sensibilidade, delicadeza e uma riqueza de detalhes que me emocionou profundamente.</p></div></blockquote>
-          <blockquote class="fala"><span class="avatar" aria-hidden="true">&#9829;</span><div><b>Cliente <span>· no Instagram</span></b><p>Obrigada por transformar minha imagem em arte e eternizar esse momento tão especial.</p></div></blockquote>
-        </div>
+      <div class="depoimentos-pista" id="depoimentosPista" role="region" aria-roledescription="carrossel" aria-label="Depoimentos de clientes" aria-describedby="depoimentosAjuda" tabindex="0">
+        <figure class="fala" role="group" aria-label="Depoimento 1 de 6">
+          <blockquote class="fala-texto"><p>Essa obra, feita com tanto amor pela @alebaggioart, significa muito mais do que uma pintura para mim. Ela é o retrato do meu maior propósito.</p></blockquote>
+          <figcaption class="fala-autor"><span class="avatar" aria-hidden="true">C</span><div><b>Camilo Clinic</b><span class="fala-origem">No Instagram</span></div></figcaption>
+        </figure>
+        <figure class="fala" role="group" aria-label="Depoimento 2 de 6">
+          <blockquote class="fala-texto"><p>Hoje recebi meu rosto traduzido em arte, um retrato impecável, pintado com sensibilidade, delicadeza e uma riqueza de detalhes que me emocionou profundamente.</p></blockquote>
+          <figcaption class="fala-autor"><span class="avatar" aria-hidden="true">&#9829;</span><div><b>Cliente</b><span class="fala-origem">No Instagram</span></div></figcaption>
+        </figure>
+        <figure class="fala" role="group" aria-label="Depoimento 3 de 6">
+          <blockquote class="fala-texto"><p>Obrigada por transformar minha imagem em arte e eternizar esse momento tão especial.</p></blockquote>
+          <figcaption class="fala-autor"><span class="avatar" aria-hidden="true">&#9829;</span><div><b>Cliente</b><span class="fala-origem">No Instagram</span></div></figcaption>
+        </figure>
+        <figure class="fala" role="group" aria-label="Depoimento 4 de 6">
+          <blockquote class="fala-texto"><p>Muito mais do que uma obra de arte. Esse quadro representa uma parte da minha essência, dos meus sonhos e de tudo aquilo que acredito.</p></blockquote>
+          <figcaption class="fala-autor"><span class="avatar" aria-hidden="true">H</span><div><b>Harmonie Clinique</b><span class="fala-origem">No Instagram</span></div></figcaption>
+        </figure>
+        <figure class="fala" role="group" aria-label="Depoimento 5 de 6">
+          <blockquote class="fala-texto"><p>Estou completamente apaixonada por esse trabalho impecável e cheio de personalidade. Pela segunda vez, tenho a arte da artista plástica @alebaggioart transformando meu ambiente.</p></blockquote>
+          <figcaption class="fala-autor"><span class="avatar" aria-hidden="true">&#9829;</span><div><b>Cliente</b><span class="fala-origem">No Instagram</span></div></figcaption>
+        </figure>
+        <figure class="fala" role="group" aria-label="Depoimento 6 de 6">
+          <blockquote class="fala-texto"><p>Alguns sonhos chegam em forma de arte! E hoje um deles encontrou seu lugar neste consultório.</p></blockquote>
+          <figcaption class="fala-autor"><span class="avatar" aria-hidden="true">&#9829;</span><div><b>Cliente</b><span class="fala-origem">No Instagram</span></div></figcaption>
+        </figure>
       </div>
-      <div class="trilha-caixa">
-        <div class="trilha trilha-b">
-          <blockquote class="fala"><span class="avatar" aria-hidden="true">H</span><div><b>Harmonie Clinique <span>· no Instagram</span></b><p>Muito mais do que uma obra de arte. Esse quadro representa uma parte da minha essência, dos meus sonhos e de tudo aquilo que acredito.</p></div></blockquote>
-          <blockquote class="fala"><span class="avatar" aria-hidden="true">&#9829;</span><div><b>Cliente <span>· no Instagram</span></b><p>Estou completamente apaixonada por esse trabalho impecável e cheio de personalidade. Pela segunda vez, tenho a arte da artista plástica @alebaggioart transformando meu ambiente.</p></div></blockquote>
-          <blockquote class="fala"><span class="avatar" aria-hidden="true">&#9829;</span><div><b>Cliente <span>· no Instagram</span></b><p>Alguns sonhos chegam em forma de arte! E hoje um deles encontrou seu lugar neste consultório.</p></div></blockquote>
+      <div class="depoimentos-navegacao">
+        <p class="depoimentos-ajuda" id="depoimentosAjuda">Deslize para ler cada depoimento.</p>
+        <div class="depoimentos-controles" id="depoimentosControles" hidden>
+          <button type="button" class="btn btn-2 depoimentos-seta" id="depoimentoAnterior" aria-label="Depoimento anterior" aria-controls="depoimentosPista" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+          <span class="depoimentos-contador" id="depoimentosContador" role="status" aria-live="polite" aria-atomic="true"></span>
+          <button type="button" class="btn btn-2 depoimentos-seta" id="depoimentoProximo" aria-label="Próximo depoimento" aria-controls="depoimentosPista"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
         </div>
       </div>
     </div>
     <div class="wrap">
+      <div class="btns"><a class="btn btn-1 wa" data-colecao="" href="#contato">Converse com a artista</a></div>
     </div>
   </section>
 
@@ -1046,8 +1083,8 @@
       <h2>Antes de encomendar.</h2>
       <div class="faq">
         <details open>
-          <summary>Por que encomendar uma obra da Ale?</summary>
-          <div class="resposta"><p>Para transformar uma história importante para você em uma pintura original, feita à mão. Um retrato pode celebrar um vínculo, marcar uma fase da vida ou guardar a presença de alguém especial em uma obra criada para você.</p></div>
+          <summary>Por que escolher uma obra de Ale Baggio?</summary>
+          <div class="resposta"><p>Cada obra é criada a partir das suas referências, com atenção às expressões, aos detalhes e à composição. Uma pintura que valoriza o seu ambiente e traz para perto pessoas e histórias que fazem parte da sua vida.</p></div>
         </details>
         <details>
           <summary>Quais as formas de pagamento?</summary>
@@ -1059,7 +1096,7 @@
         </details>
         <details>
           <summary>A obra vai emoldurada?</summary>
-          <div class="resposta"><p>Não. A obra é entregue em tela tipo painel, pronta para pendurar na parede, sem necessidade de moldura.</p><p>Se desejar, você pode acrescentar uma moldura depois, de acordo com o seu gosto e com o estilo do ambiente.</p></div>
+          <div class="resposta"><p>A obra é entregue em tela tipo painel, pronta para pendurar, sem necessidade de moldura. Seu acabamento permite que seja exposta diretamente na parede. Se desejar, você pode acrescentar uma moldura depois, conforme seu gosto e o estilo do ambiente.</p></div>
         </details>
         <details>
           <summary>Como é o envio?</summary>
@@ -1078,7 +1115,7 @@
     <div class="wrap">
       <div class="acervo-topo">
         <h2>Algumas obras já entregues.</h2>
-        <p class="lead">Retratos de famílias e casais, além de obras para clínicas e consultórios. Tudo pintado à mão sobre tela.</p>
+        <p class="lead">Retratos de famílias e casais, além de obras para clínicas e consultórios. Pinturas sobre tela por encomenda.</p>
       </div>
       <div class="acervo">
         <figure class="video-acervo alto">
@@ -1137,9 +1174,9 @@
   <section class="fechamento" id="contato">
     <div class="wrap">
       <h2>Quem você quer eternizar?</h2>
-      <p class="lead">Conte para a Ale quem é a pessoa e por que ela merece uma tela. Quem responde a sua mensagem é a própria Ale.</p>
+      <p class="lead">Converse diretamente com a artista sobre as pessoas e as histórias que deseja transformar em uma pintura sobre tela. O atendimento é feito pela própria Ale Baggio.</p>
       <div class="btns">
-        <a class="btn btn-claro wa" data-colecao="" href="#">Falar com a Ale no WhatsApp</a>
+        <a class="btn btn-claro wa" data-colecao="" href="#contato">Converse com a artista</a>
       </div>
     </div>
   </section>
@@ -1168,7 +1205,7 @@
 </dialog>
 
 <div class="aviso" id="aviso">
-  <span>Rascunho. O botão do WhatsApp ainda não está ligado ao número dela.</span>
+  <span>Rascunho. Os botões de WhatsApp aguardam o número completo da artista.</span>
   <button type="button" id="fecharAviso">Ocultar</button>
 </div>
 
@@ -1180,22 +1217,95 @@
   var reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var temGsap = typeof window.gsap !== 'undefined';
 
-  /* WhatsApp: falta 1 dígito no número do briefing (41 9818-1412). */
+  /* WhatsApp: informar o numero completo com codigo do pais e DDD.
+     Enquanto estiver vazio, os botoes mostram o aviso do rascunho. */
   var WHATSAPP = '';
+  var numeroWhatsApp = WHATSAPP.replace(/\D/g, '');
+  var avisoWhatsApp = document.getElementById('aviso');
+  if (numeroWhatsApp && avisoWhatsApp) avisoWhatsApp.remove();
   document.querySelectorAll('a.wa').forEach(function (a) {
+    if (!numeroWhatsApp) {
+      a.href = '#contato';
+      a.setAttribute('aria-disabled', 'true');
+      a.title = 'Contato pelo WhatsApp em breve.';
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (avisoWhatsApp) {
+          if (!avisoWhatsApp.isConnected) document.body.appendChild(avisoWhatsApp);
+          avisoWhatsApp.classList.remove('fora');
+        }
+      });
+      return;
+    }
     var col = a.getAttribute('data-colecao');
     var msg = col
       ? (col.indexOf('Coleção') === 0
         ? 'Olá, Ale! Vim pelo site e tenho interesse na ' + col + '.'
         : 'Olá, Ale! Vim pelo site e quero saber sobre ' + col + '.')
       : 'Olá, Ale! Vim pelo site e quero encomendar um retrato.';
-    a.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(msg);
+    a.href = 'https://wa.me/' + numeroWhatsApp + '?text=' + encodeURIComponent(msg);
     a.target = '_blank';
     a.rel = 'noopener';
     a.addEventListener('click', function () {
       if (typeof window.fbq === 'function') window.fbq('track', 'Contact', { content_name: col || 'geral' });
     });
   });
+
+  /* Carrossel de depoimentos: toque nativo, setas e teclado, sem autoplay.
+     Os cartoes crescem com o texto e a identificacao fica sempre abaixo. */
+  (function () {
+    var pista = document.getElementById('depoimentosPista');
+    if (!pista) return;
+    var cartoes = Array.prototype.slice.call(pista.querySelectorAll('.fala'));
+    if (!cartoes.length) return;
+    var anterior = document.getElementById('depoimentoAnterior');
+    var proximo = document.getElementById('depoimentoProximo');
+    var contador = document.getElementById('depoimentosContador');
+    var controles = document.getElementById('depoimentosControles');
+    var calmo = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var quadro = null;
+    controles.hidden = false;
+    function passo() {
+      return cartoes.length > 1
+        ? cartoes[1].offsetLeft - cartoes[0].offsetLeft
+        : cartoes[0].getBoundingClientRect().width;
+    }
+    function visiveis() {
+      return Math.max(1, Math.round(pista.clientWidth / Math.max(1, passo())));
+    }
+    function atualizar() {
+      quadro = null;
+      var inicio = Math.max(0, Math.min(cartoes.length - 1, Math.round(pista.scrollLeft / Math.max(1, passo()))));
+      var fim = Math.min(cartoes.length, inicio + visiveis());
+      var texto = (fim === inicio + 1 ? String(inicio + 1) : (inicio + 1) + '\u2013' + fim) + ' de ' + cartoes.length;
+      if (contador.textContent !== texto) contador.textContent = texto;
+      anterior.disabled = pista.scrollLeft <= 1;
+      proximo.disabled = pista.scrollLeft >= pista.scrollWidth - pista.clientWidth - 1;
+    }
+    function irPara(posicao) {
+      pista.scrollTo({
+        left: Math.max(0, Math.min(pista.scrollWidth - pista.clientWidth, posicao)),
+        behavior: calmo.matches ? 'auto' : 'smooth'
+      });
+    }
+    function avancar(direcao) { irPara(pista.scrollLeft + direcao * passo() * visiveis()); }
+    anterior.addEventListener('click', function () { avancar(-1); });
+    proximo.addEventListener('click', function () { avancar(1); });
+    pista.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        e.preventDefault(); avancar(e.key === 'ArrowRight' ? 1 : -1);
+      } else if (e.key === 'Home' || e.key === 'End') {
+        e.preventDefault(); irPara(e.key === 'Home' ? 0 : pista.scrollWidth);
+      }
+    });
+    pista.addEventListener('scroll', function () {
+      if (quadro === null) quadro = requestAnimationFrame(atualizar);
+    }, { passive: true });
+    if ('ResizeObserver' in window) new ResizeObserver(atualizar).observe(pista);
+    else window.addEventListener('resize', atualizar, { passive: true });
+    if (document.fonts) document.fonts.ready.then(atualizar);
+    atualizar();
+  })();
 
   /* topo muda de claro para sólido ao sair da capa */
   var topo = document.getElementById('topo');
@@ -1349,7 +1459,8 @@
   })();
 
   var aviso = document.getElementById('aviso');
-  document.getElementById('fecharAviso').addEventListener('click', function () { aviso.remove(); });
+  var fecharAviso = document.getElementById('fecharAviso');
+  if (fecharAviso) fecharAviso.addEventListener('click', function () { aviso.remove(); });
   window.addEventListener('scroll', function () {
     if (!aviso) return;
     aviso.classList.toggle('fora', window.scrollY > 120);
