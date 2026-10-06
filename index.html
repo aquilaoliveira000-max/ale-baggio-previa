@@ -183,6 +183,7 @@
   .capa-txt h1{max-width:20ch;}
   .capa-txt .lead{color:var(--texto-secundario); opacity:1; margin-top:var(--s3); max-width:40ch;}
   .capa-txt .btns{margin-top:var(--s4);}
+  .contato-brilho{display:none; pointer-events:none;}
 
   @keyframes escreve{from{clip-path:inset(0 100% 0 0);} to{clip-path:inset(0 0 0 0);}}
   .anima-assina{animation:escreve 1.2s cubic-bezier(.33,1,.68,1) both;}
@@ -561,6 +562,7 @@
   .menu-cel .btn{margin:var(--s4) var(--gutter) 0; justify-content:center;}
 
   @media (max-width:1000px){
+    .capa-txt .lead{display:none;}
     .fala{flex-basis:100%;}
     .topo nav{display:none;}
     .abre-menu{display:inline-flex; align-items:center;}
@@ -636,7 +638,6 @@
     .so-desk{display:none;}
     .so-mob{display:inline;}
     .capa-txt h1{max-width:18ch;}
-    .capa-txt .lead{order:2; max-width:32ch; margin-top:var(--s4);}
     .capa-txt .btns{order:1; align-self:center; flex-direction:column; align-items:stretch; width:100%; max-width:320px;
       margin-top:var(--s4); gap:var(--s2); flex-wrap:nowrap;}
     .capa-txt .btns .btn{width:100%; flex:none; min-width:0; justify-content:center; padding:var(--s2) var(--s3); letter-spacing:.03em; white-space:normal; text-align:center;}
@@ -647,6 +648,57 @@
     .estrelas-grade{grid-template-columns:1fr 1fr;}
     .fechamento{min-height:480px;}
     .presente{grid-template-columns:1fr; gap:var(--s4);}
+  }
+  /* DESKTOP: uma mesma coluna para os textos; galerias continuam em toda a tela. */
+  @media (min-width:1001px){
+    .topo .assina, .topo .btn{flex:none;}
+    .topo nav a{white-space:nowrap;}
+
+    /* A capa usa exatamente a mesma margem das demais apresentacoes. */
+    .capa-txt{padding-inline:0;}
+    .capa-txt .wrap{max-width:var(--max); padding-inline:var(--gutter);}
+    .capa-txt h1{max-width:min(20ch, 62%);}
+    .capa-txt .btns{display:grid; grid-template-columns:max-content max-content;
+      justify-content:start; align-items:center; gap:var(--s1) var(--s2);}
+    .contato-brilho{display:block; width:var(--s5); height:var(--s4); color:var(--tinta-decorativa);}
+    .capa-txt .contato-brilho{grid-column:1; grid-row:1; justify-self:center;}
+    .capa-txt .btn-1{grid-column:1; grid-row:2; border-color:var(--tinta-decorativa);}
+    .capa-txt .btn-2{grid-column:2; grid-row:2;}
+
+    /* Titulo e apoio se equilibram em duas colunas antes das imagens. */
+    .destaque{display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+      column-gap:var(--s6); align-items:end;}
+    .destaque > .lead{margin-top:0; max-width:44ch;}
+    .destaque .trio, .destaque .dica-lado{grid-column:1 / -1; min-width:0;}
+    .galeria > .wrap:last-child{display:flex; align-items:center; justify-content:space-between;
+      flex-wrap:wrap; gap:var(--s3) var(--s5);}
+    .galeria > .wrap:last-child .btns{margin-top:0;}
+    .abstratos-intro{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .abstratos-intro .lead{max-width:44ch;}
+    .investimento{gap:var(--s6);}
+
+    .presente-sec > .wrap{display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+      column-gap:var(--s6); align-items:end;}
+    .presente-sec > .wrap > .lead{margin-top:0; max-width:44ch;}
+    .presente-sec .presente{grid-column:1 / -1; min-width:0;}
+    .acervo-topo{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--s6);}
+    .acervo-topo .lead{max-width:44ch;}
+
+    /* Depoimentos, titulo e controles compartilham os mesmos limites laterais. */
+    .parede-palco{max-width:var(--max);}
+    .parede > .wrap:last-child .btns{justify-content:center;}
+    #como-funciona > .wrap, #duvidas > .wrap{display:grid;
+      grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:var(--s6); align-items:start;}
+    #como-funciona h2, #duvidas h2{position:sticky; top:calc(var(--topo-altura) + var(--s4));}
+    #como-funciona .passos{margin-top:0; min-width:0;}
+    #duvidas .faq{margin-top:0; max-width:none; min-width:0;}
+
+    /* O encerramento centralizado retoma o convite da capa. */
+    .fechamento .wrap{text-align:center;}
+    .fechamento h2, .fechamento .lead{margin-inline:auto;}
+    .fechamento .btns{flex-direction:column; align-items:center; gap:var(--s2);}
+    .fechamento .btn-claro{border-color:var(--tinta-decorativa);}
+    .fechamento::before{background:radial-gradient(ellipse at 50% 60%, rgba(var(--acento-rgb),.08), transparent 65%);}
   }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto;}
@@ -707,6 +759,10 @@
         <h1>A artista que pintou Xuxa, Anitta, Silvio Santos, Ana Maria Braga, entre tantos outros, pode pintar você.</h1>
         <p class="lead">Cada retrato é uma pintura sobre tela criada por Ale Baggio, em seu ateliê em Curitiba. Da sua fotografia e da sua história nasce uma obra única, feita para atravessar gerações e permanecer na sua família.</p>
         <div class="btns">
+          <svg class="contato-brilho" viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M28 2C30 13 33 17 44 20C33 23 30 27 28 38C26 27 23 23 12 20C23 17 26 13 28 2Z"/>
+            <path d="M52 2C53 7 55 9 60 10C55 11 53 13 52 18C51 13 49 11 44 10C49 9 51 7 52 2Z"/>
+          </svg>
           <a class="btn btn-1 wa" data-colecao="" href="#contato">Converse com a artista</a>
           <a class="btn btn-2" href="#obras">Ver obras</a>
         </div>
@@ -1202,6 +1258,10 @@
       <h2>Quem você quer eternizar?</h2>
       <p class="lead">Converse diretamente com a artista sobre as pessoas e as histórias que deseja transformar em uma pintura sobre tela. O atendimento é feito pela própria Ale Baggio.</p>
       <div class="btns">
+        <svg class="contato-brilho" viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M28 2C30 13 33 17 44 20C33 23 30 27 28 38C26 27 23 23 12 20C23 17 26 13 28 2Z"/>
+          <path d="M52 2C53 7 55 9 60 10C55 11 53 13 52 18C51 13 49 11 44 10C49 9 51 7 52 2Z"/>
+        </svg>
         <a class="btn btn-claro wa" data-colecao="" href="#contato">Converse com a artista</a>
       </div>
     </div>
@@ -1279,8 +1339,9 @@
     var quadro = null;
     controles.hidden = false;
     function passo() {
+      /* As medidas fracionarias evitam sobras no ultimo avanco em telas largas. */
       return cartoes.length > 1
-        ? cartoes[1].offsetLeft - cartoes[0].offsetLeft
+        ? cartoes[1].getBoundingClientRect().left - cartoes[0].getBoundingClientRect().left
         : cartoes[0].getBoundingClientRect().width;
     }
     function visiveis() {
