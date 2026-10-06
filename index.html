@@ -67,22 +67,24 @@
     --fonte:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;
     --gutter:clamp(20px,4.5vw,72px);
     --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px; --s6:72px; --s7:104px;
-    /* ESCALA DE TIPO. Nove tamanhos, e nenhum fora daqui. Cada um ja resolve
+    /* ESCALA DE TIPO. Todos os tamanhos saem daqui. Cada um ja resolve
        celular e computador sozinho, entao NAO existe font-size dentro de media query. */
-    --t-display:clamp(34px, 5.6vw, 88px);   /* titulo da capa */
-    --t-titulo:clamp(28px, 4.2vw, 60px);    /* titulo de secao */
-    --t-sub:clamp(22px, 2.4vw, 30px);       /* subtitulo, colecao, pergunta, citacao */
-    --t-olho:clamp(18px, 1.6vw, 22px);      /* olho, o paragrafo de abertura */
+    --t-display:clamp(32px, 4.7vw, 68px);   /* titulo da capa */
+    --t-titulo:clamp(26px, 3.3vw, 48px);    /* titulo de secao */
+    --t-sub:clamp(20px, 2vw, 24px);         /* subtitulo, colecao, pergunta, citacao */
+    --t-olho:clamp(18px, 1.4vw, 20px);      /* olho, o paragrafo de abertura */
     --t-corpo:17.5px;                        /* texto corrido */
     --t-apoio:16.5px;                          /* legenda, ficha, nota */
     --t-etiqueta:14px;                       /* caixa alta: legenda, credito, rotulo */
-    --t-botao:clamp(13px, 1vw, 14px);        /* botao */
+    --t-botao:clamp(14px, 1.05vw, 15px);    /* botao */
+    --t-nav:clamp(16px, 1.2vw, 17px);      /* navegacao do computador */
     --t-numero:clamp(32px, 4.2vw, 56px);     /* numero grande e numeral de passo */
     --t-marca:clamp(22px, 2.6vw, 34px);      /* carrossel de nomes */
     --t-assina:clamp(34px, 3vw, 42px);       /* assinatura no topo */
     --t-assina-grande:clamp(56px, 7vw, 90px);/* assinatura grande */
     /* distancia visual entre duas secoes. cada secao usa metade em cima e metade embaixo */
-    --entre:clamp(88px, 9vw, 136px);
+    --entre:clamp(72px, 7vw, 104px);
+    --capa-reserva:clamp(136px, 24svh, 208px); /* area da foto antes do titulo no celular */
     --max:1360px;
     --topo-altura:78px;
     --z-topo:100;
@@ -105,6 +107,7 @@
 
   .wrap{max-width:var(--max); margin:0 auto; padding-inline:var(--gutter);}
   section{padding-block:calc(var(--entre) / 2);}
+  section[id]{scroll-margin-top:var(--topo-altura);}
   /* ritmo padrao: titulo, olho, conteudo */
   h2 + .lead, h2 + .corpo{margin-top:var(--s3);}
   .lead + .lead{margin-top:var(--s2);}
@@ -112,7 +115,7 @@
   .btns{margin-top:var(--s5);}
 
   h1{font-size:var(--t-display);}
-  h2{font-size:var(--t-titulo); max-width:16ch;}
+  h2{font-size:var(--t-titulo); max-width:20ch;}
   h3{font-size:var(--t-sub); letter-spacing:-.02em;}
   .lead{font-size:var(--t-olho); line-height:1.45; color:var(--texto-secundario); max-width:48ch;}
   .rodape-linha{margin-top:var(--s1);}
@@ -153,8 +156,8 @@
     -webkit-mask:url(img/assinatura.webp) center/contain no-repeat; mask:url(img/assinatura.webp) center/contain no-repeat;
     text-indent:110%; overflow:hidden; white-space:nowrap; text-decoration:none; line-height:1;}
   .assina{font-size:var(--t-assina); width:3.1em;}
-  .topo nav{display:flex; gap:var(--s4); align-items:center;}
-  .topo nav a{font-size:var(--t-olho); text-decoration:none; opacity:.78; letter-spacing:-.01em;}
+  .topo nav{display:flex; gap:var(--s2); align-items:center;}
+  .topo nav a{font-size:var(--t-nav); text-decoration:none; opacity:.78; letter-spacing:-.01em;}
   .topo nav a:hover{opacity:1;}
   .topo .btn{padding:var(--s2) var(--s3);}
   .topo.claro .btn-2{border-color:rgba(var(--texto-rgb),.6); color:var(--texto);}
@@ -175,10 +178,10 @@
   .capa::after{content:""; position:absolute; top:var(--topo-altura); right:0; bottom:0; left:0; z-index:1; pointer-events:none;
     background:linear-gradient(90deg, rgba(var(--fundo-rgb),.98) 0%, rgba(var(--fundo-rgb),.9) 36%, rgba(var(--fundo-rgb),.5) 58%, rgba(var(--fundo-rgb),.1) 82%, rgba(var(--fundo-rgb),.24) 100%);}
   .capa-txt{grid-column:1; grid-row:1; position:relative; z-index:2; color:var(--texto);
-    padding:var(--s6) var(--s5) var(--s6) max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
+    padding:var(--s5) var(--s5) var(--s5) max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
     will-change:transform;}
   .capa-txt .wrap{padding:0; max-width:none;}
-  .capa-txt h1{max-width:18ch;}
+  .capa-txt h1{max-width:20ch;}
   .capa-txt .lead{color:var(--texto-secundario); opacity:1; margin-top:var(--s3); max-width:40ch;}
   .capa-txt .btns{margin-top:var(--s4);}
 
@@ -295,6 +298,13 @@
   .obra img{width:100%; height:100%; object-fit:contain; pointer-events:none;}
   .galeria-ajuda{display:flex; align-items:center; gap:var(--s2); color:var(--texto-secundario); font-size:var(--t-apoio);}
   .galeria-ajuda svg{width:24px; height:24px; color:var(--acento-claro); flex:none;}
+
+  /* abstratos: apresentacao propria, com galeria preparada para receber as obras */
+  .abstratos-sec{background:var(--superficie-profunda); overflow:hidden;}
+  .abstratos-intro{display:grid; grid-template-columns:1fr 1.2fr; gap:var(--s6); align-items:center;}
+  .abstratos-intro .btns{margin-top:var(--s3);}
+  .abstratos-galeria{margin-top:var(--s5);}
+  .abstratos-galeria[hidden]{display:none;}
 
   /* antes e depois */
   .ad-grid{display:grid; grid-template-columns:.92fr 1.08fr; gap:var(--s6); align-items:center;}
@@ -565,6 +575,7 @@
     .astro:nth-child(even){margin-top:0;}
     .destaque .dica-lado{display:flex;}
     .prova, .sobre{grid-template-columns:1fr;}
+    .abstratos-intro{grid-template-columns:1fr; gap:var(--s3);}
     .retrato-dela{order:-1;}
     .retrato-dela img{aspect-ratio:16/10; object-position:50% 18%;}
     .numeros{grid-template-columns:repeat(2,minmax(0,1fr));}
@@ -622,15 +633,16 @@
     .capa-img img{left:0; right:0; width:100%; height:62svh; min-height:380px; object-fit:cover; object-position:50% 0%;
       -webkit-mask-image:linear-gradient(180deg, var(--texto) 58%, transparent 100%);
       mask-image:linear-gradient(180deg, var(--texto) 58%, transparent 100%);}
-    .capa::after{background:linear-gradient(180deg, rgba(var(--fundo-rgb),.14) 0%, rgba(var(--fundo-rgb),.22) 38%,
-      rgba(var(--fundo-rgb),.86) 56%, rgba(var(--fundo-rgb),1) 100%);}
-    .capa-txt{grid-column:1; grid-row:1; padding:max(44svh, 300px) var(--gutter) var(--s5);}
+    .capa::after{background:linear-gradient(180deg, rgba(var(--fundo-rgb),.18) 0%, rgba(var(--fundo-rgb),.72) 26%,
+      rgba(var(--fundo-rgb),.96) 48%, rgba(var(--fundo-rgb),1) 72%);}
+    .capa-txt{grid-column:1; grid-row:1; padding:var(--capa-reserva) var(--gutter) var(--s4);}
+    .capa-txt .wrap{display:flex; flex-direction:column;}
     .capa-txt h1 br{display:none;}
     .so-desk{display:none;}
     .so-mob{display:inline;}
-    .capa-txt h1{max-width:16ch;}
-    .capa-txt .lead{max-width:32ch;}
-    .capa-txt .btns{margin-top:var(--s3); gap:var(--s2); flex-wrap:nowrap;}
+    .capa-txt h1{max-width:18ch;}
+    .capa-txt .lead{order:2; max-width:32ch;}
+    .capa-txt .btns{order:1; margin-top:var(--s3); gap:var(--s2); flex-wrap:nowrap;}
     .capa-txt .btns .btn{width:auto; flex:1 1 0; min-width:0; justify-content:center; padding:var(--s2) var(--s1); letter-spacing:.03em; white-space:normal; text-align:center;}
     .comparador img{aspect-ratio:1/1;}
     .estrelas-grade{grid-template-columns:1fr 1fr;}
@@ -653,12 +665,13 @@
     <nav>
       <a href="#famosos">Famosos</a>
       <a href="#obras">Obras</a>
+      <a href="#abstratos">Abstratos</a>
+      <a href="#colecoes">Orçamento</a>
       <a href="#antes-depois">Antes e depois</a>
-      <a href="#colecoes">Formatos</a>
       <a href="#sobre">Sobre</a>
       <a href="#duvidas">Dúvidas</a>
     </nav>
-    <a class="btn btn-2" href="#colecoes">Ver formatos</a>
+    <a class="btn btn-2" href="#colecoes">Ver orçamento</a>
     <button type="button" class="abre-menu" id="abreMenu" aria-haspopup="dialog" aria-controls="menuCel">Menu</button>
   </div>
 </header>
@@ -671,8 +684,9 @@
   <nav>
     <a href="#famosos">Famosos</a>
     <a href="#obras">Obras</a>
-    <a href="#antes-depois">Antes e depois</a>
+    <a href="#abstratos">Abstratos</a>
     <a href="#colecoes">Formatos e orçamento</a>
+    <a href="#antes-depois">Antes e depois</a>
     <a href="#sobre">Sobre a Ale</a>
     <a href="#duvidas">Dúvidas</a>
   </nav>
@@ -745,12 +759,11 @@
     </div>
   </section>
 
-  <!-- DESTAQUE: TRES FAMOSOS -->
+  <!-- TIPOS DE RETRATO -->
   <section id="destaque">
     <div class="wrap destaque">
       <h2>Retratos de pessoas, casais, famílias e pets.</h2>
       <p class="lead">Retratos de crianças, homenagens a quem já partiu, obras para consultórios e composições especiais. Pinturas sobre tela criadas por Ale Baggio.</p>
-      <p class="lead">Obras abstratas com formas, texturas e composições que dialogam com o seu ambiente e com o seu gosto.</p>
       <div class="trio" role="region" aria-label="Tipos de retrato" tabindex="0">
         <figure class="astro">
           <div class="astro-img"><img src="img/cat-individual.webp" alt="Retrato individual pintado por Ale Baggio, com detalhes dourados" loading="lazy"></div>
@@ -798,63 +811,10 @@
     </div>
   </section>
 
-  <!-- PROVA -->
-  <section id="trajetoria">
-    <div class="wrap prova">
-      <div>
-        <h2>Dezesseis anos de trajetória na arte.</h2>
-        <p class="corpo">Formada em Design de Produto e em Artes Plásticas, Ale Baggio já participou de mostras e exposições pelo Brasil. Ale também criou uma obra destinada à Saphira &amp; Ventura Gallery, em Nova York.</p>
-        <p class="corpo">Seus retratos estão presentes em lares nos Estados Unidos, na Alemanha, em Portugal, no Paraguai, na Argentina e na Itália.</p>
-        <div class="numeros">
-          <div><b data-conta="16">16</b><span>anos de trajetória na arte</span></div>
-          <div><b data-conta="700" data-prefixo="+">+700</b><span>obras pintadas</span></div>
-          <div><b data-conta="100" data-prefixo="+">+100</b><span>personalidades retratadas</span></div>
-          <div>
-            <b data-conta="6">6</b>
-            <span>países com obras de Ale Baggio</span>
-          </div>
-        </div>
-      </div>
-      <figure class="retrato-dela">
-        <img src="img/ale-trajetoria.webp" alt="Ale Baggio sorrindo, sentada numa poltrona" loading="lazy">
-        <figcaption>Ale Baggio no ateliê.</figcaption>
-      </figure>
-    </div>
-
-  </section>
-
-  <!-- IMPRENSA -->
-  <section id="imprensa" class="imprensa-sec">
-    <div class="wrap imprensa-editorial">
-      <div class="imprensa-esq">
-      <div class="imprensa-txt">
-        <p class="chapeu">Na imprensa</p>
-        <h2>Ela virou pauta.</h2>
-        <blockquote class="aspas" id="manchete" data-texto="A artista plástica que ganhou o coração dos famosos através de seus retratos.">A artista plástica que ganhou o coração dos famosos através de seus retratos.</blockquote>
-        <p class="credito">Hooks Magazine · fevereiro de 2022</p>
-        <p class="lead">A revista Atitude contou a história antes, em dezembro de 2021: a menina tímida que se encontrava no lápis e no papel, hoje pintando os rostos que o país reconhece.</p>
-        <p class="lead">O retrato dela já foi exibido ao vivo no <b>Mais Você</b>, da TV Globo, com a própria Ana Maria Braga ao lado da tela.</p>
-      </div>
-      </div>
-      <div class="banca">
-        <div class="par-capas">
-          <figure class="rev rev-a">
-            <img src="img/capa-hooks.jpg" alt="Capa da Hooks Magazine com Ale Baggio e a chamada: a artista plástica que vem conquistando as celebridades" loading="lazy">
-            <figcaption><b>Hooks Magazine</b><span>fevereiro de 2022</span></figcaption>
-          </figure>
-          <figure class="rev rev-b">
-            <img src="img/capa-semnumero.jpg" alt="Capa da revista Atitude, edição 85, com Ale Baggio e a chamada: a arte chamada Ale Baggio" loading="lazy">
-            <figcaption><b>Atitude</b><span>edição 85 · dezembro de 2021</span></figcaption>
-          </figure>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- OBRAS, MOVIMENTO CONTINUO EM TODOS OS TAMANHOS DE TELA -->
   <section class="galeria" id="obras">
     <div class="wrap galeria-topo">
-      <h2>Obras entregues a clientes.</h2>
+      <h2>Obras por encomenda.</h2>
       <p class="lead" style="max-width:36ch">Retratos por encomenda e pinturas exclusivas, criados para transformar memórias, pessoas e espaços em arte.</p>
     </div>
     <div class="pista-area" id="pistaArea" tabindex="0" role="region" aria-label="Galeria de obras entregues a clientes" aria-describedby="galeria-ajuda">
@@ -873,45 +833,24 @@
     </div>
   </section>
 
-  <!-- ANTES E DEPOIS -->
-  <section id="antes-depois">
-    <div class="wrap ad-grid">
-      <div class="ad-texto">
-        <h2>Uma foto no celular<br class="quebra"> vira uma obra na parede.</h2>
-        <p class="lead">Ela usa a sua foto como referência e pinta a expressão, a luz e o jeito da pessoa. Arraste a alça para comparar.</p>
-        <div class="btns"><a class="btn btn-2" href="#colecoes">Ver formatos</a></div>
-      </div>
-      <div class="ad-visual">
-      <div class="comparador" id="comparador">
-        <img src="img/depois-obra.webp" alt="Obra final pintada à mão, pendurada na parede">
-        <div class="depois" id="depois"><img src="img/antes-cliente.webp" alt="Foto de referência enviada pela cliente"></div>
-        <div class="puxador" id="puxador" role="slider" aria-label="Comparar foto e obra" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0"></div>
-      </div>
-      <div class="comp-tags"><span class="label">A foto enviada</span><span class="label obra-tag">A obra entregue</span></div>
+  <!-- ABSTRATOS -->
+  <section id="abstratos" class="abstratos-sec" aria-labelledby="abstratos-titulo">
+    <div class="wrap abstratos-intro">
+      <h2 id="abstratos-titulo">Obras abstratas</h2>
+      <div>
+        <p class="lead">Obras abstratas com formas, texturas e composições que dialogam com o seu ambiente e com o seu gosto.</p>
+        <div class="btns"><a class="btn btn-1 wa" data-colecao="uma obra abstrata" href="#contato">Converse com a artista</a></div>
       </div>
     </div>
-  </section>
-
-  <!-- O PRESENTE PERFEITO -->
-  <section id="presente-perfeito" class="presente-sec">
-    <div class="wrap">
-      <h2>Um presente que emociona. <svg class="coracao" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21.2s-7-4.5-9.6-8.3C.6 10.3 1.4 6.6 4.3 5.1c2.3-1.2 4.8-.5 6.2 1.4L12 8.4l1.5-1.9c1.4-1.9 3.9-2.6 6.2-1.4 2.9 1.5 3.7 5.2 1.9 7.8-2.6 3.8-9.6 8.3-9.6 8.3z" fill="currentColor"/></svg></h2>
-      <p class="lead">Uma pessoa especial, um vínculo, uma lembrança que vocês compartilham. Uma pintura sobre tela pode transformar essa história em um presente criado para quem vai recebê-lo.</p>
-      <div class="presente">
-        <div class="presente-antes">
-          <div class="presente-fotos">
-            <figure><img src="img/presente-antiga-2.webp" alt="Foto antiga: a mãe com a filha ainda bebê no colo" loading="lazy"></figure>
-            <figure><img src="img/presente-antiga-1.webp" alt="Foto antiga: mãe e filha abraçadas numa festa de aniversário" loading="lazy"></figure>
-          </div>
-          <p class="presente-leg"><b>As referências</b>A ideia e as referências são escolhidas em conversa com a Ale, para cada encomenda.</p>
-        </div>
-        <div class="presente-depois">
-          <div class="presente-fotos">
-            <figure><img src="img/presente-entrega.webp" alt="Cliente com o retrato de mãe e filha pintado por Ale Baggio" loading="lazy"></figure>
-            <figure><img src="img/presente-parede.webp" alt="O retrato de mãe e filha pendurado na parede do espaço" loading="lazy"></figure>
-          </div>
-          <p class="presente-leg"><b>A obra</b>Uma composição desenvolvida para contar essa história em pintura.</p>
-        </div>
+    <!-- Inserir as imagens de obras abstratas em figuras .obra dentro da pista abaixo.
+         Remover hidden de #abstratosGaleria quando as imagens estiverem identificadas.
+         A galeria usa o mesmo arraste, teclado e visualizador das demais obras. -->
+    <div class="abstratos-galeria" id="abstratosGaleria" hidden>
+      <div class="pista-area" id="abstratosArea" tabindex="0" role="region" aria-label="Galeria de obras abstratas" aria-describedby="abstratosAjuda">
+        <div class="pista" id="abstratosPista"></div>
+      </div>
+      <div class="wrap">
+        <p class="galeria-ajuda" id="abstratosAjuda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 12h18m-4-4 4 4-4 4M7 8l-4 4 4 4"/></svg>Arraste para explorar. Você também pode usar as setas do teclado.</p>
       </div>
     </div>
   </section>
@@ -979,6 +918,102 @@
       </div>
       <div class="nota-col">
         <p>A obra é entregue em tela tipo painel, pronta para pendurar, sem necessidade de moldura. Seu acabamento permite que seja exposta diretamente na parede. Se desejar, você pode acrescentar uma moldura depois, conforme seu gosto e o estilo do ambiente.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROVA -->
+  <section id="trajetoria">
+    <div class="wrap prova">
+      <div>
+        <h2>Dezesseis anos de trajetória na arte.</h2>
+        <p class="corpo">Formada em Design de Produto e em Artes Plásticas, Ale Baggio já participou de mostras e exposições pelo Brasil. Ale também criou uma obra destinada à Saphira &amp; Ventura Gallery, em Nova York.</p>
+        <p class="corpo">Seus retratos estão presentes em lares nos Estados Unidos, na Alemanha, em Portugal, no Paraguai, na Argentina e na Itália.</p>
+        <div class="numeros">
+          <div><b data-conta="16">16</b><span>anos de trajetória na arte</span></div>
+          <div><b data-conta="700" data-prefixo="+">+700</b><span>obras pintadas</span></div>
+          <div><b data-conta="100" data-prefixo="+">+100</b><span>personalidades retratadas</span></div>
+          <div>
+            <b data-conta="6">6</b>
+            <span>países com obras de Ale Baggio</span>
+          </div>
+        </div>
+      </div>
+      <figure class="retrato-dela">
+        <img src="img/ale-trajetoria.webp" alt="Ale Baggio sorrindo, sentada numa poltrona" loading="lazy">
+        <figcaption>Ale Baggio no ateliê.</figcaption>
+      </figure>
+    </div>
+
+  </section>
+
+  <!-- IMPRENSA -->
+  <section id="imprensa" class="imprensa-sec">
+    <div class="wrap imprensa-editorial">
+      <div class="imprensa-esq">
+      <div class="imprensa-txt">
+        <p class="chapeu">Na imprensa</p>
+        <h2>Ela virou pauta.</h2>
+        <blockquote class="aspas" id="manchete" data-texto="A artista plástica que ganhou o coração dos famosos através de seus retratos.">A artista plástica que ganhou o coração dos famosos através de seus retratos.</blockquote>
+        <p class="credito">Hooks Magazine · fevereiro de 2022</p>
+        <p class="lead">A revista Atitude contou a história antes, em dezembro de 2021: a menina tímida que se encontrava no lápis e no papel, hoje pintando os rostos que o país reconhece.</p>
+        <p class="lead">O retrato dela já foi exibido ao vivo no <b>Mais Você</b>, da TV Globo, com a própria Ana Maria Braga ao lado da tela.</p>
+      </div>
+      </div>
+      <div class="banca">
+        <div class="par-capas">
+          <figure class="rev rev-a">
+            <img src="img/capa-hooks.jpg" alt="Capa da Hooks Magazine com Ale Baggio e a chamada: a artista plástica que vem conquistando as celebridades" loading="lazy">
+            <figcaption><b>Hooks Magazine</b><span>fevereiro de 2022</span></figcaption>
+          </figure>
+          <figure class="rev rev-b">
+            <img src="img/capa-semnumero.jpg" alt="Capa da revista Atitude, edição 85, com Ale Baggio e a chamada: a arte chamada Ale Baggio" loading="lazy">
+            <figcaption><b>Atitude</b><span>edição 85 · dezembro de 2021</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANTES E DEPOIS -->
+  <section id="antes-depois">
+    <div class="wrap ad-grid">
+      <div class="ad-texto">
+        <h2>Uma foto no celular<br class="quebra"> vira uma obra na parede.</h2>
+        <p class="lead">Ela usa a sua foto como referência e pinta a expressão, a luz e o jeito da pessoa. Arraste a alça para comparar.</p>
+        <div class="btns"><a class="btn btn-2" href="#colecoes">Ver formatos</a></div>
+      </div>
+      <div class="ad-visual">
+      <div class="comparador" id="comparador">
+        <img src="img/depois-obra.webp" alt="Obra final pintada à mão, pendurada na parede">
+        <div class="depois" id="depois"><img src="img/antes-cliente.webp" alt="Foto de referência enviada pela cliente"></div>
+        <div class="puxador" id="puxador" role="slider" aria-label="Comparar foto e obra" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0"></div>
+      </div>
+      <div class="comp-tags"><span class="label">A foto enviada</span><span class="label obra-tag">A obra entregue</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O PRESENTE PERFEITO -->
+  <section id="presente-perfeito" class="presente-sec">
+    <div class="wrap">
+      <h2>Um presente que emociona. <svg class="coracao" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21.2s-7-4.5-9.6-8.3C.6 10.3 1.4 6.6 4.3 5.1c2.3-1.2 4.8-.5 6.2 1.4L12 8.4l1.5-1.9c1.4-1.9 3.9-2.6 6.2-1.4 2.9 1.5 3.7 5.2 1.9 7.8-2.6 3.8-9.6 8.3-9.6 8.3z" fill="currentColor"/></svg></h2>
+      <p class="lead">Uma pessoa especial, um vínculo, uma lembrança que vocês compartilham. Uma pintura sobre tela pode transformar essa história em um presente criado para quem vai recebê-lo.</p>
+      <div class="presente">
+        <div class="presente-antes">
+          <div class="presente-fotos">
+            <figure><img src="img/presente-antiga-2.webp" alt="Foto antiga: a mãe com a filha ainda bebê no colo" loading="lazy"></figure>
+            <figure><img src="img/presente-antiga-1.webp" alt="Foto antiga: mãe e filha abraçadas numa festa de aniversário" loading="lazy"></figure>
+          </div>
+          <p class="presente-leg"><b>As referências</b>A ideia e as referências são escolhidas em conversa com a Ale, para cada encomenda.</p>
+        </div>
+        <div class="presente-depois">
+          <div class="presente-fotos">
+            <figure><img src="img/presente-entrega.webp" alt="Cliente com o retrato de mãe e filha pintado por Ale Baggio" loading="lazy"></figure>
+            <figure><img src="img/presente-parede.webp" alt="O retrato de mãe e filha pendurado na parede do espaço" loading="lazy"></figure>
+          </div>
+          <p class="presente-leg"><b>A obra</b>Uma composição desenvolvida para contar essa história em pintura.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -1114,8 +1149,8 @@
   <section id="acervo" class="acervo-sec">
     <div class="wrap">
       <div class="acervo-topo">
-        <h2>Algumas obras já entregues.</h2>
-        <p class="lead">Retratos de famílias e casais, além de obras para clínicas e consultórios. Pinturas sobre tela por encomenda.</p>
+        <h2>Obras entregues e vídeos.</h2>
+        <p class="lead">Registros de obras entregues e vídeos das pinturas, para conhecer outros trabalhos da artista.</p>
       </div>
       <div class="acervo">
         <figure class="video-acervo alto">
@@ -1350,112 +1385,114 @@
      A distancia da emenda e medida entre a primeira obra e sua primeira copia,
      incluindo os espacos. Pausa fora da tela e durante uma interacao intencional. */
   (function () {
-    var area = document.getElementById('pistaArea');
-    var pista = document.getElementById('pista');
-    if (!area || !pista) return;
-    var base = Array.prototype.slice.call(pista.children);
-    if (!base.length) return;
-    var calmo = window.matchMedia('(prefers-reduced-motion: reduce)');
-    var celular = window.matchMedia('(max-width:1000px)');
-    var copias = [], distancia = 0, pos = area.scrollLeft, anterior = 0, quadro = null;
-    var visivel = !('IntersectionObserver' in window), pausado = false, espera = null;
-    var mouse = false, xInicial = 0, scrollInicial = 0;
-    function media(m, fn) { m.addEventListener ? m.addEventListener('change', fn) : m.addListener(fn); }
-    function emenda(valor) { return distancia > 0 ? ((valor % distancia) + distancia) % distancia : valor; }
-    function parar() {
-      if (quadro !== null) cancelAnimationFrame(quadro);
-      quadro = null; anterior = 0;
-    }
-    function podeAndar() { return visivel && !document.hidden && !calmo.matches && !pausado && distancia > 0; }
-    function passo(agora) {
-      quadro = null;
-      if (!podeAndar()) { anterior = 0; return; }
-      var dt = anterior ? Math.min((agora - anterior) / 1000, .05) : 0;
-      anterior = agora;
-      pos = emenda(pos + (celular.matches ? 46 : 60) * dt);
-      area.scrollLeft = pos;
-      quadro = requestAnimationFrame(passo);
-    }
-    function sincronizar() {
-      if (!podeAndar()) { parar(); return; }
-      if (quadro === null) { anterior = 0; pos = emenda(area.scrollLeft); quadro = requestAnimationFrame(passo); }
-    }
-    function copiarCiclo() {
-      base.forEach(function (obra) {
-        var copia = obra.cloneNode(true);
-        copia.setAttribute('aria-hidden', 'true'); copia.classList.add('copia');
-        pista.appendChild(copia); copias.push(copia);
+    function configurarGaleria(area, pista) {
+      if (!area || !pista) return;
+      var base = Array.prototype.slice.call(pista.children);
+      if (!base.length) return;
+      var calmo = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var celular = window.matchMedia('(max-width:1000px)');
+      var copias = [], distancia = 0, pos = area.scrollLeft, anterior = 0, quadro = null;
+      var visivel = !('IntersectionObserver' in window), pausado = false, espera = null;
+      var mouse = false, xInicial = 0, scrollInicial = 0;
+      function media(m, fn) { m.addEventListener ? m.addEventListener('change', fn) : m.addListener(fn); }
+      function emenda(valor) { return distancia > 0 ? ((valor % distancia) + distancia) % distancia : valor; }
+      function parar() {
+        if (quadro !== null) cancelAnimationFrame(quadro);
+        quadro = null; anterior = 0;
+      }
+      function podeAndar() { return visivel && !document.hidden && !calmo.matches && !pausado && distancia > 0; }
+      function passo(agora) {
+        quadro = null;
+        if (!podeAndar()) { anterior = 0; return; }
+        var dt = anterior ? Math.min((agora - anterior) / 1000, .05) : 0;
+        anterior = agora;
+        pos = emenda(pos + (celular.matches ? 46 : 60) * dt);
+        area.scrollLeft = pos;
+        quadro = requestAnimationFrame(passo);
+      }
+      function sincronizar() {
+        if (!podeAndar()) { parar(); return; }
+        if (quadro === null) { anterior = 0; pos = emenda(area.scrollLeft); quadro = requestAnimationFrame(passo); }
+      }
+      function copiarCiclo() {
+        base.forEach(function (obra) {
+          var copia = obra.cloneNode(true);
+          copia.setAttribute('aria-hidden', 'true'); copia.classList.add('copia');
+          pista.appendChild(copia); copias.push(copia);
+        });
+      }
+      function medir() {
+        if (calmo.matches) {
+          parar(); copias.forEach(function (c) { c.remove(); }); copias = []; distancia = 0; pos = area.scrollLeft; return;
+        }
+        if (!copias.length) copiarCiclo();
+        var nova = copias[0].getBoundingClientRect().left - base[0].getBoundingClientRect().left;
+        if (nova <= 0) { distancia = 0; parar(); return; }
+        var necessarias = Math.max(1, Math.ceil(area.clientWidth / nova)) * base.length;
+        while (copias.length < necessarias) copiarCiclo();
+        while (copias.length > necessarias) copias.pop().remove();
+        // Uma mudanca de altura ou uma medida repetida nao reinicia o movimento.
+        if (Math.abs(nova - distancia) > .01) {
+          var fase = distancia > 0 ? emenda(area.scrollLeft) / distancia : 0;
+          distancia = nova; pos = fase * distancia; area.scrollLeft = pos;
+        }
+        sincronizar();
+      }
+      function segurar() { clearTimeout(espera); pausado = true; parar(); }
+      function retomar() {
+        clearTimeout(espera);
+        espera = setTimeout(function () { pausado = false; pos = emenda(area.scrollLeft); sincronizar(); }, 2200);
+      }
+      function iniciaMouse(e) {
+        if (e.button !== undefined && e.button !== 0) return;
+        mouse = true; xInicial = e.clientX; scrollInicial = area.scrollLeft; segurar(); area.classList.add('arrastando');
+        if (e.pointerId !== undefined && area.setPointerCapture) area.setPointerCapture(e.pointerId);
+      }
+      function moveMouse(e) {
+        if (!mouse) return;
+        e.preventDefault(); area.scrollLeft = scrollInicial - (e.clientX - xInicial); pos = area.scrollLeft;
+      }
+      function soltaMouse() { if (!mouse) return; mouse = false; area.classList.remove('arrastando'); retomar(); }
+      if ('PointerEvent' in window) {
+        area.addEventListener('pointerdown', function (e) { if (e.pointerType === 'mouse' || e.pointerType === 'pen') iniciaMouse(e); });
+        area.addEventListener('pointermove', moveMouse);
+        window.addEventListener('pointerup', soltaMouse);
+        window.addEventListener('pointercancel', soltaMouse);
+        area.addEventListener('lostpointercapture', soltaMouse);
+      } else {
+        area.addEventListener('mousedown', iniciaMouse);
+        window.addEventListener('mousemove', moveMouse);
+        window.addEventListener('mouseup', soltaMouse);
+      }
+      // O toque continua nativo, inclusive a inercia de rolagem do dispositivo.
+      area.addEventListener('touchstart', segurar, { passive: true });
+      area.addEventListener('touchend', retomar, { passive: true });
+      area.addEventListener('touchcancel', retomar, { passive: true });
+      area.addEventListener('wheel', function (e) {
+        if (Math.abs(e.deltaX) > .5 || e.shiftKey) { segurar(); retomar(); }
+      }, { passive: true });
+      area.addEventListener('keydown', function (e) {
+        if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+        e.preventDefault(); segurar();
+        var largura = base.length > 1 ? base[1].getBoundingClientRect().left - base[0].getBoundingClientRect().left : base[0].getBoundingClientRect().width;
+        area.scrollLeft += (e.key === 'ArrowRight' ? 1 : -1) * largura; pos = area.scrollLeft; retomar();
       });
-    }
-    function medir() {
-      if (calmo.matches) {
-        parar(); copias.forEach(function (c) { c.remove(); }); copias = []; distancia = 0; pos = area.scrollLeft; return;
+      area.addEventListener('dragstart', function (e) { e.preventDefault(); });
+      area.addEventListener('scroll', function () { if (quadro === null) pos = area.scrollLeft; }, { passive: true });
+      document.addEventListener('visibilitychange', function () { if (document.hidden) soltaMouse(); sincronizar(); });
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entradas) { visivel = entradas[0].isIntersecting; sincronizar(); }, { threshold: 0 }).observe(area);
       }
-      if (!copias.length) copiarCiclo();
-      var nova = copias[0].getBoundingClientRect().left - base[0].getBoundingClientRect().left;
-      if (nova <= 0) { distancia = 0; parar(); return; }
-      var necessarias = Math.max(1, Math.ceil(area.clientWidth / nova)) * base.length;
-      while (copias.length < necessarias) copiarCiclo();
-      while (copias.length > necessarias) copias.pop().remove();
-      // Uma mudanca de altura ou uma medida repetida nao reinicia o movimento.
-      if (Math.abs(nova - distancia) > .01) {
-        var fase = distancia > 0 ? emenda(area.scrollLeft) / distancia : 0;
-        distancia = nova; pos = fase * distancia; area.scrollLeft = pos;
-      }
-      sincronizar();
+      if ('ResizeObserver' in window) {
+        var medidas = new ResizeObserver(medir); medidas.observe(area); medidas.observe(base[0]);
+      } else window.addEventListener('resize', medir, { passive: true });
+      media(calmo, medir); media(celular, medir);
+      if (document.fonts) document.fonts.ready.then(medir);
+      window.addEventListener('load', medir);
+      medir();
     }
-    function segurar() { clearTimeout(espera); pausado = true; parar(); }
-    function retomar() {
-      clearTimeout(espera);
-      espera = setTimeout(function () { pausado = false; pos = emenda(area.scrollLeft); sincronizar(); }, 2200);
-    }
-    function iniciaMouse(e) {
-      if (e.button !== undefined && e.button !== 0) return;
-      mouse = true; xInicial = e.clientX; scrollInicial = area.scrollLeft; segurar(); area.classList.add('arrastando');
-      if (e.pointerId !== undefined && area.setPointerCapture) area.setPointerCapture(e.pointerId);
-    }
-    function moveMouse(e) {
-      if (!mouse) return;
-      e.preventDefault(); area.scrollLeft = scrollInicial - (e.clientX - xInicial); pos = area.scrollLeft;
-    }
-    function soltaMouse() { if (!mouse) return; mouse = false; area.classList.remove('arrastando'); retomar(); }
-    if ('PointerEvent' in window) {
-      area.addEventListener('pointerdown', function (e) { if (e.pointerType === 'mouse' || e.pointerType === 'pen') iniciaMouse(e); });
-      area.addEventListener('pointermove', moveMouse);
-      window.addEventListener('pointerup', soltaMouse);
-      window.addEventListener('pointercancel', soltaMouse);
-      area.addEventListener('lostpointercapture', soltaMouse);
-    } else {
-      area.addEventListener('mousedown', iniciaMouse);
-      window.addEventListener('mousemove', moveMouse);
-      window.addEventListener('mouseup', soltaMouse);
-    }
-    // O toque continua nativo, inclusive a inercia de rolagem do dispositivo.
-    area.addEventListener('touchstart', segurar, { passive: true });
-    area.addEventListener('touchend', retomar, { passive: true });
-    area.addEventListener('touchcancel', retomar, { passive: true });
-    area.addEventListener('wheel', function (e) {
-      if (Math.abs(e.deltaX) > .5 || e.shiftKey) { segurar(); retomar(); }
-    }, { passive: true });
-    area.addEventListener('keydown', function (e) {
-      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-      e.preventDefault(); segurar();
-      var largura = base.length > 1 ? base[1].getBoundingClientRect().left - base[0].getBoundingClientRect().left : base[0].getBoundingClientRect().width;
-      area.scrollLeft += (e.key === 'ArrowRight' ? 1 : -1) * largura; pos = area.scrollLeft; retomar();
-    });
-    area.addEventListener('dragstart', function (e) { e.preventDefault(); });
-    area.addEventListener('scroll', function () { if (quadro === null) pos = area.scrollLeft; }, { passive: true });
-    document.addEventListener('visibilitychange', function () { if (document.hidden) soltaMouse(); sincronizar(); });
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (entradas) { visivel = entradas[0].isIntersecting; sincronizar(); }, { threshold: 0 }).observe(area);
-    }
-    if ('ResizeObserver' in window) {
-      var medidas = new ResizeObserver(medir); medidas.observe(area); medidas.observe(base[0]);
-    } else window.addEventListener('resize', medir, { passive: true });
-    media(calmo, medir); media(celular, medir);
-    if (document.fonts) document.fonts.ready.then(medir);
-    window.addEventListener('load', medir);
-    medir();
+    configurarGaleria(document.getElementById('pistaArea'), document.getElementById('pista'));
+    configurarGaleria(document.getElementById('abstratosArea'), document.getElementById('abstratosPista'));
   })();
 
   var aviso = document.getElementById('aviso');
