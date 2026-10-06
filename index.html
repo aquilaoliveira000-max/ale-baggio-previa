@@ -24,7 +24,7 @@
         E o token sai do PAPEL do texto, nunca do gosto:
           --t-olho     todo paragrafo que explica uma secao, em qualquer lugar
           --t-corpo    texto longo de leitura e legenda de obra
-          --t-apoio    ficha tecnica, rodape, observacao de rascunho
+          --t-apoio    ficha tecnica, rodape, observacao
           --t-etiqueta rotulo em caixa alta
         Dois textos com o mesmo papel NUNCA podem ter tokens diferentes.
      2. NENHUM font-size dentro de @media. Os tokens ja usam clamp
@@ -84,12 +84,11 @@
     --t-assina-grande:clamp(56px, 7vw, 90px);/* assinatura grande */
     /* distancia visual entre duas secoes. cada secao usa metade em cima e metade embaixo */
     --entre:clamp(72px, 7vw, 104px);
-    --capa-reserva:clamp(136px, 24svh, 208px); /* area da foto antes do titulo no celular */
+    --capa-reserva:clamp(160px, 28svh, 240px); /* area da foto antes do titulo no celular */
     --max:1360px;
     --topo-altura:78px;
     --z-topo:100;
     --z-cursor:150;
-    --z-aviso:200;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -284,7 +283,7 @@
 
   /* galeria horizontal */
   .galeria{padding-block:calc(var(--entre) / 2); overflow:hidden;}
-  .galeria-topo{display:flex; justify-content:space-between; align-items:flex-end; gap:var(--s3); flex-wrap:wrap; margin-bottom:var(--s5);}
+  .galeria .destaque{margin-bottom:var(--s3);}
   .pista-area{position:relative; overflow-x:auto; overscroll-behavior-x:contain; scrollbar-width:none;
     scroll-behavior:auto; overflow-anchor:none; cursor:grab; touch-action:pan-x pan-y;}
   .pista-area::-webkit-scrollbar{display:none;}
@@ -338,8 +337,7 @@
   .presente-depois .presente-leg{border-top-color:var(--acento);}
   .presente-depois .presente-leg b{color:var(--acento);}
 
-  /* Formatos de referencia: uma mesma proposta, com proporcoes diferentes.
-     O investimento e apresentado em um bloco comum, depois dos tres modelos. */
+  /* Orcamento em primeiro plano; os formatos abaixo sao apenas referencias. */
   .colecoes{display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
     grid-template-rows:repeat(4,auto); gap:var(--s3); margin-top:var(--s4);}
   /* Titulo, medida, modelo e descricao ficam alinhados entre as tres colunas. */
@@ -354,13 +352,16 @@
     padding-top:var(--s2); border-top:1px solid var(--borda);}
   .formatos-nota{font-size:var(--t-apoio); color:var(--texto-secundario); max-width:72ch; margin-top:var(--s3);}
   .investimento{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:var(--s5); align-items:center;
-    margin-top:var(--s5); padding:var(--s4); border:1px solid rgba(var(--acento-rgb),.4); background:var(--superficie-quente);}
-  .investimento h3{margin-top:var(--s2); max-width:22ch;}
-  .investimento p{font-size:var(--t-olho); color:var(--texto-secundario); line-height:1.45;}
-  .investimento .label{font-size:var(--t-etiqueta); color:var(--acento-claro);}
-  .investimento .investimento-valor{margin-top:var(--s3); color:var(--acento-claro); font-size:var(--t-sub);
-    font-weight:600; letter-spacing:-.02em; line-height:1.2;}
-  .investimento .btn{margin-top:var(--s3); max-width:100%; white-space:normal; text-align:center; justify-content:center;}
+    padding:var(--s5); border:1px solid var(--acento); background:var(--texto); color:var(--fundo);}
+  .investimento h2{margin-top:var(--s2); max-width:18ch;}
+  .investimento p{font-size:var(--t-olho); color:var(--superficie); line-height:1.45;}
+  .investimento .label{font-size:var(--t-etiqueta); color:var(--superficie);}
+  .investimento .investimento-valor{margin-top:var(--s3); color:var(--fundo);}
+  .investimento-valor strong{display:block; margin-top:var(--s1); font-size:var(--t-numero);
+    font-weight:600; letter-spacing:-.03em; line-height:1.05;}
+  .investimento .btn{margin-top:var(--s3); max-width:100%; white-space:normal; text-align:center; justify-content:center;
+    background:var(--fundo); color:var(--texto); border-color:var(--fundo);}
+  .investimento .btn:hover{background:var(--superficie); color:var(--acento-claro); border-color:var(--superficie);}
   .investimento p + p{margin-top:var(--s2);}
   .pend{color:var(--acento); border-bottom:1px dotted var(--acento);}
   .nota-col{margin-top:var(--s3); padding-top:var(--s3); border-top:1px solid var(--borda);}
@@ -457,12 +458,6 @@
   footer .wrap{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:var(--s2);}
   footer p{font-size:var(--t-apoio); color:var(--texto-secundario);}
   footer a{text-decoration:none;}
-
-  .aviso{position:fixed; left:0; right:0; bottom:0; z-index:var(--z-aviso); background:var(--superficie-elevada); color:var(--texto-secundario); border-top:1px solid var(--borda);
-    display:flex; gap:var(--s1); align-items:center; justify-content:center; flex-wrap:wrap; padding:var(--s1) var(--s2); font-size:var(--t-etiqueta);
-    transition:transform 300ms cubic-bezier(.22,1,.36,1);}
-  .aviso.fora{transform:translateY(110%);}
-  .aviso button{font:inherit; font-weight:600; background:var(--acento); color:var(--fundo); border:0; padding:var(--s1) var(--s1); border-radius:100px; cursor:pointer;}
 
   /* ===== DESTAQUE: os tipos de retrato que ela faz ===== */
   .destaque h2{max-width:22ch;}
@@ -635,15 +630,19 @@
       mask-image:linear-gradient(180deg, var(--texto) 58%, transparent 100%);}
     .capa::after{background:linear-gradient(180deg, rgba(var(--fundo-rgb),.18) 0%, rgba(var(--fundo-rgb),.72) 26%,
       rgba(var(--fundo-rgb),.96) 48%, rgba(var(--fundo-rgb),1) 72%);}
-    .capa-txt{grid-column:1; grid-row:1; padding:var(--capa-reserva) var(--gutter) var(--s4);}
+    .capa-txt{grid-column:1; grid-row:1; padding:var(--capa-reserva) var(--gutter) var(--s5);}
     .capa-txt .wrap{display:flex; flex-direction:column;}
     .capa-txt h1 br{display:none;}
     .so-desk{display:none;}
     .so-mob{display:inline;}
     .capa-txt h1{max-width:18ch;}
-    .capa-txt .lead{order:2; max-width:32ch;}
-    .capa-txt .btns{order:1; margin-top:var(--s3); gap:var(--s2); flex-wrap:nowrap;}
-    .capa-txt .btns .btn{width:auto; flex:1 1 0; min-width:0; justify-content:center; padding:var(--s2) var(--s1); letter-spacing:.03em; white-space:normal; text-align:center;}
+    .capa-txt .lead{order:2; max-width:32ch; margin-top:var(--s4);}
+    .capa-txt .btns{order:1; align-self:center; flex-direction:column; align-items:stretch; width:100%; max-width:320px;
+      margin-top:var(--s4); gap:var(--s2); flex-wrap:nowrap;}
+    .capa-txt .btns .btn{width:100%; flex:none; min-width:0; justify-content:center; padding:var(--s2) var(--s3); letter-spacing:.03em; white-space:normal; text-align:center;}
+    .capa-txt .btns .btn-2{border-color:rgba(var(--texto-rgb),.24);}
+    .investimento{padding:var(--s3);}
+    .investimento .btn{width:100%;}
     .comparador img{aspect-ratio:1/1;}
     .estrelas-grade{grid-template-columns:1fr 1fr;}
     .fechamento{min-height:480px;}
@@ -759,10 +758,10 @@
     </div>
   </section>
 
-  <!-- TIPOS DE RETRATO -->
-  <section id="destaque">
-    <div class="wrap destaque">
-      <h2>Retratos de pessoas, casais, famílias e pets.</h2>
+  <!-- RETRATOS E OBRAS: DUAS GALERIAS EM UMA MESMA SECAO -->
+  <section class="galeria" id="obras" aria-labelledby="retratos-titulo">
+    <div class="wrap destaque" id="destaque">
+      <h2 id="retratos-titulo">Retratos de pessoas, casais, famílias e pets.</h2>
       <p class="lead">Retratos de crianças, homenagens a quem já partiu, obras para consultórios e composições especiais. Pinturas sobre tela criadas por Ale Baggio.</p>
       <div class="trio" role="region" aria-label="Tipos de retrato" tabindex="0">
         <figure class="astro">
@@ -809,14 +808,6 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg>
       </p>
     </div>
-  </section>
-
-  <!-- OBRAS, MOVIMENTO CONTINUO EM TODOS OS TAMANHOS DE TELA -->
-  <section class="galeria" id="obras">
-    <div class="wrap galeria-topo">
-      <h2>Obras por encomenda.</h2>
-      <p class="lead" style="max-width:36ch">Retratos por encomenda e pinturas exclusivas, criados para transformar memórias, pessoas e espaços em arte.</p>
-    </div>
     <div class="pista-area" id="pistaArea" tabindex="0" role="region" aria-label="Galeria de obras entregues a clientes" aria-describedby="galeria-ajuda">
       <div class="pista" id="pista">
         <figure class="obra"><img src="img/obra-1.webp" alt="Retrato pintado por Ale Baggio, com detalhes dourados" loading="lazy"></figure>
@@ -856,10 +847,20 @@
   </section>
 
   <!-- FORMATOS E ORCAMENTO PERSONALIZADO -->
-  <section id="colecoes" aria-labelledby="formatos-titulo">
+  <section id="colecoes" aria-labelledby="formatos-titulo" aria-describedby="investimento-titulo">
     <div class="wrap">
-      <h2 id="formatos-titulo">Uma obra criada para você</h2>
-      <p class="lead">Cada encomenda recebe um orçamento personalizado, de acordo com as dimensões da tela, a quantidade de pessoas e a composição.</p>
+      <div class="investimento">
+        <div>
+          <p class="label">Orçamento personalizado</p>
+          <h2 id="formatos-titulo">Uma obra criada para você</h2>
+          <p class="investimento-valor" id="investimento-titulo">Pinturas sobre tela a partir de <strong>R$ 4.900.</strong></p>
+        </div>
+        <div>
+          <p class="lead">Cada encomenda recebe um orçamento personalizado, de acordo com as dimensões da tela, a quantidade de pessoas e a composição.</p>
+          <p class="lead">Converse diretamente com a artista para escolher o formato ideal para sua obra.</p>
+          <a class="btn btn-1 wa" data-colecao="uma obra sob encomenda" href="#contato">Solicitar orçamento</a>
+        </div>
+      </div>
       <p class="quadros3d-nota" id="quadros3d-nota">Algumas possibilidades de formato. Os modelos são ilustrativos; a composição é criada para a sua encomenda.</p>
       <div class="colecoes">
         <article class="colecao col-1" aria-labelledby="formato-quadrado">
@@ -906,16 +907,6 @@
         </article>
       </div>
       <p class="formatos-nota">Essas medidas são um ponto de partida. Um retrato de família também pode ser pensado em uma tela menor, de acordo com a composição.</p>
-      <div class="investimento" aria-labelledby="investimento-titulo">
-        <div>
-          <p class="label">Orçamento personalizado</p>
-          <h3 class="investimento-valor" id="investimento-titulo">Pinturas sobre tela a partir de R$ 4.900.</h3>
-        </div>
-        <div>
-          <p class="lead">Converse diretamente com a artista para escolher o formato ideal para sua obra.</p>
-          <a class="btn btn-1 wa" data-colecao="uma obra sob encomenda" href="#contato">Solicitar orçamento</a>
-        </div>
-      </div>
       <div class="nota-col">
         <p>A obra é entregue em tela tipo painel, pronta para pendurar, sem necessidade de moldura. Seu acabamento permite que seja exposta diretamente na parede. Se desejar, você pode acrescentar uma moldura depois, conforme seu gosto e o estilo do ambiente.</p>
       </div>
@@ -1239,11 +1230,6 @@
   <div class="estrelas-grade" id="estrelasGrade"></div>
 </dialog>
 
-<div class="aviso" id="aviso">
-  <span>Rascunho. Os botões de WhatsApp aguardam o número completo da artista.</span>
-  <button type="button" id="fecharAviso">Ocultar</button>
-</div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
@@ -1253,23 +1239,15 @@
   var temGsap = typeof window.gsap !== 'undefined';
 
   /* WhatsApp: informar o numero completo com codigo do pais e DDD.
-     Enquanto estiver vazio, os botoes mostram o aviso do rascunho. */
+     Sem numero, os links permanecem inativos, sem mensagens sobrepostas. */
   var WHATSAPP = '';
   var numeroWhatsApp = WHATSAPP.replace(/\D/g, '');
-  var avisoWhatsApp = document.getElementById('aviso');
-  if (numeroWhatsApp && avisoWhatsApp) avisoWhatsApp.remove();
   document.querySelectorAll('a.wa').forEach(function (a) {
     if (!numeroWhatsApp) {
       a.href = '#contato';
       a.setAttribute('aria-disabled', 'true');
       a.title = 'Contato pelo WhatsApp em breve.';
-      a.addEventListener('click', function (e) {
-        e.preventDefault();
-        if (avisoWhatsApp) {
-          if (!avisoWhatsApp.isConnected) document.body.appendChild(avisoWhatsApp);
-          avisoWhatsApp.classList.remove('fora');
-        }
-      });
+      a.addEventListener('click', function (e) { e.preventDefault(); });
       return;
     }
     var col = a.getAttribute('data-colecao');
@@ -1494,14 +1472,6 @@
     configurarGaleria(document.getElementById('pistaArea'), document.getElementById('pista'));
     configurarGaleria(document.getElementById('abstratosArea'), document.getElementById('abstratosPista'));
   })();
-
-  var aviso = document.getElementById('aviso');
-  var fecharAviso = document.getElementById('fecharAviso');
-  if (fecharAviso) fecharAviso.addEventListener('click', function () { aviso.remove(); });
-  window.addEventListener('scroll', function () {
-    if (!aviso) return;
-    aviso.classList.toggle('fora', window.scrollY > 120);
-  }, { passive: true });
 
   /* MOVIMENTO CONTINUO: o navegador anima apenas transform, sem reiniciar
      quando a barra de endereco do celular muda a altura da janela. Cada grupo
