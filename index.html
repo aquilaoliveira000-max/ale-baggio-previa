@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Revisao: iluminacao dourada e descricao da abertura. 2026-10-07. -->
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -43,7 +44,7 @@
      ============================================================ */
   :root{
     /* Carvao e grafite deixam as obras em primeiro plano.
-       Marfim suaviza a leitura; dourado fosco retoma os detalhes dourados das telas. */
+       Marfim alterna com o carvao; ouro quente une faixas, botoes e destaques. */
     color-scheme:dark;
     --fundo:#111111;
     --superficie:#1C1C1A;
@@ -54,13 +55,34 @@
     --texto-secundario:#B9B2A7;
     --texto-suave:#918B82;
     --borda:#3B3832;
-    --acento:#C8AF7B;
-    --acento-claro:#E0C89A;
-    --tinta-decorativa:#9A835C;
+    --acento:#D4A348;
+    --acento-claro:#F3D394;
+    --tinta-decorativa:#B8852E;
+    --texto-botao:#FFFFFF;
+    --ouro-botao-inicio:#805015;
+    --ouro-botao-reflexo:#9B6C25;
+    --ouro-botao-fim:#895617;
+    --ouro-escuro-inicio:#704613;
+    --ouro-escuro-reflexo:#8A5A1C;
+    --ouro-escuro-fim:#734915;
+    --ouro-faixa-inicio:#C68A29;
+    --ouro-faixa-reflexo:#F0BA55;
+    --ouro-faixa-fim:#D89B36;
+    --gradiente-ouro:linear-gradient(115deg, var(--acento) 0%, var(--acento-claro) 48%, var(--acento) 100%);
+    --gradiente-botao:linear-gradient(115deg, var(--ouro-botao-inicio) 0%, var(--ouro-botao-reflexo) 48%, var(--ouro-botao-fim) 100%);
+    --gradiente-ouro-escuro:linear-gradient(115deg, var(--ouro-escuro-inicio) 0%, var(--ouro-escuro-reflexo) 48%, var(--ouro-escuro-fim) 100%);
+    --gradiente-faixa:linear-gradient(110deg, var(--ouro-faixa-inicio) 0%, var(--ouro-faixa-reflexo) 48%, var(--ouro-faixa-fim) 100%);
     --fundo-rgb:17,17,17;
     --texto-rgb:242,238,231;
-    --acento-rgb:200,175,123;
+    --acento-rgb:212,163,72;
     --preto-rgb:0,0,0;
+    /* Luz de galeria: intensidades da camada decorativa, nunca do conteudo.
+       Uma luz por secao, ampla e suave; nenhuma camada de ouro sobre as pinturas. */
+    --luz-capa:.12; --luz-capa-mobile:.08;
+    --luz-abstratos:.10; --luz-abstratos-mobile:.07;
+    --luz-fechamento:.12; --luz-fechamento-mobile:.09;
+    --halo-contato:.08; --halo-contato-mobile:.06; --halo-contato-hover:.12;
+    --reflexo-contato:.38;
     --quadro-lateral:#5E4A2F;
     --quadro-espessura:8px;
     --quadro-meia-espessura:4px;
@@ -85,6 +107,7 @@
     /* distancia visual entre duas secoes. cada secao usa metade em cima e metade embaixo */
     --entre:clamp(72px, 7vw, 104px);
     --capa-reserva:clamp(160px, 28svh, 240px); /* area da foto antes do titulo no celular */
+    --capa-foto-altura:max(62svh, 380px); /* mesma medida para a foto e o inicio da luz no celular */
     --max:1360px;
     --topo-altura:78px;
     --z-topo:100;
@@ -125,16 +148,18 @@
     display:inline-flex; align-items:center; gap:var(--s1);
     font-family:var(--fonte); font-size:var(--t-botao); font-weight:600; letter-spacing:.06em; text-transform:uppercase;
     text-decoration:none; padding:var(--s2) var(--s4); border:1px solid transparent; border-radius:100px;
-    transition:background 180ms cubic-bezier(.22,1,.36,1), color 180ms, border-color 180ms, transform 180ms;
+    transition:background 180ms cubic-bezier(.22,1,.36,1), color 180ms, border-color 180ms, transform 180ms, box-shadow 180ms;
   }
   .btn:hover{transform:translateY(-2px);}
   .wa[aria-disabled="true"]{cursor:not-allowed;}
-  .btn-1{background:var(--acento); color:var(--fundo);}
-  .btn-1:hover{background:var(--acento-claro);}
-  .btn-2{border-color:rgba(var(--texto-rgb),.45); color:var(--texto);}
+  /* Ouro ambar: o reflexo central preserva o contraste do texto branco. */
+  .btn-1, .btn-claro{background:var(--gradiente-botao); color:var(--texto-botao); border-color:var(--acento);
+    box-shadow:inset 0 1px 0 rgba(var(--texto-rgb),var(--reflexo-contato)), 0 0 var(--s3) rgba(var(--acento-rgb),var(--halo-contato));}
+  .btn-texto{min-width:0;}
+  .btn .contato-brilho{display:block; width:var(--s4); height:var(--s3); flex:none; color:inherit; pointer-events:none;}
+  .btn-1:hover, .btn-claro:hover{border-color:var(--acento-claro);}
+  .btn-2{border-color:var(--tinta-decorativa); color:var(--texto);}
   .btn-2:hover{background:var(--texto); color:var(--fundo);}
-  .btn-claro{background:var(--acento); color:var(--fundo);}
-  .btn-claro:hover{background:var(--acento-claro);}
   .btn-vazado{border-color:rgba(var(--texto-rgb),.5); color:var(--texto);}
   .btn-vazado:hover{background:var(--texto); color:var(--fundo);}
   .btns{display:flex; flex-wrap:wrap; gap:var(--s2);}
@@ -176,24 +201,30 @@
     transform-origin:55% 0%; animation:deriva-capa 26s ease-in-out infinite alternate;}
   .capa::after{content:""; position:absolute; top:var(--topo-altura); right:0; bottom:0; left:0; z-index:1; pointer-events:none;
     background:linear-gradient(90deg, rgba(var(--fundo-rgb),.98) 0%, rgba(var(--fundo-rgb),.9) 36%, rgba(var(--fundo-rgb),.5) 58%, rgba(var(--fundo-rgb),.1) 82%, rgba(var(--fundo-rgb),.24) 100%);}
-  .capa-txt{grid-column:1; grid-row:1; position:relative; z-index:2; color:var(--texto);
+  /* A luz fica na faixa escura esquerda, longe do retrato ancorado a direita. */
+  .capa::before{content:""; position:absolute; top:var(--topo-altura); bottom:0; left:0; width:48%; z-index:2; pointer-events:none;
+    background:radial-gradient(ellipse 105% 62% at 34% 72%, rgba(var(--acento-rgb),var(--luz-capa)) 0%, rgba(var(--acento-rgb),var(--luz-capa)) 18%, rgba(var(--acento-rgb),0) 70%);}
+  .capa-txt{grid-column:1; grid-row:1; position:relative; z-index:3; color:var(--texto);
     padding:var(--s5) var(--s5) var(--s5) max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
     will-change:transform;}
   .capa-txt .wrap{padding:0; max-width:none;}
   .capa-txt h1{max-width:20ch;}
   .capa-txt .lead{color:var(--texto-secundario); opacity:1; margin-top:var(--s3); max-width:40ch;}
+  .capa-descricao p{display:inline;}
   .capa-txt .btns{margin-top:var(--s4);}
-  .contato-brilho{display:none; pointer-events:none;}
+  .capa-txt .btn-1, .fechamento .btn-claro{border-color:var(--acento);
+    box-shadow:inset 0 1px 0 rgba(var(--texto-rgb),var(--reflexo-contato)), 0 0 var(--s3) rgba(var(--acento-rgb),var(--halo-contato));}
 
   @keyframes escreve{from{clip-path:inset(0 100% 0 0);} to{clip-path:inset(0 0 0 0);}}
   .anima-assina{animation:escreve 1.2s cubic-bezier(.33,1,.68,1) both;}
 
   /* marquee */
-  .marquee{border-block:1px solid var(--borda); padding-block:var(--s3); overflow:hidden;}
+  .marquee{border-block:1px solid var(--acento-claro); padding-block:var(--s3); overflow:hidden;
+    background:var(--gradiente-faixa); color:var(--fundo); box-shadow:inset 0 1px 0 rgba(var(--texto-rgb),.3);}
   .marquee-pista{display:flex; width:max-content; will-change:transform;}
   .marquee-grupo{display:flex; flex:none; gap:var(--s5); padding-right:var(--s5);}
   .marquee span{font-size:var(--t-marca); font-weight:500; letter-spacing:-.02em; white-space:nowrap; display:flex; align-items:center; gap:var(--s5);}
-  .marquee span::after{content:""; width:9px; height:9px; border-radius:50%; background:var(--acento); display:block;}
+  .marquee span::after{content:""; width:9px; height:9px; border-radius:50%; background:var(--fundo); display:block;}
 
   /* celebridades em mosaico */
   .celebs{padding-block:0 calc(var(--entre) / 2);}
@@ -204,15 +235,13 @@
   .coluna{display:flex; flex-direction:column; min-width:0; will-change:transform;}
   .mosaico-grupo{display:flex; flex-direction:column; flex:none; gap:var(--s2); padding-bottom:var(--s2);}
   .tile{position:relative; margin:0; overflow:hidden; flex:none; aspect-ratio:4/5;}
-  .tile img{width:100%; height:100%; object-fit:cover; transition:transform 600ms cubic-bezier(.22,1,.36,1), filter 350ms;}
+  .tile img{width:100%; height:100%; object-fit:cover; transition:transform 600ms cubic-bezier(.22,1,.36,1);}
   .tile figcaption{position:absolute; inset:auto 0 0 0; padding:var(--s2) var(--s2) var(--s2); color:var(--texto);
     font-size:var(--t-apoio); font-weight:600; letter-spacing:-.01em;
     background:linear-gradient(0deg, rgba(var(--preto-rgb),.82), rgba(var(--preto-rgb),0));
     opacity:0; transform:translateY(8px); transition:opacity 260ms, transform 260ms;}
   .tile:hover img, .tile:focus-within img{transform:scale(1.06);}
   .tile:hover figcaption, .tile:focus-within figcaption{opacity:1; transform:translateY(0);}
-  .mosaico:hover .tile img{filter:saturate(.7) brightness(.82);}
-  .mosaico:hover .tile:hover img{filter:none;}
   .celebs-nota{margin:0; font-size:var(--t-olho); line-height:1.4; color:var(--texto-secundario); max-width:44ch;}
   .celebs-nota b{color:var(--texto); font-weight:600;}
 
@@ -251,7 +280,7 @@
     font-size:var(--t-sub); line-height:1.32; font-weight:500; letter-spacing:-.02em; color:var(--acento);}
   .credito{margin-top:var(--s2); font-size:var(--t-apoio); color:var(--texto-secundario);}
   .aspas .falta{color:transparent;}
-  .aspas .cursor{display:inline-block; width:3px; height:.92em; margin-left:2px; background:var(--acento);
+  .aspas .cursor{display:inline-block; width:3px; height:.92em; margin-left:2px; background:var(--gradiente-ouro);
     vertical-align:-.08em; animation:pisca 1s steps(1) infinite;}
   @keyframes pisca{50%{opacity:0;}}
   .imprensa-txt .lead{margin-top:var(--s4);}
@@ -300,7 +329,8 @@
   .galeria-ajuda svg{width:24px; height:24px; color:var(--acento-claro); flex:none;}
 
   /* abstratos: apresentacao propria, com galeria preparada para receber as obras */
-  .abstratos-sec{background:var(--superficie-profunda); overflow:hidden;}
+  .abstratos-sec{background:radial-gradient(ellipse 82% 78% at 86% 50%, rgba(var(--acento-rgb),var(--luz-abstratos)) 0%, rgba(var(--acento-rgb),var(--luz-abstratos)) 22%, rgba(var(--acento-rgb),0) 70%), var(--superficie-profunda);
+    overflow:hidden;}
   .abstratos-intro{display:grid; grid-template-columns:1fr 1.2fr; gap:var(--s6); align-items:center;}
   .abstratos-intro .btns{margin-top:var(--s3);}
   .abstratos-galeria{margin-top:var(--s5);}
@@ -316,9 +346,9 @@
      imagens tem sempre o mesmo tamanho e a mesma posicao, em qualquer tela */
   .comparador .depois{position:absolute; inset:0; clip-path:inset(0 50% 0 0);}
   .comparador .depois img{height:100%; aspect-ratio:auto;}
-  .puxador{position:absolute; top:0; bottom:0; left:50%; width:2px; background:var(--acento); cursor:ew-resize;}
+  .puxador{position:absolute; top:0; bottom:0; left:50%; width:2px; background:var(--gradiente-ouro); cursor:ew-resize;}
   .puxador::after{content:"⇄"; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-    width:56px; height:56px; border-radius:50%; background:var(--acento); color:var(--fundo);
+    width:56px; height:56px; border-radius:50%; background:var(--gradiente-botao); color:var(--texto-botao); border:1px solid var(--acento);
     display:grid; place-items:center; font-size:var(--t-sub); box-shadow:0 10px 30px rgba(var(--preto-rgb),.22);}
   .comp-tags{display:flex; justify-content:space-between; margin-top:var(--s2);}
   .comp-tags .obra-tag{color:var(--acento-claro);}
@@ -352,24 +382,24 @@
   .colecao .pitch{color:var(--texto-secundario); font-size:var(--t-corpo); margin-top:var(--s3);
     padding-top:var(--s2); border-top:1px solid var(--borda);}
   .formatos-nota{font-size:var(--t-apoio); color:var(--texto-secundario); max-width:72ch; margin-top:var(--s3);}
-  .investimento{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:var(--s5); align-items:center;
-    padding:var(--s5); border:1px solid var(--acento); background:var(--texto); color:var(--fundo);}
+  /* O marfim ocupa toda a largura; o conteudo segue as margens comuns. */
+  .orcamento-sec{background:var(--texto); color:var(--fundo); color-scheme:light; border-block:1px solid var(--acento);}
+  .investimento{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:var(--s5); align-items:center;}
+  .investimento > div{min-width:0;}
   .investimento h2{margin-top:var(--s2); max-width:18ch;}
   .investimento p{font-size:var(--t-olho); color:var(--superficie); line-height:1.45;}
   .investimento .label{font-size:var(--t-etiqueta); color:var(--superficie);}
   .investimento .investimento-valor{margin-top:var(--s3); color:var(--fundo);}
   .investimento-valor strong{display:block; margin-top:var(--s1); font-size:var(--t-numero);
     font-weight:600; letter-spacing:-.03em; line-height:1.05;}
-  .investimento .btn{margin-top:var(--s3); max-width:100%; white-space:normal; text-align:center; justify-content:center;
-    background:var(--fundo); color:var(--texto); border-color:var(--fundo);}
-  .investimento .btn:hover{background:var(--superficie); color:var(--acento-claro); border-color:var(--superficie);}
+  .investimento .btn{margin-top:var(--s3); max-width:100%; white-space:normal; text-align:center; justify-content:center;}
   .investimento p + p{margin-top:var(--s2);}
   .pend{color:var(--acento); border-bottom:1px dotted var(--acento);}
   .nota-col{margin-top:var(--s3); padding-top:var(--s3); border-top:1px solid var(--borda);}
   .nota-col p{color:var(--texto-secundario); font-size:var(--t-apoio); line-height:1.5; max-width:78ch;}
 
   /* Quadros ilustrativos: frente, perspectiva e flutuacao suave, sem interacao. */
-  .quadros3d-nota{margin-top:var(--s4); font-size:var(--t-apoio); color:var(--texto-secundario);}
+  .quadros3d-nota{margin-top:0; font-size:var(--t-apoio); color:var(--texto-secundario);}
   .quadro3d{min-width:0; margin-top:var(--s2);}
   .quadro3d-cena{height:clamp(200px,18vw,248px); position:relative; display:grid; grid-template-columns:minmax(0,1fr); place-items:center; perspective:950px; pointer-events:none;
     background:radial-gradient(ellipse at 50% 45%, rgba(var(--acento-rgb),.07), transparent 66%);}
@@ -405,7 +435,7 @@
   /* O caminho em dourado acompanha a rolagem. */
   .trilho{position:absolute; left:clamp(18px,2.6vw,40px); top:0; bottom:0; width:4px; background:transparent;}
   .trilho i{display:block; width:100%; height:100%; transform:scaleY(0); transform-origin:top center;
-    background:linear-gradient(180deg, var(--acento-claro), var(--acento));}
+    background:var(--gradiente-ouro);}
   .passo{display:grid; grid-template-columns:auto minmax(0,1fr); gap:var(--s4); align-items:baseline; padding:var(--s4) 0; border-top:1px solid var(--borda);}
   .passo:last-child{border-bottom:1px solid var(--borda);}
   .passo{transition:transform 350ms cubic-bezier(.22,1,.36,1);}
@@ -427,7 +457,7 @@
   .sobre-img img{width:100%; aspect-ratio:4/5; object-fit:cover;}
   .sobre .texto p + p{margin-top:var(--s2);}
   .citacao{margin:var(--s3) 0 0; padding-top:0; font-size:var(--t-sub); font-weight:500; letter-spacing:-.02em; line-height:1.25;}
-  .assina-grande{font-size:var(--t-assina-grande); width:3.4em; margin-top:var(--s2); color:var(--acento);}
+  .assina-grande{font-size:var(--t-assina-grande); width:3.4em; margin-top:var(--s2); color:var(--acento); background-image:var(--gradiente-ouro);}
 
   .aviso-linha{margin-top:var(--s2); font-size:var(--t-olho); color:var(--texto-secundario); max-width:68ch;}
 
@@ -437,8 +467,8 @@
   .faq details:last-of-type{border-bottom:1px solid var(--borda);}
   .faq summary{list-style:none; cursor:pointer; position:relative; padding:var(--s3) var(--s5) var(--s3) 0; font-size:var(--t-sub); font-weight:500; letter-spacing:-.02em;}
   .faq summary::-webkit-details-marker{display:none;}
-  .faq summary::after{content:""; position:absolute; right:14px; top:34px; width:16px; height:2px; background:var(--acento);}
-  .faq summary::before{content:""; position:absolute; right:21px; top:27px; width:2px; height:16px; background:var(--acento); transition:transform 200ms;}
+  .faq summary::after{content:""; position:absolute; right:14px; top:34px; width:16px; height:2px; background:var(--gradiente-ouro);}
+  .faq summary::before{content:""; position:absolute; right:21px; top:27px; width:2px; height:16px; background:var(--gradiente-ouro); transition:transform 200ms;}
   .faq details[open] summary::before{transform:scaleY(0);}
   .faq .resposta{padding:0 var(--s5) var(--s3) 0; color:var(--texto-secundario); max-width:64ch;}
 
@@ -448,7 +478,8 @@
   /* Fundo escuro com um brilho discreto em dourado. */
   .fechamento{position:relative; background:var(--superficie-profunda); color:var(--texto); overflow:hidden;
     display:grid; align-items:center; min-height:clamp(440px, 44vw, 640px);}
-  .fechamento::before{content:""; position:absolute; inset:0; z-index:1; background:radial-gradient(ellipse at 85% 50%, rgba(var(--acento-rgb),.08), transparent 65%); pointer-events:none;}
+  .fechamento::before{content:""; position:absolute; inset:0; z-index:1;
+    background:radial-gradient(ellipse 90% 78% at 50% 52%, rgba(var(--acento-rgb),var(--luz-fechamento)) 0%, rgba(var(--acento-rgb),var(--luz-fechamento)) 22%, rgba(var(--acento-rgb),0) 70%); pointer-events:none;}
   .fechamento .wrap{position:relative; z-index:3; width:100%;}
   @keyframes deriva-capa{0%{translate:0 0; scale:1.03;} 50%{translate:-1.4% 0; scale:1.07;} 100%{translate:.8% 0; scale:1.04;}}
   .fechamento h2{max-width:13ch;}
@@ -505,7 +536,7 @@
   .depoimentos-pista::-webkit-scrollbar{display:none;}
   .fala{margin:0; padding:var(--s3); display:flex; flex-direction:column; gap:var(--s3);
     flex:0 0 calc((100% - var(--s3)) / 2); min-width:0; scroll-snap-align:start; scroll-snap-stop:always;
-    background:var(--superficie); border:1px solid var(--borda);}
+    background:var(--superficie); border:1px solid var(--borda); transition:border-color 180ms;}
   .fala-texto{margin:0;}
   .fala p{font-size:var(--t-corpo); line-height:1.5; color:rgba(var(--texto-rgb),.9); overflow-wrap:anywhere;}
   .fala-autor{display:flex; align-items:center; gap:var(--s2); margin-top:auto;
@@ -520,6 +551,8 @@
   .depoimentos-contador{min-width:5ch; text-align:center; font-variant-numeric:tabular-nums; white-space:nowrap;}
   .depoimentos-seta{width:var(--s5); height:var(--s5); padding:0; justify-content:center; cursor:pointer;}
   .depoimentos-seta svg{width:var(--s3); height:var(--s3);}
+  .depoimentos-seta:hover{background:var(--superficie-elevada); border-color:var(--acento-claro); color:var(--acento-claro);}
+  .depoimentos-seta:disabled:hover{background:transparent; border-color:var(--tinta-decorativa);}
   .depoimentos-seta:disabled{opacity:.4; cursor:default; transform:none;}
   .parede .aviso-linha{color:rgba(var(--texto-rgb),.7);}
   .parede .pend{color:var(--texto); border-bottom-color:var(--texto);}
@@ -534,8 +567,8 @@
   .acervo figure:hover img{transform:scale(1.05);}
   .acervo .alto{grid-row:span 2;}
   .play-selo{position:absolute; left:var(--s2); bottom:var(--s2); width:44px; height:44px; border-radius:50%;
-    background:var(--acento); display:grid; place-items:center;}
-  .play-selo::after{content:""; border-left:12px solid var(--fundo); border-block:8px solid transparent; margin-left:var(--s1);}
+    background:var(--gradiente-botao); border:1px solid var(--acento); display:grid; place-items:center;}
+  .play-selo::after{content:""; border-left:12px solid var(--texto-botao); border-block:8px solid transparent; margin-left:var(--s1);}
   /* video que toca sozinho dentro do acervo: preenche a celula igual a img */
   .video-acervo{position:relative;}
   .video-auto{width:100%; height:100%; object-fit:cover; display:block; background:var(--superficie);}
@@ -561,8 +594,33 @@
     padding:var(--s2) 0; border-bottom:1px solid var(--borda);}
   .menu-cel .btn{margin:var(--s4) var(--gutter) 0; justify-content:center;}
 
+
+  /* Mesma familia de ouro para titulos curtos, numeros e simbolos. */
+  .ouro-defs{position:absolute; width:0; height:0; overflow:hidden; pointer-events:none;}
+  .dourado, .numeros b, .passo b, .chapeu, .formato-medida,
+  .comp-tags .obra-tag, .presente-depois .presente-leg b{color:var(--acento);}
+  .dourado-escuro, .investimento .dourado-escuro{color:var(--ouro-escuro-reflexo);}
+  .dica-lado svg, .galeria-ajuda svg, .depoimentos-seta svg{stroke:url(#ouro-icone);}
+  .coracao path{fill:url(#ouro-icone);}
+  .colecao{border-top-color:var(--tinta-decorativa);}
+  .fala{border-top-color:var(--tinta-decorativa);}
+  @supports ((background-clip:text) or (-webkit-background-clip:text)){
+    .dourado, .numeros b, .passo b, .chapeu, .formato-medida,
+    .comp-tags .obra-tag, .presente-depois .presente-leg b,
+    .dourado-escuro, .investimento .dourado-escuro{
+      background-image:var(--gradiente-ouro); background-clip:text; -webkit-background-clip:text;
+      color:transparent; -webkit-text-fill-color:transparent;
+    }
+    .dourado-escuro, .investimento .dourado-escuro{background-image:var(--gradiente-ouro-escuro);}
+  }
+
   @media (max-width:1000px){
-    .capa-txt .lead{display:none;}
+    .capa{--luz-capa:var(--luz-capa-mobile);}
+    .abstratos-sec{--luz-abstratos:var(--luz-abstratos-mobile);}
+    .fechamento{--luz-fechamento:var(--luz-fechamento-mobile);}
+    .capa-txt .btn-1, .fechamento .btn-claro{--halo-contato:var(--halo-contato-mobile);}
+    .capa-descricao p{display:block;}
+    .capa-descricao p + p{margin-top:var(--s2);}
     .fala{flex-basis:100%;}
     .topo nav{display:none;}
     .abre-menu{display:inline-flex; align-items:center;}
@@ -627,22 +685,24 @@
        O texto em marfim e o mesmo acento dourado mantem a unidade visual. */
     .capa{grid-template-columns:1fr; min-height:0; align-items:end;}
     .capa-img::before{background-image:url(img/capa-ale.webp); background-position:center top;}
-    .capa-img img{left:0; right:0; width:100%; height:62svh; min-height:380px; object-fit:cover; object-position:50% 0%;
+    .capa-img img{left:0; right:0; width:100%; height:var(--capa-foto-altura); object-fit:cover; object-position:50% 0%;
       -webkit-mask-image:linear-gradient(180deg, var(--texto) 58%, transparent 100%);
       mask-image:linear-gradient(180deg, var(--texto) 58%, transparent 100%);}
     .capa::after{background:linear-gradient(180deg, rgba(var(--fundo-rgb),.18) 0%, rgba(var(--fundo-rgb),.72) 26%,
       rgba(var(--fundo-rgb),.96) 48%, rgba(var(--fundo-rgb),1) 72%);}
+    /* No celular, a luz comeca abaixo da altura da foto para preservar suas cores. */
+    .capa::before{top:calc(var(--topo-altura) + var(--capa-foto-altura)); right:0; width:auto;
+      background:radial-gradient(ellipse 65% 75% at 50% 40%, rgba(var(--acento-rgb),var(--luz-capa)) 0%, rgba(var(--acento-rgb),var(--luz-capa)) 18%, rgba(var(--acento-rgb),0) 70%);}
     .capa-txt{grid-column:1; grid-row:1; padding:var(--capa-reserva) var(--gutter) var(--s5);}
     .capa-txt .wrap{display:flex; flex-direction:column;}
     .capa-txt h1 br{display:none;}
     .so-desk{display:none;}
     .so-mob{display:inline;}
     .capa-txt h1{max-width:18ch;}
-    .capa-txt .btns{order:1; align-self:center; flex-direction:column; align-items:stretch; width:100%; max-width:320px;
+    .capa-txt .btns{align-self:center; flex-direction:column; align-items:stretch; width:100%; max-width:320px;
       margin-top:var(--s4); gap:var(--s2); flex-wrap:nowrap;}
     .capa-txt .btns .btn{width:100%; flex:none; min-width:0; justify-content:center; padding:var(--s2) var(--s3); letter-spacing:.03em; white-space:normal; text-align:center;}
     .capa-txt .btns .btn-2{border-color:rgba(var(--texto-rgb),.24);}
-    .investimento{padding:var(--s3);}
     .investimento .btn{width:100%;}
     .comparador img{aspect-ratio:1/1;}
     .estrelas-grade{grid-template-columns:1fr 1fr;}
@@ -658,12 +718,7 @@
     .capa-txt{padding-inline:0;}
     .capa-txt .wrap{max-width:var(--max); padding-inline:var(--gutter);}
     .capa-txt h1{max-width:min(20ch, 62%);}
-    .capa-txt .btns{display:grid; grid-template-columns:max-content max-content;
-      justify-content:start; align-items:center; gap:var(--s1) var(--s2);}
-    .contato-brilho{display:block; width:var(--s5); height:var(--s4); color:var(--tinta-decorativa);}
-    .capa-txt .contato-brilho{grid-column:1; grid-row:1; justify-self:center;}
-    .capa-txt .btn-1{grid-column:1; grid-row:2; border-color:var(--tinta-decorativa);}
-    .capa-txt .btn-2{grid-column:2; grid-row:2;}
+    .capa-txt .btns{display:flex; flex-wrap:wrap; justify-content:flex-start; align-items:center; gap:var(--s2);}
 
     /* Titulo e apoio se equilibram em duas colunas antes das imagens. */
     .destaque{display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
@@ -697,8 +752,13 @@
     .fechamento .wrap{text-align:center;}
     .fechamento h2, .fechamento .lead{margin-inline:auto;}
     .fechamento .btns{flex-direction:column; align-items:center; gap:var(--s2);}
-    .fechamento .btn-claro{border-color:var(--tinta-decorativa);}
-    .fechamento::before{background:radial-gradient(ellipse at 50% 60%, rgba(var(--acento-rgb),.08), transparent 65%);}
+    .fechamento .btn-claro{border-color:var(--acento);}
+  }
+  /* Reflexos de interacao apenas onde ha hover; o toque usa o estado estatico. */
+  @media (hover:hover) and (pointer:fine){
+    .capa-txt .btn-1:hover, .fechamento .btn-claro:hover{border-color:var(--acento);
+      box-shadow:inset 0 1px 0 rgba(var(--texto-rgb),var(--reflexo-contato)), 0 0 var(--s3) rgba(var(--acento-rgb),var(--halo-contato-hover));}
+    .fala:hover{border-color:var(--tinta-decorativa);}
   }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto;}
@@ -709,6 +769,16 @@
 </style>
 </head>
 <body>
+<!-- Revisao visual: faixa ouro, orcamento marfim e detalhes metalicos. -->
+<svg class="ouro-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="ouro-icone" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--acento)"/>
+      <stop offset="48%" stop-color="var(--acento-claro)"/>
+      <stop offset="100%" stop-color="var(--acento)"/>
+    </linearGradient>
+  </defs>
+</svg>
 
 <header class="topo" id="topo">
   <div class="wrap">
@@ -717,12 +787,12 @@
       <a href="#famosos">Famosos</a>
       <a href="#obras">Obras</a>
       <a href="#abstratos">Abstratos</a>
-      <a href="#colecoes">Orçamento</a>
+      <a href="#orcamento">Orçamento</a>
       <a href="#antes-depois">Antes e depois</a>
       <a href="#sobre">Sobre</a>
       <a href="#duvidas">Dúvidas</a>
     </nav>
-    <a class="btn btn-2" href="#colecoes">Ver orçamento</a>
+    <a class="btn btn-2" href="#orcamento">Ver orçamento</a>
     <button type="button" class="abre-menu" id="abreMenu" aria-haspopup="dialog" aria-controls="menuCel">Menu</button>
   </div>
 </header>
@@ -736,12 +806,12 @@
     <a href="#famosos">Famosos</a>
     <a href="#obras">Obras</a>
     <a href="#abstratos">Abstratos</a>
-    <a href="#colecoes">Formatos e orçamento</a>
+    <a href="#orcamento">Formatos e orçamento</a>
     <a href="#antes-depois">Antes e depois</a>
     <a href="#sobre">Sobre a Ale</a>
     <a href="#duvidas">Dúvidas</a>
   </nav>
-  <a class="btn btn-1 wa" data-colecao="" href="#contato">Converse com a artista</a>
+  <a class="btn btn-1 wa" data-colecao="" href="#contato"><svg class="contato-brilho" viewBox="8 0 56 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M28 2C30 13 33 17 44 20C33 23 30 27 28 38C26 27 23 23 12 20C23 17 26 13 28 2Z"/><path d="M52 2C53 7 55 9 60 10C55 11 53 13 52 18C51 13 49 11 44 10C49 9 51 7 52 2Z"/></svg><span class="btn-texto">Converse com a artista</span></a>
 </dialog>
 
 <main>
@@ -756,15 +826,14 @@
     </div>
     <div class="capa-txt">
       <div class="wrap">
-        <h1>A artista que pintou Xuxa, Anitta, Silvio Santos, Ana Maria Braga, entre tantos outros, pode pintar você.</h1>
-        <p class="lead">Cada retrato é uma pintura sobre tela criada por Ale Baggio, em seu ateliê em Curitiba. Da sua fotografia e da sua história nasce uma obra única, feita para atravessar gerações e permanecer na sua família.</p>
+        <h1>A artista que pintou Xuxa, Anitta, Silvio Santos, Ana Maria Braga, entre tantos outros, <span class="dourado">pode pintar você.</span></h1>
         <div class="btns">
-          <svg class="contato-brilho" viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false">
-            <path d="M28 2C30 13 33 17 44 20C33 23 30 27 28 38C26 27 23 23 12 20C23 17 26 13 28 2Z"/>
-            <path d="M52 2C53 7 55 9 60 10C55 11 53 13 52 18C51 13 49 11 44 10C49 9 51 7 52 2Z"/>
-          </svg>
-          <a class="btn btn-1 wa" data-colecao="" href="#contato">Converse com a artista</a>
+          <a class="btn btn-1 wa" data-colecao="" href="#contato"><svg class="contato-brilho" viewBox="8 0 56 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M28 2C30 13 33 17 44 20C33 23 30 27 28 38C26 27 23 23 12 20C23 17 26 13 28 2Z"/><path d="M52 2C53 7 55 9 60 10C55 11 53 13 52 18C51 13 49 11 44 10C49 9 51 7 52 2Z"/></svg><span class="btn-texto">Converse com a artista</span></a>
           <a class="btn btn-2" href="#obras">Ver obras</a>
+        </div>
+        <div class="lead capa-descricao">
+          <p>Cada retrato é uma pintura sobre tela criada por Ale Baggio, em seu ateliê em Curitiba.</p>
+          <p>Da sua fotografia e da sua história nasce uma obra única, feita para atravessar gerações e permanecer na sua família.</p>
         </div>
       </div>
     </div>
@@ -817,7 +886,7 @@
   <!-- RETRATOS E OBRAS: DUAS GALERIAS EM UMA MESMA SECAO -->
   <section class="galeria" id="obras" aria-labelledby="retratos-titulo">
     <div class="wrap destaque" id="destaque">
-      <h2 id="retratos-titulo">Retratos de pessoas, casais, famílias e pets.</h2>
+      <h2 id="retratos-titulo"><span class="dourado">Retratos</span> de pessoas, casais, famílias e pets.</h2>
       <p class="lead">Retratos de crianças, homenagens a quem já partiu, obras para consultórios e composições especiais. Pinturas sobre tela criadas por Ale Baggio.</p>
       <div class="trio" role="region" aria-label="Tipos de retrato" tabindex="0">
         <figure class="astro">
@@ -876,17 +945,17 @@
     </div>
     <div class="wrap">
       <p class="galeria-ajuda" id="galeria-ajuda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 12h18m-4-4 4 4-4 4M7 8l-4 4 4 4"/></svg>Arraste para explorar. Você também pode usar as setas do teclado.</p>
-      <div class="btns"><a class="btn btn-1 wa" data-colecao="" href="#contato">Converse com a artista</a></div>
+      <div class="btns"><a class="btn btn-1 wa" data-colecao="" href="#contato"><svg class="contato-brilho" viewBox="8 0 56 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M28 2C30 13 33 17 44 20C33 23 30 27 28 38C26 27 23 23 12 20C23 17 26 13 28 2Z"/><path d="M52 2C53 7 55 9 60 10C55 11 53 13 52 18C51 13 49 11 44 10C49 9 51 7 52 2Z"/></svg><span class="btn-texto">Converse com a artista</span></a></div>
     </div>
   </section>
 
   <!-- ABSTRATOS -->
   <section id="abstratos" class="abstratos-sec" aria-labelledby="abstratos-titulo">
     <div class="wrap abstratos-intro">
-      <h2 id="abstratos-titulo">Obras abstratas</h2>
+      <h2 id="abstratos-titulo"><span class="dourado">Obras abstratas</span></h2>
       <div>
         <p class="lead">Obras abstratas com formas, texturas e composições que dialogam com o seu ambiente e com o seu gosto.</p>
-        <div class="btns"><a class="btn btn-1 wa" data-colecao="uma obra abstrata" href="#contato">Converse com a artista</a></div>
+        <div class="btns"><a class="btn btn-1 wa" data-colecao="uma obra abstrata" href="#contato"><svg class="contato-brilho" viewBox="8 0 56 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M28 2C30 13 33 17 44 20C33 23 30 27 28 38C26 27 23 23 12 20C23 17 26 13 28 2Z"/><path d="M52 2C53 7 55 9 60 10C55 11 53 13 52 18C51 13 49 11 44 10C49 9 51 7 52 2Z"/></svg><span class="btn-texto">Converse com a artista</span></a></div>
       </div>
     </div>
     <!-- Inserir as imagens de obras abstratas em figuras .obra dentro da pista abaixo.
@@ -902,21 +971,25 @@
     </div>
   </section>
 
-  <!-- FORMATOS E ORCAMENTO PERSONALIZADO -->
-  <section id="colecoes" aria-labelledby="formatos-titulo" aria-describedby="investimento-titulo">
-    <div class="wrap">
-      <div class="investimento">
+  <!-- ORCAMENTO PERSONALIZADO: SECAO MARFIM -->
+  <section class="orcamento-sec" id="orcamento" aria-labelledby="formatos-titulo" aria-describedby="investimento-titulo">
+    <div class="wrap investimento">
         <div>
-          <p class="label">Orçamento personalizado</p>
-          <h2 id="formatos-titulo">Uma obra criada para você</h2>
-          <p class="investimento-valor" id="investimento-titulo">Pinturas sobre tela a partir de <strong>R$ 4.900.</strong></p>
+          <p class="label dourado-escuro">Orçamento personalizado</p>
+          <h2 id="formatos-titulo">Uma obra <span class="dourado-escuro">criada para você</span></h2>
+          <p class="investimento-valor" id="investimento-titulo">Pinturas sobre tela a partir de <strong class="dourado-escuro">R$ 4.900.</strong></p>
         </div>
         <div>
           <p class="lead">Cada encomenda recebe um orçamento personalizado, de acordo com as dimensões da tela, a quantidade de pessoas e a composição.</p>
           <p class="lead">Converse diretamente com a artista para escolher o formato ideal para sua obra.</p>
-          <a class="btn btn-1 wa" data-colecao="uma obra sob encomenda" href="#contato">Solicitar orçamento</a>
+          <a class="btn btn-1 wa" data-colecao="uma obra sob encomenda" href="#contato"><svg class="contato-brilho" viewBox="8 0 56 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M28 2C30 13 33 17 44 20C33 23 30 27 28 38C26 27 23 23 12 20C23 17 26 13 28 2Z"/><path d="M52 2C53 7 55 9 60 10C55 11 53 13 52 18C51 13 49 11 44 10C49 9 51 7 52 2Z"/></svg><span class="btn-texto">Solicitar orçamento</span></a>
         </div>
-      </div>
+    </div>
+  </section>
+
+  <!-- FORMATOS ILUSTRATIVOS -->
+  <section id="colecoes" aria-label="Possibilidades de formato" aria-describedby="quadros3d-nota">
+    <div class="wrap">
       <p class="quadros3d-nota" id="quadros3d-nota">Algumas possibilidades de formato. Os modelos são ilustrativos; a composição é criada para a sua encomenda.</p>
       <div class="colecoes">
         <article class="colecao col-1" aria-labelledby="formato-quadrado">
@@ -973,7 +1046,7 @@
   <section id="trajetoria">
     <div class="wrap prova">
       <div>
-        <h2>Dezesseis anos de trajetória na arte.</h2>
+        <h2>Dezesseis anos de <span class="dourado">trajetória na arte.</span></h2>
         <p class="corpo">Formada em Design de Produto e em Artes Plásticas, Ale Baggio já participou de mostras e exposições pelo Brasil. Ale também criou uma obra destinada à Saphira &amp; Ventura Gallery, em Nova York.</p>
         <p class="corpo">Seus retratos estão presentes em lares nos Estados Unidos, na Alemanha, em Portugal, no Paraguai, na Argentina e na Itália.</p>
         <div class="numeros">
@@ -1000,8 +1073,8 @@
       <div class="imprensa-esq">
       <div class="imprensa-txt">
         <p class="chapeu">Na imprensa</p>
-        <h2>Ela virou pauta.</h2>
-        <blockquote class="aspas" id="manchete" data-texto="A artista plástica que ganhou o coração dos famosos através de seus retratos.">A artista plástica que ganhou o coração dos famosos através de seus retratos.</blockquote>
+        <h2>Ela virou <span class="dourado">pauta.</span></h2>
+        <blockquote class="aspas" id="manchete" data-texto="A artista plástica que ganhou o coração dos famosos através de seus retratos."><span class="citacao-texto dourado">A artista plástica que ganhou o coração dos famosos através de seus retratos.</span></blockquote>
         <p class="credito">Hooks Magazine · fevereiro de 2022</p>
         <p class="lead">A revista Atitude contou a história antes, em dezembro de 2021: a menina tímida que se encontrava no lápis e no papel, hoje pintando os rostos que o país reconhece.</p>
         <p class="lead">O retrato dela já foi exibido ao vivo no <b>Mais Você</b>, da TV Globo, com a própria Ana Maria Braga ao lado da tela.</p>
@@ -1026,7 +1099,7 @@
   <section id="antes-depois">
     <div class="wrap ad-grid">
       <div class="ad-texto">
-        <h2>Uma foto no celular<br class="quebra"> vira uma obra na parede.</h2>
+        <h2>Uma foto no celular<br class="quebra"> vira <span class="dourado">uma obra na parede.</span></h2>
         <p class="lead">Ela usa a sua foto como referência e pinta a expressão, a luz e o jeito da pessoa. Arraste a alça para comparar.</p>
         <div class="btns"><a class="btn btn-2" href="#colecoes">Ver formatos</a></div>
       </div>
@@ -1044,7 +1117,7 @@
   <!-- O PRESENTE PERFEITO -->
   <section id="presente-perfeito" class="presente-sec">
     <div class="wrap">
-      <h2>Um presente que emociona. <svg class="coracao" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21.2s-7-4.5-9.6-8.3C.6 10.3 1.4 6.6 4.3 5.1c2.3-1.2 4.8-.5 6.2 1.4L12 8.4l1.5-1.9c1.4-1.9 3.9-2.6 6.2-1.4 2.9 1.5 3.7 5.2 1.9 7.8-2.6 3.8-9.6 8.3-9.6 8.3z" fill="currentColor"/></svg></h2>
+      <h2>Um presente que <span class="dourado">emociona.</span> <svg class="coracao" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21.2s-7-4.5-9.6-8.3C.6 10.3 1.4 6.6 4.3 5.1c2.3-1.2 4.8-.5 6.2 1.4L12 8.4l1.5-1.9c1.4-1.9 3.9-2.6 6.2-1.4 2.9 1.5 3.7 5.2 1.9 7.8-2.6 3.8-9.6 8.3-9.6 8.3z" fill="currentColor"/></svg></h2>
       <p class="lead">Uma pessoa especial, um vínculo, uma lembrança que vocês compartilham. Uma pintura sobre tela pode transformar essa história em um presente criado para quem vai recebê-lo.</p>
       <div class="presente">
         <div class="presente-antes">
@@ -1068,7 +1141,7 @@
   <!-- COMO FUNCIONA -->
   <section id="como-funciona">
     <div class="wrap">
-      <h2>Da conversa à parede, em três passos.</h2>
+      <h2>Da conversa à parede, <span class="dourado">em três passos.</span></h2>
       <div class="passos" id="passos">
         <div class="trilho"><i id="trilhoCheio"></i></div>
         <div class="passo">
@@ -1101,7 +1174,7 @@
     <div class="wrap sobre">
       <div class="sobre-img"><img src="img/ale-sobre.webp" alt="Ale Baggio no ateliê, com o pincel na mão, entre telas" loading="lazy"></div>
       <div class="texto">
-        <h2>Conheça Ale Baggio.</h2>
+        <h2>Conheça <span class="dourado">Ale Baggio.</span></h2>
         <div class="corpo bloco">
           <p>Ale Baggio desenha desde criança. Quando era uma menina tímida, encontrava no lápis e no papel uma forma de se expressar. Vem de uma família ligada à pintura e à música.</p>
           <p>Formada em Design de Produto e em Artes Plásticas, casou-se cedo, foi mãe aos 23 anos e passou um período longe dos pincéis. Na pandemia, percebeu que sua arte podia levar amor, autoestima e alegria para a vida das pessoas.</p>
@@ -1116,7 +1189,7 @@
   <!-- PAREDE DE COMENTÁRIOS -->
   <section class="parede" id="comentarios">
     <div class="wrap">
-      <h2>O que dizem quando a obra chega.</h2>
+      <h2>O que dizem <span class="dourado">quando a obra chega.</span></h2>
     </div>
     <div class="parede-palco">
       <div class="depoimentos-pista" id="depoimentosPista" role="region" aria-roledescription="carrossel" aria-label="Depoimentos de clientes" aria-describedby="depoimentosAjuda" tabindex="0">
@@ -1155,14 +1228,14 @@
       </div>
     </div>
     <div class="wrap">
-      <div class="btns"><a class="btn btn-1 wa" data-colecao="" href="#contato">Converse com a artista</a></div>
+      <div class="btns"><a class="btn btn-1 wa" data-colecao="" href="#contato"><svg class="contato-brilho" viewBox="8 0 56 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M28 2C30 13 33 17 44 20C33 23 30 27 28 38C26 27 23 23 12 20C23 17 26 13 28 2Z"/><path d="M52 2C53 7 55 9 60 10C55 11 53 13 52 18C51 13 49 11 44 10C49 9 51 7 52 2Z"/></svg><span class="btn-texto">Converse com a artista</span></a></div>
     </div>
   </section>
 
   <!-- DÚVIDAS -->
   <section id="duvidas">
     <div class="wrap">
-      <h2>Antes de encomendar.</h2>
+      <h2>Antes de <span class="dourado">encomendar.</span></h2>
       <div class="faq">
         <details open>
           <summary>Por que escolher uma obra de Ale Baggio?</summary>
@@ -1196,7 +1269,7 @@
   <section id="acervo" class="acervo-sec">
     <div class="wrap">
       <div class="acervo-topo">
-        <h2>Obras entregues e vídeos.</h2>
+        <h2><span class="dourado">Obras entregues</span> e vídeos.</h2>
         <p class="lead">Registros de obras entregues e vídeos das pinturas, para conhecer outros trabalhos da artista.</p>
       </div>
       <div class="acervo">
@@ -1255,14 +1328,10 @@
   <!-- FECHAMENTO -->
   <section class="fechamento" id="contato">
     <div class="wrap">
-      <h2>Quem você quer eternizar?</h2>
+      <h2>Quem você quer <span class="dourado">eternizar?</span></h2>
       <p class="lead">Converse diretamente com a artista sobre as pessoas e as histórias que deseja transformar em uma pintura sobre tela. O atendimento é feito pela própria Ale Baggio.</p>
       <div class="btns">
-        <svg class="contato-brilho" viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true" focusable="false">
-          <path d="M28 2C30 13 33 17 44 20C33 23 30 27 28 38C26 27 23 23 12 20C23 17 26 13 28 2Z"/>
-          <path d="M52 2C53 7 55 9 60 10C55 11 53 13 52 18C51 13 49 11 44 10C49 9 51 7 52 2Z"/>
-        </svg>
-        <a class="btn btn-claro wa" data-colecao="" href="#contato">Converse com a artista</a>
+        <a class="btn btn-claro wa" data-colecao="" href="#contato"><svg class="contato-brilho" viewBox="8 0 56 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M28 2C30 13 33 17 44 20C33 23 30 27 28 38C26 27 23 23 12 20C23 17 26 13 28 2Z"/><path d="M52 2C53 7 55 9 60 10C55 11 53 13 52 18C51 13 49 11 44 10C49 9 51 7 52 2Z"/></svg><span class="btn-texto">Converse com a artista</span></a>
       </div>
     </div>
   </section>
@@ -1773,8 +1842,8 @@
   var tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
   tl.from('.capa-img img', { scale: 1.06, duration: 1.8 })
     .from('.capa-txt h1', { yPercent: 14, duration: 1.1 }, '-=1.2')
-    .from('.capa-txt .lead', { y: 18, duration: .9 }, '-=.85')
-    .from('.capa-txt .btn', { y: 14, duration: .7, stagger: .08 }, '-=.7');
+    .from('.capa-txt .btn', { y: 14, duration: .7, stagger: .08 }, '-=.7')
+    .from('.capa-txt .lead', { y: 18, duration: .9 }, '-=.85');
 
   /* parallax da capa: a foto aproxima devagar dentro da propria coluna (sem
      descer, para nao abrir vao branco) e o texto sobe um pouco. */
@@ -1825,6 +1894,7 @@
     quandoAparecer(manchete, function () {
       manchete.textContent = '';
       var feito = document.createElement('span');
+      feito.className = 'citacao-texto dourado';
       var cursor = document.createElement('i');
       cursor.className = 'cursor';
       var falta = document.createElement('span');
