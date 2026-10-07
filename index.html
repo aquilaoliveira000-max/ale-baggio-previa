@@ -405,12 +405,12 @@
   .informacoes-item p{font-size:var(--t-apoio); color:var(--texto-secundario); line-height:1.5;}
   .informacoes-item strong{font-weight:500; color:var(--texto);}
   .formatos-nota{margin:0;}
-  /* Um ouro mais fechado sustenta a leitura dos paragrafos brancos. */
+  /* Um ouro mais fechado sustenta a leitura dos paragrafos brancos. A textura de tela entra a 60% para aparecer sem clarear o fundo. */
   .orcamento-sec{position:relative; isolation:isolate; overflow:hidden; background:var(--gradiente-orcamento);
     color:var(--texto-botao); border-block:1px solid var(--acento-claro);}
   .orcamento-sec::before{content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
     background-image:var(--imagem-orcamento); background-size:cover; background-position:center;
-    opacity:.14; mix-blend-mode:multiply;}
+    opacity:.6; mix-blend-mode:multiply;}
   .orcamento-sec > .wrap{position:relative; z-index:1;}
   .orcamento-sec ::selection{background:var(--fundo); color:var(--texto-botao);}
   .investimento{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:var(--s5); align-items:center;}
