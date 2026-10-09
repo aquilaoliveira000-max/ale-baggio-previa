@@ -277,7 +277,12 @@
   .retrato-dela figcaption{margin-top:var(--s1); padding-top:var(--s1); border-top:1px solid var(--borda); font-size:var(--t-apoio); color:var(--texto-secundario);}
 
   /* imprensa, clima de banca de revista */
-  .imprensa-sec{background:var(--superficie);}
+  /* TESTE: luz de galeria. A secao segue escura; um foco dourado suave ilumina
+     as capas e dois filetes finos marcam o bloco. Nenhuma cor nova na pagina. */
+  .imprensa-sec{position:relative; isolation:isolate; overflow:hidden; background:var(--superficie-quente);
+    border-block:1px solid var(--tinta-decorativa);}
+  .imprensa-sec::before{content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+    background:radial-gradient(ellipse 44% 78% at 74% 48%, rgba(var(--acento-rgb),.30) 0%, rgba(var(--acento-rgb),.10) 42%, rgba(var(--acento-rgb),0) 72%);}
   .imprensa-editorial{display:grid; grid-template-columns:1fr 1fr; gap:var(--s6); align-items:start;}
   .imprensa-esq{display:flex; flex-direction:column; gap:var(--s4);}
   .banca{align-self:center;}
@@ -294,7 +299,7 @@
   .banca{display:flex; flex-direction:column; align-items:center;}
   .par-capas{display:flex; flex-wrap:nowrap; align-items:flex-start; justify-content:center; width:100%;}
   .rev, .rev-foto{margin:0;}
-  .rev{width:60%; flex:none; transition:transform 400ms cubic-bezier(.22,1,.36,1);}
+  .rev{width:64%; flex:none; transition:transform 400ms cubic-bezier(.22,1,.36,1);}
   .rev img{width:100%; height:auto; box-shadow:0 30px 60px -26px rgba(var(--preto-rgb),.55);}
   .rev-a{transform:rotate(-5deg); z-index:2;}
   .rev-b{margin-left:-20%; margin-top:var(--s6); transform:rotate(4.5deg); z-index:1;}
@@ -679,6 +684,7 @@
     .ad-grid{grid-template-columns:1fr; gap:var(--s4);}
     .ad-texto .quebra{display:none;}
     .imprensa-editorial{grid-template-columns:1fr; gap:var(--s5);}
+    .imprensa-sec::before{background:radial-gradient(ellipse 90% 34% at 50% 76%, rgba(var(--acento-rgb),.30) 0%, rgba(var(--acento-rgb),.10) 45%, rgba(var(--acento-rgb),0) 75%);}
     .imprensa-esq{display:contents;}
     .imprensa-txt{order:1;}
     .banca{order:2;}
