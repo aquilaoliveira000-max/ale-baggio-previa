@@ -76,6 +76,11 @@
     --gradiente-botao:linear-gradient(115deg, var(--ouro-botao-inicio) 0%, var(--ouro-botao-reflexo) 48%, var(--ouro-botao-fim) 100%);
     --gradiente-ouro-escuro:linear-gradient(115deg, var(--ouro-escuro-inicio) 0%, var(--ouro-escuro-reflexo) 48%, var(--ouro-escuro-fim) 100%);
     --gradiente-faixa:linear-gradient(110deg, var(--ouro-faixa-inicio) 0%, var(--ouro-faixa-reflexo) 48%, var(--ouro-faixa-fim) 100%);
+    --marfim:#ECE5D6;
+    --marfim-tinta:#1B1915;
+    --marfim-tinta-2:#4A443B;
+    --marfim-bronze:#7A4F17;
+    --marfim-borda:#CFC6B2;
     --fundo-rgb:17,17,17;
     --texto-rgb:242,238,231;
     --acento-rgb:212,163,72;
@@ -277,7 +282,12 @@
   .retrato-dela figcaption{margin-top:var(--s1); padding-top:var(--s1); border-top:1px solid var(--borda); font-size:var(--t-apoio); color:var(--texto-secundario);}
 
   /* imprensa, clima de banca de revista */
-  .imprensa-sec{background:var(--superficie);}
+  /* TESTE: imprensa em marfim. Os tokens de cor sao trocados so dentro da secao,
+     entao titulo, citacao e legendas viram escuros sem regra nova para cada um. */
+  .imprensa-sec{--superficie:var(--marfim); --texto:var(--marfim-tinta); --texto-secundario:var(--marfim-tinta-2);
+    --acento:var(--marfim-bronze); --acento-claro:var(--marfim-bronze); --borda:var(--marfim-borda);
+    --gradiente-ouro:linear-gradient(115deg, var(--marfim-bronze) 0%, var(--ouro-escuro-reflexo) 48%, var(--marfim-bronze) 100%);
+    background:var(--marfim); color:var(--marfim-tinta);}
   .imprensa-editorial{display:grid; grid-template-columns:1fr 1fr; gap:var(--s6); align-items:start;}
   .imprensa-esq{display:flex; flex-direction:column; gap:var(--s4);}
   .banca{align-self:center;}
