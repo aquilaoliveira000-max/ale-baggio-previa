@@ -273,7 +273,7 @@
     }
   .prova .corpo + .corpo{margin-top:var(--s2);}
   .retrato-dela{margin:0;}
-  .retrato-dela img{width:100%; aspect-ratio:4/5; object-fit:cover; background:var(--superficie);}
+  .retrato-dela img{width:100%; aspect-ratio:4/5; object-fit:cover; object-position:50% 0%; background:var(--superficie);}
   .retrato-dela figcaption{margin-top:var(--s1); padding-top:var(--s1); border-top:1px solid var(--borda); font-size:var(--t-apoio); color:var(--texto-secundario);}
 
   /* imprensa, clima de banca de revista */
@@ -667,7 +667,7 @@
     .prova, .sobre{grid-template-columns:1fr;}
     .abstratos-intro{grid-template-columns:1fr; gap:var(--s3);}
     .retrato-dela{order:-1;}
-    .retrato-dela img{aspect-ratio:16/10; object-position:50% 18%;}
+    .retrato-dela img{aspect-ratio:16/10; object-position:50% 0%;}
     .numeros{grid-template-columns:repeat(2,minmax(0,1fr));}
     .colecoes{grid-template-columns:1fr; grid-template-rows:none; gap:var(--s2);}
     .colecao{display:block; grid-row:auto; padding:var(--s4);}
@@ -1210,9 +1210,9 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
       <p class="quadros3d-nota" id="quadros3d-nota">Algumas possibilidades de formato. Os modelos são ilustrativos; a composição é criada para a sua encomenda.</p>
       <div class="colecoes">
         <article class="colecao col-1" aria-labelledby="formato-quadrado">
-          <h3 id="formato-quadrado">Quadrado</h3>
-          <div class="formato-medida"><p>1,00 × 1,00 m</p><span class="orientacao-fixa">Mesma medida nos dois lados</span></div>
-          <div class="quadro3d" data-nome="Quadrado" data-parado="true" style="--q-largura:140px;--q-formato:1 / 1;--q-fase:0s;">
+          <h3 id="formato-quadrado">Pequeno</h3>
+          <div class="formato-medida"><p>1,00 × 1,00 m</p></div>
+          <div class="quadro3d" data-nome="Pequeno" data-parado="true" style="--q-largura:140px;--q-formato:1 / 1;--q-fase:0s;">
             <div class="quadro3d-cena" role="img" aria-label="Modelo ilustrativo de tela quadrada, 1,00 por 1,00 metro" aria-describedby="quadros3d-nota">
               <div class="quadro3d-sombra" aria-hidden="true"></div>
               <div class="quadro3d-balanco" aria-hidden="true"><div class="quadro3d-objeto" id="quadro3d-quadrado">
