@@ -923,7 +923,12 @@
   .investimento-descricao::before{content:""; position:absolute; inset:0; z-index:-1; background:var(--gradiente-botao);}
   .beija-flor{position:absolute; z-index:-2; right:calc(100% - 70px); top:50%; transform:translateY(-50%); width:clamp(220px, 21vw, 320px); height:auto;
     pointer-events:none; filter:drop-shadow(0 6px 12px rgba(var(--preto-rgb),.35));}
-  @media (max-width:700px){ .beija-flor{z-index:1; right:-12px; left:auto; top:-74px; transform:none; width:150px;} }
+  @media (max-width:700px){
+    .investimento{position:relative;}
+    .investimento-descricao{position:static; isolation:auto; background:var(--gradiente-botao) !important;}
+    .investimento-descricao::before{display:none;}
+    .beija-flor{z-index:1; right:calc(var(--gutter) * -0.5); left:auto; top:44px; transform:none; width:min(38vw, 160px);}
+  }
   /* capa no celular: foto ancorada a esquerda e texto um pouco mais abaixo, para ver o pincel na mao */
   @media (max-width:700px){
     :root{--capa-foto-altura:125.1vw; --capa-reserva:min(calc(var(--capa-foto-altura) * .82), 52svh);}
