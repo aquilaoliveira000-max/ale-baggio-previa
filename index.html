@@ -284,10 +284,10 @@
   .chapeu{font-size:var(--t-etiqueta); font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--acento); margin-bottom:var(--s3);}
   .imprensa-txt h2{max-width:12ch;}
   .aspas{margin:var(--s4) 0 0; padding-left:var(--s3); border-left:2px solid var(--acento);
-    font-size:var(--t-sub); line-height:1.32; font-weight:500; letter-spacing:-.02em; color:var(--acento);}
+    font-size:var(--t-sub); line-height:1.32; font-weight:500; letter-spacing:-.02em; color:var(--texto);}
   .credito{margin-top:var(--s2); font-size:var(--t-apoio); color:var(--texto-secundario);}
   .aspas .falta{color:transparent;}
-  .aspas .cursor{display:inline-block; width:3px; height:.92em; margin-left:2px; background:var(--gradiente-ouro);
+  .aspas .cursor{display:inline-block; width:3px; height:.92em; margin-left:2px; background:var(--texto);
     vertical-align:-.08em; animation:pisca 1s steps(1) infinite;}
   @keyframes pisca{50%{opacity:0;}}
   .imprensa-txt .lead{margin-top:var(--s4);}
@@ -328,10 +328,10 @@
   .pista{display:flex; gap:var(--s5); padding-inline:var(--gutter); padding-bottom:var(--s3); width:max-content; user-select:none;}
   /* a margem zerada e obrigatoria: o figure vem do navegador com recuo lateral */
   /* Cada quadro tem o mesmo formato 4:5, sem legenda.
-     contain preserva a obra inteira, inclusive os paineis horizontais. */
+     as imagens ja sao gravadas em 4:5 e preenchem a moldura. */
   .obra{width:clamp(260px,32vw,440px); aspect-ratio:4/5; flex:none; margin:0;
     overflow:hidden; background:var(--superficie); border:1px solid var(--borda);}
-  .obra img{width:100%; height:100%; object-fit:contain; pointer-events:none;}
+  .obra img{width:100%; height:100%; object-fit:cover; pointer-events:none;}
   .galeria-ajuda{display:flex; align-items:center; justify-content:center; gap:var(--s2); color:var(--texto-secundario); font-size:var(--t-apoio);}
   .galeria-ajuda svg{width:24px; height:24px; color:var(--acento-claro); flex:none;}
 
@@ -370,6 +370,8 @@
 
   /* presente perfeito: uma historia em duas partes, lidas da esquerda para a
      direita. As quatro fotos tem a mesma altura, entao a linha fecha reta. */
+  /* o video do presente: vertical, centrado, sem corte */
+  .presente-video{margin:var(--s5) auto 0; width:min(100%, 420px); aspect-ratio:9/16; overflow:hidden; background:var(--superficie); border:1px solid var(--borda);}
   .presente{display:grid; grid-template-columns:1fr 1fr; gap:var(--s5); margin-top:var(--s5);}
   .presente-fotos{display:grid; grid-template-columns:1fr 1fr; gap:var(--s2);}
   .presente-fotos figure{margin:0; overflow:hidden; background:var(--superficie);}
@@ -484,7 +486,7 @@
   /* sobre */
   .sobre{display:grid; grid-template-columns:.85fr 1.15fr; gap:var(--s7); align-items:center;}
   .sobre-img{overflow:hidden;}
-  .sobre-img img{width:100%; aspect-ratio:4/5; object-fit:cover;}
+  .sobre-img img{width:100%; aspect-ratio:1/1; object-fit:cover;}
   .sobre .texto p + p{margin-top:var(--s2);}
   .citacao{margin:var(--s3) 0 0; padding-top:0; font-size:var(--t-sub); font-weight:500; letter-spacing:-.02em; line-height:1.25;}
   .assina-grande{font-size:var(--t-assina-grande); width:3.4em; margin-top:var(--s2); color:var(--acento); background-image:var(--gradiente-ouro);}
@@ -762,7 +764,8 @@
     .investimento{gap:var(--s6);}
 
     .presente-sec > .wrap{display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
-      column-gap:var(--s6); align-items:end;}
+      column-gap:var(--s6); align-items:center;}
+    .presente-sec .presente-video{margin-top:0; justify-self:end;}
     .presente-sec > .wrap > .lead{margin-top:0; max-width:44ch;}
     .presente-sec .presente{grid-column:1 / -1; min-width:0;}
     .acervo-topo{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--s6);}
@@ -794,6 +797,25 @@
     *,*::before,*::after{animation:none !important; transition:none !important;}
     .marquee{overflow-x:auto;}
     .marquee-grupo[aria-hidden="true"], .mosaico-grupo[aria-hidden="true"]{display:none;}
+  }
+  /* depoimentos como prints de comentarios do Instagram: mural em colunas,
+     os curtos se empilham entre os longos. Cartao escuro como o app em modo escuro. */
+  .ig-mural{columns:3 280px; column-gap:var(--s2);}
+  .ig-com{break-inside:avoid; margin:0 0 var(--s2); display:flex; gap:12px; align-items:flex-start; padding:16px 18px;
+    background:#0B0B0B; border:1px solid #262626; color:#F5F5F5; font-family:-apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;}
+  .ig-av{flex:none; width:40px; height:40px; border-radius:50%; padding:2px; background:linear-gradient(45deg,#FEDA75,#FA7E1E,#D62976,#962FBF,#4F5BD5);}
+  .ig-av i{display:grid; place-items:center; width:100%; height:100%; border-radius:50%; border:2px solid #0B0B0B; background:#262626;
+    font-style:normal; font-weight:600; font-size:15px; color:#F5F5F5;}
+  .ig-com blockquote{margin:0; min-width:0;}
+  .ig-com p{font-size:14px; line-height:1.45; overflow-wrap:anywhere;}
+  .ig-perfil{font-weight:600; margin-right:4px;}
+  .ig-selo{width:12px; height:12px; vertical-align:-1px; margin-right:4px;}
+  .ig-link{color:#E0F1FF; color:#A8C7FA;}
+  .ig-com figcaption{margin-top:8px; font-size:12px; color:#A8A8A8;}
+  .ig-fonte{margin-top:var(--s3); font-size:var(--t-apoio); color:var(--texto-secundario); text-align:center;}
+  .ig-mais{display:flex; margin:var(--s2) auto 0;}
+  @media (max-width:700px){
+    .ig-mural.recolhido{max-height:1150px; overflow:hidden; -webkit-mask-image:linear-gradient(180deg,#000 82%,transparent); mask-image:linear-gradient(180deg,#000 82%,transparent);}
   }
 </style>
 </head>
@@ -897,10 +919,10 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
       <div class="coluna" data-sentido="baixo">
         <figure class="tile"><img src="img/celeb-silviosantos.webp" alt="Silvio Santos com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Silvio Santos</figcaption></figure>
         <figure class="tile"><img src="img/celeb-nicolebahls.webp" alt="Nicole Bahls com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Nicole Bahls</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-falabella.webp" alt="Miguel Falabella com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Miguel Falabella</figcaption></figure>
+        <figure class="tile"><img src="img/celeb-falabella.webp" alt="Ana Maria Braga com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Ana Maria Braga</figcaption></figure>
         <figure class="tile"><img src="img/celeb-simony.webp" alt="Simony com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Simony</figcaption></figure>
         <figure class="tile"><img src="img/celeb-buarque-bia.webp" alt="Buarque e Bia Miranda com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Buarque e Bia Miranda</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/bellafalconi.webp" alt="Bella Falconi com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Bella Falconi</figcaption></figure>
+        <figure class="tile"><img src="img/estrelas/bellafalconi.webp" alt="Miguel Falabella com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Miguel Falabella</figcaption></figure>
         <figure class="tile"><img src="img/estrelas/paola_antonini.webp" alt="Paola Antonini com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Paola Antonini</figcaption></figure>
         <figure class="tile"><img src="img/estrelas/mariohenrique.webp" alt="Mario Henrique com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Mario Henrique</figcaption></figure>
         <figure class="tile"><img src="img/estrelas/iarakilaris.webp" alt="Iara Kilaris com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Iara Kilaris</figcaption></figure>
@@ -910,14 +932,13 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
       <div class="coluna" data-sentido="cima">
         <figure class="tile"><img src="img/celeb-julianapaes.webp" alt="Juliana Paes com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Juliana Paes</figcaption></figure>
         <figure class="tile"><img src="img/celeb-zeze.webp" alt="Zezé Di Camargo e Graciele com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Zezé Di Camargo e Graciele</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-gretchen.webp" alt="Gretchen com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Gretchen</figcaption></figure>
+        <figure class="tile"><img src="img/celeb-gretchen.webp" alt="Jottape com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Jottape</figcaption></figure>
         <figure class="tile"><img src="img/celeb-luansantana.webp" alt="Luan Santana com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Luan Santana</figcaption></figure>
         <figure class="tile"><img src="img/estrelas/fiuk.webp" alt="Fiuk com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Fiuk</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-luciano.webp" alt="Luciano Camargo e família com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Luciano Camargo e família</figcaption></figure>
+        <figure class="tile"><img src="img/celeb-luciano.webp" alt="Bianca Andrade (Boca Rosa) com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Bianca Andrade (Boca Rosa)</figcaption></figure>
         <figure class="tile"><img src="img/estrelas/ludmilla.webp" alt="Ludmilla com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Ludmilla</figcaption></figure>
         <figure class="tile"><img src="img/estrelas/roupanova.webp" alt="Fábio Nestares (Roupa Nova) com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Fábio Nestares (Roupa Nova)</figcaption></figure>
         <figure class="tile"><img src="img/estrelas/caroldallarosaa.webp" alt="Carol Dallarosa com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Carol Dallarosa</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/igoorcostalves.webp" alt="Igor Costa Alves com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Igor Costa Alves</figcaption></figure>
         <figure class="tile"><img src="img/estrelas/myrianrios.webp" alt="Myrian Rios com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Myrian Rios</figcaption></figure>
       </div>
       <div class="coluna" data-sentido="baixo">
@@ -929,7 +950,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
         <figure class="tile"><img src="img/estrelas/bypamella.webp" alt="Pamella Lunardi com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Pamella Lunardi</figcaption></figure>
         <figure class="tile"><img src="img/estrelas/eduardocosta.webp" alt="Eduardo Costa com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Eduardo Costa</figcaption></figure>
         <figure class="tile"><img src="img/estrelas/djbatata.webp" alt="Dj Batata com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Dj Batata</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/scheilacarvalhooficial.webp" alt="Scheila Carvalho com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Scheila Carvalho</figcaption></figure>
+        <figure class="tile"><img src="img/estrelas/scheilacarvalhooficial.webp" alt="Julia Schiavi com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Julia Schiavi</figcaption></figure>
         <figure class="tile"><img src="img/estrelas/natalia.deodato.webp" alt="Natália Deodato com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Natália Deodato</figcaption></figure>
         <figure class="tile"><img src="img/estrelas/reynaldogianecchini.webp" alt="Reynaldo Gianecchini com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Reynaldo Gianecchini</figcaption></figure>
       </div>
@@ -1009,6 +1030,8 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
         <figure class="obra"><img src="img/obra-10.webp" alt="Retrato de homem sorrindo, pintado por Ale Baggio" loading="lazy"></figure>
         <figure class="obra"><img src="img/obra-11.webp" alt="Retrato de família com os dois pais e duas filhas, pintado por Ale Baggio" loading="lazy"></figure>
         <figure class="obra"><img src="img/obra-12.webp" alt="Retrato de mulher com a mão no cabelo, pintado por Ale Baggio" loading="lazy"></figure>
+        <figure class="obra"><img src="img/obra-13.webp" alt="Cliente segurando o retrato dela pintado por Ale Baggio" loading="lazy"></figure>
+        <figure class="obra"><img src="img/obra-14.webp" alt="Cliente de terno ao lado do retrato dele pintado por Ale Baggio" loading="lazy"></figure>
       </div>
     </div>
     <div class="wrap">
@@ -1028,56 +1051,14 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
         <p class="lead">Obras abstratas com formas, texturas e composições que dialogam com o seu ambiente e com o seu gosto.</p>
       </div>
     </div>
-    <!-- Abstratos: seis posicoes reservadas. Em cada figure.obra, substituir
-         .obra-reserva pela foto real: <img src="img/abstrato-01.webp" alt="Descricao da obra" loading="lazy">.
-         Remover a classe obra-pendente ao inserir a foto. Manter figures sem IDs,
-         pois a galeria clona as obras para o movimento continuo.
-         Arraste, teclado e movimento continuo usam a galeria existente. -->
     <div class="abstratos-galeria" id="abstratosGaleria">
       <div class="pista-area" id="abstratosArea" tabindex="0" aria-keyshortcuts="ArrowLeft ArrowRight Home End" role="region" aria-label="Galeria de obras abstratas" aria-describedby="abstratosAjuda">
         <div class="pista" id="abstratosPista">
-          <figure class="obra obra-pendente" data-abstrato="01">
-            <div class="obra-reserva" role="img" aria-label="Espaço reservado para a obra abstrata 1">
-              <svg viewBox="0 0 64 64" fill="none" stroke-width="1.2" aria-hidden="true" focusable="false"><path d="M12 9h40v46H12zM18 15h28v34H18z"/><path d="m18 40 9-11 8 8 5-6 6 9"/><circle cx="39" cy="23" r="3"/></svg>
-              <b class="dourado" aria-hidden="true">01</b>
-              <span aria-hidden="true">Obra abstrata</span>
-            </div>
-          </figure>
-          <figure class="obra obra-pendente" data-abstrato="02">
-            <div class="obra-reserva" role="img" aria-label="Espaço reservado para a obra abstrata 2">
-              <svg viewBox="0 0 64 64" fill="none" stroke-width="1.2" aria-hidden="true" focusable="false"><path d="M12 9h40v46H12zM18 15h28v34H18z"/><path d="m18 40 9-11 8 8 5-6 6 9"/><circle cx="39" cy="23" r="3"/></svg>
-              <b class="dourado" aria-hidden="true">02</b>
-              <span aria-hidden="true">Obra abstrata</span>
-            </div>
-          </figure>
-          <figure class="obra obra-pendente" data-abstrato="03">
-            <div class="obra-reserva" role="img" aria-label="Espaço reservado para a obra abstrata 3">
-              <svg viewBox="0 0 64 64" fill="none" stroke-width="1.2" aria-hidden="true" focusable="false"><path d="M12 9h40v46H12zM18 15h28v34H18z"/><path d="m18 40 9-11 8 8 5-6 6 9"/><circle cx="39" cy="23" r="3"/></svg>
-              <b class="dourado" aria-hidden="true">03</b>
-              <span aria-hidden="true">Obra abstrata</span>
-            </div>
-          </figure>
-          <figure class="obra obra-pendente" data-abstrato="04">
-            <div class="obra-reserva" role="img" aria-label="Espaço reservado para a obra abstrata 4">
-              <svg viewBox="0 0 64 64" fill="none" stroke-width="1.2" aria-hidden="true" focusable="false"><path d="M12 9h40v46H12zM18 15h28v34H18z"/><path d="m18 40 9-11 8 8 5-6 6 9"/><circle cx="39" cy="23" r="3"/></svg>
-              <b class="dourado" aria-hidden="true">04</b>
-              <span aria-hidden="true">Obra abstrata</span>
-            </div>
-          </figure>
-          <figure class="obra obra-pendente" data-abstrato="05">
-            <div class="obra-reserva" role="img" aria-label="Espaço reservado para a obra abstrata 5">
-              <svg viewBox="0 0 64 64" fill="none" stroke-width="1.2" aria-hidden="true" focusable="false"><path d="M12 9h40v46H12zM18 15h28v34H18z"/><path d="m18 40 9-11 8 8 5-6 6 9"/><circle cx="39" cy="23" r="3"/></svg>
-              <b class="dourado" aria-hidden="true">05</b>
-              <span aria-hidden="true">Obra abstrata</span>
-            </div>
-          </figure>
-          <figure class="obra obra-pendente" data-abstrato="06">
-            <div class="obra-reserva" role="img" aria-label="Espaço reservado para a obra abstrata 6">
-              <svg viewBox="0 0 64 64" fill="none" stroke-width="1.2" aria-hidden="true" focusable="false"><path d="M12 9h40v46H12zM18 15h28v34H18z"/><path d="m18 40 9-11 8 8 5-6 6 9"/><circle cx="39" cy="23" r="3"/></svg>
-              <b class="dourado" aria-hidden="true">06</b>
-              <span aria-hidden="true">Obra abstrata</span>
-            </div>
-          </figure>
+          <figure class="obra" data-abstrato="01"><img src="img/abstrato-01.webp" alt="Obra abstrata em tons de cinza e branco, numa parede clara, pintada por Ale Baggio" loading="lazy"></figure>
+          <figure class="obra" data-abstrato="02"><img src="img/abstrato-02.webp" alt="Obra abstrata com faixas douradas sobre cinza, pintada por Ale Baggio" loading="lazy"></figure>
+          <figure class="obra" data-abstrato="03"><img src="img/abstrato-03.webp" alt="Obra abstrata em prata e cinza, numa sala clara, pintada por Ale Baggio" loading="lazy"></figure>
+          <figure class="obra" data-abstrato="04"><img src="img/abstrato-04.webp" alt="Obra abstrata em branco e prata com formas curvas, pintada por Ale Baggio" loading="lazy"></figure>
+          <figure class="obra" data-abstrato="05"><img src="img/abstrato-05.webp" alt="Obra abstrata em branco e dourado, no cavalete, pintada por Ale Baggio" loading="lazy"></figure>
         </div>
       </div>
       <div class="wrap">
@@ -1199,7 +1180,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
       <div class="imprensa-txt">
         <p class="chapeu">Na imprensa</p>
         <h2>Ela virou <span class="dourado">pauta.</span></h2>
-        <blockquote class="aspas" id="manchete" data-texto="A artista plástica que ganhou o coração dos famosos através de seus retratos."><span class="citacao-texto dourado">A artista plástica que ganhou o coração dos famosos através de seus retratos.</span></blockquote>
+        <blockquote class="aspas" id="manchete" data-texto="A artista plástica que ganhou o coração dos famosos através de seus retratos."><span class="citacao-texto">A artista plástica que ganhou o coração dos famosos através de seus retratos.</span></blockquote>
         <p class="credito">Hooks Magazine · fevereiro de 2022</p>
         <p class="lead">A revista Atitude contou a história antes, em dezembro de 2021: a menina tímida que se encontrava no lápis e no papel, hoje pintando os rostos que o país reconhece.</p>
         <p class="lead">O retrato dela já foi exibido ao vivo no <b>Mais Você</b>, da TV Globo, com a própria Ana Maria Braga ao lado da tela.</p>
@@ -1208,11 +1189,11 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
       <div class="banca">
         <div class="par-capas">
           <figure class="rev rev-a">
-            <img src="img/capa-hooks.jpg" alt="Capa da Hooks Magazine com Ale Baggio e a chamada: a artista plástica que vem conquistando as celebridades" loading="lazy">
+            <img src="img/capa-hooks.webp" alt="Capa da Hooks Magazine com Ale Baggio e a chamada: a artista plástica que vem conquistando as celebridades" loading="lazy">
             <figcaption><b>Hooks Magazine</b><span>fevereiro de 2022</span></figcaption>
           </figure>
           <figure class="rev rev-b">
-            <img src="img/capa-semnumero.jpg" alt="Capa da revista Atitude, edição 85, com Ale Baggio e a chamada: a arte chamada Ale Baggio" loading="lazy">
+            <img src="img/capa-semnumero.webp" alt="Capa da revista Atitude, edição 85, com Ale Baggio e a chamada: a arte chamada Ale Baggio" loading="lazy">
             <figcaption><b>Atitude</b><span>edição 85 · dezembro de 2021</span></figcaption>
           </figure>
         </div>
@@ -1243,23 +1224,13 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
   <section id="presente-perfeito" class="presente-sec">
     <div class="wrap">
       <h2>Um presente que <span class="dourado">emociona.</span> <svg class="coracao" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21.2s-7-4.5-9.6-8.3C.6 10.3 1.4 6.6 4.3 5.1c2.3-1.2 4.8-.5 6.2 1.4L12 8.4l1.5-1.9c1.4-1.9 3.9-2.6 6.2-1.4 2.9 1.5 3.7 5.2 1.9 7.8-2.6 3.8-9.6 8.3-9.6 8.3z" fill="currentColor"/></svg></h2>
-      <p class="lead">Uma pessoa especial, um vínculo, uma lembrança que vocês compartilham. Uma pintura sobre tela pode transformar essa história em um presente criado para quem vai recebê-lo.</p>
-      <div class="presente">
-        <div class="presente-antes">
-          <div class="presente-fotos">
-            <figure><img src="img/presente-antiga-2.webp" alt="Foto antiga: a mãe com a filha ainda bebê no colo" loading="lazy"></figure>
-            <figure><img src="img/presente-antiga-1.webp" alt="Foto antiga: mãe e filha abraçadas numa festa de aniversário" loading="lazy"></figure>
-          </div>
-          <p class="presente-leg"><b>As referências</b>A ideia e as referências são escolhidas em conversa com a Ale, para cada encomenda.</p>
-        </div>
-        <div class="presente-depois">
-          <div class="presente-fotos">
-            <figure><img src="img/presente-entrega.webp" alt="Cliente com o retrato de mãe e filha pintado por Ale Baggio" loading="lazy"></figure>
-            <figure><img src="img/presente-parede.webp" alt="O retrato de mãe e filha pendurado na parede do espaço" loading="lazy"></figure>
-          </div>
-          <p class="presente-leg"><b>A obra</b>Uma composição desenvolvida para contar essa história em pintura.</p>
-        </div>
-      </div>
+      <figure class="presente-video video-acervo">
+        <video class="video-auto" muted loop playsinline preload="none" poster="img/video-presente.webp" aria-label="Um retrato de Ale Baggio sendo entregue de presente">
+          <source data-src="video/presente-video.webm" type='video/webm; codecs="av01.0.04M.08"'>
+          <source data-src="video/presente-video.mp4" type="video/mp4">
+        </video>
+        <span class="play-selo" aria-hidden="true"></span>
+      </figure>
     </div>
   </section>
 
@@ -1297,7 +1268,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
   <!-- SOBRE -->
   <section id="sobre">
     <div class="wrap sobre">
-      <div class="sobre-img"><img src="img/ale-sobre.webp" alt="Ale Baggio no ateliê, com o pincel na mão, entre telas" loading="lazy"></div>
+      <div class="sobre-img"><img src="img/ale-sobre.webp" alt="Ale Baggio em um autorretrato, ao lado de uma pintura dela com folhas de ouro" loading="lazy"></div>
       <div class="texto">
         <h2>Conheça <span class="dourado">Ale Baggio.</span></h2>
         <div class="corpo bloco">
@@ -1317,40 +1288,58 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
       <h2>O que dizem <span class="dourado">quando a obra chega.</span></h2>
     </div>
     <div class="parede-palco">
-      <div class="depoimentos-pista" id="depoimentosPista" role="region" aria-roledescription="carrossel" aria-label="Depoimentos de clientes" aria-describedby="depoimentosAjuda" tabindex="0">
-        <figure class="fala" role="group" aria-label="Depoimento 1 de 6">
-          <blockquote class="fala-texto"><p>Essa obra, feita com tanto amor pela @alebaggioart, significa muito mais do que uma pintura para mim. Ela é o retrato do meu maior propósito.</p></blockquote>
-          <figcaption class="fala-autor"><span class="avatar" aria-hidden="true">C</span><div><b>Camilo Clinic</b><span class="fala-origem">No Instagram</span></div></figcaption>
+      <div class="ig-mural" id="igMural">
+        <figure class="ig-com">
+          <span class="ig-av" aria-hidden="true"><i>S</i></span>
+          <blockquote><p><b class="ig-perfil">shogunoficial</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> A <span class="ig-link">@gio.prates</span> me surpreendeu com esse quadro feito à mão, com folhas de ouro, usando uma das fotos que eu mais gosto de toda a minha carreira. Um trabalho que carrega história, significado e muito carinho.<br><br>Recebi das mãos da artista plástica <span class="ig-link">@alebaggioart</span> esse presente feito por ela. Parabens pelo talento e pela sensibilidade em transformar um momento tão especial em uma verdadeira obra de arte. Ficou incrível, obrigado! 👏🤩<br><br>Heeyyy 👊</p></blockquote>
         </figure>
-        <figure class="fala" role="group" aria-label="Depoimento 2 de 6">
-          <blockquote class="fala-texto"><p>Hoje recebi meu rosto traduzido em arte, um retrato impecável, pintado com sensibilidade, delicadeza e uma riqueza de detalhes que me emocionou profundamente.</p></blockquote>
-          <figcaption class="fala-autor"><span class="avatar" aria-hidden="true">&#9829;</span><div><b>Cliente</b><span class="fala-origem">No Instagram</span></div></figcaption>
+        <figure class="ig-com">
+          <span class="ig-av" aria-hidden="true"><i>D</i></span>
+          <blockquote><p><b class="ig-perfil">dravaniaperes</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Receber esse quadro às vésperas dos meus 55 anos teve um significado especial.<br><br>Mais do que um retrato, ele representa tudo o que construí até aqui: as escolhas, os desafios, os recomeços e a mulher que me tornei ao longo dessa caminhada.<br><br>Entro nessa nova fase com gratidão pela minha história e entusiasmo por tudo o que ainda está por vir. Os próximos capítulos prometem ser ainda mais bonitos.<br><br>Obrigada <span class="ig-link">@alebaggioart</span> pela delicadeza e pelo trabalho incrível 🤩</p></blockquote>
         </figure>
-        <figure class="fala" role="group" aria-label="Depoimento 3 de 6">
-          <blockquote class="fala-texto"><p>Obrigada por transformar minha imagem em arte e eternizar esse momento tão especial.</p></blockquote>
-          <figcaption class="fala-autor"><span class="avatar" aria-hidden="true">&#9829;</span><div><b>Cliente</b><span class="fala-origem">No Instagram</span></div></figcaption>
+        <figure class="ig-com ig-curto">
+          <span class="ig-av" aria-hidden="true"><i>D</i></span>
+          <blockquote><p><b class="ig-perfil">dravanessavida</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Trabalho impecável de <span class="ig-link">@alebaggioart</span><br>Transformando momentos em arte 💖</p><figcaption>22 sem</figcaption></blockquote>
         </figure>
-        <figure class="fala" role="group" aria-label="Depoimento 4 de 6">
-          <blockquote class="fala-texto"><p>Muito mais do que uma obra de arte. Esse quadro representa uma parte da minha essência, dos meus sonhos e de tudo aquilo que acredito.</p></blockquote>
-          <figcaption class="fala-autor"><span class="avatar" aria-hidden="true">H</span><div><b>Harmonie Clinique</b><span class="fala-origem">No Instagram</span></div></figcaption>
+        <figure class="ig-com">
+          <span class="ig-av" aria-hidden="true"><i>D</i></span>
+          <blockquote><p><b class="ig-perfil">dr.igorfaillace</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Desde a infância, a arte me acompanha. Das telas e pincéis, aprendi proporção, detalhe, sensibilidade.<br><br>Hoje, levo esse olhar para a cirurgia plástica, onde técnica e tecnologia se encontram com empatia e transformação.<br><br>Obrigado, <span class="ig-link">@alebaggioart</span>, pelo incrível presente que retrata essa essência: a arte como marca do cirurgião.</p></blockquote>
         </figure>
-        <figure class="fala" role="group" aria-label="Depoimento 5 de 6">
-          <blockquote class="fala-texto"><p>Estou completamente apaixonada por esse trabalho impecável e cheio de personalidade. Pela segunda vez, tenho a arte da artista plástica @alebaggioart transformando meu ambiente.</p></blockquote>
-          <figcaption class="fala-autor"><span class="avatar" aria-hidden="true">&#9829;</span><div><b>Cliente</b><span class="fala-origem">No Instagram</span></div></figcaption>
+        <figure class="ig-com ig-curto">
+          <span class="ig-av" aria-hidden="true"><i>D</i></span>
+          <blockquote><p><b class="ig-perfil">dra.biaingles</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Perfeitooooo</p><figcaption>3 sem · 1 curtida · Responder</figcaption></blockquote>
         </figure>
-        <figure class="fala" role="group" aria-label="Depoimento 6 de 6">
-          <blockquote class="fala-texto"><p>Alguns sonhos chegam em forma de arte! E hoje um deles encontrou seu lugar neste consultório.</p></blockquote>
-          <figcaption class="fala-autor"><span class="avatar" aria-hidden="true">&#9829;</span><div><b>Cliente</b><span class="fala-origem">No Instagram</span></div></figcaption>
+        <figure class="ig-com">
+          <span class="ig-av" aria-hidden="true"><i>D</i></span>
+          <blockquote><p><b class="ig-perfil">draraquelnormandia</b> Entre arte, identidade e essência. ✨<br>Um quadro que carrega meus traços, mas também traduz um pouco de quem eu sou: intensidade, feminilidade, força e amor pela beleza em todas as suas formas.<br>Ver um pedacinho de mim transformado em arte e eternizado em uma tela é simplesmente especial.<br><br>Gratidão, <span class="ig-link">@alebaggioart</span>, você é fora da curva, amei. 💗</p></blockquote>
+        </figure>
+        <figure class="ig-com">
+          <span class="ig-av" aria-hidden="true"><i>D</i></span>
+          <blockquote><p><b class="ig-perfil">drarenataquintanilha</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> É muito especial me enxergar novamente através do seu olhar e da sua arte. 🤍 Segunda arte, e dessa vez eterniza quem eu sou hoje. Que privilégio ter diferentes capítulos da minha história registrados pelas suas mãos. ✨🎨 <span class="ig-link">@alebaggioart</span></p></blockquote>
+        </figure>
+        <figure class="ig-com">
+          <span class="ig-av" aria-hidden="true"><i>D</i></span>
+          <blockquote><p><b class="ig-perfil">dra.brendaledur</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Muito mais do que uma obra de arte. 🖼️<br><br>Esse quadro representa uma parte da minha essência, dos meus sonhos e de tudo aquilo que acredito. Cada detalhe foi pensado para transmitir beleza, delicadeza, força e autenticidade — os mesmos valores que deram vida à Harmonie Clinique.</p></blockquote>
+        </figure>
+        <figure class="ig-com">
+          <span class="ig-av" aria-hidden="true"><i>D</i></span>
+          <blockquote><p><b class="ig-perfil">dra.denisebiomedica</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Algumas versões da gente merecem virar arte. ✨<br><span class="ig-link">@alebaggioart</span> Não é só um retrato. É uma versão de mim que ganhou vida. 💗</p></blockquote>
+        </figure>
+        <figure class="ig-com">
+          <span class="ig-av" aria-hidden="true"><i>B</i></span>
+          <blockquote><p><b class="ig-perfil">brunotarchettipersonal</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Aquele sentimento eternizado em uma obra de arte.<br><br>Momentos captados, compreendidos e compilados em uma tela, feitos pela artista <span class="ig-link">@alebaggioart.</span><br>Assim como o dourado da tela, você brilha!<br><br>Obrigado, agora temos um <span class="ig-link">#alebaggio</span> em casa 🏆</p><figcaption>44 sem</figcaption></blockquote>
+        </figure>
+        <figure class="ig-com ig-curto">
+          <span class="ig-av" aria-hidden="true"><i>D</i></span>
+          <blockquote><p><b class="ig-perfil">dra.brendaledur</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Eu amei demais 🤩🤍</p><figcaption>13 sem · 1 curtida · Responder</figcaption></blockquote>
+        </figure>
+        <figure class="ig-com">
+          <span class="ig-av" aria-hidden="true"><i>F</i></span>
+          <blockquote><p><b class="ig-perfil">fransantosmentora</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> 🚀 Me siga: <span class="ig-link">@fransantosmentora</span> para aprender a transformar posicionamento em faturamento.<br>🎨 E se você já quer o seu quadro personalizado, fale com <span class="ig-link">@alebaggioart</span></p><figcaption>10 sem</figcaption></blockquote>
         </figure>
       </div>
-      <div class="depoimentos-navegacao">
-        <p class="depoimentos-ajuda" id="depoimentosAjuda">Deslize para ler cada depoimento.</p>
-        <div class="depoimentos-controles" id="depoimentosControles" hidden>
-          <button type="button" class="btn btn-2 depoimentos-seta" id="depoimentoAnterior" aria-label="Depoimento anterior" aria-controls="depoimentosPista" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
-          <span class="depoimentos-contador" id="depoimentosContador" role="status" aria-live="polite" aria-atomic="true"></span>
-          <button type="button" class="btn btn-2 depoimentos-seta" id="depoimentoProximo" aria-label="Próximo depoimento" aria-controls="depoimentosPista"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
-        </div>
-      </div>
+      <button type="button" class="btn btn-2 ig-mais" id="igMais" hidden>Ver mais comentários</button>
+      <p class="ig-fonte">Comentários publicados por clientes no Instagram da artista.</p>
     </div>
     <div class="wrap">
       <div class="btns"><a class="btn btn-1 wa" data-colecao="" href="#contato"><svg class="contato-brilho" viewBox="8 0 56 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M28 2C30 13 33 17 44 20C33 23 30 27 28 38C26 27 23 23 12 20C23 17 26 13 28 2Z"/><path d="M52 2C53 7 55 9 60 10C55 11 53 13 52 18C51 13 49 11 44 10C49 9 51 7 52 2Z"/></svg><span class="btn-texto">Converse com a artista</span></a></div>
@@ -1401,6 +1390,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
         <figure class="video-acervo alto">
           <video class="video-auto" muted loop playsinline preload="none"
             poster="img/video-acervo-loira.webp" aria-label="Retrato de mulher loira pintado por Ale Baggio, cabelo em cores">
+            <source data-src="video/acervo-loira.webm" type='video/webm; codecs="av01.0.04M.08"'>
             <source data-src="video/acervo-loira.mp4" type="video/mp4">
           </video>
           <span class="play-selo" aria-hidden="true"></span>
@@ -1409,6 +1399,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
         <figure class="video-acervo alto">
           <video class="video-auto" muted loop playsinline preload="none"
             poster="img/video-acervo-riso.webp" aria-label="Retrato de mulher sorrindo, pintado por Ale Baggio">
+            <source data-src="video/acervo-riso.webm" type='video/webm; codecs="av01.0.04M.08"'>
             <source data-src="video/acervo-riso.mp4" type="video/mp4">
           </video>
           <span class="play-selo" aria-hidden="true"></span>
@@ -1417,6 +1408,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
         <figure class="video-acervo alto">
           <video class="video-auto" muted loop playsinline preload="none"
             poster="img/video-acervo-casal.webp" aria-label="Retrato de casal pintado por Ale Baggio, no jardim do ateliê">
+            <source data-src="video/acervo-casal.webm" type='video/webm; codecs="av01.0.04M.08"'>
             <source data-src="video/acervo-casal.mp4" type="video/mp4">
           </video>
           <span class="play-selo" aria-hidden="true"></span>
@@ -1425,6 +1417,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
         <figure class="video-acervo alto">
           <video class="video-auto" muted loop playsinline preload="none"
             poster="img/video-acervo-familia.webp" aria-label="Retrato de família com cinco pessoas, pintado por Ale Baggio">
+            <source data-src="video/acervo-familia.webm" type='video/webm; codecs="av01.0.04M.08"'>
             <source data-src="video/acervo-familia.mp4" type="video/mp4">
           </video>
           <span class="play-selo" aria-hidden="true"></span>
@@ -1432,6 +1425,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
         <figure class="video-acervo alto">
           <video class="video-auto" muted loop playsinline preload="none"
             poster="img/video-obra-onca.webp" aria-label="Onça com joias pintada por Ale Baggio">
+            <source data-src="video/obra-onca.webm" type='video/webm; codecs="av01.0.04M.08"'>
             <source data-src="video/obra-onca.mp4" type="video/mp4">
           </video>
           <span class="play-selo" aria-hidden="true"></span>
@@ -1440,6 +1434,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
         <figure class="video-acervo alto">
           <video class="video-auto" muted loop playsinline preload="none"
             poster="img/video-acervo-vermelho.webp" aria-label="Retrato de mulher de roupa vermelha, corpo inteiro, pintado por Ale Baggio">
+            <source data-src="video/acervo-vermelho.webm" type='video/webm; codecs="av01.0.04M.08"'>
             <source data-src="video/acervo-vermelho.mp4" type="video/mp4">
           </video>
           <span class="play-selo" aria-hidden="true"></span>
@@ -1477,7 +1472,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
   <div class="estrelas-topo">
     <div>
       <h3>Todas as estrelas</h3>
-      <p>Mais de 100 personalidades já foram retratadas por Ale Baggio. Estas são as 87 que aparecem nas redes dela.</p>
+      <p>Mais de 100 personalidades já foram retratadas por Ale Baggio. Estas são mais 43 que aparecem nas redes dela.</p>
     </div>
     <button type="button" class="fechar" id="fechaEstrelas" aria-label="Fechar">&times;</button>
   </div>
@@ -1964,7 +1959,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
     quandoAparecer(manchete, function () {
       manchete.textContent = '';
       var feito = document.createElement('span');
-      feito.className = 'citacao-texto dourado';
+      feito.className = 'citacao-texto';
       var cursor = document.createElement('i');
       cursor.className = 'cursor';
       var falta = document.createElement('span');
@@ -1987,78 +1982,36 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
 
   /* janela com todos os famosos */
   var ESTRELAS = [
-    ['Silvio Santos', 'img/celeb-silviosantos.webp'],
-    ['Anitta', 'img/celeb-anitta.webp'],
-    ['Luan Santana', 'img/celeb-luansantana.webp'],
-    ['Nicole Bahls', 'img/celeb-nicolebahls.webp'],
-    ['Ludmilla', 'img/estrelas/ludmilla.webp'],
-    ['Jojo Todynho', 'img/celeb-jojo.webp'],
-    ['Juliana Paes', 'img/celeb-julianapaes.webp'],
-    ['Juliette', 'img/celeb-juliette.webp'],
-    ['Bianca Andrade (Boca Rosa)', 'img/estrelas/bianca.webp'],
     ['GKay', 'img/estrelas/gessica.webp'],
-    ['Ana Maria Braga', 'img/estrelas/anamariabragaoficial.webp'],
     ['Paulo Gustavo', 'img/estrelas/paulogustavo31.webp'],
-    ['Xuxa e Junno Andrade', 'img/celeb-xuxa.webp'],
-    ['Eduardo Costa', 'img/estrelas/eduardocosta.webp'],
-    ['Zezé Di Camargo e Graciele Lacerda', 'img/celeb-zeze.webp'],
-    ['Pamella Lunardi', 'img/estrelas/bypamella.webp'],
     ['Claudia Raia', 'img/estrelas/claudiaraia.webp'],
-    ['Jottape', 'img/estrelas/jottape.webp'],
-    ['Sasha Meneghel', 'img/estrelas/sashameneghel.webp'],
     ['Brunna Gonçalves', 'img/estrelas/brunnagoncalves.webp'],
-    ['Scheila Carvalho', 'img/estrelas/scheilacarvalhooficial.webp'],
+    ['Scheila Carvalho', 'img/estrelas/x-scheilacarvalho.webp'],
     ['Bruna Louise', 'img/estrelas/abrunalouise.webp'],
     ['Any Gabrielly', 'img/estrelas/anygabriellyofficial.webp'],
     ['Rafaella Santos', 'img/estrelas/rafaella.webp'],
-    ['Reynaldo Gianecchini', 'img/estrelas/reynaldogianecchini.webp'],
-    ['Adriane Galisteu', 'img/celeb-galisteu.webp'],
-    ['Belo e Gracyanne Barbosa', 'img/celeb-belo-gracyanne.webp'],
-    ['Karen Kardasha', 'img/estrelas/karenkardasha.webp'],
     ['Kayblack', 'img/estrelas/realkayblack.webp'],
-    ['Luciano Camargo e família', 'img/celeb-luciano.webp'],
-    ['Fiuk', 'img/estrelas/fiuk.webp'],
-    ['Thammy Miranda e Andressa Ferreira', 'img/celeb-thammy.webp'],
+    ['Luciano Camargo e família', 'img/estrelas/x-camargoluciano.webp'],
     ['Pequena Lô', 'img/estrelas/_pequenalo.webp'],
     ['MC Caverinha', 'img/estrelas/mccaverinha.webp'],
-    ['Cacau Protásio', 'img/celeb-cacau.webp'],
-    ['Gretchen', 'img/celeb-gretchen.webp'],
-    ['Buarque e Bia Miranda', 'img/celeb-buarque-bia.webp'],
-    ['Bella Falconi', 'img/estrelas/bellafalconi.webp'],
-    ['Simony', 'img/celeb-simony.webp'],
-    ['Miguel Falabella', 'img/celeb-falabella.webp'],
+    ['Gretchen', 'img/estrelas/x-mariagretchen.webp'],
+    ['Bella Falconi', 'img/estrelas/x-bellafalconi.webp'],
     ['Igor Magalhães', 'img/estrelas/igormagalhaesofc.webp'],
-    ['Kim Rosacuca', 'img/estrelas/kimrosacuca.webp'],
-    ['Pepita', 'img/estrelas/pepita.webp'],
-    ['Cesar Filho e Elaine Mickely', 'img/estrelas/cesarfilho.webp'],
     ['Jake Leal', 'img/estrelas/jakelealoficial.webp'],
-    ['Natália Deodato', 'img/estrelas/natalia.deodato.webp'],
     ['Pétala Barreiros', 'img/estrelas/petalagb.webp'],
-    ['Fábio Jr.', 'img/estrelas/fabiojroficial.webp'],
     ['MC Dricka', 'img/estrelas/mcdricka.webp'],
     ['Djavan', 'img/estrelas/djavanoficial.webp'],
     ['Fabiana Karla', 'img/estrelas/fabianakarlareal.webp'],
-    ['Mara Maravilha', 'img/estrelas/maramaravilhaoficial.webp'],
-    ['Igor Costa Alves', 'img/estrelas/igoorcostalves.webp'],
+    ['Mara Maravilha', 'img/estrelas/x-maramaravilha.webp'],
+    ['Igor Costa Alves', 'img/estrelas/x-igoorcostalves.webp'],
     ['Jade Magalhães', 'img/estrelas/ajademagalhaes.webp'],
-    ['Fábio Nestares (Roupa Nova)', 'img/estrelas/roupanova.webp'],
-    ['Iara Kilaris', 'img/estrelas/iarakilaris.webp'],
-    ['Paola Antonini', 'img/estrelas/paola_antonini.webp'],
     ['Guilherme Benuto', 'img/estrelas/guilhermeebenuto.webp'],
-    ['Mateus Carrieri', 'img/estrelas/mateuscarrieriof.webp'],
-    ['Shogun Rua', 'img/celeb-shogun.webp'],
     ['Sheyla Christina', 'img/estrelas/fabiomarxx.webp'],
     ['Renata França', 'img/estrelas/renatafrancaa.webp'],
-    ['Myrian Rios', 'img/estrelas/myrianrios.webp'],
-    ['Jesus Luz', 'img/estrelas/jesusluz.webp'],
     ['Petros Matheus', 'img/estrelas/petros.webp'],
     ['Khaled Bachir', 'img/estrelas/khaledbachir.webp'],
-    ['Luana Delevedove', 'img/estrelas/luanadellevedove.webp'],
     ['Patricia Meirelles Benson', 'img/estrelas/patriciameirelles.webp'],
-    ['Mario Henrique', 'img/estrelas/mariohenrique.webp'],
-    ['Carol Dallarosa', 'img/estrelas/caroldallarosaa.webp'],
     ['Bruno Santos', 'img/estrelas/brunosantos.webp'],
-    ['Dra. Nayane Pachêco', 'img/estrelas/dranayanepacheco.webp'],
     ['Sophia Eldo', 'img/estrelas/sophiaeldoreal.webp'],
     ['Paola Honma', 'img/estrelas/paolahonma.webp'],
     ['Mariana Educada', 'img/estrelas/marianaeducada.webp'],
@@ -2070,9 +2023,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
     ['A. Guerra', 'img/estrelas/18loboguerra.webp'],
     ['Cristiane Nascimento', 'img/estrelas/temploavinash.webp'],
     ['Dra. Natasha Ramos', 'img/estrelas/dra_natasharamos.webp'],
-    ['Dj Batata', 'img/estrelas/djbatata.webp'],
     ['Monique Rodrigues Salum', 'img/estrelas/moniquesalum.webp'],
-    ['Isaac Azar (Paris 6)', 'img/estrelas/isaacazar.webp'],
     ['Zezé Polessa', 'img/estrelas/zezepolessa.webp']
   ];
   var janela = document.getElementById('estrelas');
@@ -2114,8 +2065,9 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
     var carregar = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         if (!e.isIntersecting) return;
-        var v = e.target, fonte = v.querySelector('source');
-        if (fonte && fonte.dataset.src) { fonte.src = fonte.dataset.src; v.load(); delete fonte.dataset.src; }
+        var v = e.target, trocou = false;
+        v.querySelectorAll('source').forEach(function (f) { if (f.dataset.src) { f.src = f.dataset.src; delete f.dataset.src; trocou = true; } });
+        if (trocou) v.load();
         carregar.unobserve(v);
       });
     }, { rootMargin: '600px 0px' });         // baixa um pouco antes de chegar
@@ -2249,6 +2201,16 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
   });
   if (document.fonts && document.fonts.ready) { document.fonts.ready.then(remede); }
 })();
+
+  /* mural do Instagram: no celular mostra os primeiros e um botao abre o resto */
+  (function () {
+    var m = document.getElementById('igMural'), b = document.getElementById('igMais');
+    if (!m || !b) return;
+    var cel = window.matchMedia('(max-width:700px)');
+    function aplicar() { if (cel.matches && !m.dataset.aberto) { m.classList.add('recolhido'); b.hidden = false; } else { m.classList.remove('recolhido'); b.hidden = true; } }
+    b.addEventListener('click', function () { m.dataset.aberto = '1'; aplicar(); });
+    if (cel.addEventListener) cel.addEventListener('change', aplicar); aplicar();
+  })();
 </script>
 </body>
 </html>
