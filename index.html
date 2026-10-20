@@ -212,7 +212,7 @@
   .capa::before{content:""; position:absolute; top:var(--topo-altura); bottom:0; left:0; width:48%; z-index:2; pointer-events:none;
     background:radial-gradient(ellipse 105% 62% at 34% 72%, rgba(var(--acento-rgb),var(--luz-capa)) 0%, rgba(var(--acento-rgb),var(--luz-capa)) 18%, rgba(var(--acento-rgb),0) 70%);}
   .capa-txt{grid-column:1; grid-row:1; position:relative; z-index:3; color:var(--texto);
-    padding:var(--s5) var(--s5) var(--s3) max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
+    padding:var(--s5) var(--s5) calc(var(--s7) + var(--s5) + var(--s2)) max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
     will-change:transform;}
   .capa-txt .wrap{padding:0; max-width:none;}
   .capa-txt h1{max-width:20ch;}
@@ -724,7 +724,7 @@
     /* No celular, a luz comeca abaixo da altura da foto para preservar suas cores. */
     .capa::before{top:calc(var(--topo-altura) + var(--capa-foto-altura)); right:0; width:auto;
       background:radial-gradient(ellipse 65% 75% at 50% 40%, rgba(var(--acento-rgb),var(--luz-capa)) 0%, rgba(var(--acento-rgb),var(--luz-capa)) 18%, rgba(var(--acento-rgb),0) 70%);}
-    .capa-txt{grid-column:1; grid-row:1; padding:var(--capa-reserva) var(--gutter) var(--s3);}
+    .capa-txt{grid-column:1; grid-row:1; padding:var(--capa-reserva) var(--gutter) var(--s6);}
     .capa-txt .wrap{display:flex; flex-direction:column;}
     .capa-txt h1 br{display:none;}
     .so-desk{display:none;}
