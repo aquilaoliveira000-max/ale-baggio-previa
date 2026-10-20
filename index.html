@@ -111,7 +111,7 @@
     --t-assina-grande:clamp(56px, 7vw, 90px);/* assinatura grande */
     /* distancia visual entre duas secoes. cada secao usa metade em cima e metade embaixo */
     --entre:clamp(72px, 7vw, 104px);
-    --capa-reserva:clamp(160px, 28svh, 240px); /* area da foto antes do titulo no celular */
+    --capa-reserva:clamp(230px, 38svh, 330px); /* area da foto antes do titulo no celular */
     --capa-foto-altura:max(62svh, 380px); /* mesma medida para a foto e o inicio da luz no celular */
     --max:1360px;
     --topo-altura:78px;
@@ -719,8 +719,8 @@
     .capa-img img{left:0; right:0; width:100%; height:var(--capa-foto-altura); object-fit:cover; object-position:50% 0%;
       -webkit-mask-image:linear-gradient(180deg, var(--texto) 58%, transparent 100%);
       mask-image:linear-gradient(180deg, var(--texto) 58%, transparent 100%);}
-    .capa::after{background:linear-gradient(180deg, rgba(var(--fundo-rgb),.18) 0%, rgba(var(--fundo-rgb),.72) 26%,
-      rgba(var(--fundo-rgb),.96) 48%, rgba(var(--fundo-rgb),1) 72%);}
+    .capa::after{background:linear-gradient(180deg, rgba(var(--fundo-rgb),0) 0%, rgba(var(--fundo-rgb),0) 30%, rgba(var(--fundo-rgb),.5) 42%,
+      rgba(var(--fundo-rgb),.88) 54%, rgba(var(--fundo-rgb),1) 70%);}
     /* No celular, a luz comeca abaixo da altura da foto para preservar suas cores. */
     .capa::before{top:calc(var(--topo-altura) + var(--capa-foto-altura)); right:0; width:auto;
       background:radial-gradient(ellipse 65% 75% at 50% 40%, rgba(var(--acento-rgb),var(--luz-capa)) 0%, rgba(var(--acento-rgb),var(--luz-capa)) 18%, rgba(var(--acento-rgb),0) 70%);}
@@ -900,8 +900,8 @@
   .investimento .investimento-descricao .btn-orcamento:hover{background:#FFF8EA; border-color:#FFF8EA;}
   .investimento .investimento-descricao .btn-orcamento .contato-brilho{filter:none;}
 
-  /* imprensa: "pauta." em cafe escuro sobre o ouro */
-  .imprensa-sec h2 .dourado{background:none !important; color:#24170A !important; -webkit-text-fill-color:#24170A !important; text-shadow:0 1px 0 rgba(255,236,190,.35) !important;}
+  /* imprensa: titulo inteiro em branco */
+  .imprensa-sec h2 .dourado{background:none !important; color:#FFFFFF !important; -webkit-text-fill-color:#FFFFFF !important;}
 </style>
 </head>
 <body>
