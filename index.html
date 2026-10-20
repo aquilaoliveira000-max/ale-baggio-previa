@@ -918,11 +918,6 @@
       mask-image:linear-gradient(90deg, transparent 0, #000 7%), radial-gradient(ellipse 26% 46% at 7% 66%, #000 55%, transparent 100%), linear-gradient(90deg, transparent 0, #000 22%);
       -webkit-mask-composite:source-in, source-over; mask-composite:intersect, add;}
   }
-  /* laco de presente dourado no canto da moldura do video */
-  .presente-video{overflow:visible !important;}
-  .laco{position:absolute; z-index:4; top:-38px; right:-50px; width:150px; height:auto; transform:rotate(22deg); pointer-events:none;
-    filter:drop-shadow(0 10px 14px rgba(var(--preto-rgb),.55));}
-  @media (max-width:700px){ .laco{width:108px; top:-32px; right:-6px;} }
   /* capa no celular: foto ancorada a esquerda e texto um pouco mais abaixo, para ver o pincel na mao */
   @media (max-width:700px){
     :root{--capa-foto-altura:125.1vw; --capa-reserva:min(calc(var(--capa-foto-altura) * .82), 52svh);}
@@ -1341,7 +1336,6 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
     <div class="wrap">
       <h2>Um presente que <span class="dourado">emociona.</span> <svg class="coracao" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21.2s-7-4.5-9.6-8.3C.6 10.3 1.4 6.6 4.3 5.1c2.3-1.2 4.8-.5 6.2 1.4L12 8.4l1.5-1.9c1.4-1.9 3.9-2.6 6.2-1.4 2.9 1.5 3.7 5.2 1.9 7.8-2.6 3.8-9.6 8.3-9.6 8.3z" fill="currentColor"/></svg></h2>
       <figure class="presente-video video-acervo">
-        <img class="laco" src="img/laco-dourado.webp" alt="" width="520" height="410" loading="lazy" decoding="async">
         <video class="video-auto" muted loop playsinline preload="none" poster="img/video-presente.webp" aria-label="Um retrato de Ale Baggio sendo entregue de presente">
           <source data-src="video/presente-video.webm" type='video/webm; codecs="av01.0.04M.08"'>
           <source data-src="video/presente-video.mp4" type="video/mp4">
