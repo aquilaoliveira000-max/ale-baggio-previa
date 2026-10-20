@@ -291,6 +291,10 @@
     vertical-align:-.08em; animation:pisca 1s steps(1) infinite;}
   @keyframes pisca{50%{opacity:0;}}
   .imprensa-txt .lead{margin-top:var(--s4);}
+  .imprensa-txt .credito-extra{margin-top:var(--s1);}
+  .imprensa-editorial{align-items:center;}
+  .imprensa-esq{align-self:center;}
+  .imprensa-txt .credito-extra b{font-weight:600; color:var(--texto);}
   .banca{display:flex; flex-direction:column; align-items:center;}
   .par-capas{display:flex; flex-wrap:nowrap; align-items:flex-start; justify-content:center; width:100%;}
   .rev, .rev-foto{margin:0;}
@@ -895,6 +899,8 @@
   .investimento-descricao{background:var(--gradiente-botao) !important; border-color:var(--acento-claro) !important;
     box-shadow:inset 0 1px 0 rgba(var(--texto-rgb),.35), 0 24px 48px -26px rgba(var(--preto-rgb),.6);}
   .investimento-descricao .lead{color:#2A1A05 !important;}
+  .investimento .investimento-descricao .investimento-frase{font-size:var(--t-sub) !important; line-height:1.28; font-weight:600; letter-spacing:-.02em;
+    color:#2A1A05 !important; -webkit-text-fill-color:#2A1A05; text-shadow:none !important; max-width:24ch; text-wrap:balance; margin:0;}
   .investimento .investimento-descricao .btn-orcamento{background:#FFFFFF; color:var(--ouro-escuro-inicio); border-color:#FFFFFF; text-shadow:none;
     box-shadow:0 10px 24px -12px rgba(var(--preto-rgb),.55);}
   .investimento .investimento-descricao .btn-orcamento:hover{background:#FFF8EA; border-color:#FFF8EA;}
@@ -1168,8 +1174,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
           <p class="investimento-valor" id="investimento-titulo">Pinturas sobre tela a partir de <strong>R$ 3.900.</strong></p>
         </div>
         <div class="investimento-descricao">
-          <p class="lead">Cada encomenda recebe um orçamento personalizado, de acordo com as dimensões da tela, a quantidade de pessoas e a composição.</p>
-          <p class="lead">Converse diretamente com a artista para escolher o formato ideal para sua obra.</p>
+          <p class="investimento-frase">Toda história merece uma tela só dela. Conte a sua para a Ale e descubra como ela pode virar arte.</p>
           <a class="btn btn-1 btn-orcamento wa" data-colecao="uma obra sob encomenda" href="#contato"><svg class="contato-brilho" viewBox="8 0 56 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M28 2C30 13 33 17 44 20C33 23 30 27 28 38C26 27 23 23 12 20C23 17 26 13 28 2Z"/><path d="M52 2C53 7 55 9 60 10C55 11 53 13 52 18C51 13 49 11 44 10C49 9 51 7 52 2Z"/></svg><span class="btn-texto">Solicitar orçamento</span></a>
         </div>
     </div>
@@ -1269,8 +1274,8 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
         <h2>Ela virou <span class="dourado">pauta.</span></h2>
         <blockquote class="aspas" id="manchete" data-texto="A artista plástica que ganhou o coração dos famosos através de seus retratos."><span class="citacao-texto">A artista plástica que ganhou o coração dos famosos através de seus retratos.</span></blockquote>
         <p class="credito">Hooks Magazine · fevereiro de 2022</p>
-        <p class="lead">A revista Atitude contou a história antes, em dezembro de 2021: a menina tímida que se encontrava no lápis e no papel, hoje pintando os rostos que o país reconhece.</p>
-        <p class="lead">O retrato dela já foi exibido ao vivo no <b>Mais Você</b>, da TV Globo, com a própria Ana Maria Braga ao lado da tela.</p>
+        <p class="credito credito-extra">Capa da revista Atitude · dezembro de 2021</p>
+        <p class="credito credito-extra">Obra exibida ao vivo no <b>Mais Você</b>, TV Globo</p>
       </div>
       </div>
       <div class="banca">
