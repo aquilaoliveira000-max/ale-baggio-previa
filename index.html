@@ -2498,8 +2498,8 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
       if (calmo) return;
       cols.forEach(function (c, i) {
         Array.prototype.slice.call(c.children).forEach(function (k) { var d = k.cloneNode(true); d.setAttribute('aria-hidden', 'true'); c.appendChild(d); });
-        var t = new Trilha(c, 'y', i % 2 ? 22 : -22); trilhas.push(t);           // a primeira desce, a do meio sobe
-        if (!(i % 2)) requestAnimationFrame(function () { t.por(t.metade() - 1); });
+        var t = new Trilha(c, 'y', i % 2 ? -22 : 22); trilhas.push(t);           // a primeira sobe, a do meio desce
+        if (i % 2) requestAnimationFrame(function () { t.por(t.metade() - 1); });
       });
     }
     if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { visivel = e[0].isIntersecting; }).observe(m);
