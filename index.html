@@ -918,17 +918,6 @@
       mask-image:linear-gradient(90deg, transparent 0, #000 7%), radial-gradient(ellipse 26% 46% at 7% 66%, #000 55%, transparent 100%), linear-gradient(90deg, transparent 0, #000 22%);
       -webkit-mask-composite:source-in, source-over; mask-composite:intersect, add;}
   }
-  /* beija-flor pintado em ouro: no desktop sai de tras do painel, olhando para o texto; no celular fica no canto superior direito */
-  .investimento-descricao{position:relative; overflow:visible; isolation:isolate; background:none !important;}
-  .investimento-descricao::before{content:""; position:absolute; inset:0; z-index:-1; background:var(--gradiente-botao);}
-  .beija-flor{position:absolute; z-index:-2; right:calc(100% - 70px); top:50%; transform:translateY(-50%); width:clamp(220px, 21vw, 320px); height:auto;
-    pointer-events:none; filter:drop-shadow(0 6px 12px rgba(var(--preto-rgb),.35));}
-  @media (max-width:700px){
-    .investimento{position:relative;}
-    .investimento-descricao{position:static; isolation:auto; background:var(--gradiente-botao) !important;}
-    .investimento-descricao::before{display:none;}
-    .beija-flor{z-index:1; right:calc(var(--gutter) * -0.5); left:auto; top:44px; transform:none; width:min(38vw, 160px);}
-  }
   /* capa no celular: foto ancorada a esquerda e texto um pouco mais abaixo, para ver o pincel na mao */
   @media (max-width:700px){
     :root{--capa-foto-altura:125.1vw; --capa-reserva:min(calc(var(--capa-foto-altura) * .82), 52svh);}
@@ -1202,7 +1191,6 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
           <p class="investimento-valor" id="investimento-titulo">Pinturas sobre tela a partir de <strong>R$ 3.900.</strong></p>
         </div>
         <div class="investimento-descricao">
-          <img class="beija-flor" src="img/beija-flor-ouro.webp" alt="" width="760" height="674" loading="lazy" decoding="async">
           <p class="investimento-frase">Toda história merece uma tela só dela. Conte a sua para a Ale e descubra como ela pode virar arte.</p>
           <a class="btn btn-1 btn-orcamento wa" data-colecao="uma obra sob encomenda" href="#contato"><svg class="contato-brilho" viewBox="8 0 56 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M28 2C30 13 33 17 44 20C33 23 30 27 28 38C26 27 23 23 12 20C23 17 26 13 28 2Z"/><path d="M52 2C53 7 55 9 60 10C55 11 53 13 52 18C51 13 49 11 44 10C49 9 51 7 52 2Z"/></svg><span class="btn-texto">Solicitar orçamento</span></a>
         </div>
