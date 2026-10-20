@@ -207,7 +207,7 @@
     -webkit-mask-image:linear-gradient(90deg, transparent 0, var(--texto) 28%); mask-image:linear-gradient(90deg, transparent 0, var(--texto) 28%);
     transform-origin:55% 0%; animation:deriva-capa 26s ease-in-out infinite alternate;}
   .capa::after{content:""; position:absolute; top:var(--topo-altura); right:0; bottom:0; left:0; z-index:1; pointer-events:none;
-    background:linear-gradient(90deg, rgba(var(--fundo-rgb),.98) 0%, rgba(var(--fundo-rgb),.9) 36%, rgba(var(--fundo-rgb),.4) 55%, rgba(var(--fundo-rgb),.1) 78%, rgba(var(--fundo-rgb),.24) 100%);}
+    background:linear-gradient(90deg, rgba(var(--fundo-rgb),.98) 0%, rgba(var(--fundo-rgb),.9) 36%, rgba(var(--fundo-rgb),.5) 58%, rgba(var(--fundo-rgb),.1) 82%, rgba(var(--fundo-rgb),.24) 100%);}
   /* A luz fica na faixa escura esquerda, longe do retrato ancorado a direita. */
   .capa::before{content:""; position:absolute; top:var(--topo-altura); bottom:0; left:0; width:48%; z-index:2; pointer-events:none;
     background:radial-gradient(ellipse 105% 62% at 34% 72%, rgba(var(--acento-rgb),var(--luz-capa)) 0%, rgba(var(--acento-rgb),var(--luz-capa)) 18%, rgba(var(--acento-rgb),0) 70%);}
@@ -911,13 +911,6 @@
   /* imprensa: titulo inteiro em branco */
   .imprensa-sec h2 .dourado{background:none !important; color:#FFFFFF !important; -webkit-text-fill-color:#FFFFFF !important;}
 
-  /* capa no desktop: o esfumado fica so no canto, o pincel na mao aparece */
-  @media (min-width:701px){
-    .capa-img img{
-      -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 7%), radial-gradient(ellipse 26% 46% at 7% 66%, #000 55%, transparent 100%), linear-gradient(90deg, transparent 0, #000 22%);
-      mask-image:linear-gradient(90deg, transparent 0, #000 7%), radial-gradient(ellipse 26% 46% at 7% 66%, #000 55%, transparent 100%), linear-gradient(90deg, transparent 0, #000 22%);
-      -webkit-mask-composite:source-in, source-over; mask-composite:intersect, add;}
-  }
 
   /* tamanhos: o medio e o grande giram entre horizontal e vertical; a pessoa tambem escolhe */
   .formato-medida{display:flex; flex-wrap:wrap; align-items:center; gap:var(--s1) var(--s2);}
