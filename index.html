@@ -918,6 +918,20 @@
       mask-image:linear-gradient(90deg, transparent 0, #000 7%), radial-gradient(ellipse 26% 46% at 7% 66%, #000 55%, transparent 100%), linear-gradient(90deg, transparent 0, #000 22%);
       -webkit-mask-composite:source-in, source-over; mask-composite:intersect, add;}
   }
+
+  /* tamanhos: o medio e o grande giram entre horizontal e vertical; a pessoa tambem escolhe */
+  .formato-medida{display:flex; flex-wrap:wrap; align-items:center; gap:var(--s1) var(--s2);}
+  .formato-medida p{margin:0;}
+  .orientacao-fixa{font-size:var(--t-apoio); color:var(--texto-secundario);}
+  .orientacao{display:inline-flex; padding:2px; border:1px solid rgba(var(--acento-rgb),.45); border-radius:999px;}
+  .orientacao button{font:inherit; font-size:12px; letter-spacing:.04em; padding:5px 12px; border:0; border-radius:999px; cursor:pointer;
+    background:transparent; color:var(--texto-secundario); transition:background 250ms, color 250ms;}
+  .orientacao button[aria-pressed="true"]{background:var(--gradiente-botao); color:#FFFFFF; -webkit-text-fill-color:#FFFFFF; text-shadow:0 1px 1px rgba(var(--preto-rgb),.35);}
+  .orientacao button:focus-visible{outline:2px solid var(--acento-claro); outline-offset:2px;}
+  .colecao .quadro3d-objeto{transition:transform 1100ms cubic-bezier(.65,0,.35,1);}
+  .colecao.vertical .quadro3d-objeto{transform:rotateZ(90deg) scale(var(--q-escala-v,.86));}
+  .colecao.col-3{--q-escala-v:.72;}
+  @media (prefers-reduced-motion: reduce){ .colecao .quadro3d-objeto{transition:none;} }
   /* capa no celular: foto ancorada a esquerda e texto um pouco mais abaixo, para ver o pincel na mao */
   @media (max-width:700px){
     :root{--capa-foto-altura:125.1vw; --capa-reserva:min(calc(var(--capa-foto-altura) * .82), 52svh);}
@@ -1203,9 +1217,9 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
       <p class="quadros3d-nota" id="quadros3d-nota">Algumas possibilidades de formato. Os modelos são ilustrativos; a composição é criada para a sua encomenda.</p>
       <div class="colecoes">
         <article class="colecao col-1" aria-labelledby="formato-quadrado">
-          <h3 id="formato-quadrado">Formato quadrado</h3>
-          <p class="formato-medida">1,00 × 1,00 m</p>
-          <div class="quadro3d" data-nome="Formato quadrado" data-parado="true" style="--q-largura:140px;--q-formato:1 / 1;--q-fase:0s;">
+          <h3 id="formato-quadrado">Quadrado</h3>
+          <div class="formato-medida"><p>1,00 × 1,00 m</p><span class="orientacao-fixa">Mesma medida nos dois lados</span></div>
+          <div class="quadro3d" data-nome="Quadrado" data-parado="true" style="--q-largura:140px;--q-formato:1 / 1;--q-fase:0s;">
             <div class="quadro3d-cena" role="img" aria-label="Modelo ilustrativo de tela quadrada, 1,00 por 1,00 metro" aria-describedby="quadros3d-nota">
               <div class="quadro3d-sombra" aria-hidden="true"></div>
               <div class="quadro3d-balanco" aria-hidden="true"><div class="quadro3d-objeto" id="quadro3d-quadrado">
@@ -1217,10 +1231,10 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
           <p class="pitch">Uma tela quadrada, com a composição desenvolvida a partir da sua ideia.</p>
         </article>
         <article class="colecao col-2" aria-labelledby="formato-horizontal">
-          <h3 id="formato-horizontal">Formato horizontal</h3>
-          <p class="formato-medida">1,20 × 0,90 m</p>
-          <div class="quadro3d" data-nome="Formato horizontal" data-parado="true" style="--q-largura:168px;--q-formato:4 / 3;--q-fase:-5.33s;">
-            <div class="quadro3d-cena" role="img" aria-label="Modelo ilustrativo de tela horizontal, 1,20 por 0,90 metro" aria-describedby="quadros3d-nota">
+          <h3 id="formato-horizontal">Médio</h3>
+          <div class="formato-medida"><p data-h="1,20 × 0,90 m" data-v="0,90 × 1,20 m">1,20 × 0,90 m</p><div class="orientacao" role="group" aria-label="Orientação da tela"><button type="button" data-o="h" aria-pressed="true">Horizontal</button><button type="button" data-o="v" aria-pressed="false">Vertical</button></div></div>
+          <div class="quadro3d" data-nome="Médio" data-parado="true" style="--q-largura:168px;--q-formato:4 / 3;--q-fase:-5.33s;">
+            <div class="quadro3d-cena" role="img" aria-label="Modelo ilustrativo de tela média, 1,20 por 0,90 metro, na horizontal ou na vertical" aria-describedby="quadros3d-nota">
               <div class="quadro3d-sombra" aria-hidden="true"></div>
               <div class="quadro3d-balanco" aria-hidden="true"><div class="quadro3d-objeto" id="quadro3d-horizontal">
                 <div class="quadro3d-esquerda"></div><div class="quadro3d-direita"></div><div class="quadro3d-topo"></div><div class="quadro3d-base"></div>
@@ -1228,13 +1242,13 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
               </div></div>
             </div>
           </div>
-          <p class="pitch">Uma tela horizontal para explorar as pessoas e os elementos da composição.</p>
+          <p class="pitch">Na horizontal ou na vertical, conforme as pessoas e os elementos da composição.</p>
         </article>
         <article class="colecao col-3" aria-labelledby="formato-horizontal-amplo">
-          <h3 id="formato-horizontal-amplo">Formato horizontal amplo</h3>
-          <p class="formato-medida">1,80 × 1,20 m</p>
-          <div class="quadro3d" data-nome="Formato horizontal amplo" data-parado="true" style="--q-largura:252px;--q-formato:3 / 2;--q-fase:-10.67s;">
-            <div class="quadro3d-cena" role="img" aria-label="Modelo ilustrativo de tela horizontal ampla, 1,80 por 1,20 metro" aria-describedby="quadros3d-nota">
+          <h3 id="formato-horizontal-amplo">Grande</h3>
+          <div class="formato-medida"><p data-h="1,80 × 1,20 m" data-v="1,20 × 1,80 m">1,80 × 1,20 m</p><div class="orientacao" role="group" aria-label="Orientação da tela"><button type="button" data-o="h" aria-pressed="true">Horizontal</button><button type="button" data-o="v" aria-pressed="false">Vertical</button></div></div>
+          <div class="quadro3d" data-nome="Grande" data-parado="true" style="--q-largura:252px;--q-formato:3 / 2;--q-fase:-10.67s;">
+            <div class="quadro3d-cena" role="img" aria-label="Modelo ilustrativo de tela grande, 1,80 por 1,20 metro, na horizontal ou na vertical" aria-describedby="quadros3d-nota">
               <div class="quadro3d-sombra" aria-hidden="true"></div>
               <div class="quadro3d-balanco" aria-hidden="true"><div class="quadro3d-objeto" id="quadro3d-horizontal-amplo">
                 <div class="quadro3d-esquerda"></div><div class="quadro3d-direita"></div><div class="quadro3d-topo"></div><div class="quadro3d-base"></div>
@@ -1242,7 +1256,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
               </div></div>
             </div>
           </div>
-          <p class="pitch">Uma tela horizontal em maior escala, para quem imagina sua obra em um formato mais amplo.</p>
+          <p class="pitch">A maior escala, na horizontal ou na vertical, para a obra ser o centro da parede.</p>
         </article>
       </div>
       <div class="informacoes-obra" aria-label="Medidas e entrega da obra">
@@ -1401,16 +1415,36 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
     <div class="parede-palco">
       <div class="ig-mural" id="igMural">
         <figure class="ig-com">
-          <span class="ig-av" aria-hidden="true"><img src="img/ig/shogunoficial.webp" alt="" width="40" height="40" loading="lazy"></span>
-          <blockquote><p><b class="ig-perfil">shogunoficial</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> A <span class="ig-link">@gio.prates</span> me surpreendeu com esse quadro feito à mão, com folhas de ouro, usando uma das fotos que eu mais gosto de toda a minha carreira. Um trabalho que carrega história, significado e muito carinho.<br><br>Recebi das mãos da artista plástica <span class="ig-link">@alebaggioart</span> esse presente feito por ela. Parabens pelo talento e pela sensibilidade em transformar um momento tão especial em uma verdadeira obra de arte. Ficou incrível, obrigado! 👏🤩<br><br>Heeyyy 👊</p></blockquote>
-        </figure>
-        <figure class="ig-com">
           <span class="ig-av" aria-hidden="true"><img src="img/ig/dravaniaperes.webp" alt="" width="40" height="40" loading="lazy"></span>
           <blockquote><p><b class="ig-perfil">dravaniaperes</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Receber esse quadro às vésperas dos meus 55 anos teve um significado especial.<br><br>Mais do que um retrato, ele representa tudo o que construí até aqui: as escolhas, os desafios, os recomeços e a mulher que me tornei ao longo dessa caminhada.<br><br>Entro nessa nova fase com gratidão pela minha história e entusiasmo por tudo o que ainda está por vir. Os próximos capítulos prometem ser ainda mais bonitos.<br><br>Obrigada <span class="ig-link">@alebaggioart</span> pela delicadeza e pelo trabalho incrível 🤩</p></blockquote>
+        </figure>
+        <figure class="ig-com">
+          <span class="ig-av" aria-hidden="true"><img src="img/ig/draluizivasques.webp" alt="" width="40" height="40" loading="lazy"></span>
+          <blockquote><p><b class="ig-perfil">draluizivasques</b> Eu to emocionada de verdade !!! 🥹 E eu merecia muiiito isso! <span class="ig-link">@alebaggioart</span> é indescritível a sensação de receber um trabalho seu, você é impecável e transmite emoção e amor em cada detalhe. ✨🥰</p></blockquote>
+        </figure>
+        <figure class="ig-com">
+          <span class="ig-av" aria-hidden="true"><img src="img/ig/draraquelnormandia.webp" alt="" width="40" height="40" loading="lazy"></span>
+          <blockquote><p><b class="ig-perfil">draraquelnormandia</b> Entre arte, identidade e essência. ✨<br>Um quadro que carrega meus traços, mas também traduz um pouco de quem eu sou: intensidade, feminilidade, força e amor pela beleza em todas as suas formas.<br>Ver um pedacinho de mim transformado em arte e eternizado em uma tela é simplesmente especial.<br><br>Gratidão, <span class="ig-link">@alebaggioart</span>, você é fora da curva, amei. 💗</p></blockquote>
         </figure>
         <figure class="ig-com ig-curto">
           <span class="ig-av" aria-hidden="true"><img src="img/ig/dravanessavida.webp" alt="" width="40" height="40" loading="lazy"></span>
           <blockquote><p><b class="ig-perfil">dravanessavida</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Trabalho impecável de <span class="ig-link">@alebaggioart</span><br>Transformando momentos em arte 💖</p><figcaption>22 sem</figcaption></blockquote>
+        </figure>
+        <figure class="ig-com">
+          <span class="ig-av" aria-hidden="true"><img src="img/ig/dra.melissabrumdamata.webp" alt="" width="40" height="40" loading="lazy"></span>
+          <blockquote><p><b class="ig-perfil">dra.melissabrumdamata</b> Obrigada <span class="ig-link">@alebaggioart</span> por pintar o maior bem da minha vida, minha família. Não é só um quadro, é a concretização de um sonho, a sensação de olhar para minha família e só conseguir pensar “ eu mereço tanto?”. Obrigada Deus ! Conheçam as pinturas da <span class="ig-link">@alebaggioart</span> Ela é simplesmente SENSACIONAL!</p></blockquote>
+        </figure>
+        <figure class="ig-com">
+          <span class="ig-av" aria-hidden="true"><img src="img/ig/drarenataquintanilha.webp" alt="" width="40" height="40" loading="lazy"></span>
+          <blockquote><p><b class="ig-perfil">drarenataquintanilha</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> É muito especial me enxergar novamente através do seu olhar e da sua arte. 🤍 Segunda arte, e dessa vez eterniza quem eu sou hoje. Que privilégio ter diferentes capítulos da minha história registrados pelas suas mãos. ✨🎨 <span class="ig-link">@alebaggioart</span></p></blockquote>
+        </figure>
+        <figure class="ig-com">
+          <span class="ig-av" aria-hidden="true"><img src="img/ig/dra.denisebiomedica.webp" alt="" width="40" height="40" loading="lazy"></span>
+          <blockquote><p><b class="ig-perfil">dra.denisebiomedica</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Algumas versões da gente merecem virar arte. ✨<br><span class="ig-link">@alebaggioart</span> Não é só um retrato. É uma versão de mim que ganhou vida. 💗</p></blockquote>
+        </figure>
+        <figure class="ig-com">
+          <span class="ig-av" aria-hidden="true"><img src="img/ig/paularela_esteticaavancada.webp" alt="" width="40" height="40" loading="lazy"></span>
+          <blockquote><p><b class="ig-perfil">paularela_esteticaavancada</b> Meu Deus gente, pensa numa obra de arte incrívelllll!! A artista plástica <span class="ig-link">@alebaggioart</span> me desenhou perfeitamente , estou impactada até agora! Muito obrigada Ale, vc é realmente sensacional ! Sem palavras para agradecer o tanto que amei ♥️</p></blockquote>
         </figure>
         <figure class="ig-com">
           <span class="ig-av" aria-hidden="true"><img src="img/ig/dr.igorfaillace.webp" alt="" width="40" height="40" loading="lazy"></span>
@@ -1421,20 +1455,8 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
           <blockquote><p><b class="ig-perfil">dra.biaingles</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Perfeitooooo</p><figcaption>3 sem · 1 curtida · Responder</figcaption></blockquote>
         </figure>
         <figure class="ig-com">
-          <span class="ig-av" aria-hidden="true"><img src="img/ig/draraquelnormandia.webp" alt="" width="40" height="40" loading="lazy"></span>
-          <blockquote><p><b class="ig-perfil">draraquelnormandia</b> Entre arte, identidade e essência. ✨<br>Um quadro que carrega meus traços, mas também traduz um pouco de quem eu sou: intensidade, feminilidade, força e amor pela beleza em todas as suas formas.<br>Ver um pedacinho de mim transformado em arte e eternizado em uma tela é simplesmente especial.<br><br>Gratidão, <span class="ig-link">@alebaggioart</span>, você é fora da curva, amei. 💗</p></blockquote>
-        </figure>
-        <figure class="ig-com">
-          <span class="ig-av" aria-hidden="true"><img src="img/ig/drarenataquintanilha.webp" alt="" width="40" height="40" loading="lazy"></span>
-          <blockquote><p><b class="ig-perfil">drarenataquintanilha</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> É muito especial me enxergar novamente através do seu olhar e da sua arte. 🤍 Segunda arte, e dessa vez eterniza quem eu sou hoje. Que privilégio ter diferentes capítulos da minha história registrados pelas suas mãos. ✨🎨 <span class="ig-link">@alebaggioart</span></p></blockquote>
-        </figure>
-        <figure class="ig-com">
-          <span class="ig-av" aria-hidden="true"><img src="img/ig/dra.brendaledur.webp" alt="" width="40" height="40" loading="lazy"></span>
-          <blockquote><p><b class="ig-perfil">dra.brendaledur</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Muito mais do que uma obra de arte. 🖼️<br><br>Esse quadro representa uma parte da minha essência, dos meus sonhos e de tudo aquilo que acredito. Cada detalhe foi pensado para transmitir beleza, delicadeza, força e autenticidade — os mesmos valores que deram vida à Harmonie Clinique.</p></blockquote>
-        </figure>
-        <figure class="ig-com">
-          <span class="ig-av" aria-hidden="true"><img src="img/ig/dra.denisebiomedica.webp" alt="" width="40" height="40" loading="lazy"></span>
-          <blockquote><p><b class="ig-perfil">dra.denisebiomedica</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Algumas versões da gente merecem virar arte. ✨<br><span class="ig-link">@alebaggioart</span> Não é só um retrato. É uma versão de mim que ganhou vida. 💗</p></blockquote>
+          <span class="ig-av" aria-hidden="true"><img src="img/ig/draanagraziela.webp" alt="" width="40" height="40" loading="lazy"></span>
+          <blockquote><p><b class="ig-perfil">draanagraziela</b> Eu amei, pensa numa obra de arte incrível!✨ A artista plástica <span class="ig-link">@alebaggioart</span> me desenhou com detalhes e estou impactada com a riqueza de detalhes! Muito obrigada Ale, você é sensacional, amei 😘</p></blockquote>
         </figure>
         <figure class="ig-com">
           <span class="ig-av" aria-hidden="true"><img src="img/ig/brunotarchettipersonal.webp" alt="" width="40" height="40" loading="lazy"></span>
@@ -1443,6 +1465,14 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
         <figure class="ig-com ig-curto">
           <span class="ig-av" aria-hidden="true"><img src="img/ig/dra.brendaledur.webp" alt="" width="40" height="40" loading="lazy"></span>
           <blockquote><p><b class="ig-perfil">dra.brendaledur</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Eu amei demais 🤩🤍</p><figcaption>13 sem · 1 curtida · Responder</figcaption></blockquote>
+        </figure>
+        <figure class="ig-com">
+          <span class="ig-av" aria-hidden="true"><img src="img/ig/dra.brendaledur.webp" alt="" width="40" height="40" loading="lazy"></span>
+          <blockquote><p><b class="ig-perfil">dra.brendaledur</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Muito mais do que uma obra de arte. 🖼️<br><br>Esse quadro representa uma parte da minha essência, dos meus sonhos e de tudo aquilo que acredito. Cada detalhe foi pensado para transmitir beleza, delicadeza, força e autenticidade — os mesmos valores que deram vida à Harmonie Clinique.</p></blockquote>
+        </figure>
+        <figure class="ig-com">
+          <span class="ig-av" aria-hidden="true"><img src="img/ig/shogunoficial.webp" alt="" width="40" height="40" loading="lazy"></span>
+          <blockquote><p><b class="ig-perfil">shogunoficial</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> A <span class="ig-link">@gio.prates</span> me surpreendeu com esse quadro feito à mão, com folhas de ouro, usando uma das fotos que eu mais gosto de toda a minha carreira. Um trabalho que carrega história, significado e muito carinho.<br><br>Recebi das mãos da artista plástica <span class="ig-link">@alebaggioart</span> esse presente feito por ela. Parabens pelo talento e pela sensibilidade em transformar um momento tão especial em uma verdadeira obra de arte. Ficou incrível, obrigado! 👏🤩<br><br>Heeyyy 👊</p></blockquote>
         </figure>
         <figure class="ig-com">
           <span class="ig-av" aria-hidden="true"><img src="img/ig/fransantosmentora.webp" alt="" width="40" height="40" loading="lazy"></span>
@@ -1583,7 +1613,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
   <div class="estrelas-topo">
     <div>
       <h3>Todas as estrelas</h3>
-      <p>Mais de 100 personalidades já foram retratadas por Ale Baggio. Estas são mais 43 que aparecem nas redes dela.</p>
+      <p>Mais de 100 personalidades já foram retratadas por Ale Baggio. Aqui estão 103 delas.</p>
     </div>
     <button type="button" class="fechar" id="fechaEstrelas" aria-label="Fechar">&times;</button>
   </div>
@@ -1623,7 +1653,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
 
   /* WhatsApp: informar o numero completo com codigo do pais e DDD.
      Sem numero, os links permanecem inativos, sem mensagens sobrepostas. */
-  var WHATSAPP = '+55 41 99576-2629';
+  var WHATSAPP = '+55 41 99818-1412';
   var numeroWhatsApp = WHATSAPP.replace(/\D/g, '');
   document.querySelectorAll('a.wa').forEach(function (a) {
     if (!numeroWhatsApp) {
@@ -2114,6 +2144,49 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
 
   /* janela com todos os famosos */
   var ESTRELAS = [
+    ['Xuxa e Junno', 'img/celeb-xuxa.webp'],
+    ['Anitta', 'img/celeb-anitta.webp'],
+    ['Cacau Protásio', 'img/celeb-cacau.webp'],
+    ['Juliette', 'img/celeb-juliette.webp'],
+    ['Adriane Galisteu', 'img/celeb-galisteu.webp'],
+    ['Cesar Filho e Elaine Mickely', 'img/estrelas/cesarfilho.webp'],
+    ['Dra. Nayane Pachêco', 'img/estrelas/dranayanepacheco.webp'],
+    ['Isaac Azar (Paris 6)', 'img/estrelas/isaacazar.webp'],
+    ['Mateus Carrieri', 'img/estrelas/mateuscarrieriof.webp'],
+    ['Pepita', 'img/estrelas/pepita.webp'],
+    ['Sasha Meneghel', 'img/estrelas/sashameneghel.webp'],
+    ['Silvio Santos', 'img/celeb-silviosantos.webp'],
+    ['Nicole Bahls', 'img/celeb-nicolebahls.webp'],
+    ['Ana Maria Braga', 'img/celeb-falabella.webp'],
+    ['Simony', 'img/celeb-simony.webp'],
+    ['Buarque e Bia Miranda', 'img/celeb-buarque-bia.webp'],
+    ['Miguel Falabella', 'img/estrelas/bellafalconi.webp'],
+    ['Paola Antonini', 'img/estrelas/paola_antonini.webp'],
+    ['Mario Henrique', 'img/estrelas/mariohenrique.webp'],
+    ['Iara Kilaris', 'img/estrelas/iarakilaris.webp'],
+    ['Kim Rosacuca', 'img/estrelas/kimrosacuca.webp'],
+    ['Jesus Luz', 'img/estrelas/jesusluz.webp'],
+    ['Juliana Paes', 'img/celeb-julianapaes.webp'],
+    ['Zezé Di Camargo e Graciele', 'img/celeb-zeze.webp'],
+    ['Jottape', 'img/celeb-gretchen.webp'],
+    ['Luan Santana', 'img/celeb-luansantana.webp'],
+    ['Fiuk', 'img/estrelas/fiuk.webp'],
+    ['Bianca Andrade (Boca Rosa)', 'img/celeb-luciano.webp'],
+    ['Ludmilla', 'img/estrelas/ludmilla.webp'],
+    ['Fábio Nestares (Roupa Nova)', 'img/estrelas/roupanova.webp'],
+    ['Carol Dallarosa', 'img/estrelas/caroldallarosaa.webp'],
+    ['Myrian Rios', 'img/estrelas/myrianrios.webp'],
+    ['Jojo Todynho', 'img/celeb-jojo.webp'],
+    ['Belo e Gracyanne', 'img/celeb-belo-gracyanne.webp'],
+    ['Thammy Miranda e Andressa', 'img/celeb-thammy.webp'],
+    ['Shogun Rua', 'img/celeb-shogun.webp'],
+    ['Fábio Jr.', 'img/estrelas/fabiojroficial.webp'],
+    ['Pamella Lunardi', 'img/estrelas/bypamella.webp'],
+    ['Eduardo Costa', 'img/estrelas/eduardocosta.webp'],
+    ['Dj Batata', 'img/estrelas/djbatata.webp'],
+    ['Julia Schiavi', 'img/estrelas/scheilacarvalhooficial.webp'],
+    ['Natália Deodato', 'img/estrelas/natalia.deodato.webp'],
+    ['Reynaldo Gianecchini', 'img/estrelas/reynaldogianecchini.webp'],
     ['GKay', 'img/estrelas/gessica.webp'],
     ['Paulo Gustavo', 'img/estrelas/paulogustavo31.webp'],
     ['Claudia Raia', 'img/estrelas/claudiaraia.webp'],
@@ -2156,7 +2229,24 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
     ['Cristiane Nascimento', 'img/estrelas/temploavinash.webp'],
     ['Dra. Natasha Ramos', 'img/estrelas/dra_natasharamos.webp'],
     ['Monique Rodrigues Salum', 'img/estrelas/moniquesalum.webp'],
-    ['Zezé Polessa', 'img/estrelas/zezepolessa.webp']
+    ['Zezé Polessa', 'img/estrelas/zezepolessa.webp'],
+    ['Dra. Kamilla Lacerda', 'img/estrelas/dra.kamillalacerda.webp'],
+    ['Dr. Roberto Viotto', 'img/estrelas/drviotto.webp'],
+    ['Flávia Camargo', 'img/estrelas/flaviafcamargo.webp'],
+    ['Dra. Poliane Cardoso', 'img/estrelas/dra.polianecardoso.webp'],
+    ['Dra. Larissa Lima', 'img/estrelas/dralarissalima1.webp'],
+    ['Amabylle Eiroa', 'img/estrelas/amabylle_eiroa.webp'],
+    ['Dra. Fernanda Filippos', 'img/estrelas/dra.fernandafilippos.webp'],
+    ['Artur Vieira', 'img/estrelas/arturvieiraa_.webp'],
+    ['Dra. Fernanda Baboni', 'img/estrelas/drafernandababoni.webp'],
+    ['Thales Bretas', 'img/estrelas/thalesbretas.webp'],
+    ['Tereza Scardua', 'img/estrelas/terezascardua.webp'],
+    ['Ricardo Maguila', 'img/estrelas/maguila.webp'],
+    ['Mayara Araújo', 'img/estrelas/mayiearaujo.webp'],
+    ['Dra. Ana Laura Fontana', 'img/estrelas/dra.analaurafontana.webp'],
+    ['Dra. Flaviana Pellozo', 'img/estrelas/dra.flavianapellozo.webp'],
+    ['Dra. Mariana Marques', 'img/estrelas/dra.marianamarques.webp'],
+    ['Dra. Flávia Trevizan', 'img/estrelas/draflaviatrevizan.webp']
   ];
   var janela = document.getElementById('estrelas');
   var grade = document.getElementById('estrelasGrade');
@@ -2184,35 +2274,69 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
     if (e.target === janela) janela.close();
   });
 
-  /* VIDEOS DO ACERVO: tocam sozinhos quando entram na tela, mudos e em loop,
-     e pausam quando saem (sem gastar dados nem bateria fora da vista). O
-     arquivo so e baixado (preload="none") quando a celula chega perto da
-     janela, nao no carregamento da pagina. Reduzir movimento: fica so o poster,
-     parado, sem carregar o video. */
+  /* VIDEOS: depois que a pagina termina de carregar (imagens primeiro), os videos
+     comecam a baixar em segundo plano, um de cada vez, do mais perto da tela
+     para o mais longe. Assim, quando a pessoa chega neles, ja estao prontos.
+     Cada video so comeca a tocar quando ja tem dados suficientes, sem engasgar.
+     Economia de dados ligada ou rede 2G: baixa so quando chega perto.
+     Reduzir movimento: fica so o poster, parado. */
   (function () {
-    var videos = document.querySelectorAll('.video-auto');
+    var videos = [].slice.call(document.querySelectorAll('.video-auto'));
     if (!videos.length || !('IntersectionObserver' in window)) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var rede = navigator.connection || {};
+    var poupar = rede.saveData || /2g/.test(rede.effectiveType || '');
 
-    var carregar = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        var v = e.target, trocou = false;
-        v.querySelectorAll('source').forEach(function (f) { if (f.dataset.src) { f.src = f.dataset.src; delete f.dataset.src; trocou = true; } });
-        if (trocou) v.load();
-        carregar.unobserve(v);
-      });
-    }, { rootMargin: '600px 0px' });         // baixa um pouco antes de chegar
+    function ativar(v) {
+      if (v.dataset.ativo) return;
+      v.dataset.ativo = '1';
+      v.querySelectorAll('source').forEach(function (f) { if (f.dataset.src) { f.src = f.dataset.src; delete f.dataset.src; } });
+      v.preload = 'auto';
+      v.load();
+    }
+    function tocarQuandoPronto(v) {
+      if (!v.visivel) return;
+      if (v.readyState >= 3) { v.play().then(function () { v.classList.add('tocando'); }).catch(function () {}); return; }
+      v.addEventListener('canplay', function () { tocarQuandoPronto(v); }, { once: true });
+    }
+
+    var perto = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { ativar(e.target); perto.unobserve(e.target); } });
+    }, { rootMargin: '1200px 0px' });
 
     var tocar = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         var v = e.target;
-        if (e.isIntersecting) { v.play().then(function () { v.classList.add('tocando'); }).catch(function () {}); }
+        v.visivel = e.isIntersecting;
+        if (e.isIntersecting) { ativar(v); tocarQuandoPronto(v); }
         else { v.pause(); v.classList.remove('tocando'); }
       });
     }, { threshold: 0.4 });
 
-    videos.forEach(function (v) { carregar.observe(v); tocar.observe(v); });
+    videos.forEach(function (v) { perto.observe(v); tocar.observe(v); });
+
+    if (poupar) return;
+    function filaEmSegundoPlano() {
+      var y = window.scrollY + window.innerHeight / 2;
+      var fila = videos.slice().sort(function (a, b) {
+        return Math.abs(a.getBoundingClientRect().top + window.scrollY - y) - Math.abs(b.getBoundingClientRect().top + window.scrollY - y);
+      });
+      (function proximo() {
+        var v = fila.shift();
+        if (!v) return;
+        if (v.dataset.ativo && v.readyState >= 4) { proximo(); return; }
+        ativar(v);
+        var feito = false, segue = function () { if (feito) return; feito = true; setTimeout(proximo, 150); };
+        v.addEventListener('canplaythrough', segue, { once: true });
+        v.addEventListener('error', segue, { once: true });
+        setTimeout(segue, 8000);
+      })();
+    }
+    function depoisDoLoad() {
+      var ocioso = window.requestIdleCallback || function (f) { setTimeout(f, 1200); };
+      ocioso(filaEmSegundoPlano, { timeout: 2500 });
+    }
+    if (document.readyState === 'complete') depoisDoLoad(); else window.addEventListener('load', depoisDoLoad, { once: true });
   })();
 
   quandoAparecer(document.querySelector('.acervo'), function () {
@@ -2392,6 +2516,29 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
     if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { visivel = e[0].isIntersecting; }).observe(m);
     var t0; addEventListener('resize', function () { clearTimeout(t0); t0 = setTimeout(montar, 200); });
     montar(); quadro = requestAnimationFrame(passo);
+  })();
+
+  /* tamanhos: alterna sozinho entre horizontal e vertical enquanto esta na tela; se a pessoa escolher, fica na escolha dela */
+  (function () {
+    var calmo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('.colecao').forEach(function (card) {
+      var grupo = card.querySelector('.orientacao'); if (!grupo) return;
+      var medida = card.querySelector('.formato-medida p'), botoes = grupo.querySelectorAll('button');
+      var vertical = false, escolheu = false, timer = null;
+      function aplicar(v) {
+        vertical = v; card.classList.toggle('vertical', v);
+        botoes.forEach(function (b) { b.setAttribute('aria-pressed', String((b.dataset.o === 'v') === v)); });
+        medida.textContent = medida.getAttribute(v ? 'data-v' : 'data-h');
+      }
+      botoes.forEach(function (b) { b.addEventListener('click', function () { escolheu = true; clearInterval(timer); aplicar(b.dataset.o === 'v'); }); });
+      if (calmo || !('IntersectionObserver' in window)) return;
+      new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          clearInterval(timer);
+          if (e.isIntersecting && !escolheu) timer = setInterval(function () { aplicar(!vertical); }, card.classList.contains('col-3') ? 3600 : 3000);
+        });
+      }, { threshold: 0.3 }).observe(card);
+    });
   })();
 </script>
 </body>
