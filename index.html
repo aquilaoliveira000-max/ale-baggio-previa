@@ -207,7 +207,7 @@
     -webkit-mask-image:linear-gradient(90deg, transparent 0, var(--texto) 28%); mask-image:linear-gradient(90deg, transparent 0, var(--texto) 28%);
     transform-origin:55% 0%; animation:deriva-capa 26s ease-in-out infinite alternate;}
   .capa::after{content:""; position:absolute; top:var(--topo-altura); right:0; bottom:0; left:0; z-index:1; pointer-events:none;
-    background:linear-gradient(90deg, rgba(var(--fundo-rgb),.98) 0%, rgba(var(--fundo-rgb),.9) 36%, rgba(var(--fundo-rgb),.5) 58%, rgba(var(--fundo-rgb),.1) 82%, rgba(var(--fundo-rgb),.24) 100%);}
+    background:linear-gradient(90deg, rgba(var(--fundo-rgb),.98) 0%, rgba(var(--fundo-rgb),.9) 36%, rgba(var(--fundo-rgb),.4) 55%, rgba(var(--fundo-rgb),.1) 78%, rgba(var(--fundo-rgb),.24) 100%);}
   /* A luz fica na faixa escura esquerda, longe do retrato ancorado a direita. */
   .capa::before{content:""; position:absolute; top:var(--topo-altura); bottom:0; left:0; width:48%; z-index:2; pointer-events:none;
     background:radial-gradient(ellipse 105% 62% at 34% 72%, rgba(var(--acento-rgb),var(--luz-capa)) 0%, rgba(var(--acento-rgb),var(--luz-capa)) 18%, rgba(var(--acento-rgb),0) 70%);}
@@ -471,7 +471,7 @@
   /* passos */
   .passos{position:relative; margin-top:var(--s5); padding-left:var(--s7);}
   /* O caminho em dourado acompanha a rolagem. */
-  .trilho{position:absolute; left:clamp(18px,2.6vw,40px); top:0; bottom:0; width:4px; background:transparent;}
+  .trilho{position:absolute; left:clamp(18px,2.6vw,40px); top:0; bottom:0; width:2px; background:transparent;}
   .trilho i{display:block; width:100%; height:100%; transform:scaleY(0); transform-origin:top center;
     background:var(--gradiente-ouro);}
   .passo{display:grid; grid-template-columns:auto minmax(0,1fr); gap:var(--s4); align-items:baseline; padding:var(--s4) 0; border-top:1px solid var(--borda);}
@@ -902,7 +902,7 @@
     box-shadow:inset 0 1px 0 rgba(var(--texto-rgb),.35), 0 24px 48px -26px rgba(var(--preto-rgb),.6);}
   .investimento-descricao .lead{color:#2A1A05 !important;}
   .investimento .investimento-descricao .investimento-frase{font-size:var(--t-sub) !important; line-height:1.28; font-weight:600; letter-spacing:-.02em;
-    color:#2A1A05 !important; -webkit-text-fill-color:#2A1A05; text-shadow:none !important; max-width:24ch; text-wrap:balance; margin:0;}
+    color:#4A2E0C !important; -webkit-text-fill-color:#4A2E0C; text-shadow:none !important; max-width:24ch; text-wrap:balance; margin:0;}
   .investimento .investimento-descricao .btn-orcamento{background:#FFFFFF; color:var(--ouro-escuro-inicio); border-color:#FFFFFF; text-shadow:none;
     box-shadow:0 10px 24px -12px rgba(var(--preto-rgb),.55);}
   .investimento .investimento-descricao .btn-orcamento:hover{background:#FFF8EA; border-color:#FFF8EA;}
@@ -910,6 +910,30 @@
 
   /* imprensa: titulo inteiro em branco */
   .imprensa-sec h2 .dourado{background:none !important; color:#FFFFFF !important; -webkit-text-fill-color:#FFFFFF !important;}
+  /* preco no mesmo dourado do painel ao lado */
+  .investimento .investimento-valor strong{background:var(--gradiente-botao); -webkit-background-clip:text; background-clip:text;
+    color:var(--ouro-faixa-reflexo); -webkit-text-fill-color:transparent; -webkit-text-stroke:.6px #FFFFFF; paint-order:stroke fill;}
+
+  /* capa no desktop: o esfumado fica so no canto, o pincel na mao aparece */
+  @media (min-width:701px){
+    .capa-img img{
+      -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 7%), radial-gradient(ellipse 26% 46% at 7% 66%, #000 55%, transparent 100%), linear-gradient(90deg, transparent 0, #000 22%);
+      mask-image:linear-gradient(90deg, transparent 0, #000 7%), radial-gradient(ellipse 26% 46% at 7% 66%, #000 55%, transparent 100%), linear-gradient(90deg, transparent 0, #000 22%);
+      -webkit-mask-composite:source-in, source-over; mask-composite:intersect, add;}
+  }
+  /* beija-flor pintado em ouro no canto do painel, saindo um pouco para fora */
+  .investimento-descricao{position:relative; overflow:visible;}
+  .beija-flor{position:absolute; right:-28px; top:-46px; width:clamp(150px, 17vw, 250px); height:auto; pointer-events:none;
+    filter:drop-shadow(0 6px 10px rgba(var(--preto-rgb),.35)) brightness(1.08);}
+  .investimento-descricao .investimento-frase, .investimento-descricao .btn{position:relative; z-index:1;}
+  @media (max-width:700px){ .beija-flor{width:130px; right:-10px; top:-56px;} }
+  /* capa no celular: foto ancorada a esquerda e texto um pouco mais abaixo, para ver o pincel na mao */
+  @media (max-width:700px){
+    :root{--capa-foto-altura:125.1vw; --capa-reserva:min(calc(var(--capa-foto-altura) * .82), 52svh);}
+    .capa-img img{object-position:0% 0%; -webkit-mask-image:linear-gradient(180deg, #000 82%, transparent 100%); mask-image:linear-gradient(180deg, #000 82%, transparent 100%);}
+    .capa::after{background:linear-gradient(180deg, rgba(var(--fundo-rgb),0) 0, rgba(var(--fundo-rgb),0) calc(var(--capa-foto-altura) * .64),
+      rgba(var(--fundo-rgb),.5) calc(var(--capa-foto-altura) * .8), rgba(var(--fundo-rgb),.88) calc(var(--capa-foto-altura) * .94), rgba(var(--fundo-rgb),1) calc(var(--capa-foto-altura) + 40px));}
+  }
 </style>
 </head>
 <body>
@@ -1176,6 +1200,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
           <p class="investimento-valor" id="investimento-titulo">Pinturas sobre tela a partir de <strong>R$ 3.900.</strong></p>
         </div>
         <div class="investimento-descricao">
+          <img class="beija-flor" src="img/beija-flor-ouro.webp" alt="" width="700" height="636" loading="lazy" decoding="async">
           <p class="investimento-frase">Toda história merece uma tela só dela. Conte a sua para a Ale e descubra como ela pode virar arte.</p>
           <a class="btn btn-1 btn-orcamento wa" data-colecao="uma obra sob encomenda" href="#contato"><svg class="contato-brilho" viewBox="8 0 56 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M28 2C30 13 33 17 44 20C33 23 30 27 28 38C26 27 23 23 12 20C23 17 26 13 28 2Z"/><path d="M52 2C53 7 55 9 60 10C55 11 53 13 52 18C51 13 49 11 44 10C49 9 51 7 52 2Z"/></svg><span class="btn-texto">Solicitar orçamento</span></a>
         </div>
