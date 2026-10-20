@@ -1,0 +1,507 @@
+[
+ {
+  "nome": "Xuxa e Junno",
+  "img": "img/celeb-xuxa.webp",
+  "carrossel": true,
+  "m": "img/m/celeb-xuxa.webp",
+  "w": 520
+ },
+ {
+  "nome": "Anitta",
+  "img": "img/celeb-anitta.webp",
+  "carrossel": true,
+  "m": "img/m/celeb-anitta.webp",
+  "w": 520
+ },
+ {
+  "nome": "Cacau Protásio",
+  "img": "img/celeb-cacau.webp",
+  "carrossel": true,
+  "m": "img/m/celeb-cacau.webp",
+  "w": 520
+ },
+ {
+  "nome": "Juliette",
+  "img": "img/celeb-juliette.webp",
+  "carrossel": true,
+  "m": "img/m/celeb-juliette.webp",
+  "w": 520
+ },
+ {
+  "nome": "Adriane Galisteu",
+  "img": "img/celeb-galisteu.webp",
+  "carrossel": true,
+  "m": "img/m/celeb-galisteu.webp",
+  "w": 520
+ },
+ {
+  "nome": "Cesar Filho e Elaine Mickely",
+  "img": "img/estrelas/cesarfilho.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__cesarfilho.webp",
+  "w": 520
+ },
+ {
+  "nome": "Dra. Nayane Pachêco",
+  "img": "img/estrelas/dranayanepacheco.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__dranayanepacheco.webp",
+  "w": 520
+ },
+ {
+  "nome": "Isaac Azar (Paris 6)",
+  "img": "img/estrelas/isaacazar.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__isaacazar.webp",
+  "w": 520
+ },
+ {
+  "nome": "Mateus Carrieri",
+  "img": "img/estrelas/mateuscarrieriof.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__mateuscarrieriof.webp",
+  "w": 520
+ },
+ {
+  "nome": "Pepita",
+  "img": "img/estrelas/pepita.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__pepita.webp",
+  "w": 520
+ },
+ {
+  "nome": "Sasha Meneghel e João Figueiredo",
+  "img": "img/estrelas/sashameneghel.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__sashameneghel.webp",
+  "w": 520
+ },
+ {
+  "nome": "Silvio Santos",
+  "img": "img/celeb-silviosantos.webp",
+  "carrossel": true,
+  "m": "img/m/celeb-silviosantos.webp",
+  "w": 520
+ },
+ {
+  "nome": "Nicole Bahls",
+  "img": "img/celeb-nicolebahls.webp",
+  "carrossel": true,
+  "m": "img/m/celeb-nicolebahls.webp",
+  "w": 520
+ },
+ {
+  "nome": "Ana Maria Braga",
+  "img": "img/celeb-falabella.webp",
+  "carrossel": true,
+  "m": "img/m/celeb-falabella.webp",
+  "w": 520
+ },
+ {
+  "nome": "Simony",
+  "img": "img/celeb-simony.webp",
+  "carrossel": true,
+  "m": "img/m/celeb-simony.webp",
+  "w": 520
+ },
+ {
+  "nome": "Buarque e Bia Miranda",
+  "img": "img/celeb-buarque-bia.webp",
+  "carrossel": true,
+  "m": "img/m/celeb-buarque-bia.webp",
+  "w": 520
+ },
+ {
+  "nome": "Miguel Falabella",
+  "img": "img/estrelas/bellafalconi.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__bellafalconi.webp",
+  "w": 520
+ },
+ {
+  "nome": "Paola Antonini",
+  "img": "img/estrelas/paola_antonini.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__paola_antonini.webp",
+  "w": 520
+ },
+ {
+  "nome": "Mario Henrique",
+  "img": "img/estrelas/mariohenrique.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__mariohenrique.webp",
+  "w": 520
+ },
+ {
+  "nome": "Iara Kilaris",
+  "img": "img/estrelas/iarakilaris.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__iarakilaris.webp",
+  "w": 520
+ },
+ {
+  "nome": "Kim Rosacuca",
+  "img": "img/estrelas/kimrosacuca.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__kimrosacuca.webp",
+  "w": 520
+ },
+ {
+  "nome": "Jesus Luz",
+  "img": "img/estrelas/jesusluz.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__jesusluz.webp",
+  "w": 520
+ },
+ {
+  "nome": "Juliana Paes",
+  "img": "img/celeb-julianapaes.webp",
+  "carrossel": true,
+  "m": "img/m/celeb-julianapaes.webp",
+  "w": 520
+ },
+ {
+  "nome": "Zezé Di Camargo e Graciele",
+  "img": "img/celeb-zeze.webp",
+  "carrossel": true,
+  "m": "img/m/celeb-zeze.webp",
+  "w": 520
+ },
+ {
+  "nome": "Jottape",
+  "img": "img/celeb-gretchen.webp",
+  "carrossel": true,
+  "m": "img/m/celeb-gretchen.webp",
+  "w": 520
+ },
+ {
+  "nome": "Luan Santana",
+  "img": "img/celeb-luansantana.webp",
+  "carrossel": true,
+  "m": "img/m/celeb-luansantana.webp",
+  "w": 520
+ },
+ {
+  "nome": "Fiuk",
+  "img": "img/estrelas/fiuk.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__fiuk.webp",
+  "w": 520
+ },
+ {
+  "nome": "Bianca Andrade (Boca Rosa)",
+  "img": "img/celeb-luciano.webp",
+  "carrossel": true,
+  "m": "img/m/celeb-luciano.webp",
+  "w": 520
+ },
+ {
+  "nome": "Ludmilla e Brunna Gonçalves",
+  "img": "img/estrelas/ludmilla.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__ludmilla.webp",
+  "w": 520
+ },
+ {
+  "nome": "Fábio Nestares (Roupa Nova)",
+  "img": "img/estrelas/roupanova.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__roupanova.webp",
+  "w": 520
+ },
+ {
+  "nome": "Carol Dallarosa",
+  "img": "img/estrelas/caroldallarosaa.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__caroldallarosaa.webp",
+  "w": 520
+ },
+ {
+  "nome": "Myrian Rios",
+  "img": "img/estrelas/myrianrios.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__myrianrios.webp",
+  "w": 520
+ },
+ {
+  "nome": "Jojo Todynho",
+  "img": "img/celeb-jojo.webp",
+  "carrossel": true,
+  "m": "img/m/celeb-jojo.webp",
+  "w": 520
+ },
+ {
+  "nome": "Belo e Gracyanne",
+  "img": "img/celeb-belo-gracyanne.webp",
+  "carrossel": true,
+  "m": "img/m/celeb-belo-gracyanne.webp",
+  "w": 520
+ },
+ {
+  "nome": "Thammy Miranda e Andressa",
+  "img": "img/celeb-thammy.webp",
+  "carrossel": true,
+  "m": "img/m/celeb-thammy.webp",
+  "w": 520
+ },
+ {
+  "nome": "Shogun Rua",
+  "img": "img/celeb-shogun.webp",
+  "carrossel": true,
+  "m": "img/m/celeb-shogun.webp",
+  "w": 520
+ },
+ {
+  "nome": "Fábio Jr.",
+  "img": "img/estrelas/fabiojroficial.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__fabiojroficial.webp",
+  "w": 520
+ },
+ {
+  "nome": "Pamella Lunardi",
+  "img": "img/estrelas/bypamella.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__bypamella.webp",
+  "w": 520
+ },
+ {
+  "nome": "Eduardo Costa",
+  "img": "img/estrelas/eduardocosta.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__eduardocosta.webp",
+  "w": 520
+ },
+ {
+  "nome": "Dj Batata",
+  "img": "img/estrelas/djbatata.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__djbatata.webp",
+  "w": 520
+ },
+ {
+  "nome": "Julia Schiavi",
+  "img": "img/estrelas/scheilacarvalhooficial.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__scheilacarvalhooficial.webp",
+  "w": 520
+ },
+ {
+  "nome": "Natália Deodato",
+  "img": "img/estrelas/natalia.deodato.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__natalia.deodato.webp",
+  "w": 520
+ },
+ {
+  "nome": "Reynaldo Gianecchini",
+  "img": "img/estrelas/reynaldogianecchini.webp",
+  "carrossel": true,
+  "m": "img/m/estrelas__reynaldogianecchini.webp",
+  "w": 520
+ },
+ {
+  "nome": "GKay",
+  "img": "img/estrelas/gessica.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Paulo Gustavo e Thales Bretas",
+  "img": "img/estrelas/paulogustavo31.webp",
+  "carrossel": false,
+  "w": 400
+ },
+ {
+  "nome": "Claudia Raia",
+  "img": "img/estrelas/claudiaraia.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Scheila Carvalho",
+  "img": "img/estrelas/x-scheilacarvalho.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Bruna Louise",
+  "img": "img/estrelas/abrunalouise.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Any Gabrielly",
+  "img": "img/estrelas/anygabriellyofficial.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Rafaella Santos",
+  "img": "img/estrelas/rafaella.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Kayblack e MC Caverinha",
+  "img": "img/estrelas/realkayblack.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Luciano Camargo e família",
+  "img": "img/estrelas/x-camargoluciano.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Pequena Lô",
+  "img": "img/estrelas/_pequenalo.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Gretchen",
+  "img": "img/estrelas/x-mariagretchen.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Jake Leal",
+  "img": "img/estrelas/jakelealoficial.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "MC Dricka",
+  "img": "img/estrelas/mcdricka.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Djavan",
+  "img": "img/estrelas/djavanoficial.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Fabiana Karla",
+  "img": "img/estrelas/fabianakarlareal.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Mara Maravilha",
+  "img": "img/estrelas/x-maramaravilha.webp",
+  "carrossel": false,
+  "w": 560
+ },
+ {
+  "nome": "Igor Costa Alves",
+  "img": "img/estrelas/x-igoorcostalves.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Guilherme Benuto",
+  "img": "img/estrelas/guilhermeebenuto.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Sheyla Christina",
+  "img": "img/estrelas/fabiomarxx.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Petros Matheus",
+  "img": "img/estrelas/petros.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Khaled Bachir",
+  "img": "img/estrelas/khaledbachir.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Patricia Meirelles Benson",
+  "img": "img/estrelas/patriciameirelles.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Bruno Santos",
+  "img": "img/estrelas/brunosantos.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Sophia Eldo",
+  "img": "img/estrelas/sophiaeldoreal.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Mariana Educada",
+  "img": "img/estrelas/marianaeducada.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Luiza Trajano (Magazine Luiza)",
+  "img": "img/estrelas/luizahelenatrajano.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Nicole Nadya",
+  "img": "img/estrelas/nicnadya.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Clara Aguilar",
+  "img": "img/estrelas/clara.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Elza Soares",
+  "img": "img/estrelas/elzasoaresoficial.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Vitor Capial",
+  "img": "img/estrelas/vitorcapial.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "A. Guerra",
+  "img": "img/estrelas/18loboguerra.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Cristiane Nascimento",
+  "img": "img/estrelas/temploavinash.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Monique Rodrigues Salum",
+  "img": "img/estrelas/moniquesalum.webp",
+  "carrossel": false,
+  "w": 520
+ },
+ {
+  "nome": "Zezé Polessa",
+  "img": "img/estrelas/zezepolessa.webp",
+  "carrossel": false,
+  "w": 520
+ }
+]
