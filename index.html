@@ -439,7 +439,7 @@
   /* Quadros ilustrativos: frente, perspectiva e flutuacao suave, sem interacao. */
   .quadros3d-nota{margin-top:0; font-size:var(--t-apoio); color:var(--texto-secundario);}
   .quadro3d{min-width:0; margin-top:var(--s2);}
-  .quadro3d-cena{height:clamp(200px,18vw,248px); position:relative; display:grid; grid-template-columns:minmax(0,1fr); place-items:center; perspective:950px; pointer-events:none;
+  .quadro3d-cena{height:clamp(240px,18vw,262px); position:relative; display:grid; grid-template-columns:minmax(0,1fr); place-items:center; perspective:950px; pointer-events:none;
     background:radial-gradient(ellipse at 50% 45%, rgba(var(--acento-rgb),.07), transparent 66%);}
   .quadro3d-sombra{position:absolute; left:16%; right:16%; bottom:var(--s2); height:14px; background:radial-gradient(ellipse at center, rgba(var(--preto-rgb),.5), transparent 70%); border-radius:50%;}
   .quadro3d-balanco{width:min(var(--q-largura),100%); aspect-ratio:var(--q-formato); position:relative; transform-style:preserve-3d; transform:none;
@@ -925,6 +925,16 @@
   .colecao.vertical .quadro3d-objeto{transform:rotateZ(90deg) scale(var(--q-escala-v,.86));}
   .colecao.col-3{--q-escala-v:.72;}
   @media (prefers-reduced-motion: reduce){ .colecao .quadro3d-objeto{transition:none;} }
+
+  /* sombra no chao acompanha o quadro: fica logo abaixo dele e muda de largura quando ele gira */
+  .quadro3d-sombra{left:50% !important; right:auto !important; bottom:auto !important; top:calc(50% + var(--s-y)); width:var(--s-w); height:16px;
+    transform:translateX(-50%); transition:width 1100ms cubic-bezier(.65,0,.35,1), top 1100ms cubic-bezier(.65,0,.35,1);
+    background:radial-gradient(ellipse at center, rgba(var(--preto-rgb),.6), rgba(var(--preto-rgb),.25) 45%, transparent 72%) !important;}
+  .colecao.col-1 .quadro3d-sombra{--s-w:150px; --s-y:84px;}
+  .colecao.col-2 .quadro3d-sombra{--s-w:180px; --s-y:76px;}
+  .colecao.col-2.vertical .quadro3d-sombra{--s-w:122px; --s-y:86px;}
+  .colecao.col-3 .quadro3d-sombra{--s-w:min(270px, 92%); --s-y:96px;}
+  .colecao.col-3.vertical .quadro3d-sombra{--s-w:138px; --s-y:104px;}
   /* capa no celular: foto ancorada a esquerda e texto um pouco mais abaixo, para ver o pincel na mao */
   @media (max-width:700px){
     :root{--capa-foto-altura:125.1vw; --capa-reserva:min(calc(var(--capa-foto-altura) * .82), 52svh);}
