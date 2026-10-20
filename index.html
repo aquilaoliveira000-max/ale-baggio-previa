@@ -801,14 +801,19 @@
   /* depoimentos como prints de comentarios do Instagram: mural em colunas,
      os curtos se empilham entre os longos. Cartao escuro como o app em modo escuro. */
   .ig-mural{columns:3 280px; column-gap:var(--s2);}
-  /* modo vivo (montado pelo script): colunas que sobem e descem devagar, em laco */
+  /* modo vivo (montado pelo script): cada coluna e uma rolagem de verdade que anda sozinha.
+     A pessoa pode rolar com mouse, dedo ou arrastando; o movimento volta 2,5s depois. */
   .ig-mural.vivo{columns:auto; display:grid; grid-template-columns:repeat(var(--ig-cols,3),minmax(0,1fr)); gap:var(--s2);
-    height:clamp(560px,72vh,760px); overflow:hidden;
-    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 10%,#000 90%,transparent 100%); mask-image:linear-gradient(180deg,transparent 0,#000 10%,#000 90%,transparent 100%);}
-  .ig-col{display:flex; flex-direction:column; animation:ig-sobe var(--ig-dur,60s) linear infinite; will-change:transform;}
-  .ig-col.desce{animation-direction:reverse;}
-  .ig-mural.vivo:hover .ig-col, .ig-mural.vivo:focus-within .ig-col{animation-play-state:paused;}
-  @keyframes ig-sobe{from{transform:translateY(0);} to{transform:translateY(-50%);}}
+    height:clamp(560px,72vh,760px);
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 8%,#000 92%,transparent 100%); mask-image:linear-gradient(180deg,transparent 0,#000 8%,#000 92%,transparent 100%);}
+  .ig-col{height:100%; overflow-y:auto; scrollbar-width:none; overscroll-behavior:contain; cursor:grab;}
+  .ig-col::-webkit-scrollbar{display:none;}
+  .ig-col.arrastando{cursor:grabbing; user-select:none;}
+  /* celular: uma fileira que desliza para o lado (nao prende a rolagem da pagina) */
+  .ig-mural.vivo.linha{display:flex; height:auto; -webkit-mask-image:none; mask-image:none; overflow-x:auto; scrollbar-width:none; gap:12px;
+    margin-inline:calc(var(--gutter) * -1); padding-inline:var(--gutter); align-items:flex-start;}
+  .ig-mural.vivo.linha::-webkit-scrollbar{display:none;}
+  .ig-mural.linha .ig-com{flex:0 0 84%; margin:0;}
   .ig-com{break-inside:avoid; margin:0 0 var(--s2); display:flex; gap:12px; align-items:flex-start; padding:16px 18px;
     background:#0B0B0B; border:1px solid #262626; color:#F5F5F5; font-family:-apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;}
   .ig-av{flex:none; width:40px; height:40px; border-radius:50%; padding:2px; background:linear-gradient(45deg,#FEDA75,#FA7E1E,#D62976,#962FBF,#4F5BD5);}
@@ -912,55 +917,55 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
   <section class="celebs" id="famosos">
     <div class="mosaico" id="mosaico">
       <div class="coluna" data-sentido="cima">
-        <figure class="tile"><img src="img/celeb-xuxa.webp" alt="Xuxa e Junno com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Xuxa e Junno</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-anitta.webp" alt="Anitta com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Anitta</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-cacau.webp" alt="Cacau Protásio com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Cacau Protásio</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-juliette.webp" alt="Juliette com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Juliette</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-galisteu.webp" alt="Adriane Galisteu com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Adriane Galisteu</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/cesarfilho.webp" alt="Cesar Filho e Elaine Mickely com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Cesar Filho e Elaine Mickely</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/dranayanepacheco.webp" alt="Dra. Nayane Pachêco com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Dra. Nayane Pachêco</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/isaacazar.webp" alt="Isaac Azar (Paris 6) com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Isaac Azar (Paris 6)</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/mateuscarrieriof.webp" alt="Mateus Carrieri com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Mateus Carrieri</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/pepita.webp" alt="Pepita com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Pepita</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/sashameneghel.webp" alt="Sasha Meneghel com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Sasha Meneghel</figcaption></figure>
+        <figure class="tile"><img data-src="img/celeb-xuxa.webp" data-srcset="img/m/celeb-xuxa.webp 400w, img/celeb-xuxa.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Xuxa e Junno com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Xuxa e Junno</figcaption></figure>
+        <figure class="tile"><img data-src="img/celeb-anitta.webp" data-srcset="img/m/celeb-anitta.webp 400w, img/celeb-anitta.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Anitta com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Anitta</figcaption></figure>
+        <figure class="tile"><img data-src="img/celeb-cacau.webp" data-srcset="img/m/celeb-cacau.webp 400w, img/celeb-cacau.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Cacau Protásio com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Cacau Protásio</figcaption></figure>
+        <figure class="tile"><img data-src="img/celeb-juliette.webp" data-srcset="img/m/celeb-juliette.webp 400w, img/celeb-juliette.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Juliette com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Juliette</figcaption></figure>
+        <figure class="tile"><img data-src="img/celeb-galisteu.webp" data-srcset="img/m/celeb-galisteu.webp 400w, img/celeb-galisteu.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Adriane Galisteu com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Adriane Galisteu</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/cesarfilho.webp" data-srcset="img/m/estrelas__cesarfilho.webp 400w, img/estrelas/cesarfilho.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Cesar Filho e Elaine Mickely com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Cesar Filho e Elaine Mickely</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/dranayanepacheco.webp" data-srcset="img/m/estrelas__dranayanepacheco.webp 400w, img/estrelas/dranayanepacheco.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Dra. Nayane Pachêco com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Dra. Nayane Pachêco</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/isaacazar.webp" data-srcset="img/m/estrelas__isaacazar.webp 400w, img/estrelas/isaacazar.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Isaac Azar (Paris 6) com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Isaac Azar (Paris 6)</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/mateuscarrieriof.webp" data-srcset="img/m/estrelas__mateuscarrieriof.webp 400w, img/estrelas/mateuscarrieriof.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Mateus Carrieri com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Mateus Carrieri</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/pepita.webp" data-srcset="img/m/estrelas__pepita.webp 400w, img/estrelas/pepita.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Pepita com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Pepita</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/sashameneghel.webp" data-srcset="img/m/estrelas__sashameneghel.webp 400w, img/estrelas/sashameneghel.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Sasha Meneghel com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Sasha Meneghel</figcaption></figure>
       </div>
       <div class="coluna" data-sentido="baixo">
-        <figure class="tile"><img src="img/celeb-silviosantos.webp" alt="Silvio Santos com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Silvio Santos</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-nicolebahls.webp" alt="Nicole Bahls com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Nicole Bahls</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-falabella.webp" alt="Ana Maria Braga com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Ana Maria Braga</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-simony.webp" alt="Simony com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Simony</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-buarque-bia.webp" alt="Buarque e Bia Miranda com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Buarque e Bia Miranda</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/bellafalconi.webp" alt="Miguel Falabella com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Miguel Falabella</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/paola_antonini.webp" alt="Paola Antonini com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Paola Antonini</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/mariohenrique.webp" alt="Mario Henrique com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Mario Henrique</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/iarakilaris.webp" alt="Iara Kilaris com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Iara Kilaris</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/kimrosacuca.webp" alt="Kim Rosacuca com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Kim Rosacuca</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/jesusluz.webp" alt="Jesus Luz com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Jesus Luz</figcaption></figure>
+        <figure class="tile"><img data-src="img/celeb-silviosantos.webp" data-srcset="img/m/celeb-silviosantos.webp 400w, img/celeb-silviosantos.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Silvio Santos com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Silvio Santos</figcaption></figure>
+        <figure class="tile"><img data-src="img/celeb-nicolebahls.webp" data-srcset="img/m/celeb-nicolebahls.webp 400w, img/celeb-nicolebahls.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Nicole Bahls com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Nicole Bahls</figcaption></figure>
+        <figure class="tile"><img data-src="img/celeb-falabella.webp" data-srcset="img/m/celeb-falabella.webp 400w, img/celeb-falabella.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Ana Maria Braga com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Ana Maria Braga</figcaption></figure>
+        <figure class="tile"><img data-src="img/celeb-simony.webp" data-srcset="img/m/celeb-simony.webp 400w, img/celeb-simony.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Simony com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Simony</figcaption></figure>
+        <figure class="tile"><img data-src="img/celeb-buarque-bia.webp" data-srcset="img/m/celeb-buarque-bia.webp 400w, img/celeb-buarque-bia.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Buarque e Bia Miranda com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Buarque e Bia Miranda</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/bellafalconi.webp" data-srcset="img/m/estrelas__bellafalconi.webp 400w, img/estrelas/bellafalconi.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Miguel Falabella com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Miguel Falabella</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/paola_antonini.webp" data-srcset="img/m/estrelas__paola_antonini.webp 400w, img/estrelas/paola_antonini.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Paola Antonini com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Paola Antonini</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/mariohenrique.webp" data-srcset="img/m/estrelas__mariohenrique.webp 400w, img/estrelas/mariohenrique.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Mario Henrique com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Mario Henrique</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/iarakilaris.webp" data-srcset="img/m/estrelas__iarakilaris.webp 400w, img/estrelas/iarakilaris.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Iara Kilaris com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Iara Kilaris</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/kimrosacuca.webp" data-srcset="img/m/estrelas__kimrosacuca.webp 400w, img/estrelas/kimrosacuca.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Kim Rosacuca com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Kim Rosacuca</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/jesusluz.webp" data-srcset="img/m/estrelas__jesusluz.webp 400w, img/estrelas/jesusluz.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Jesus Luz com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Jesus Luz</figcaption></figure>
       </div>
       <div class="coluna" data-sentido="cima">
-        <figure class="tile"><img src="img/celeb-julianapaes.webp" alt="Juliana Paes com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Juliana Paes</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-zeze.webp" alt="Zezé Di Camargo e Graciele com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Zezé Di Camargo e Graciele</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-gretchen.webp" alt="Jottape com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Jottape</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-luansantana.webp" alt="Luan Santana com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Luan Santana</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/fiuk.webp" alt="Fiuk com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Fiuk</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-luciano.webp" alt="Bianca Andrade (Boca Rosa) com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Bianca Andrade (Boca Rosa)</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/ludmilla.webp" alt="Ludmilla com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Ludmilla</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/roupanova.webp" alt="Fábio Nestares (Roupa Nova) com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Fábio Nestares (Roupa Nova)</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/caroldallarosaa.webp" alt="Carol Dallarosa com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Carol Dallarosa</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/myrianrios.webp" alt="Myrian Rios com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Myrian Rios</figcaption></figure>
+        <figure class="tile"><img data-src="img/celeb-julianapaes.webp" data-srcset="img/m/celeb-julianapaes.webp 400w, img/celeb-julianapaes.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Juliana Paes com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Juliana Paes</figcaption></figure>
+        <figure class="tile"><img data-src="img/celeb-zeze.webp" data-srcset="img/m/celeb-zeze.webp 400w, img/celeb-zeze.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Zezé Di Camargo e Graciele com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Zezé Di Camargo e Graciele</figcaption></figure>
+        <figure class="tile"><img data-src="img/celeb-gretchen.webp" data-srcset="img/m/celeb-gretchen.webp 400w, img/celeb-gretchen.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Jottape com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Jottape</figcaption></figure>
+        <figure class="tile"><img data-src="img/celeb-luansantana.webp" data-srcset="img/m/celeb-luansantana.webp 400w, img/celeb-luansantana.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Luan Santana com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Luan Santana</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/fiuk.webp" data-srcset="img/m/estrelas__fiuk.webp 400w, img/estrelas/fiuk.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Fiuk com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Fiuk</figcaption></figure>
+        <figure class="tile"><img data-src="img/celeb-luciano.webp" data-srcset="img/m/celeb-luciano.webp 400w, img/celeb-luciano.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Bianca Andrade (Boca Rosa) com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Bianca Andrade (Boca Rosa)</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/ludmilla.webp" data-srcset="img/m/estrelas__ludmilla.webp 400w, img/estrelas/ludmilla.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Ludmilla com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Ludmilla</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/roupanova.webp" data-srcset="img/m/estrelas__roupanova.webp 400w, img/estrelas/roupanova.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Fábio Nestares (Roupa Nova) com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Fábio Nestares (Roupa Nova)</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/caroldallarosaa.webp" data-srcset="img/m/estrelas__caroldallarosaa.webp 400w, img/estrelas/caroldallarosaa.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Carol Dallarosa com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Carol Dallarosa</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/myrianrios.webp" data-srcset="img/m/estrelas__myrianrios.webp 400w, img/estrelas/myrianrios.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Myrian Rios com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Myrian Rios</figcaption></figure>
       </div>
       <div class="coluna" data-sentido="baixo">
-        <figure class="tile"><img src="img/celeb-jojo.webp" alt="Jojo Todynho com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Jojo Todynho</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-belo-gracyanne.webp" alt="Belo e Gracyanne com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Belo e Gracyanne</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-thammy.webp" alt="Thammy Miranda e Andressa com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Thammy Miranda e Andressa</figcaption></figure>
-        <figure class="tile"><img src="img/celeb-shogun.webp" alt="Shogun Rua com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Shogun Rua</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/fabiojroficial.webp" alt="Fábio Jr. com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Fábio Jr.</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/bypamella.webp" alt="Pamella Lunardi com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Pamella Lunardi</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/eduardocosta.webp" alt="Eduardo Costa com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Eduardo Costa</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/djbatata.webp" alt="Dj Batata com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Dj Batata</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/scheilacarvalhooficial.webp" alt="Julia Schiavi com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Julia Schiavi</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/natalia.deodato.webp" alt="Natália Deodato com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Natália Deodato</figcaption></figure>
-        <figure class="tile"><img src="img/estrelas/reynaldogianecchini.webp" alt="Reynaldo Gianecchini com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Reynaldo Gianecchini</figcaption></figure>
+        <figure class="tile"><img data-src="img/celeb-jojo.webp" data-srcset="img/m/celeb-jojo.webp 400w, img/celeb-jojo.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Jojo Todynho com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Jojo Todynho</figcaption></figure>
+        <figure class="tile"><img data-src="img/celeb-belo-gracyanne.webp" data-srcset="img/m/celeb-belo-gracyanne.webp 400w, img/celeb-belo-gracyanne.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Belo e Gracyanne com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Belo e Gracyanne</figcaption></figure>
+        <figure class="tile"><img data-src="img/celeb-thammy.webp" data-srcset="img/m/celeb-thammy.webp 400w, img/celeb-thammy.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Thammy Miranda e Andressa com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Thammy Miranda e Andressa</figcaption></figure>
+        <figure class="tile"><img data-src="img/celeb-shogun.webp" data-srcset="img/m/celeb-shogun.webp 400w, img/celeb-shogun.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Shogun Rua com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Shogun Rua</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/fabiojroficial.webp" data-srcset="img/m/estrelas__fabiojroficial.webp 400w, img/estrelas/fabiojroficial.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Fábio Jr. com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Fábio Jr.</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/bypamella.webp" data-srcset="img/m/estrelas__bypamella.webp 400w, img/estrelas/bypamella.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Pamella Lunardi com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Pamella Lunardi</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/eduardocosta.webp" data-srcset="img/m/estrelas__eduardocosta.webp 400w, img/estrelas/eduardocosta.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Eduardo Costa com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Eduardo Costa</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/djbatata.webp" data-srcset="img/m/estrelas__djbatata.webp 400w, img/estrelas/djbatata.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Dj Batata com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Dj Batata</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/scheilacarvalhooficial.webp" data-srcset="img/m/estrelas__scheilacarvalhooficial.webp 400w, img/estrelas/scheilacarvalhooficial.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Julia Schiavi com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Julia Schiavi</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/natalia.deodato.webp" data-srcset="img/m/estrelas__natalia.deodato.webp 400w, img/estrelas/natalia.deodato.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Natália Deodato com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Natália Deodato</figcaption></figure>
+        <figure class="tile"><img data-src="img/estrelas/reynaldogianecchini.webp" data-srcset="img/m/estrelas__reynaldogianecchini.webp 400w, img/estrelas/reynaldogianecchini.webp 520w" sizes="(max-width:700px) 46vw, 23vw" alt="Reynaldo Gianecchini com o retrato pintado por Ale Baggio" loading="lazy"><figcaption>Reynaldo Gianecchini</figcaption></figure>
       </div>
     </div>
     <div class="wrap celebs-fim">
@@ -980,39 +985,39 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
       <div class="trio-area" id="categoriasArea" role="region" aria-label="Tipos de retrato" aria-keyshortcuts="ArrowLeft ArrowRight Home End" tabindex="0">
       <div class="trio">
         <figure class="astro">
-          <div class="astro-img"><img src="img/cat-individual.webp" alt="Retrato individual pintado por Ale Baggio, com detalhes dourados" loading="lazy"></div>
+          <div class="astro-img"><img data-src="img/cat-individual.webp" data-srcset="img/m/cat-individual.webp 400w, img/cat-individual.webp 760w" sizes="(max-width:700px) 80vw, 30vw" alt="Retrato individual pintado por Ale Baggio, com detalhes dourados" loading="lazy"></div>
           <figcaption><b>Pinturas individuais</b><span>uma pessoa na tela</span></figcaption>
         </figure>
         <figure class="astro">
-          <div class="astro-img"><img src="img/cat-casal.webp" alt="Retrato de casal pintado por Ale Baggio" loading="lazy"></div>
+          <div class="astro-img"><img data-src="img/cat-casal.webp" data-srcset="img/m/cat-casal.webp 400w, img/cat-casal.webp 760w" sizes="(max-width:700px) 80vw, 30vw" alt="Retrato de casal pintado por Ale Baggio" loading="lazy"></div>
           <figcaption><b>Casal</b><span>duas histórias numa só</span></figcaption>
         </figure>
         <figure class="astro">
-          <div class="astro-img"><img src="img/cat-familia.webp" alt="Retrato de família com o cachorro, pintado por Ale Baggio" loading="lazy"></div>
+          <div class="astro-img"><img data-src="img/cat-familia.webp" data-srcset="img/m/cat-familia.webp 400w, img/cat-familia.webp 760w" sizes="(max-width:700px) 80vw, 30vw" alt="Retrato de família com o cachorro, pintado por Ale Baggio" loading="lazy"></div>
           <figcaption><b>Família</b><span>Retratos que celebram os vínculos da família.</span></figcaption>
         </figure>
         <figure class="astro">
-          <div class="astro-img"><img src="img/cat-crianca.webp" alt="Retrato de duas crianças pintado por Ale Baggio" loading="lazy"></div>
+          <div class="astro-img"><img data-src="img/cat-crianca.webp" data-srcset="img/m/cat-crianca.webp 400w, img/cat-crianca.webp 760w" sizes="(max-width:700px) 80vw, 30vw" alt="Retrato de duas crianças pintado por Ale Baggio" loading="lazy"></div>
           <figcaption><b>Crianças</b><span>Retratos que eternizam a alegria e a personalidade de cada fase.</span></figcaption>
         </figure>
         <figure class="astro">
-          <div class="astro-img"><img src="img/cat-pet.webp" alt="Dois cães diante do retrato deles, pintado por Ale Baggio" loading="lazy"></div>
+          <div class="astro-img"><img data-src="img/cat-pet.webp" data-srcset="img/m/cat-pet.webp 400w, img/cat-pet.webp 760w" sizes="(max-width:700px) 80vw, 30vw" alt="Dois cães diante do retrato deles, pintado por Ale Baggio" loading="lazy"></div>
           <figcaption><b>Pet</b><span>quem também é da família</span></figcaption>
         </figure>
         <figure class="astro">
-          <div class="astro-img"><img src="img/cat-mae-filho.webp" alt="Retrato de mãe e filho pintado por Ale Baggio" loading="lazy"></div>
+          <div class="astro-img"><img data-src="img/cat-mae-filho.webp" data-srcset="img/m/cat-mae-filho.webp 400w, img/cat-mae-filho.webp 760w" sizes="(max-width:700px) 80vw, 30vw" alt="Retrato de mãe e filho pintado por Ale Baggio" loading="lazy"></div>
           <figcaption><b>Mãe e filho</b><span>Um retrato do vínculo que fica.</span></figcaption>
         </figure>
         <figure class="astro">
-          <div class="astro-img"><img src="img/cat-memoriam.webp" alt="Retrato in memoriam pintado por Ale Baggio, cliente diante da tela emoldurada" loading="lazy"></div>
+          <div class="astro-img"><img data-src="img/cat-memoriam.webp" data-srcset="img/m/cat-memoriam.webp 400w, img/cat-memoriam.webp 760w" sizes="(max-width:700px) 80vw, 30vw" alt="Retrato in memoriam pintado por Ale Baggio, cliente diante da tela emoldurada" loading="lazy"></div>
           <figcaption><b>Homenagens</b><span>Uma homenagem em forma de arte</span></figcaption>
         </figure>
         <figure class="astro">
-          <div class="astro-img"><img src="img/cat-consultorio.webp" alt="Obra de Ale Baggio na parede de uma clínica" loading="lazy"></div>
+          <div class="astro-img"><img data-src="img/cat-consultorio.webp" data-srcset="img/m/cat-consultorio.webp 400w, img/cat-consultorio.webp 760w" sizes="(max-width:700px) 80vw, 30vw" alt="Obra de Ale Baggio na parede de uma clínica" loading="lazy"></div>
           <figcaption><b>Consultório</b><span>Arte que valoriza o seu espaço profissional.</span></figcaption>
         </figure>
         <figure class="astro">
-          <div class="astro-img"><img src="img/cat-abstrato.webp" alt="Composição especial de Ale Baggio, retrato dividido entre mulher e onça" loading="lazy"></div>
+          <div class="astro-img"><img data-src="img/cat-abstrato.webp" data-srcset="img/m/cat-abstrato.webp 400w, img/cat-abstrato.webp 760w" sizes="(max-width:700px) 80vw, 30vw" alt="Composição especial de Ale Baggio, retrato dividido entre mulher e onça" loading="lazy"></div>
           <figcaption><b>Composição especial</b><span>Quando sua história pede mais do que um retrato.</span></figcaption>
         </figure>
       </div>
@@ -1026,20 +1031,20 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
     </div>
     <div class="pista-area" id="pistaArea" tabindex="0" aria-keyshortcuts="ArrowLeft ArrowRight Home End" role="region" aria-label="Galeria de obras entregues a clientes" aria-describedby="galeria-ajuda">
       <div class="pista" id="pista">
-        <figure class="obra"><img src="img/obra-1.webp" alt="Retrato pintado por Ale Baggio, com detalhes dourados" loading="lazy"></figure>
-        <figure class="obra"><img src="img/obra-2-alta.webp" alt="Retrato pintado por Ale Baggio, com fundo branco" loading="lazy"></figure>
-        <figure class="obra"><img src="img/obra-3-larga.webp" alt="Santa Ceia pintada por Ale Baggio, com detalhes dourados" loading="lazy"></figure>
-        <figure class="obra"><img src="img/obra-familia.webp" alt="Retrato de família, mãe com dois filhos, pintado por Ale Baggio" loading="lazy"></figure>
-        <figure class="obra"><img src="img/obra-5-alta.webp" alt="Onça com joias pintada por Ale Baggio" loading="lazy"></figure>
-        <figure class="obra"><img src="img/obra-6.webp" alt="Retrato pintado por Ale Baggio, com luz neon" loading="lazy"></figure>
-        <figure class="obra"><img src="img/obra-7.webp" alt="Retrato de casal em um beijo, pintado por Ale Baggio" loading="lazy"></figure>
-        <figure class="obra"><img src="img/obra-8.webp" alt="Retrato de homem de cabelo cacheado, pintado por Ale Baggio" loading="lazy"></figure>
-        <figure class="obra"><img src="img/obra-9.webp" alt="Retrato de mulher loira com respingos amarelos, pintado por Ale Baggio" loading="lazy"></figure>
-        <figure class="obra"><img src="img/obra-10.webp" alt="Retrato de homem sorrindo, pintado por Ale Baggio" loading="lazy"></figure>
-        <figure class="obra"><img src="img/obra-11.webp" alt="Retrato de família com os dois pais e duas filhas, pintado por Ale Baggio" loading="lazy"></figure>
-        <figure class="obra"><img src="img/obra-12.webp" alt="Retrato de mulher com a mão no cabelo, pintado por Ale Baggio" loading="lazy"></figure>
-        <figure class="obra"><img src="img/obra-13.webp" alt="Cliente segurando o retrato dela pintado por Ale Baggio" loading="lazy"></figure>
-        <figure class="obra"><img src="img/obra-14.webp" alt="Cliente de terno ao lado do retrato dele pintado por Ale Baggio" loading="lazy"></figure>
+        <figure class="obra"><img data-src="img/obra-1.webp" data-srcset="img/m/obra-1.webp 400w, img/obra-1.webp 760w" sizes="(max-width:1000px) 68vw, 32vw" alt="Retrato pintado por Ale Baggio, com detalhes dourados" loading="lazy"></figure>
+        <figure class="obra"><img data-src="img/obra-2-alta.webp" data-srcset="img/m/obra-2-alta.webp 400w, img/obra-2-alta.webp 760w" sizes="(max-width:1000px) 68vw, 32vw" alt="Retrato pintado por Ale Baggio, com fundo branco" loading="lazy"></figure>
+        <figure class="obra"><img data-src="img/obra-3-larga.webp" data-srcset="img/m/obra-3-larga.webp 400w, img/obra-3-larga.webp 760w" sizes="(max-width:1000px) 68vw, 32vw" alt="Santa Ceia pintada por Ale Baggio, com detalhes dourados" loading="lazy"></figure>
+        <figure class="obra"><img data-src="img/obra-familia.webp" data-srcset="img/m/obra-familia.webp 400w, img/obra-familia.webp 760w" sizes="(max-width:1000px) 68vw, 32vw" alt="Retrato de família, mãe com dois filhos, pintado por Ale Baggio" loading="lazy"></figure>
+        <figure class="obra"><img data-src="img/obra-5-alta.webp" data-srcset="img/m/obra-5-alta.webp 400w, img/obra-5-alta.webp 760w" sizes="(max-width:1000px) 68vw, 32vw" alt="Onça com joias pintada por Ale Baggio" loading="lazy"></figure>
+        <figure class="obra"><img data-src="img/obra-6.webp" data-srcset="img/m/obra-6.webp 400w, img/obra-6.webp 760w" sizes="(max-width:1000px) 68vw, 32vw" alt="Retrato pintado por Ale Baggio, com luz neon" loading="lazy"></figure>
+        <figure class="obra"><img data-src="img/obra-7.webp" data-srcset="img/m/obra-7.webp 400w, img/obra-7.webp 760w" sizes="(max-width:1000px) 68vw, 32vw" alt="Retrato de casal em um beijo, pintado por Ale Baggio" loading="lazy"></figure>
+        <figure class="obra"><img data-src="img/obra-8.webp" data-srcset="img/m/obra-8.webp 400w, img/obra-8.webp 760w" sizes="(max-width:1000px) 68vw, 32vw" alt="Retrato de homem de cabelo cacheado, pintado por Ale Baggio" loading="lazy"></figure>
+        <figure class="obra"><img data-src="img/obra-9.webp" data-srcset="img/m/obra-9.webp 400w, img/obra-9.webp 760w" sizes="(max-width:1000px) 68vw, 32vw" alt="Retrato de mulher loira com respingos amarelos, pintado por Ale Baggio" loading="lazy"></figure>
+        <figure class="obra"><img data-src="img/obra-10.webp" data-srcset="img/m/obra-10.webp 400w, img/obra-10.webp 760w" sizes="(max-width:1000px) 68vw, 32vw" alt="Retrato de homem sorrindo, pintado por Ale Baggio" loading="lazy"></figure>
+        <figure class="obra"><img data-src="img/obra-11.webp" data-srcset="img/m/obra-11.webp 400w, img/obra-11.webp 760w" sizes="(max-width:1000px) 68vw, 32vw" alt="Retrato de família com os dois pais e duas filhas, pintado por Ale Baggio" loading="lazy"></figure>
+        <figure class="obra"><img data-src="img/obra-12.webp" data-srcset="img/m/obra-12.webp 400w, img/obra-12.webp 760w" sizes="(max-width:1000px) 68vw, 32vw" alt="Retrato de mulher com a mão no cabelo, pintado por Ale Baggio" loading="lazy"></figure>
+        <figure class="obra"><img data-src="img/obra-13.webp" data-srcset="img/m/obra-13.webp 400w, img/obra-13.webp 760w" sizes="(max-width:1000px) 68vw, 32vw" alt="Cliente segurando o retrato dela pintado por Ale Baggio" loading="lazy"></figure>
+        <figure class="obra"><img data-src="img/obra-14.webp" data-srcset="img/m/obra-14.webp 400w, img/obra-14.webp 760w" sizes="(max-width:1000px) 68vw, 32vw" alt="Cliente de terno ao lado do retrato dele pintado por Ale Baggio" loading="lazy"></figure>
       </div>
     </div>
     <div class="wrap">
@@ -1062,11 +1067,11 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
     <div class="abstratos-galeria" id="abstratosGaleria">
       <div class="pista-area" id="abstratosArea" tabindex="0" aria-keyshortcuts="ArrowLeft ArrowRight Home End" role="region" aria-label="Galeria de obras abstratas" aria-describedby="abstratosAjuda">
         <div class="pista" id="abstratosPista">
-          <figure class="obra" data-abstrato="01"><img src="img/abstrato-01.webp" alt="Obra abstrata em tons de cinza e branco, numa parede clara, pintada por Ale Baggio" loading="lazy"></figure>
-          <figure class="obra" data-abstrato="02"><img src="img/abstrato-02.webp" alt="Obra abstrata com faixas douradas sobre cinza, pintada por Ale Baggio" loading="lazy"></figure>
-          <figure class="obra" data-abstrato="03"><img src="img/abstrato-03.webp" alt="Obra abstrata em prata e cinza, numa sala clara, pintada por Ale Baggio" loading="lazy"></figure>
-          <figure class="obra" data-abstrato="04"><img src="img/abstrato-04.webp" alt="Obra abstrata em branco e prata com formas curvas, pintada por Ale Baggio" loading="lazy"></figure>
-          <figure class="obra" data-abstrato="05"><img src="img/abstrato-05.webp" alt="Obra abstrata em branco e dourado, no cavalete, pintada por Ale Baggio" loading="lazy"></figure>
+          <figure class="obra" data-abstrato="01"><img src="img/abstrato-01.webp" srcset="img/m/abstrato-01.webp 400w, img/abstrato-01.webp 760w" sizes="(max-width:1000px) 68vw, 32vw" alt="Obra abstrata em tons de cinza e branco, numa parede clara, pintada por Ale Baggio" loading="lazy"></figure>
+          <figure class="obra" data-abstrato="02"><img src="img/abstrato-02.webp" srcset="img/m/abstrato-02.webp 400w, img/abstrato-02.webp 760w" sizes="(max-width:1000px) 68vw, 32vw" alt="Obra abstrata com faixas douradas sobre cinza, pintada por Ale Baggio" loading="lazy"></figure>
+          <figure class="obra" data-abstrato="03"><img src="img/abstrato-03.webp" srcset="img/m/abstrato-03.webp 400w, img/abstrato-03.webp 760w" sizes="(max-width:1000px) 68vw, 32vw" alt="Obra abstrata em prata e cinza, numa sala clara, pintada por Ale Baggio" loading="lazy"></figure>
+          <figure class="obra" data-abstrato="04"><img src="img/abstrato-04.webp" srcset="img/m/abstrato-04.webp 400w, img/abstrato-04.webp 760w" sizes="(max-width:1000px) 68vw, 32vw" alt="Obra abstrata em branco e prata com formas curvas, pintada por Ale Baggio" loading="lazy"></figure>
+          <figure class="obra" data-abstrato="05"><img src="img/abstrato-05.webp" srcset="img/m/abstrato-05.webp 400w, img/abstrato-05.webp 760w" sizes="(max-width:1000px) 68vw, 32vw" alt="Obra abstrata em branco e dourado, no cavalete, pintada por Ale Baggio" loading="lazy"></figure>
         </div>
       </div>
       <div class="wrap">
@@ -1403,7 +1408,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
           </video>
           <span class="play-selo" aria-hidden="true"></span>
         </figure>
-        <figure class="alto"><img src="img/acervo-1-alto.webp" alt="Retrato pintado por Ale Baggio, cliente ao lado da tela" loading="lazy"></figure>
+        <figure class="alto"><img src="img/acervo-1-alto.webp" srcset="img/m/acervo-1-alto.webp 400w, img/acervo-1-alto.webp 760w" sizes="(max-width:1000px) 50vw, 33vw" alt="Retrato pintado por Ale Baggio, cliente ao lado da tela" loading="lazy"></figure>
         <figure class="video-acervo alto">
           <video class="video-auto" muted loop playsinline preload="none"
             poster="img/video-acervo-riso.webp" aria-label="Retrato de mulher sorrindo, pintado por Ale Baggio">
@@ -1412,7 +1417,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
           </video>
           <span class="play-selo" aria-hidden="true"></span>
         </figure>
-        <figure><img src="img/acervo-3.webp" alt="Retrato pintado por Ale Baggio" loading="lazy"></figure>
+        <figure><img src="img/acervo-3.webp" srcset="img/m/acervo-3.webp 400w, img/acervo-3.webp 760w" sizes="(max-width:1000px) 50vw, 33vw" alt="Retrato pintado por Ale Baggio" loading="lazy"></figure>
         <figure class="video-acervo alto">
           <video class="video-auto" muted loop playsinline preload="none"
             poster="img/video-acervo-casal.webp" aria-label="Retrato de casal pintado por Ale Baggio, no jardim do ateliê">
@@ -1421,7 +1426,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
           </video>
           <span class="play-selo" aria-hidden="true"></span>
         </figure>
-        <figure class="alto"><img src="img/acervo-4-alto.webp" alt="Retrato de Jesus Cristo pintado por Ale Baggio" loading="lazy"></figure>
+        <figure class="alto"><img src="img/acervo-4-alto.webp" srcset="img/m/acervo-4-alto.webp 400w, img/acervo-4-alto.webp 760w" sizes="(max-width:1000px) 50vw, 33vw" alt="Retrato de Jesus Cristo pintado por Ale Baggio" loading="lazy"></figure>
         <figure class="video-acervo alto">
           <video class="video-auto" muted loop playsinline preload="none"
             poster="img/video-acervo-familia.webp" aria-label="Retrato de família com cinco pessoas, pintado por Ale Baggio">
@@ -1438,7 +1443,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
           </video>
           <span class="play-selo" aria-hidden="true"></span>
         </figure>
-        <figure class="alto"><img src="img/acervo-7-alto.webp" alt="Retrato pintado por Ale Baggio, com a cliente ao lado" loading="lazy"></figure>
+        <figure class="alto"><img src="img/acervo-7-alto.webp" srcset="img/m/acervo-7-alto.webp 400w, img/acervo-7-alto.webp 760w" sizes="(max-width:1000px) 50vw, 33vw" alt="Retrato pintado por Ale Baggio, com a cliente ao lado" loading="lazy"></figure>
         <figure class="video-acervo alto">
           <video class="video-auto" muted loop playsinline preload="none"
             poster="img/video-acervo-vermelho.webp" aria-label="Retrato de mulher de roupa vermelha, corpo inteiro, pintado por Ale Baggio">
@@ -1447,8 +1452,8 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
           </video>
           <span class="play-selo" aria-hidden="true"></span>
         </figure>
-        <figure><img src="img/acervo-6.webp" alt="Retrato pintado por Ale Baggio, fundo bronze" loading="lazy"></figure>
-        <figure class="so-3col"><img src="img/acervo-9.webp" alt="Retrato pintado por Ale Baggio, tons quentes" loading="lazy"></figure>
+        <figure><img src="img/acervo-6.webp" srcset="img/m/acervo-6.webp 400w, img/acervo-6.webp 760w" sizes="(max-width:1000px) 50vw, 33vw" alt="Retrato pintado por Ale Baggio, fundo bronze" loading="lazy"></figure>
+        <figure class="so-3col"><img src="img/acervo-9.webp" srcset="img/m/acervo-9.webp 400w, img/acervo-9.webp 760w" sizes="(max-width:1000px) 50vw, 33vw" alt="Retrato pintado por Ale Baggio, tons quentes" loading="lazy"></figure>
       </div>
     </div>
   </section>
@@ -1490,6 +1495,28 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
+  /* carregar so perto: as fotos do carrossel de famosos e das galerias de obras ficam
+     em data-src e so baixam quando a pessoa chega a ~500px da secao (inclusive as copias
+     que os carrosseis criam para o laco). Sem IntersectionObserver, carrega tudo. */
+  (function () {
+    function soltar(raiz) {
+      raiz.querySelectorAll('img[data-src]').forEach(function (i) {
+        if (i.dataset.srcset) { i.srcset = i.dataset.srcset; i.removeAttribute('data-srcset'); }
+        i.src = i.dataset.src; i.removeAttribute('data-src');
+      });
+    }
+    ['famosos', 'obras'].forEach(function (id) {
+      var sec = document.getElementById(id); if (!sec) return;
+      if (!('IntersectionObserver' in window)) { soltar(sec); return; }
+      var o = new IntersectionObserver(function (es) {
+        if (!es[0].isIntersecting) return;
+        soltar(sec); setTimeout(function () { soltar(sec); }, 1500);   // pega copias criadas depois
+        o.disconnect();
+      }, { rootMargin: '500px 0px' });
+      o.observe(sec);
+    });
+  })();
+
 (function () {
   'use strict';
   var reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1497,7 +1524,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
 
   /* WhatsApp: informar o numero completo com codigo do pais e DDD.
      Sem numero, os links permanecem inativos, sem mensagens sobrepostas. */
-  var WHATSAPP = '';
+  var WHATSAPP = '+55 41 99576-2629';
   var numeroWhatsApp = WHATSAPP.replace(/\D/g, '');
   document.querySelectorAll('a.wa').forEach(function (a) {
     if (!numeroWhatsApp) {
@@ -1509,10 +1536,8 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
     }
     var col = a.getAttribute('data-colecao');
     var msg = col
-      ? (col.indexOf('Coleção') === 0
-        ? 'Olá, Ale! Vim pelo site e tenho interesse na ' + col + '.'
-        : 'Olá, Ale! Vim pelo site e quero saber sobre ' + col + '.')
-      : 'Olá, Ale! Vim pelo site e quero encomendar um retrato.';
+      ? 'Olá, Ale! Gostaria de fazer um orçamento de ' + col + '.'
+      : 'Olá, Ale! Gostaria de fazer um orçamento de uma pintura.';
     a.href = 'https://wa.me/' + numeroWhatsApp + '?text=' + encodeURIComponent(msg);
     a.target = '_blank';
     a.rel = 'noopener';
@@ -2210,31 +2235,64 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
   if (document.fonts && document.fonts.ready) { document.fonts.ready.then(remede); }
 })();
 
-  /* mural do Instagram ao vivo: distribui os comentarios em colunas (3, 2 ou 1 conforme a tela),
-     sempre na coluna mais baixa, e duplica cada coluna para o laco nao ter emenda. */
+  /* mural do Instagram ao vivo: colunas (computador/tablet) ou fileira (celular) que andam
+     sozinhas em laco sem emenda. Mouse em cima, roda do mouse, toque ou arrastar: para e
+     a pessoa controla; 2,5s depois de soltar, volta a andar de onde ela deixou. */
   (function () {
     var m = document.getElementById('igMural'), b = document.getElementById('igMais');
     if (!m) return;
     if (b) b.remove();
     var cartoes = Array.prototype.slice.call(m.querySelectorAll('.ig-com'));
-    var calmo = window.matchMedia('(prefers-reduced-motion: reduce)');
-    var atual = 0;
+    var calmo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var atual = 0, trilhas = [], quadro = null, ultimo = 0, visivel = true;
+    function Trilha(el, eixo, vel) {
+      var t = this; t.el = el; t.eixo = eixo; t.vel = vel; t.pos = null; t.pausa = 0; t.mouse = false;
+      var prop = eixo === 'y' ? 'scrollTop' : 'scrollLeft';
+      t.metade = function () { return (eixo === 'y' ? el.scrollHeight : el.scrollWidth) / 2; };
+      t.ler = function () { return el[prop]; }; t.por = function (v) { el[prop] = v; };
+      var parar = function () { t.pausa = Date.now() + 2500; t.pos = null; };
+      el.addEventListener('mouseenter', function () { t.mouse = true; });
+      el.addEventListener('mouseleave', function () { t.mouse = false; parar(); });
+      ['wheel', 'touchstart', 'touchmove', 'keydown'].forEach(function (ev) { el.addEventListener(ev, parar, { passive: true }); });
+      var ini = null;
+      el.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse') return; ini = { c: eixo === 'y' ? e.clientY : e.clientX, p: t.ler() }; el.classList.add('arrastando'); parar(); });
+      addEventListener('pointermove', function (e) { if (!ini) return; t.por(ini.p - ((eixo === 'y' ? e.clientY : e.clientX) - ini.c)); parar(); });
+      addEventListener('pointerup', function () { if (ini) { ini = null; el.classList.remove('arrastando'); parar(); } });
+      el.addEventListener('scroll', function () { var h = t.metade(); if (h <= 0) return; var v = t.ler(); if (v >= h) t.por(v - h); else if (v <= 0 && t.vel < 0) t.por(v + h); }, { passive: true });
+    }
+    function passo(agora) {
+      var dt = ultimo ? Math.min((agora - ultimo) / 1000, 0.05) : 0; ultimo = agora;
+      if (visivel && !document.hidden) trilhas.forEach(function (t) {
+        if (t.mouse || Date.now() < t.pausa) return;
+        var h = t.metade(); if (h <= 0) return;
+        if (t.pos === null) t.pos = t.ler();
+        t.pos += t.vel * dt; if (t.pos >= h) t.pos -= h; if (t.pos < 0) t.pos += h;
+        t.por(t.pos);
+      });
+      quadro = requestAnimationFrame(passo);
+    }
     function montar() {
-      var n = innerWidth < 700 ? 1 : (innerWidth < 1000 ? 2 : 3);
-      if (calmo.matches) n = Math.min(n, innerWidth < 700 ? 1 : 3);
-      if (n === atual) return; atual = n;
-      m.innerHTML = ''; m.classList.toggle('vivo', !calmo.matches); m.style.setProperty('--ig-cols', n);
+      var cel = innerWidth < 700, n = cel ? 1 : (innerWidth < 1000 ? 2 : 3);
+      var chave = cel ? 'linha' : n; if (chave === atual) return; atual = chave;
+      m.innerHTML = ''; trilhas = []; m.classList.toggle('vivo', true); m.classList.toggle('linha', cel); m.style.setProperty('--ig-cols', n);
+      if (cel) {
+        cartoes.forEach(function (k) { m.appendChild(k); });
+        if (!calmo) { cartoes.forEach(function (k) { var d = k.cloneNode(true); d.setAttribute('aria-hidden', 'true'); m.appendChild(d); }); trilhas.push(new Trilha(m, 'x', 28)); }
+        return;
+      }
       var cols = [], alt = [];
-      for (var i = 0; i < n; i++) { var c = document.createElement('div'); c.className = 'ig-col' + (i % 2 ? ' desce' : ''); m.appendChild(c); cols.push(c); alt.push(0); }
+      for (var i = 0; i < n; i++) { var c = document.createElement('div'); c.className = 'ig-col'; c.tabIndex = 0; m.appendChild(c); cols.push(c); alt.push(0); }
       cartoes.forEach(function (k) { var j = alt.indexOf(Math.min.apply(null, alt)); cols[j].appendChild(k); alt[j] += k.textContent.length + 160; });
-      if (calmo.matches) return;
+      if (calmo) return;
       cols.forEach(function (c, i) {
         Array.prototype.slice.call(c.children).forEach(function (k) { var d = k.cloneNode(true); d.setAttribute('aria-hidden', 'true'); c.appendChild(d); });
-        c.style.setProperty('--ig-dur', Math.round(alt[i] / 26 + 30) + 's');
+        var t = new Trilha(c, 'y', i % 2 ? -22 : 22); trilhas.push(t);
+        if (i % 2) requestAnimationFrame(function () { t.por(t.metade() - 1); });
       });
     }
-    var t; addEventListener('resize', function () { clearTimeout(t); t = setTimeout(montar, 200); });
-    montar();
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { visivel = e[0].isIntersecting; }).observe(m);
+    var t0; addEventListener('resize', function () { clearTimeout(t0); t0 = setTimeout(montar, 200); });
+    montar(); quadro = requestAnimationFrame(passo);
   })();
 </script>
 </body>
