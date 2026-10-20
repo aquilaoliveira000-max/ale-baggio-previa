@@ -415,7 +415,7 @@
   "w": 520
  },
  {
-  "nome": "Petros Matheus",
+  "nome": "Petros",
   "img": "img/estrelas/petros.webp",
   "carrossel": false,
   "w": 520
@@ -433,7 +433,7 @@
   "w": 520
  },
  {
-  "nome": "Bruno Santos",
+  "nome": "Carol Taurisano",
   "img": "img/estrelas/brunosantos.webp",
   "carrossel": false,
   "w": 520
@@ -483,12 +483,6 @@
  {
   "nome": "A. Guerra",
   "img": "img/estrelas/18loboguerra.webp",
-  "carrossel": false,
-  "w": 520
- },
- {
-  "nome": "Cristiane Nascimento",
-  "img": "img/estrelas/temploavinash.webp",
   "carrossel": false,
   "w": 520
  },
