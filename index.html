@@ -871,7 +871,7 @@
   .imprensa-sec{--texto:#FFFFFF; --texto-secundario:rgba(255,255,255,.88); --acento:#FFFFFF; --acento-claro:#FFF3D6; --borda:rgba(255,255,255,.35);
     --gradiente-ouro:linear-gradient(115deg,#FFFFFF 0%,#FFF1CF 50%,#FFFFFF 100%);
     color:#FFFFFF; background:
-      linear-gradient(90deg, rgba(36,22,4,.62) 0%, rgba(36,22,4,.38) 45%, rgba(36,22,4,.08) 75%, rgba(36,22,4,0) 100%),
+      linear-gradient(90deg, rgba(36,22,4,.5) 0%, rgba(36,22,4,.3) 45%, rgba(36,22,4,.06) 75%, rgba(36,22,4,0) 100%),
       url("img/imprensa-ouro.webp") center / cover no-repeat, var(--ouro-orcamento-inicio) !important;
     border-block:1px solid var(--acento-claro);}
   .imprensa-sec .chapeu{color:#FFF3D6; -webkit-text-fill-color:#FFF3D6; background:none;}
@@ -879,7 +879,29 @@
   .imprensa-sec h2, .imprensa-sec .dourado{text-shadow:0 2px 14px rgba(36,22,4,.45);}
   .imprensa-sec .rev img{box-shadow:0 30px 60px -22px rgba(20,12,2,.75);}
   .imprensa-sec .rev figcaption, .imprensa-sec .rev figcaption b{color:#FFFFFF; text-shadow:0 1px 6px rgba(36,22,4,.6);}
-  @media (max-width:700px){ .imprensa-sec{background:linear-gradient(180deg, rgba(36,22,4,.55) 0%, rgba(36,22,4,.35) 55%, rgba(36,22,4,.15) 100%), url("img/imprensa-ouro.webp") center / cover no-repeat, var(--ouro-orcamento-inicio) !important;} }
+  @media (max-width:700px){ .imprensa-sec{background:linear-gradient(180deg, rgba(36,22,4,.12) 0%, rgba(36,22,4,.42) 22%, rgba(36,22,4,.36) 60%, rgba(36,22,4,.15) 100%), url("img/imprensa-ouro.webp") center / cover no-repeat, var(--ouro-orcamento-inicio) !important;} }
+  /* capa: cinco estrelas no dourado do botao. Computador: acima do titulo, a esquerda.
+     Celular: abaixo do botao Ver obras, centralizadas com os botoes. */
+  .capa-estrelas{display:flex; gap:6px; margin-bottom:var(--s3);}
+  .capa-estrelas svg{width:22px; height:22px; fill:url(#ouro-botao); filter:drop-shadow(0 1px 1px rgba(var(--preto-rgb),.45));}
+  .capa-estrelas.estrelas-cel{display:none;}
+  @media (max-width:700px){
+    .capa-estrelas.estrelas-desk{display:none;}
+    .capa-estrelas.estrelas-cel{display:flex; justify-content:center; margin:var(--s3) 0 0;}
+    .capa-estrelas svg{width:24px; height:24px;}
+  }
+
+  /* orcamento: o painel no dourado do botao, texto escuro para ler, botao branco com letra dourada */
+  .investimento-descricao{background:var(--gradiente-botao) !important; border-color:var(--acento-claro) !important;
+    box-shadow:inset 0 1px 0 rgba(var(--texto-rgb),.35), 0 24px 48px -26px rgba(var(--preto-rgb),.6);}
+  .investimento-descricao .lead{color:#2A1A05 !important;}
+  .investimento .investimento-descricao .btn-orcamento{background:#FFFFFF; color:var(--ouro-escuro-inicio); border-color:#FFFFFF; text-shadow:none;
+    box-shadow:0 10px 24px -12px rgba(var(--preto-rgb),.55);}
+  .investimento .investimento-descricao .btn-orcamento:hover{background:#FFF8EA; border-color:#FFF8EA;}
+  .investimento .investimento-descricao .btn-orcamento .contato-brilho{filter:none;}
+
+  /* imprensa: "pauta." em cafe escuro sobre o ouro */
+  .imprensa-sec h2 .dourado{background:none !important; color:#24170A !important; -webkit-text-fill-color:#24170A !important; text-shadow:0 1px 0 rgba(255,236,190,.35) !important;}
 </style>
 </head>
 <body>
@@ -889,6 +911,11 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
 <!-- Revisao: animacoes por transform, abstratos antes do contato, notas agrupadas e textura de tela no orcamento. -->
 <svg class="ouro-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
   <defs>
+    <linearGradient id="ouro-botao" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="var(--ouro-botao-inicio)"/>
+      <stop offset="48%" stop-color="var(--ouro-botao-reflexo)"/>
+      <stop offset="100%" stop-color="var(--ouro-botao-fim)"/>
+    </linearGradient>
     <linearGradient id="ouro-icone" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="var(--acento)"/>
       <stop offset="48%" stop-color="var(--acento-claro)"/>
@@ -943,11 +970,13 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
     </div>
     <div class="capa-txt">
       <div class="wrap">
+        <div class="capa-estrelas estrelas-desk" role="img" aria-label="Avaliação 5 de 5 estrelas"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z"/></svg></div>
         <h1>A artista que pintou Xuxa, Anitta, Silvio Santos, Ana Maria Braga, entre tantos outros, <span class="dourado">pode pintar você.</span></h1>
         <div class="btns">
           <a class="btn btn-1 wa" data-colecao="" href="#contato"><svg class="contato-brilho" viewBox="8 0 56 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M28 2C30 13 33 17 44 20C33 23 30 27 28 38C26 27 23 23 12 20C23 17 26 13 28 2Z"/><path d="M52 2C53 7 55 9 60 10C55 11 53 13 52 18C51 13 49 11 44 10C49 9 51 7 52 2Z"/></svg><span class="btn-texto">Converse com a artista</span></a>
           <a class="btn btn-2" href="#obras">Ver obras</a>
         </div>
+        <div class="capa-estrelas estrelas-cel" role="img" aria-label="Avaliação 5 de 5 estrelas"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z"/></svg></div>
       </div>
     </div>
   </section>
