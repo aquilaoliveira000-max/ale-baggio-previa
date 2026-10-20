@@ -804,7 +804,7 @@
   /* modo vivo (montado pelo script): cada coluna e uma rolagem de verdade que anda sozinha.
      A pessoa pode rolar com mouse, dedo ou arrastando; o movimento volta 2,5s depois. */
   .ig-mural.vivo{columns:auto; display:grid; grid-template-columns:repeat(var(--ig-cols,3),minmax(0,1fr)); gap:var(--s2);
-    height:clamp(560px,72vh,760px);
+    height:clamp(520px,72vh,760px);
     -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 8%,#000 92%,transparent 100%); mask-image:linear-gradient(180deg,transparent 0,#000 8%,#000 92%,transparent 100%);}
   .ig-col{height:100%; overflow-y:auto; scrollbar-width:none; overscroll-behavior:contain; cursor:grab;}
   .ig-col::-webkit-scrollbar{display:none;}
@@ -832,7 +832,8 @@
   }
   /* menu: so os tres tracinhos */
   .abre-menu svg{width:22px; height:22px; display:block;}
-  .abre-menu{padding:var(--s1) !important; width:44px; height:44px; justify-content:center; border-radius:50%;}
+  .abre-menu{padding:var(--s1) !important; width:44px; height:44px; justify-content:center; border:0 !important; background:none !important; box-shadow:none !important;}
+  .abre-menu svg{width:28px; height:28px;}
 
   /* bolinha flutuante do WhatsApp: o mesmo dourado dos botoes, simbolo branco */
   .wa-flutuante{position:fixed; right:max(16px, env(safe-area-inset-right)); bottom:max(16px, env(safe-area-inset-bottom)); z-index:var(--z-topo);
@@ -851,24 +852,34 @@
   .colecao.col-3{background:radial-gradient(ellipse 90% 70% at 50% 0%, rgba(var(--acento-rgb),.20) 0%, rgba(var(--acento-rgb),.04) 70%), var(--superficie-quente);
     border-color:rgba(var(--acento-rgb),.45);}
 
-  /* um presente que emociona: o video numa moldura dourada de quadro */
-  .presente-video{position:relative; padding:14px; border:0; box-sizing:border-box;
-    background:linear-gradient(135deg, var(--ouro-escuro-inicio) 0%, var(--tinta-decorativa) 18%, var(--acento-claro) 42%, var(--acento) 60%, var(--ouro-escuro-reflexo) 82%, var(--ouro-escuro-inicio) 100%);
-    box-shadow:0 34px 60px -28px rgba(var(--preto-rgb),.75), inset 0 0 0 1px rgba(var(--texto-rgb),.25);}
-  .presente-video::before{content:""; position:absolute; inset:9px; border:1px solid rgba(var(--preto-rgb),.45); box-shadow:inset 0 0 0 1px rgba(var(--texto-rgb),.18); pointer-events:none; z-index:2;}
-  .presente-video video{position:relative; z-index:1;}
+  /* um presente que emociona: moldura de quadro classica. Camadas, de fora para dentro:
+     perfil escuro, friso dourado em relevo (ridge), canal, filete claro e a sombra da
+     moldura caindo sobre a obra. O video fica um pouco mais baixo (corte leve em cima e embaixo). */
+  .presente-video{position:relative; aspect-ratio:auto !important; width:min(100%, 400px); padding:30px; box-sizing:border-box; border:0;
+    background:
+      linear-gradient(135deg, rgba(255,240,200,.55) 0%, rgba(255,240,200,0) 30%, rgba(0,0,0,0) 62%, rgba(0,0,0,.45) 100%),
+      linear-gradient(135deg, var(--ouro-escuro-inicio) 0%, var(--acento) 22%, var(--acento-claro) 38%, var(--tinta-decorativa) 55%, var(--acento) 72%, var(--ouro-escuro-inicio) 100%);
+    box-shadow:0 0 0 2px #2A1A05, 0 0 0 3px rgba(243,211,148,.5), 0 46px 80px -34px rgba(0,0,0,.85);}
+  .presente-video::before{content:""; position:absolute; inset:7px; border:7px ridge var(--acento); pointer-events:none; z-index:2;
+    box-shadow:inset 0 0 0 1px rgba(42,26,5,.6);}
+  .presente-video::after{content:""; position:absolute; inset:24px; pointer-events:none; z-index:3;
+    box-shadow:0 0 0 2px #3A2507, 0 0 0 3px rgba(255,236,190,.65), inset 0 10px 18px -6px rgba(0,0,0,.65), inset 0 -4px 10px -6px rgba(0,0,0,.4);}
+  .presente-video video{position:relative; z-index:1; display:block; width:100%; height:auto !important; aspect-ratio:9 / 14.5; object-fit:cover;}
 
-  /* imprensa como pagina de revista: fundo branco, capas coladas com fita */
-  .imprensa-sec{--superficie:#FFFFFF; --texto:#141414; --texto-secundario:#55524D; --acento:#8A5A1C; --acento-claro:#B8852E; --borda:#E4E1DB;
-    --gradiente-ouro:linear-gradient(115deg, #8A5A1C 0%, #B8852E 48%, #8A5A1C 100%);
-    background:#FFFFFF !important; color:#141414;
-    background-image:radial-gradient(rgba(0,0,0,.035) 1px, transparent 1px) !important; background-size:4px 4px !important;}
-  .imprensa-sec .rev{position:relative;}
-  .imprensa-sec .rev img{box-shadow:0 2px 3px rgba(0,0,0,.18), 0 24px 40px -18px rgba(0,0,0,.45);}
-  .imprensa-sec .rev::before{content:""; position:absolute; z-index:3; top:-14px; left:50%; width:96px; height:28px; transform:translateX(-50%) rotate(-4deg);
-    background:rgba(232,220,196,.82); box-shadow:0 1px 2px rgba(0,0,0,.12);}
-  .imprensa-sec .rev-b::before{transform:translateX(-50%) rotate(5deg); background:rgba(225,214,190,.82);}
-  .imprensa-sec .rev figcaption b{color:#141414;}
+  /* imprensa sobre uma tela pintada a ouro; texto branco. Um veu escuro do lado do texto
+     segura a leitura sem apagar a pintura. */
+  .imprensa-sec{--texto:#FFFFFF; --texto-secundario:rgba(255,255,255,.88); --acento:#FFFFFF; --acento-claro:#FFF3D6; --borda:rgba(255,255,255,.35);
+    --gradiente-ouro:linear-gradient(115deg,#FFFFFF 0%,#FFF1CF 50%,#FFFFFF 100%);
+    color:#FFFFFF; background:
+      linear-gradient(90deg, rgba(36,22,4,.62) 0%, rgba(36,22,4,.38) 45%, rgba(36,22,4,.08) 75%, rgba(36,22,4,0) 100%),
+      url("img/imprensa-ouro.webp") center / cover no-repeat, var(--ouro-orcamento-inicio) !important;
+    border-block:1px solid var(--acento-claro);}
+  .imprensa-sec .chapeu{color:#FFF3D6; -webkit-text-fill-color:#FFF3D6; background:none;}
+  .imprensa-sec .aspas{border-left-color:#FFFFFF;}
+  .imprensa-sec h2, .imprensa-sec .dourado{text-shadow:0 2px 14px rgba(36,22,4,.45);}
+  .imprensa-sec .rev img{box-shadow:0 30px 60px -22px rgba(20,12,2,.75);}
+  .imprensa-sec .rev figcaption, .imprensa-sec .rev figcaption b{color:#FFFFFF; text-shadow:0 1px 6px rgba(36,22,4,.6);}
+  @media (max-width:700px){ .imprensa-sec{background:linear-gradient(180deg, rgba(36,22,4,.55) 0%, rgba(36,22,4,.35) 55%, rgba(36,22,4,.15) 100%), url("img/imprensa-ouro.webp") center / cover no-repeat, var(--ouro-orcamento-inicio) !important;} }
 </style>
 </head>
 <body>
@@ -2311,8 +2322,8 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
       quadro = requestAnimationFrame(passo);
     }
     function montar() {
-      var cel = innerWidth < 700, n = cel ? 1 : (innerWidth < 1000 ? 2 : 3);
-      var chave = cel ? 'linha' : n; if (chave === atual) return; atual = chave;
+      var cel = false, n = innerWidth < 700 ? 1 : (innerWidth < 1000 ? 2 : 3);
+      var chave = n; if (chave === atual) return; atual = chave;
       m.innerHTML = ''; trilhas = []; m.classList.toggle('vivo', true); m.classList.toggle('linha', cel); m.style.setProperty('--ig-cols', n);
       if (cel) {
         cartoes.forEach(function (k) { m.appendChild(k); });
@@ -2325,8 +2336,8 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
       if (calmo) return;
       cols.forEach(function (c, i) {
         Array.prototype.slice.call(c.children).forEach(function (k) { var d = k.cloneNode(true); d.setAttribute('aria-hidden', 'true'); c.appendChild(d); });
-        var t = new Trilha(c, 'y', i % 2 ? -22 : 22); trilhas.push(t);
-        if (i % 2) requestAnimationFrame(function () { t.por(t.metade() - 1); });
+        var t = new Trilha(c, 'y', i % 2 ? 22 : -22); trilhas.push(t);           // a primeira desce, a do meio sobe
+        if (!(i % 2)) requestAnimationFrame(function () { t.por(t.metade() - 1); });
       });
     }
     if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { visivel = e[0].isIntersecting; }).observe(m);
