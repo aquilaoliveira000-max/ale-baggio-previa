@@ -801,11 +801,18 @@
   /* depoimentos como prints de comentarios do Instagram: mural em colunas,
      os curtos se empilham entre os longos. Cartao escuro como o app em modo escuro. */
   .ig-mural{columns:3 280px; column-gap:var(--s2);}
+  /* modo vivo (montado pelo script): colunas que sobem e descem devagar, em laco */
+  .ig-mural.vivo{columns:auto; display:grid; grid-template-columns:repeat(var(--ig-cols,3),minmax(0,1fr)); gap:var(--s2);
+    height:clamp(560px,72vh,760px); overflow:hidden;
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 10%,#000 90%,transparent 100%); mask-image:linear-gradient(180deg,transparent 0,#000 10%,#000 90%,transparent 100%);}
+  .ig-col{display:flex; flex-direction:column; animation:ig-sobe var(--ig-dur,60s) linear infinite; will-change:transform;}
+  .ig-col.desce{animation-direction:reverse;}
+  .ig-mural.vivo:hover .ig-col, .ig-mural.vivo:focus-within .ig-col{animation-play-state:paused;}
+  @keyframes ig-sobe{from{transform:translateY(0);} to{transform:translateY(-50%);}}
   .ig-com{break-inside:avoid; margin:0 0 var(--s2); display:flex; gap:12px; align-items:flex-start; padding:16px 18px;
     background:#0B0B0B; border:1px solid #262626; color:#F5F5F5; font-family:-apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;}
   .ig-av{flex:none; width:40px; height:40px; border-radius:50%; padding:2px; background:linear-gradient(45deg,#FEDA75,#FA7E1E,#D62976,#962FBF,#4F5BD5);}
-  .ig-av i{display:grid; place-items:center; width:100%; height:100%; border-radius:50%; border:2px solid #0B0B0B; background:#262626;
-    font-style:normal; font-weight:600; font-size:15px; color:#F5F5F5;}
+  .ig-av img{display:block; width:100%; height:100%; border-radius:50%; border:2px solid #0B0B0B; object-fit:cover; background:#262626;}
   .ig-com blockquote{margin:0; min-width:0;}
   .ig-com p{font-size:14px; line-height:1.45; overflow-wrap:anywhere;}
   .ig-perfil{font-weight:600; margin-right:4px;}
@@ -814,6 +821,7 @@
   .ig-com figcaption{margin-top:8px; font-size:12px; color:#A8A8A8;}
   .ig-fonte{margin-top:var(--s3); font-size:var(--t-apoio); color:var(--texto-secundario); text-align:center;}
   .ig-mais{display:flex; margin:var(--s2) auto 0;}
+  @media (prefers-reduced-motion:reduce){ .ig-col{animation:none;} .ig-mural.vivo{height:auto; -webkit-mask-image:none; mask-image:none;} }
   @media (max-width:700px){
     .ig-mural.recolhido{max-height:1150px; overflow:hidden; -webkit-mask-image:linear-gradient(180deg,#000 82%,transparent); mask-image:linear-gradient(180deg,#000 82%,transparent);}
   }
@@ -1290,51 +1298,51 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
     <div class="parede-palco">
       <div class="ig-mural" id="igMural">
         <figure class="ig-com">
-          <span class="ig-av" aria-hidden="true"><i>S</i></span>
+          <span class="ig-av" aria-hidden="true"><img src="img/ig/shogunoficial.webp" alt="" width="40" height="40" loading="lazy"></span>
           <blockquote><p><b class="ig-perfil">shogunoficial</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> A <span class="ig-link">@gio.prates</span> me surpreendeu com esse quadro feito à mão, com folhas de ouro, usando uma das fotos que eu mais gosto de toda a minha carreira. Um trabalho que carrega história, significado e muito carinho.<br><br>Recebi das mãos da artista plástica <span class="ig-link">@alebaggioart</span> esse presente feito por ela. Parabens pelo talento e pela sensibilidade em transformar um momento tão especial em uma verdadeira obra de arte. Ficou incrível, obrigado! 👏🤩<br><br>Heeyyy 👊</p></blockquote>
         </figure>
         <figure class="ig-com">
-          <span class="ig-av" aria-hidden="true"><i>D</i></span>
+          <span class="ig-av" aria-hidden="true"><img src="img/ig/dravaniaperes.webp" alt="" width="40" height="40" loading="lazy"></span>
           <blockquote><p><b class="ig-perfil">dravaniaperes</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Receber esse quadro às vésperas dos meus 55 anos teve um significado especial.<br><br>Mais do que um retrato, ele representa tudo o que construí até aqui: as escolhas, os desafios, os recomeços e a mulher que me tornei ao longo dessa caminhada.<br><br>Entro nessa nova fase com gratidão pela minha história e entusiasmo por tudo o que ainda está por vir. Os próximos capítulos prometem ser ainda mais bonitos.<br><br>Obrigada <span class="ig-link">@alebaggioart</span> pela delicadeza e pelo trabalho incrível 🤩</p></blockquote>
         </figure>
         <figure class="ig-com ig-curto">
-          <span class="ig-av" aria-hidden="true"><i>D</i></span>
+          <span class="ig-av" aria-hidden="true"><img src="img/ig/dravanessavida.webp" alt="" width="40" height="40" loading="lazy"></span>
           <blockquote><p><b class="ig-perfil">dravanessavida</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Trabalho impecável de <span class="ig-link">@alebaggioart</span><br>Transformando momentos em arte 💖</p><figcaption>22 sem</figcaption></blockquote>
         </figure>
         <figure class="ig-com">
-          <span class="ig-av" aria-hidden="true"><i>D</i></span>
+          <span class="ig-av" aria-hidden="true"><img src="img/ig/dr.igorfaillace.webp" alt="" width="40" height="40" loading="lazy"></span>
           <blockquote><p><b class="ig-perfil">dr.igorfaillace</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Desde a infância, a arte me acompanha. Das telas e pincéis, aprendi proporção, detalhe, sensibilidade.<br><br>Hoje, levo esse olhar para a cirurgia plástica, onde técnica e tecnologia se encontram com empatia e transformação.<br><br>Obrigado, <span class="ig-link">@alebaggioart</span>, pelo incrível presente que retrata essa essência: a arte como marca do cirurgião.</p></blockquote>
         </figure>
         <figure class="ig-com ig-curto">
-          <span class="ig-av" aria-hidden="true"><i>D</i></span>
+          <span class="ig-av" aria-hidden="true"><img src="img/ig/dra.biaingles.webp" alt="" width="40" height="40" loading="lazy"></span>
           <blockquote><p><b class="ig-perfil">dra.biaingles</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Perfeitooooo</p><figcaption>3 sem · 1 curtida · Responder</figcaption></blockquote>
         </figure>
         <figure class="ig-com">
-          <span class="ig-av" aria-hidden="true"><i>D</i></span>
+          <span class="ig-av" aria-hidden="true"><img src="img/ig/draraquelnormandia.webp" alt="" width="40" height="40" loading="lazy"></span>
           <blockquote><p><b class="ig-perfil">draraquelnormandia</b> Entre arte, identidade e essência. ✨<br>Um quadro que carrega meus traços, mas também traduz um pouco de quem eu sou: intensidade, feminilidade, força e amor pela beleza em todas as suas formas.<br>Ver um pedacinho de mim transformado em arte e eternizado em uma tela é simplesmente especial.<br><br>Gratidão, <span class="ig-link">@alebaggioart</span>, você é fora da curva, amei. 💗</p></blockquote>
         </figure>
         <figure class="ig-com">
-          <span class="ig-av" aria-hidden="true"><i>D</i></span>
+          <span class="ig-av" aria-hidden="true"><img src="img/ig/drarenataquintanilha.webp" alt="" width="40" height="40" loading="lazy"></span>
           <blockquote><p><b class="ig-perfil">drarenataquintanilha</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> É muito especial me enxergar novamente através do seu olhar e da sua arte. 🤍 Segunda arte, e dessa vez eterniza quem eu sou hoje. Que privilégio ter diferentes capítulos da minha história registrados pelas suas mãos. ✨🎨 <span class="ig-link">@alebaggioart</span></p></blockquote>
         </figure>
         <figure class="ig-com">
-          <span class="ig-av" aria-hidden="true"><i>D</i></span>
+          <span class="ig-av" aria-hidden="true"><img src="img/ig/dra.brendaledur.webp" alt="" width="40" height="40" loading="lazy"></span>
           <blockquote><p><b class="ig-perfil">dra.brendaledur</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Muito mais do que uma obra de arte. 🖼️<br><br>Esse quadro representa uma parte da minha essência, dos meus sonhos e de tudo aquilo que acredito. Cada detalhe foi pensado para transmitir beleza, delicadeza, força e autenticidade — os mesmos valores que deram vida à Harmonie Clinique.</p></blockquote>
         </figure>
         <figure class="ig-com">
-          <span class="ig-av" aria-hidden="true"><i>D</i></span>
+          <span class="ig-av" aria-hidden="true"><img src="img/ig/dra.denisebiomedica.webp" alt="" width="40" height="40" loading="lazy"></span>
           <blockquote><p><b class="ig-perfil">dra.denisebiomedica</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Algumas versões da gente merecem virar arte. ✨<br><span class="ig-link">@alebaggioart</span> Não é só um retrato. É uma versão de mim que ganhou vida. 💗</p></blockquote>
         </figure>
         <figure class="ig-com">
-          <span class="ig-av" aria-hidden="true"><i>B</i></span>
+          <span class="ig-av" aria-hidden="true"><img src="img/ig/brunotarchettipersonal.webp" alt="" width="40" height="40" loading="lazy"></span>
           <blockquote><p><b class="ig-perfil">brunotarchettipersonal</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Aquele sentimento eternizado em uma obra de arte.<br><br>Momentos captados, compreendidos e compilados em uma tela, feitos pela artista <span class="ig-link">@alebaggioart.</span><br>Assim como o dourado da tela, você brilha!<br><br>Obrigado, agora temos um <span class="ig-link">#alebaggio</span> em casa 🏆</p><figcaption>44 sem</figcaption></blockquote>
         </figure>
         <figure class="ig-com ig-curto">
-          <span class="ig-av" aria-hidden="true"><i>D</i></span>
+          <span class="ig-av" aria-hidden="true"><img src="img/ig/dra.brendaledur.webp" alt="" width="40" height="40" loading="lazy"></span>
           <blockquote><p><b class="ig-perfil">dra.brendaledur</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> Eu amei demais 🤩🤍</p><figcaption>13 sem · 1 curtida · Responder</figcaption></blockquote>
         </figure>
         <figure class="ig-com">
-          <span class="ig-av" aria-hidden="true"><i>F</i></span>
+          <span class="ig-av" aria-hidden="true"><img src="img/ig/fransantosmentora.webp" alt="" width="40" height="40" loading="lazy"></span>
           <blockquote><p><b class="ig-perfil">fransantosmentora</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> 🚀 Me siga: <span class="ig-link">@fransantosmentora</span> para aprender a transformar posicionamento em faturamento.<br>🎨 E se você já quer o seu quadro personalizado, fale com <span class="ig-link">@alebaggioart</span></p><figcaption>10 sem</figcaption></blockquote>
         </figure>
       </div>
@@ -2202,14 +2210,31 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
   if (document.fonts && document.fonts.ready) { document.fonts.ready.then(remede); }
 })();
 
-  /* mural do Instagram: no celular mostra os primeiros e um botao abre o resto */
+  /* mural do Instagram ao vivo: distribui os comentarios em colunas (3, 2 ou 1 conforme a tela),
+     sempre na coluna mais baixa, e duplica cada coluna para o laco nao ter emenda. */
   (function () {
     var m = document.getElementById('igMural'), b = document.getElementById('igMais');
-    if (!m || !b) return;
-    var cel = window.matchMedia('(max-width:700px)');
-    function aplicar() { if (cel.matches && !m.dataset.aberto) { m.classList.add('recolhido'); b.hidden = false; } else { m.classList.remove('recolhido'); b.hidden = true; } }
-    b.addEventListener('click', function () { m.dataset.aberto = '1'; aplicar(); });
-    if (cel.addEventListener) cel.addEventListener('change', aplicar); aplicar();
+    if (!m) return;
+    if (b) b.remove();
+    var cartoes = Array.prototype.slice.call(m.querySelectorAll('.ig-com'));
+    var calmo = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var atual = 0;
+    function montar() {
+      var n = innerWidth < 700 ? 1 : (innerWidth < 1000 ? 2 : 3);
+      if (calmo.matches) n = Math.min(n, innerWidth < 700 ? 1 : 3);
+      if (n === atual) return; atual = n;
+      m.innerHTML = ''; m.classList.toggle('vivo', !calmo.matches); m.style.setProperty('--ig-cols', n);
+      var cols = [], alt = [];
+      for (var i = 0; i < n; i++) { var c = document.createElement('div'); c.className = 'ig-col' + (i % 2 ? ' desce' : ''); m.appendChild(c); cols.push(c); alt.push(0); }
+      cartoes.forEach(function (k) { var j = alt.indexOf(Math.min.apply(null, alt)); cols[j].appendChild(k); alt[j] += k.textContent.length + 160; });
+      if (calmo.matches) return;
+      cols.forEach(function (c, i) {
+        Array.prototype.slice.call(c.children).forEach(function (k) { var d = k.cloneNode(true); d.setAttribute('aria-hidden', 'true'); c.appendChild(d); });
+        c.style.setProperty('--ig-dur', Math.round(alt[i] / 26 + 30) + 's');
+      });
+    }
+    var t; addEventListener('resize', function () { clearTimeout(t); t = setTimeout(montar, 200); });
+    montar();
   })();
 </script>
 </body>
