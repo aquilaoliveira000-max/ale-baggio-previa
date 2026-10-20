@@ -294,6 +294,8 @@
   .imprensa-txt .credito-extra{margin-top:var(--s1);}
   .imprensa-editorial{align-items:center;}
   .imprensa-esq{align-self:center;}
+  .imp-cel{display:none;}
+  @media (max-width:700px){ .imp-desk{display:none;} .imp-cel{display:block;} }
   .imprensa-txt .credito-extra b{font-weight:600; color:var(--texto);}
   .banca{display:flex; flex-direction:column; align-items:center;}
   .par-capas{display:flex; flex-wrap:nowrap; align-items:flex-start; justify-content:center; width:100%;}
@@ -1274,8 +1276,10 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
         <h2>Ela virou <span class="dourado">pauta.</span></h2>
         <blockquote class="aspas" id="manchete" data-texto="A artista plástica que ganhou o coração dos famosos através de seus retratos."><span class="citacao-texto">A artista plástica que ganhou o coração dos famosos através de seus retratos.</span></blockquote>
         <p class="credito">Hooks Magazine · fevereiro de 2022</p>
-        <p class="credito credito-extra">Capa da revista Atitude · dezembro de 2021</p>
-        <p class="credito credito-extra">Obra exibida ao vivo no <b>Mais Você</b>, TV Globo</p>
+        <p class="lead imp-desk">A revista Atitude contou a história antes, em dezembro de 2021: a menina tímida que se encontrava no lápis e no papel, hoje pintando os rostos que o país reconhece.</p>
+        <p class="credito credito-extra imp-cel">Capa da revista Atitude · dezembro de 2021</p>
+        <p class="lead imp-desk">O retrato dela já foi exibido ao vivo no <b>Mais Você</b>, da TV Globo, com a própria Ana Maria Braga ao lado da tela.</p>
+        <p class="credito credito-extra imp-cel">Obra exibida ao vivo no <b>Mais Você</b>, TV Globo</p>
       </div>
       </div>
       <div class="banca">
