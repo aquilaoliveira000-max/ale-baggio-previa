@@ -935,6 +935,18 @@
   .colecao.col-2.vertical .quadro3d-sombra{--s-w:122px; --s-y:86px;}
   .colecao.col-3 .quadro3d-sombra{--s-w:min(270px, 92%); --s-y:96px;}
   .colecao.col-3.vertical .quadro3d-sombra{--s-w:138px; --s-y:104px;}
+
+  /* passos: no celular sai o numero e a descricao; fica o icone dourado e o titulo */
+  .passo-icone{display:none;}
+  @media (max-width:700px){
+    .passo b{display:none;}
+    .passo span{display:none;}
+    .passo-icone{display:block; width:34px; height:34px; flex:none; align-self:center;}
+    .passo{align-items:center; gap:var(--s3); padding:var(--s3) 0;}
+  }
+  /* obras entregues: check dourado ao lado do titulo */
+  .titulo-check{display:flex; align-items:center; gap:.35em;}
+  .check-ouro{width:.9em; height:.9em; flex:none;}
   /* capa no celular: foto ancorada a esquerda e texto um pouco mais abaixo, para ver o pincel na mao */
   @media (max-width:700px){
     :root{--capa-foto-altura:125.1vw; --capa-reserva:min(calc(var(--capa-foto-altura) * .82), 52svh);}
@@ -1370,6 +1382,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
         <div class="trilho"><i id="trilhoCheio"></i></div>
         <div class="passo">
           <b>01</b>
+          <svg class="passo-icone" stroke="url(#ouro-icone)" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16v10H9l-4 4v-4H4z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></svg>
           <div>
             <p>Conversar diretamente com a artista e enviar as referências.</p>
             <span>A artista orienta a escolha das referências para a obra.</span>
@@ -1377,6 +1390,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
         </div>
         <div class="passo">
           <b>02</b>
+          <svg class="passo-icone" stroke="url(#ouro-icone)" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3a9 9 0 0 0 0 18c1.1 0 1.6-.9 1.2-1.8-.4-.9.2-1.9 1.2-1.9H17a4 4 0 0 0 4-4c0-5-4-10.3-9-10.3z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/></svg>
           <div>
             <p>Definir a composição, o tamanho, o orçamento e o prazo.</p>
             <span>Com os detalhes combinados e o sinal pago, a encomenda entra na agenda do ateliê.</span>
@@ -1384,6 +1398,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
         </div>
         <div class="passo">
           <b>03</b>
+          <svg class="passo-icone" stroke="url(#ouro-icone)" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="9" width="18" height="4" rx="1"/><path d="M5 13v8h14v-8M12 9v12"/><path d="M12 9C10 5 6 5 7 8c.5 1 3 1 5 1zM12 9c2-4 6-4 5-1-.5 1-3 1-5 1z"/></svg>
           <div>
             <p>Receber imagens da pintura pronta para aprovação antes do envio.</p>
             <span>Eventuais ajustes são conversados diretamente com a artista.</span>
@@ -1477,10 +1492,6 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
           <span class="ig-av" aria-hidden="true"><img src="img/ig/shogunoficial.webp" alt="" width="40" height="40" loading="lazy"></span>
           <blockquote><p><b class="ig-perfil">shogunoficial</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> A <span class="ig-link">@gio.prates</span> me surpreendeu com esse quadro feito à mão, com folhas de ouro, usando uma das fotos que eu mais gosto de toda a minha carreira. Um trabalho que carrega história, significado e muito carinho.<br><br>Recebi das mãos da artista plástica <span class="ig-link">@alebaggioart</span> esse presente feito por ela. Parabens pelo talento e pela sensibilidade em transformar um momento tão especial em uma verdadeira obra de arte. Ficou incrível, obrigado! 👏🤩<br><br>Heeyyy 👊</p></blockquote>
         </figure>
-        <figure class="ig-com">
-          <span class="ig-av" aria-hidden="true"><img src="img/ig/fransantosmentora.webp" alt="" width="40" height="40" loading="lazy"></span>
-          <blockquote><p><b class="ig-perfil">fransantosmentora</b><svg class="ig-selo" viewBox="0 0 40 40" aria-label="Verificado" role="img"><path fill="#0095F6" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Z"/><path fill="#fff" d="m17.43 27.26-6.07-5.97 2.13-2.16 3.93 3.87 8.11-8.1 2.14 2.14z"/></svg> 🚀 Me siga: <span class="ig-link">@fransantosmentora</span> para aprender a transformar posicionamento em faturamento.<br>🎨 E se você já quer o seu quadro personalizado, fale com <span class="ig-link">@alebaggioart</span></p><figcaption>10 sem</figcaption></blockquote>
-        </figure>
       </div>
       <button type="button" class="btn btn-2 ig-mais" id="igMais" hidden>Ver mais comentários</button>
       <p class="ig-fonte">Comentários publicados por clientes no Instagram da artista.</p>
@@ -1527,7 +1538,7 @@ Prompt usado: Use case: stylized-concept. Asset type: decorative material textur
   <section id="acervo" class="acervo-sec">
     <div class="wrap">
       <div class="acervo-topo">
-        <h2><span class="dourado">Obras entregues</span> e vídeos.</h2>
+        <h2 class="titulo-check"><svg class="check-ouro" viewBox="0 0 24 24" fill="none" stroke="url(#ouro-icone)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-6.5"/></svg><span class="dourado">Obras entregues.</span></h2>
         <p class="lead">Registros de obras entregues e vídeos das pinturas, para conhecer outros trabalhos da artista.</p>
       </div>
       <div class="acervo">
