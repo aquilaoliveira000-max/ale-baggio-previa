@@ -1,0 +1,18 @@
+# Publica o site na Vercel a cada mudança no main (inclusive as feitas pelo painel de celebridades).
+name: Publicar na Vercel
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+concurrency:
+  group: vercel-producao
+  cancel-in-progress: true
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_ORG_ID: team_mhK6DoETnrvBVCV3iBL5EZrm
+      VERCEL_PROJECT_ID: prj_0OipcGRvEk0TqVkZZoXZQ8wQtMGV
+    steps:
+      - uses: actions/checkout@v4
+      - run: npx --yes vercel@60.1.3 deploy --prod --yes --token "${{ secrets.VERCEL_TOKEN }}"
